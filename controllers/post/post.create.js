@@ -13,6 +13,8 @@ const createPost = async (req, res) => {
 			errors: validationResult.errors
 		})
 
+	const post = await postService.createPost(...validationResult.data)
+
 	res.send("creating new post")
 
 }
