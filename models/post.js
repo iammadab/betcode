@@ -4,7 +4,7 @@ const postSchema = new mongoose.Schema({
 	tipster: { type: String },
 	odds: { type: Number },
 	image: { type: String },
-	bookmakers: [{ name: String, code: String }],
+	bookmakers: { type: Object, default: {} },
 	createdAt: { type: Date, default: Date.now }
 })
 
