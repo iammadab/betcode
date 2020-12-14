@@ -20,3 +20,18 @@ exports.createPost = async ({ tipster, odds, image, bookmakers }) => {
 	}
 
 }
+
+
+exports.fetchAll = async () => {
+	
+	try{
+	
+		return Post.find({})
+
+	} catch(error){
+
+		throw error
+
+	}
+
+}

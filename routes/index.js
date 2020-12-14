@@ -13,5 +13,6 @@ const { createValidator } = require("lazy-validator")
 
 // Create a new post
 router.post("/post", postController.createPost)
+router.get("/post", postController.fetchAll)
 
 module.exports = router
