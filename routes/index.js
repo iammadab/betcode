@@ -12,7 +12,9 @@ const { createValidator } = require("lazy-validator")
 // 4. Fetch a single post
 
 // Create a new post
+// Remember to change the tipster name to lowercase
 router.post("/post", postController.createPost)
 router.get("/post", postController.fetchAll)
+router.get("/post/:value", postController.fetchBy("tipster"))
 
 module.exports = router
