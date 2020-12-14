@@ -26,6 +26,7 @@ mongoose.connect("mongodb://localhost/bookmakr", { useNewUrlParser: true, useUni
 		console.log("Error connecting to db")
 	})
 
+
 app.listen(3000, () => {
 	console.log("Application listening at port 3000")
 })
