@@ -39,3 +39,13 @@ exports.fetchBy = async ( field, value ) => {
 	}
 
 }
+
+exports.fetchById = id => {
+
+	try{
+		return Post.find({ _id: id })
+	} catch(error){
+		throw error
+	}
+
+}
