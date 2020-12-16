@@ -17,6 +17,10 @@ const apiRouter = require("./routes")
 app.get("/", (req, res) => {
 	res.render("index")
 })
+
+app.get("/tip", (req, res) => res.render("tip"))
+app.get("/post", (req, res) => res.render("post"))
+
 app.use("/api", apiRouter)
 
 mongoose.connect("mongodb://localhost/bookmakr", { useNewUrlParser: true, useUnifiedTopology: true })

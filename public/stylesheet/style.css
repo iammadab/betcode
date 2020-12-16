@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
 
-@import url("https://fonts.googleapis.com/css?family=Hind+Vadodara:300,400,500,600");
+/*@import url("https://fonts.googleapis.com/css?family=Hind+Vadodara:300,400,500,600");*/
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600");
 
 html,body {
-font-family:"Hind Vadodara";
+font-family: "Source Sans Pro", sans-serif;	
 font-size:1rem;
 line-height: 1.5rem;
 height: 100%;
@@ -22,13 +22,16 @@ background:#f8f8f8;
 
 
 h1,h2,h3,h4,h5,h6{
-font-family:"Hind Vadodara";
 font-weight:600;
 line-height:0.5rem; 
 }
 
 .btn-warning{
 background-color: rgba(255,215,0,1);	
+}
+
+.btn:focus, .code .btn:active{
+box-shadow: none;
 }
 
 /*Layout Section*/
@@ -40,7 +43,6 @@ margin:0 0 0;
 text-transform:capitalize;
 color:#000;
 padding:1.35rem 0.75rem;
-font-family: "Source Sans Pro", sans-serif;
 background:#eee;
 }
 
@@ -54,18 +56,17 @@ border-color:#e1e1e1;
 /*List Section*/
 
 .tipsters{
-padding:0 0 0;
+padding:0 0.75rem;
 }
 
 .tipsters li{
 display:inline-block;
-padding:0.6rem 0.75rem 0;
+padding:0.6rem 0.5rem 0 0;
 }
 
 .tipsters li a{
 text-transform:capitalize;
 color:#8a2be2;
-font-family: "Source Sans Pro", sans-serif;
 font-weight:600;
 font-size:0.85rem;
 text-decoration:underline;
@@ -87,6 +88,13 @@ color:#000;
 width:50%;
 margin:0 auto;
 }
+
+@media (max-width: 1400px) {
+.container{
+width:70%;	
+}
+}
+
 
 @media (max-width: 1024px) {
 .container{
@@ -155,7 +163,7 @@ z-index: 1071;
 
 
 .main{
-margin:1.5rem 0;	
+margin:1.5rem 0;
 }
 
 .content{
@@ -198,7 +206,7 @@ display: flex;
 align-items: flex-start;
 }
 
-.tip:hover{
+.hover:hover{
 background:#f8f8f8;
 }
 
@@ -216,8 +224,8 @@ border-radius:5px;
 
 @media (max-width: 480px) {
 .tip_pic img{
-width:45px;
-height:45px;	
+width:30px;
+height:30px;	
 }
 }
 
@@ -229,7 +237,6 @@ width:100%;
 .tipmain h6{
 font-size:0.85rem;
 display:inline-block;
-font-family: "Source Sans Pro", sans-serif;
 color:#8a2be2;
 }
 
@@ -244,17 +251,17 @@ margin:0.2rem 0;
 .tipmain p{
 margin:0.5rem 0 0;
 color:#333;
-font-family: "Source Sans Pro", sans-serif;
 font-size:0.85rem;	
 }
 
 
 .odds{
-/*border:1px solid #e1e1e1;*/
-padding:0.4rem 1rem;
+/*border:1px solid #e1e1e1;
+padding:0.4rem 1rem;*/
 text-align:center;
-font-size:0.9rem;
+font-size:0.85rem;
 color:#000;
+font-weight:500;
 }
 
 .odds span{
@@ -262,12 +269,125 @@ display:block;
 font-size:0.75rem;
 color:#666;
 line-height:1.2rem;
-text-transform:uppercase;
-font-family: "Source Sans Pro", sans-serif;
+/*text-transform:uppercase;*/
 }
 
 
-/*End of Tip Section*/
+
+/*Betcodes Section*/
+
+.betcodes{
+margin:0;
+padding:0;	
+}
+
+.betcodes li{
+/*border-bottom:1px solid #e1e1e1;*/
+display:inline-block;
+width:100%;
+padding:0 0 0.5rem;
+}
+
+.betcodes li:last-child{
+border-bottom:0;
+padding:0;	
+}
+
+.betcodes li p{
+display:inline-block;
+font-weight:600;	
+}
+
+.betcodes .code{
+float:right;
+color:#333;
+font-weight:400;	
+}
+
+.code .btn{
+margin:0 0 0 0.5rem;
+padding:0 0.3rem;
+background:#fff;
+border:1px solid #e1e1e1;
+color:#000;	
+}	
+
+.code .btn:hover{
+background:#ffd700;	
+border:1px solid #000;
+}
+
+
+
+.code .btn:focus, .code .btn:active{
+border:1px solid #000;	
+}
+
+/*Divider Section*/
+
+.divider {
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-pack: center;
+-ms-flex-pack: center;
+justify-content: center;
+-webkit-box-align: center;
+-ms-flex-align: center;
+align-items: center;
+margin:1rem 0 0.5rem;
+color:#ccc;
+font-size:0.9rem;
+text-transform:uppercase;
+}
+.divider > span:first-child {
+width: 100%;
+height: 1px;
+-webkit-box-flex: 1;
+-ms-flex: 1;
+flex: 1;
+background: #e1e1e1;
+display: inline-block; }
+.divider > span:last-child {
+width: 100%;
+height: 1px;
+-webkit-box-flex: 1;
+-ms-flex: 1;
+flex: 1;
+background: #e1e1e1;
+display: inline-block; }
+.divider > span:not(:first-child):not(:last-child) {
+padding: 0 2rem; }
+
+
+
+/*Post Section*/
+.post{
+padding:1rem 0.75rem;
+margin:0 auto;	
+}
+
+.form-control, .custom-select, .custom-file{
+color:#000; 
+border-color:1px solid #e1e1e1;
+}
+
+.upcase{text-transform:uppercase;}
+
+.post textarea{
+min-height:90px;	
+}
+
+.post input:focus, .post textarea:focus, .post select:focus{
+box-shadow: none;
+border:1px solid #8a2be2;  
+}
+
+.post .btn{
+font-weight:600;
+width:100%;
+text-transform:uppercase;
+}
 
 
 /*End of Layout Section*/
