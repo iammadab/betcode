@@ -1,4 +1,3 @@
-const path = require("path")
 const express = require("express")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
@@ -8,8 +7,6 @@ const app = express()
 app.use(bodyParser.json())
 
 app.set("view engine", "ejs")
-app.use(express.static(path.join(__dirname, "public")))
-app.use(express.static(path.join(__dirname, "uploads")))
 
 // routes
 const apiRouter = require("./routes")
@@ -25,6 +22,7 @@ mongoose.connect("mongodb://localhost/bookmakr", { useNewUrlParser: true, useUni
 		console.log(err)
 		console.log("Error connecting to db")
 	})
+
 
 app.listen(3000, () => {
 	console.log("Application listening at port 3000")
