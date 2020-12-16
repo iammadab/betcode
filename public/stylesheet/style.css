@@ -54,12 +54,12 @@ border-color:#e1e1e1;
 /*List Section*/
 
 .tipsters{
-padding:0.5rem 0 0;
+padding:0 0 0;
 }
 
 .tipsters li{
 display:inline-block;
-padding:0.5rem 0.75rem 0;
+padding:0.6rem 0.75rem 0;
 }
 
 .tipsters li a{
@@ -162,7 +162,6 @@ margin:1.5rem 0;
 border:1px solid #e1e1e1;
 border-radius:4px;
 background:#fff;
-min-height:50px;
 margin:0 0 1.5rem;
 }
 
@@ -185,7 +184,7 @@ text-decoration:none;
 }
 
 .tips li:last-child{
-border-bottom:0;	
+border-bottom:0;
 }
 
 
@@ -223,8 +222,8 @@ height:45px;
 }
 
 .tipmain{
-margin:0 0.5rem;
-width:80%;	
+margin:0 0 0 0.7rem;
+width:100%;	
 }
 
 .tipmain h6{
