@@ -1,15 +1,10 @@
 const Post = require("../models/post")
 
-exports.createPost = async ({ tipster, odds, image, bookmakers }) => {
+exports.createPost = async (data) => {
 
 	try{
 
-		const newPost = new Post({
-			tipster,
-			odds,
-			image,
-			bookmakers
-		})
+		const newPost = new Post(data)
 
 		return newPost.save()
 
@@ -23,7 +18,7 @@ exports.createPost = async ({ tipster, odds, image, bookmakers }) => {
 exports.fetchAll = async () => {
 	
 	try{
-		return Post.find({})
+		return Post.find({}).populate("tipster")
 	} catch(error){
 		throw error
 	}

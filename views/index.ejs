@@ -1,11 +1,16 @@
 <%- include ("meta.ejs") %>
 <div id="app">
-<%- include ("header.ejs") %>
+	<%- include ("header.ejs") %>
 <div class="main">
-<div class="container">
-<%- include ("tipsters.ejs") %>
-<%- include ("tips.ejs") %>
+<div class="container" id="app">
+	<%- include ("tipsters.ejs") %>
+	<%- include ("tips.ejs") %>
 </div>
 </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/vuex@2.0.0"></script>
+<script src="/js/index.js"></script>
+
 <%- include ("footer.ejs") %>

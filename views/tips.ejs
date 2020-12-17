@@ -6,143 +6,32 @@
 
 	<ul class="tips">
 
-		<li>
+		<li v-for="tip of tips">
 			
 			<a href="/bet">
 
 				<div class="tip hover">
 				
-					<span class="tip_pic"><img src="/image/logo/1.jpg" alt="Bet Affairs"></span>
+					<span class="tip_pic"><img :src="tip.tipster.image" :alt="tip.tipster.name"></span>
 
 					<div class="tipmain">
 					
-						<h6>Bet Affairs</h6>
+						<h6>{{ tip.tipster.name }}</h6>
 		
 						<span>2 hours ago</span>
 
-						<p>Betking: A3A2164</p>
+						<p>{{ tip.description }}</p>
 				
 					</div>
 
-					<div class="odds">30 <span>Odds</span></div>	
+					<div class="odds">{{ tip.odds }} <span>Odds</span></div>	
 			
-			</div> 
+				</div> 
 
 			</a>	
 		
 		</li>
 
-
-		<li>
-			
-			<a href="/bet">
-
-				<div class="tip hover">
-				
-					<span class="tip_pic"><img src="/image/logo/2.jpg" alt="Punt2win"></span>
-
-					<div class="tipmain">
-					
-						<h6>Punt2win</h6>
-		
-						<span>3 hours ago</span>
-
-						<p>Double chance acca</p>
-				
-					</div>
-
-					<div class="odds">14.3 <span>Odds</span></div>	
-			
-			</div> 
-
-			</a>	
-		
-		</li>
-
-
-
-		<li>
-			
-			<a href="/bet">
-
-				<div class="tip hover">
-				
-					<span class="tip_pic"><img src="/image/logo/3.jfif" alt="Ekiti Pikin"></span>
-
-					<div class="tipmain">
-					
-						<h6>Ekitipikin</h6>
-		
-						<span>3 hours ago</span>
-
-						<p>Longshot straight win</p>
-				
-					</div>
-
-					<div class="odds">3000 <span>Odds</span></div>	
-			
-			</div> 
-
-			</a>	
-		
-		</li>
-
-
-
-		<li>
-			
-			<a href="/bet">
-
-				<div class="tip hover">
-				
-					<span class="tip_pic"><img src="/image/logo/4.jpg" alt="Life Of Dunni"></span>
-
-					<div class="tipmain">
-					
-						<h6>Life Of Dunni</h6>
-		
-						<span>5 hours ago</span>
-
-						<p>Happy weekend game</p>
-				
-					</div>
-
-					<div class="odds">4.6 <span>Odds</span></div>	
-			
-			</div> 
-
-			</a>	
-		
-		</li>
-
-
-
-		<li>
-			
-			<a href="/bet">
-
-				<div class="tip hover">
-				
-					<span class="tip_pic"><img src="/image/logo/5.jpeg" alt="Rokamo Bet"></span>
-
-					<div class="tipmain">
-					
-						<h6>Rokamo Bet</h6>
-		
-						<span>6 hours ago</span>
-
-						<p>Bet9ja AX31460</p>
-				
-					</div>
-
-					<div class="odds">18 <span>Odds</span></div>	
-			
-			</div> 
-
-			</a>	
-		
-		</li>
-		
 	</ul>
 	
 </div>
