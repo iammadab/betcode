@@ -12,7 +12,7 @@
 
 				<div class="tip">
 			
-					<span class="tip_pic"><img src="/image/logo/1.jpg" alt="Punt2win"></span>
+					<span class="tip_pic"><img :src="tip.tipster.image" :alt="tip.tipster.name"></span>
 
 					<div class="tipmain">
 				
@@ -22,7 +22,7 @@
 
 						<div class="sharethis-inline-share-buttons my-3"></div>
 
-						<p>Double chance acca. This event fires on, but before the new tab has been shown. This event fires on tab show, but before the new tab has been shown. This event fires on tab show, but before the new tab has been shown. This event fires on tab show, but before the new tab has been shown</p>
+						<p>{{ tip.description }}</p>
 
 						<div class="divider">
 						<span></span>
@@ -98,7 +98,7 @@
 				
 					</div>
 
-					<div class="odds">14.3 <span>Odds</span></div>
+					<div class="odds">{{ tip.odds }} <span>Odds</span></div>
 
 				</div>
 
@@ -109,6 +109,11 @@
 	</div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/vuex@2.0.0"></script>
+<script src="/js/tip.js"></script>
+
 <%- include ("footer.ejs") %>
 
 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2d64f1c125530012b63b0e&product=inline-share-buttons' async='async'></script>

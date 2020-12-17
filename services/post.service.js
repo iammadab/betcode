@@ -38,7 +38,7 @@ exports.fetchBy = async ( field, value ) => {
 exports.fetchById = id => {
 
 	try{
-		return Post.find({ _id: id })
+		return Post.findOne({ _id: id }).populate("tipster")
 	} catch(error){
 		throw error
 	}
