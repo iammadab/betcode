@@ -3,7 +3,7 @@ const on = require("../../lib/on")
 const { createValidator } = require("lazy-validator")
 
 const createPostValidator 
-	= createValidator("tipster.string.lowercase, description.string, odds.number, image.string, bookmakers.array")
+	= createValidator("tipster.string.lowercase, description.string, odds.number, image.string, bookmakers.object")
 
 const createPost = async (req, res) => {
 
