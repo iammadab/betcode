@@ -7,7 +7,8 @@ const app = new Vue({
 	data: () => {
 
 		return {
-
+			
+			formstate: "neutral", // neutral, error, success
 			tipsters: [],			
 			tipster: "",
 			description: "",
@@ -53,6 +54,15 @@ const app = new Vue({
 	},
 
 	methods: {
+
+		reset(){
+			
+			const all = [ "tipster", "description", "odds", "bookmakers", "image" ]
+			all.forEach(val => {
+				this[val] = ""
+			})
+
+		},
 
 		handleimage(event){
 			const files = event.target.files
@@ -100,7 +110,6 @@ const app = new Vue({
 				})
 			})
 			.then(res => res.json())
-			.then(console.log)
 
 		}
 

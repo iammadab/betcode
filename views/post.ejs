@@ -11,11 +11,11 @@
 				<form>
 
 
-					<div class="alert alert-success" role="alert">
+					<div v-show="formstate == 'success'" class="alert alert-success" role="alert">
   						Tip posted successfully
 					</div>
 
-					<div class="alert alert-danger" role="alert">
+					<div v-show="formstate == 'error'" class="alert alert-danger" role="alert">
   						Tip posted unsuccessfully, please try again
 
 					</div>
