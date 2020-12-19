@@ -28,7 +28,7 @@ exports.fetchAll = async () => {
 exports.fetchBy = async ( field, value ) => {
 
 	try{
-		return Post.find({ [field]: value })
+		return Post.find({ [field]: value }).populate("tipster")
 	} catch(error){
 		throw error
 	}
