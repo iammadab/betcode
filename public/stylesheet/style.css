@@ -180,6 +180,10 @@ padding:0rem 0;
 padding:7px 10px;	
 }
 
+.nav_link li a i{
+font-size:0.9rem;
+margin-right:0.3rem;
+}
 
 }
 
@@ -326,10 +330,10 @@ width:100%;
 padding:0 0 0.5rem;
 }
 
-.betcodes li:last-child{
-/*border-bottom:0;*/
-padding:0;	
-}
+/*.betcodes li:last-child{
+border-bottom:0;
+padding-bottom:0;
+}*/
 
 .betcodes li p{
 display:inline-block;
