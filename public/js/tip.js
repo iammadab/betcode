@@ -8,7 +8,23 @@ const app = new Vue({
 
 		return {
 
-			tip: {  tipster: {} }
+			tip: {  tipster: {}, bookmakers: {} }
+
+		}
+
+	},
+
+	methods: {
+
+		copy(event){
+		
+			const code = event.target.previousElementSibling.innerText
+			const copyInput = document.querySelector("#copyinput")
+
+			copyInput.value = code
+			copyInput.select()
+
+			document.execCommand("copy")
 
 		}
 

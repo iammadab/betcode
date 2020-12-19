@@ -16,7 +16,7 @@
 
 					<div class="tipmain">
 				
-						<h6>Punt2win</h6>
+						<h6>{{ tip.tipster.name }}</h6>
 		
 						<span>3 hours ago</span>
 
@@ -38,54 +38,54 @@
 								<p>Bet9ja:</p>
 								<p class="code">									 
 									 <span>{{ tip.bookmakers.bet9ja }}</span>
-									<a class="btn btn-sm" href="#">
+									<button @click="copy" class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
-									</a>
+									</button>
 								</p>
 							</li>
 							<li v-if="tip.bookmakers.betking">
 								<p>Betking:</p>
 								<p class="code">
 									<span>{{ tip.bookmakers.betking }}</span>
-									<a class="btn btn-sm" href="#">
+									<button @click="copy" class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
-									</a>
+									</button>
 								</p>
 							</li>
 							<li v-if="tip.bookmakers.sportybet">
 								<p>Sportybet:</p>
 								<p class="code">
 									<span>{{ tip.bookmakers.sportybet }}</span>
-									<a class="btn btn-sm" href="#">
+									<button @click="copy" class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
-									</a>
+									</button>
 								</p>
 							</li>
 							<li v-if="tip.bookmakers.onexbet">
 								<p>1Xbet:</p>
 								<p class="code">
 									<span>{{ tip.bookmakers.onexbet }}</span> 
-									<a class="btn btn-sm" href="#">
+									<button @click="copy" class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
-									</a>
+									</button>
 								</p>
 							</li>
 							<li v-if="tip.bookmakers.twentytwobet">
 								<p>22bet:</p>
 								<p class="code">
 									<span>{{ tip.bookmakers.twentytwobet }}</span> 
-									<a class="btn btn-sm" href="#">
+									<button @click="copy" class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
-									</a>
+									</button>
 								</p>
 							</li>
 							<li v-if="tip.bookmakers.nairabet">
 								<p>Nairabet:</p>
 								<p class="code">
 									<span>{{ tip.bookmakers.nairabet }}</span>
-									<a class="btn btn-sm" href="#">
+									<button @click="copy" class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
-									</a>
+									</button>
 								</p>
 							</li>
 
@@ -114,6 +114,8 @@
 	</div>
 
 </div>
+
+<input type="text" id="copyinput" style="transform: translateY(-50000px);"/>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="https://unpkg.com/vuex@2.0.0"></script>
