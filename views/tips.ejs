@@ -18,7 +18,7 @@
 					
 						<h6>{{ tip.tipster.name }}</h6>
 		
-						<span>2 hours ago</span>
+						<span>{{ moment(tip.createdAt).fromNow() }}</span>
 
 						<p>{{ tip.description }}</p>
 				

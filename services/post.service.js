@@ -18,7 +18,7 @@ exports.createPost = async (data) => {
 exports.fetchAll = async () => {
 	
 	try{
-		return Post.find({}).populate("tipster")
+		return Post.find({}).populate("tipster").sort({ createdAt: -1 })
 	} catch(error){
 		throw error
 	}
@@ -28,7 +28,7 @@ exports.fetchAll = async () => {
 exports.fetchBy = async ( field, value ) => {
 
 	try{
-		return Post.find({ [field]: value })
+		return Post.find({ [field]: value }).populate("tipster").sort({ createdAt: -1 })
 	} catch(error){
 		throw error
 	}

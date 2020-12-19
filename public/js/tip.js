@@ -8,7 +8,24 @@ const app = new Vue({
 
 		return {
 
-			tip: {  tipster: {} }
+			tip: {  tipster: {}, bookmakers: {} }
+
+		}
+
+	},
+
+	methods: {
+
+		copy(event){
+		
+			const code = event.target.previousElementSibling.innerText
+			const copyInput = document.querySelector("#copyinput")
+
+			copyInput.value = code
+			copyInput.select()
+			copyInput.setSelectionRange(0, 99999)
+
+			document.execCommand("copy")
 
 		}
 
@@ -17,8 +34,6 @@ const app = new Vue({
 	created(){
 	
 		const tipId = new URLSearchParams(window.location.search).get("id")
-
-		console.log(tipId)
 
 		fetch(`/api/post/${tipId}`)
 			.then(res => res.json())

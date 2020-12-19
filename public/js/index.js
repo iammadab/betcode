@@ -17,14 +17,16 @@ const app = new Vue({
 	},
 
 	created(){
-	
+
+		const filter = new URLSearchParams(window.location.search).get("filter") || "" 
+
 		fetch("/api/tipster")
 			.then(res => res.json())
 			.then(data => {
 				this.tipsters = data.data
 			})
 
-		fetch("/api/post")
+		fetch(filter ? `api/post/filter/${hypenToSpace(filter)}` : "/api/post")
 			.then(res => res.json())
 			.then(data => {
 				this.tips = data.data
@@ -37,7 +39,7 @@ const app = new Vue({
 
 			const list =  this.tipsters.map(tipster => ({
 				name: tipster.name,
-				link: `?filter=${spaceToHypen(tipster.name)}`
+				link: `?filter=${tipster._id}`
 			}))
 
 			list.unshift({

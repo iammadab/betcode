@@ -14,7 +14,7 @@ const app = new Vue({
 			description: "",
 			image: "",
 			odds: "",
-			formdata: {},
+			errormessage: "",
 			bookmakers: {
 				bet9ja: "",
 				betking: "",
@@ -26,6 +26,26 @@ const app = new Vue({
 
 		}
 
+	},
+
+	watch: {
+	
+		tipster(){
+			this.reset()
+		},
+
+		description(){
+			this.reset()
+		},
+
+		image(){
+			this.reset()
+		},
+
+		odds(){
+			this.reset()
+		}
+		
 	},
 
 	created(){
@@ -56,11 +76,15 @@ const app = new Vue({
 	methods: {
 
 		reset(){
-			
+		
+			if(this.formstate == "neutral") return 
+			if(this.formstate == "error") return this.formstate = "neutral"
+
 			const all = [ "tipster", "description", "odds", "bookmakers", "image" ]
 			all.forEach(val => {
 				this[val] = ""
 			})
+			this.formstate = "neutral"
 
 		},
 
@@ -93,8 +117,11 @@ const app = new Vue({
 				}
 			}
 
-			if(!complete)
-				return console.log("Complete the form")
+			if(!complete){
+				this.errormessage = "Please complete the form"
+				this.formstate = "error"
+				return
+			}
 
 			fetch("/api/post", {
 				method: "POST",
@@ -110,6 +137,13 @@ const app = new Vue({
 				})
 			})
 			.then(res => res.json())
+			.then(() => {
+				this.formstate = "success"
+			})
+			.catch(err => {
+				this.errormessage = "Tip posted unsucessfully, try again later"
+				this.formstate = "error"
+			})
 
 		}
 
