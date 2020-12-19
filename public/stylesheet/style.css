@@ -149,6 +149,30 @@ padding:0.4rem 1rem;
 }
 }
 
+.nav_link{
+padding:0;	
+}
+
+.nav_link li{
+display:inline-block;
+margin:1rem 1.5rem 0 0;
+}
+
+.nav_link li:last-child{
+margin-right:0;	
+}
+
+.nav_link li a{
+font-weight:600;
+color:#fff;
+}
+
+.nav_link .bg{
+background-color: rgba(222, 222, 222, 0.3);
+padding: 8px 13px;
+color: #444;	
+}
+
 
 @supports ((position: -webkit-sticky) or (position: sticky)) {
 .navbar{
