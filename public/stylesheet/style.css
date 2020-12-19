@@ -26,10 +26,6 @@ font-weight:600;
 line-height:0.5rem; 
 }
 
-.btn-warning{
-background-color: rgba(255,215,0,1);	
-}
-
 .btn:focus, .code .btn:active{
 box-shadow: none;
 }
@@ -37,7 +33,7 @@ box-shadow: none;
 /*Layout Section*/
 
 .title{
-font-size:0.9rem;
+font-size:1rem;
 line-height:0;
 margin:0 0 0;
 text-transform:capitalize;
@@ -132,9 +128,44 @@ padding:0 0;
 width:120px;
 }
 
-.navbar .btn{
+
+.nav_link{
+padding:0;	
+}
+
+.nav_link li{
+display:inline-block;
+margin:1rem 0.5rem 0 0;
+}
+
+.nav_link li:last-child{
+margin-right:0;	
+}
+
+.nav_link li a{
 font-weight:600;
 font-size:0.9rem;
+padding: 8px 12px;
+border-radius:3px;
+}
+
+.nav_link li a:hover{
+text-decoration:none;	
+}
+
+.nav_link li a i{
+font-size:0.9rem;
+margin:0 0.5rem 0 0;
+}
+
+.bggrey,.bggrey:hover{
+background-color: rgba(222, 222, 222, 0.3);
+color:#fff;
+}
+
+.bggold,.bggold:hover{
+background-color: rgba(222, 215, 0, 1);
+color: #000;
 }
 
 @media (max-width: 992px) {
@@ -144,33 +175,12 @@ width:90px;
 .navbar{
 padding:0rem 0;	
 }
-.navbar .btn{
-padding:0.4rem 1rem;	
-}
-}
-
-.nav_link{
-padding:0;	
-}
-
-.nav_link li{
-display:inline-block;
-margin:1rem 1.5rem 0 0;
-}
-
-.nav_link li:last-child{
-margin-right:0;	
-}
 
 .nav_link li a{
-font-weight:600;
-color:#fff;
+padding:7px 10px;	
 }
 
-.nav_link .bg{
-background-color: rgba(222, 222, 222, 0.3);
-padding: 8px 13px;
-color: #444;	
+
 }
 
 
@@ -187,7 +197,7 @@ z-index: 1071;
 
 
 .main{
-margin:1.5rem 0;
+margin:1.5rem 0 0;
 }
 
 .content{
@@ -240,8 +250,8 @@ background-position: center center;
 background-size: cover;
 }
 .tip_pic img {
-width:65px;
-height:65px;
+width:40px;
+height:40px;
 border:1px solid #e1e1e1;
 border-radius:5px; 
 }
@@ -262,6 +272,7 @@ width:100%;
 font-size:0.85rem;
 display:inline-block;
 color:#8a2be2;
+text-transform:capitalize;
 }
 
 .tipmain span{
@@ -283,8 +294,8 @@ font-size:0.85rem;
 
 
 .odds{
-/*border:1px solid #e1e1e1;
-padding:0.4rem 1rem;*/
+border:1px solid #e1e1e1;
+padding:0.4rem 1rem;
 text-align:center;
 font-size:0.85rem;
 color:#000;
@@ -330,7 +341,7 @@ display:inline-block;
 font-size:0.8rem;
 margin:0 0.2rem 0 0;
 color:#666;
-font-weight:600;
+font-weight:400;
 text-transform:uppercase;
 }
 
@@ -356,7 +367,8 @@ border:1px solid #000;
 
 
 .code .btn:focus, .code .btn:active{
-border:1px solid #000;	
+border:1px solid #000;
+background:#ffd700;	
 }
 
 /*Divider Section*/
@@ -439,9 +451,11 @@ text-transform:uppercase;
 
 /*Footer Section*/
 footer{
-font-size:0.85rem;
+font-size:0.8rem;
 padding:0 0 1rem;
-color:#666;
+color:#ababab;
+width:95%;
+margin:0 auto;
 }
 
 
@@ -457,7 +471,7 @@ float:right;
 } 
 
 footer .footer-link a{
-color:#666;
+color:#ababab;
 margin:0 0 0 1rem;
 }
 
@@ -492,7 +506,8 @@ background: #fff;
 
 .modal-window h4{
 color:#000;
-margin:0 0 1.3rem;  
+margin:0 0 0.5rem;
+line-height:1.8rem; 
 }
 
 .modal-window p{
