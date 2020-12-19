@@ -34,55 +34,55 @@
 
 						<ul class="betcodes">
 
-							<li>
+							<li v-if="tip.bookmakers.bet9ja">
 								<p>Bet9ja:</p>
 								<p class="code">									 
-									 <span>EJ1826O</span>
+									 <span>{{ tip.bookmakers.bet9ja }}</span>
 									<a class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
 									</a>
 								</p>
 							</li>
-							<li>
+							<li v-if="tip.bookmakers.betking">
 								<p>Betking:</p>
 								<p class="code">
-									<span>CDF18A</span>
+									<span>{{ tip.bookmakers.betking }}</span>
 									<a class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
 									</a>
 								</p>
 							</li>
-							<li>
+							<li v-if="tip.bookmakers.sportybet">
 								<p>Sportybet:</p>
 								<p class="code">
-									<span>29ZZXX</span>
+									<span>{{ tip.bookmakers.sportybet }}</span>
 									<a class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
 									</a>
 								</p>
 							</li>
-							<li>
+							<li v-if="tip.bookmakers.onexbet">
 								<p>1Xbet:</p>
 								<p class="code">
-									<span>BAM97</span> 
+									<span>{{ tip.bookmakers.onexbet }}</span> 
 									<a class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
 									</a>
 								</p>
 							</li>
-							<li>
+							<li v-if="tip.bookmakers.twentytwobet">
 								<p>22bet:</p>
 								<p class="code">
-									<span>GE08VB</span> 
+									<span>{{ tip.bookmakers.twentytwobet }}</span> 
 									<a class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
 									</a>
 								</p>
 							</li>
-							<li>
+							<li v-if="tip.bookmakers.nairabet">
 								<p>Nairabet:</p>
 								<p class="code">
-									<span>GGAM111</span>
+									<span>{{ tip.bookmakers.nairabet }}</span>
 									<a class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
 									</a>
