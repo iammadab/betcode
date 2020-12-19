@@ -18,7 +18,7 @@
 				
 						<h6>{{ tip.tipster.name }}</h6>
 		
-						<span>3 hours ago</span>
+						<span>{{ moment(tip.createdAt).fromNow() }}</span>
 
 						<div class="sharethis-inline-share-buttons my-3"></div>
 
