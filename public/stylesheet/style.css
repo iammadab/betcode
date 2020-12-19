@@ -471,8 +471,24 @@ float:right;
 } 
 
 footer .footer-link a{
-color:#ababab;
+color:#989898;
 margin:0 0 0 1rem;
+}
+
+@media (max-width:350px) {
+.footer {
+width:100%;
+}
+footer .copyright{
+display:block;
+text-align:center;	
+}
+footer .footer-link{
+display:block;
+text-align:center;
+float:none;
+margin-top:0.2rem; 	
+}
 }
 
 /*Modal Section*/
