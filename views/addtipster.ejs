@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>Add Tipster</title>
+	</head>
+	<body>
+		<h1>Add tipster</h1>
+		<form>
+			<input type="text" id="name" placeholder="Tipster Name" />
+			<input type="file" id="image" placeholder="Tipster Image" />
+			<button type="submit">Add</button>
+		</form>
+
+		<script type="text/javascript">
+			const submit = document.querySelector("button")
+
+			submit.addEventListener("click", (event) => {
+				event.preventDefault()
+
+				const name = document.querySelector("#name")
+				const image = document.querySelector("#image")
+				
+				const files = image.files
+				const formData = new FormData()
+				formData.append("file", files[0])
+
+				fetch("/api/upload", {
+					method: "POST",
+					body: formData
+				})
+				.then(res => res.json())
+				.then(data => {
+					const url = data.preview
+					return fetch("/api/tipster", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							name: name.value,
+							image: url
+						})
+					})
+				})
+				.then(res => res.json())
+				.then(() => {
+					name.value = ""
+					image.value = ""
+				}) 
+
+
+			})
+		</script>
+	</body>
+</html>
