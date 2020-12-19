@@ -31,19 +31,19 @@ const app = new Vue({
 	watch: {
 	
 		tipster(){
-			this.reset()
+			this.reset(true)
 		},
 
 		description(){
-			this.reset()
+			this.reset(true)
 		},
 
 		image(){
-			this.reset()
+			this.reset(true)
 		},
 
 		odds(){
-			this.reset()
+			this.reset(true)
 		}
 		
 	},
@@ -75,7 +75,7 @@ const app = new Vue({
 
 	methods: {
 
-		reset(){
+		reset(complete){
 		
 			if(this.formstate == "neutral") return 
 			if(this.formstate == "error") return this.formstate = "neutral"
@@ -84,7 +84,9 @@ const app = new Vue({
 			all.forEach(val => {
 				this[val] = ""
 			})
-			this.formstate = "neutral"
+
+			if(complete)
+				this.formstate = "neutral"
 
 		},
 
@@ -139,6 +141,7 @@ const app = new Vue({
 			.then(res => res.json())
 			.then(() => {
 				this.formstate = "success"
+				this.reset(false)
 			})
 			.catch(err => {
 				this.errormessage = "Tip posted unsucessfully, try again later"
