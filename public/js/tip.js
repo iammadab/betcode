@@ -23,6 +23,7 @@ const app = new Vue({
 
 			copyInput.value = code
 			copyInput.select()
+			copyInput.setSelectionRange(0, 99999)
 
 			document.execCommand("copy")
 
