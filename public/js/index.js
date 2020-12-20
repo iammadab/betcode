@@ -24,6 +24,9 @@ const app = new Vue({
 
 		this.tipster = filter ? hypenToSpace(filter) : "all"
 
+		document.title = this.tipster != "all" ? "Latest Tips from " + this.tipster : "Latest Tips"
+		addMeta("title", document.title)
+
 		fetch("/api/tipster")
 			.then(res => res.json())
 			.then(data => {
