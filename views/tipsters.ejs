@@ -7,7 +7,7 @@
 	<ul class="tipsters">
 		
 		<li v-for="tipster in tipsterList">
-			<a :href="tipster.link">{{ tipster.name }}</a>
+			<a :href="tipster.link" :class="{ active: isActive(tipster.name) }">{{ tipster.name }}</a>
 		</li>
 	
 	</ul>

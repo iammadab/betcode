@@ -10,7 +10,9 @@ const app = new Vue({
 			
 			tipsters: [],
 
-			tips: []
+			tips: [],
+
+			tipster: ""
 
 		}
 
@@ -19,6 +21,8 @@ const app = new Vue({
 	created(){
 
 		const filter = new URLSearchParams(window.location.search).get("tipster") || "" 
+
+		this.tipster = filter ? hypenToSpace(filter) : "all"
 
 		fetch("/api/tipster")
 			.then(res => res.json())
@@ -50,6 +54,14 @@ const app = new Vue({
 
 			return list
 
+		}
+
+	},
+
+	methods: {
+
+		isActive(name){
+			return name == this.tipster
 		}
 
 	}
