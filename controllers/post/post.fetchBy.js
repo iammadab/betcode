@@ -1,9 +1,13 @@
 const postService = require("../../services/post.service")
+const tipsterService = require("../../services/tipster.service")
 const on = require("../../lib/on")
 const { createValidator } = require("lazy-validator")
 
 const fetchByValidator = createValidator("value.string.lowercase")
 
+// Should not be called fetch by again
+// The abstraction was too early
+// Please refactor
 const fetchBy = field => async (req, res) => {
 	
 	const validationResult = fetchByValidator.parse(req.params)
@@ -16,8 +20,13 @@ const fetchBy = field => async (req, res) => {
 
 	const { value } = validationResult.data
 
+	let tipster = {}
+	if(field == "tipster")
+		tipster = await tipsterService.fetchTipsterIdFromName(value)
+	
+
 	const [ fetchError, posts ] = 
-		await on(postService.fetchBy(field, value))
+		await on(postService.fetchBy(field, value, tipster._id))
 
 	if(fetchError)
 		return res.json({

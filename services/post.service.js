@@ -1,4 +1,5 @@
 const Post = require("../models/post")
+const tipsterService = require("../services/tipster.service")
 
 exports.createPost = async (data) => {
 
@@ -25,10 +26,10 @@ exports.fetchAll = async () => {
 
 }
 
-exports.fetchBy = async ( field, value ) => {
+exports.fetchBy = async ( field, value, id ) => {
 
 	try{
-		return Post.find({ [field]: value }).populate("tipster").sort({ createdAt: -1 })
+		return Post.find({ [field]: id }).populate("tipster").sort({ createdAt: -1 })
 	} catch(error){
 		throw error
 	}

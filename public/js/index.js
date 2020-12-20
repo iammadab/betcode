@@ -18,7 +18,7 @@ const app = new Vue({
 
 	created(){
 
-		const filter = new URLSearchParams(window.location.search).get("filter") || "" 
+		const filter = new URLSearchParams(window.location.search).get("tipster") || "" 
 
 		fetch("/api/tipster")
 			.then(res => res.json())
@@ -39,7 +39,8 @@ const app = new Vue({
 
 			const list =  this.tipsters.map(tipster => ({
 				name: tipster.name,
-				link: `?filter=${tipster._id}`
+				//link: `?filter=${tipster._id}`
+				link: `?tipster=${spaceToHypen(tipster.name)}`
 			}))
 
 			list.unshift({
