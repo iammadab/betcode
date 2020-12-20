@@ -14,6 +14,15 @@ const app = new Vue({
 
 	},
 
+	computed: {
+	
+		shortid(){
+			const id = String(this.tip._id)
+			return id.substr(id.length - 6)
+		}
+
+	},
+
 	methods: {
 
 		copy(event){
