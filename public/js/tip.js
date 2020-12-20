@@ -47,6 +47,12 @@ const app = new Vue({
 				document.selection.empty();
 			}
 
+			//Change text to copied
+			event.target.innerHTML = `<i class="far fa-clone"></i> Copied`
+			setTimeout(() => {
+				event.target.innerHTML = `<i class="far fa-clone"></i> Copy`
+			}, 1000)
+
 		}
 
 	},
