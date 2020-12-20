@@ -65,7 +65,14 @@ const app = new Vue({
 			.then(res => res.json())
 			.then(data => {
 				this.tip = data.data
+				addMeta("image", this.tip.image)
 			})
+
+		const id = String(tipId)
+		const title = `Tip #${id.substr(id.length - 6)}`
+
+		document.title = title
+		addMeta("title", title)
 
 	}
 
