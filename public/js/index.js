@@ -54,7 +54,14 @@ const app = new Vue({
 
 			return list
 
+		},
+
+		banner(){
+
+			return this.tipster == "all" ? "" : `from ${this.tipster}`	
+
 		}
+
 
 	},
 
