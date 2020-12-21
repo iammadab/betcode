@@ -24,3 +24,9 @@ exports.fetchAll = async () => {
 	return Tipster.find()
 
 }
+
+exports.fetchTipsterIdFromName = async (name) => {
+	
+	return Tipster.findOne({ name }) 
+		
+}

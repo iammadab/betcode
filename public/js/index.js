@@ -10,7 +10,9 @@ const app = new Vue({
 			
 			tipsters: [],
 
-			tips: []
+			tips: [],
+
+			tipster: ""
 
 		}
 
@@ -18,7 +20,12 @@ const app = new Vue({
 
 	created(){
 
-		const filter = new URLSearchParams(window.location.search).get("filter") || "" 
+		const filter = new URLSearchParams(window.location.search).get("tipster") || "" 
+
+		this.tipster = filter ? hypenToSpace(filter) : "all"
+
+		document.title = this.tipster != "all" ? "Latest Tips from " + this.tipster : "Latest Tips"
+		addMeta("title", document.title)
 
 		fetch("/api/tipster")
 			.then(res => res.json())
@@ -39,7 +46,8 @@ const app = new Vue({
 
 			const list =  this.tipsters.map(tipster => ({
 				name: tipster.name,
-				link: `?filter=${tipster._id}`
+				//link: `?filter=${tipster._id}`
+				link: `?tipster=${spaceToHypen(tipster.name)}`
 			}))
 
 			list.unshift({
@@ -49,6 +57,21 @@ const app = new Vue({
 
 			return list
 
+		},
+
+		banner(){
+
+			return this.tipster == "all" ? "" : `from ${this.tipster}`	
+
+		}
+
+
+	},
+
+	methods: {
+
+		isActive(name){
+			return name == this.tipster
 		}
 
 	}

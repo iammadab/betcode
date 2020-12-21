@@ -8,7 +8,6 @@ const app = new Vue({
 
 		return {
 			
-			formstate: "neutral", // neutral, error, success
 			tipsters: [],			
 			tipster: "",
 			description: "",
@@ -26,26 +25,6 @@ const app = new Vue({
 
 		}
 
-	},
-
-	watch: {
-	
-		tipster(){
-			this.reset(true)
-		},
-
-		description(){
-			this.reset(true)
-		},
-
-		image(){
-			this.reset(true)
-		},
-
-		odds(){
-			this.reset(true)
-		}
-		
 	},
 
 	created(){
@@ -74,82 +53,103 @@ const app = new Vue({
 	},
 
 	methods: {
-
-		reset(complete){
-		
-			if(this.formstate == "neutral") return 
-			if(this.formstate == "error") return this.formstate = "neutral"
-
-			const all = [ "tipster", "description", "odds", "bookmakers", "image" ]
-			all.forEach(val => {
-				this[val] = ""
+	
+		reset(){
+			this.tipster = ""
+			this.description = ""
+			this.odds = ""
+			Object.keys(this.bookmakers).forEach(key => {
+				this.bookmakers[key] = ""
 			})
-
-			if(complete)
-				this.formstate = "neutral"
-
-		},
-
-		handleimage(event){
-			const files = event.target.files
-			const formData = new FormData()
-			formData.append("file", files[0])
-
-			fetch("/api/upload", {
-				method: "POST",
-				body: formData
-			})
-			.then(res => res.json())
-			.then(data => {
-				this.image = data.preview  
-			})
-		},
-
-		post(event){
-			
-			event.preventDefault()
-
-			// Do authentication
-			const all = [ "tipster", "description", "odds", "bookmakers", "image" ]
-			let complete = true
-			for(let i = 0; i < all.length; i++){
-				if(!this[all[i]]){
-					complete = false
-					break
-				}
-			}
-
-			if(!complete){
-				this.errormessage = "Please complete the form"
-				this.formstate = "error"
-				return
-			}
-
-			fetch("/api/post", {
-				method: "POST",
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					tipster: this.tipster,
-					description: this.description,
-					odds: this.odds,
-					image: this.image,
-					bookmakers: this.bookmakers
-				})
-			})
-			.then(res => res.json())
-			.then(() => {
-				this.formstate = "success"
-				this.reset(false)
-			})
-			.catch(err => {
-				this.errormessage = "Tip posted unsucessfully, try again later"
-				this.formstate = "error"
-			})
-
 		}
 
 	}
 
 })
+
+const store = {
+	submitButton: document.querySelector("#submit"),
+	fileInput: document.querySelector("input[type=file]"),
+	inputs: Array.from(document.querySelectorAll("input, textarea"))
+}
+
+;(function attachEvents(){
+	store.submitButton.addEventListener("click", createPost)
+	store.inputs.forEach(input => {
+		input.addEventListener("input", () => {
+			hideAlert("#success")
+			hideAlert("#error")
+		})
+		input.addEventListener("focus", () => {
+			hideAlert("#success")
+			hideAlert("#error")
+		})
+	})
+})()
+
+function createPost(event){
+	
+	event.preventDefault()
+
+	hideAlert("#error")
+	hideAlert("#success")
+
+	if(!app.tipster || !app.odds || !app.description || !store.fileInput.value)
+		return showAlert("#error", "Plase complete the form")
+
+	let imageLink
+
+	// Upload the image
+	const files = store.fileInput.files
+	const formData = new FormData()
+	formData.append("file", files[0])
+
+	fetch("/api/upload", {
+		method: "POST",
+		body: formData
+	})
+	.then(res => res.json())
+	.then(data => imageLink = data.preview)
+	.then(addPost)
+	.catch(() => {
+		showAlert("#error", "Tip post unsucessfully, please try again")
+	})
+
+	//Add post
+	function addPost(){
+		return fetch("/api/post", {
+			method: "POST",
+			headers: {
+				'Content-Type': "application/json"
+			},
+			body: JSON.stringify({
+				tipster: app.tipster,
+				description: app.description,
+				odds: app.odds,
+				image: imageLink,
+				bookmakers: app.bookmakers
+			})
+		})
+		.then(res => res.json())
+		.then(data => {
+			if(data.status == 200){
+				app.reset()
+				store.fileInput.value = ""
+				return showAlert("#success", "Tip posted successfully")
+			}
+		})
+
+	}
+	
+}
+
+function showAlert(id, value){
+	const error = document.querySelector(id)
+	error.innerText = value
+	error.style.display = "block"
+}
+
+function hideAlert(id, value){
+	const error = document.querySelector(id)
+	error.style.display = "none"
+}

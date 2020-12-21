@@ -11,12 +11,12 @@
 				<form>
 
 
-					<div v-show="formstate == 'success'" class="alert alert-success" role="alert">
+					<div id="success" style="display: none" class="alert alert-success" role="alert">
   						Tip posted successfully
 					</div>
 
-					<div v-show="formstate == 'error'" class="alert alert-danger" role="alert">
-  						{{ this.errormessage }} 
+					<div id="error" style="display: none" class="alert alert-danger" role="alert">
+  						Tip posted unsuccessfully, please try again later 
 
 					</div>
 
@@ -41,7 +41,7 @@
 
 					<div class="form-group">
 						<div class="custom-file">
-							<input @change="handleimage" type="file" class="custom-file-input" accept='image/*'>
+							<input type="file" class="custom-file-input" accept='image/*'>
       						<label class="custom-file-label">CHOOSE SCREENSHOT</label>
 						</div>
 					</div>
@@ -83,7 +83,7 @@
 					
 
 					<div class="form-group">
-						<button @click="post" type="submit" class="btn btn-success">Post Tip</button>
+						<button id="submit" type="submit" class="btn btn-success">Post Tip</button>
 					</div>                                                           
 	
 				</form>
