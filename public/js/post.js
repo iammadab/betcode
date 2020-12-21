@@ -109,7 +109,7 @@ function createPost(event){
 		body: formData
 	})
 	.then(res => res.json())
-	.then(data => imageLink = data.preview)
+	.then(data => imageLink = data.link)
 	.then(addPost)
 	.catch(() => {
 		showAlert("#error", "Tip post unsucessfully, please try again")
