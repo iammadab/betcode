@@ -80,7 +80,7 @@
 				})
 				.then(res => res.json())
 				.then(data => {
-					const url = data.preview
+					const url = data.link
 					return fetch("/api/tipster", {
 						method: "POST",
 						headers: {
