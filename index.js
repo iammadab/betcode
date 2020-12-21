@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 app.get("/tip", (req, res) => res.render("tip"))
 
 app.get("/admin/post", (req, res) => res.render("post"))
-app.get("/admin/tipster", (req, res) => res.render("addtipster"))
+app.get("/admin/tipster", (req, res) => res.render("add"))
 
 app.use("/api", apiRouter)
 

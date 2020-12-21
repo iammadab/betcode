@@ -51,7 +51,7 @@ const app = new Vue({
 			event.target.innerHTML = `<i class="far fa-clone"></i> Copied`
 			setTimeout(() => {
 				event.target.innerHTML = `<i class="far fa-clone"></i> Copy`
-			}, 1000)
+			}, 3000)
 
 		}
 
