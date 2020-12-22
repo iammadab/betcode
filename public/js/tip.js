@@ -73,6 +73,7 @@ const app = new Vue({
 
 		document.title = title
 		addMeta("title", title)
+		addMeta("description", "Latest mehn")
 
 	}
 

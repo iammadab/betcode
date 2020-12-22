@@ -26,11 +26,12 @@ const app = new Vue({
 
 		document.title = this.tipster != "all" ? "Latest Tips from " + this.tipster : "Latest Tips"
 		addMeta("title", document.title)
-		addMeta("description", "Bookmakr")
+		addMeta("description", "Bookmakr de")
 		addMeta("og:type", "website")
 		addMeta("og:url", "https://www.bookmakr.ng")
 		addMeta("og:title", document.title)
 		addMeta("og:description", "Bookmakr")
+		addMeta("og:image", "https://bookmakr.ng/image/logo/logo.png")
 
 		fetch("/api/tipster")
 			.then(res => res.json())
