@@ -66,14 +66,18 @@ const app = new Vue({
 			.then(data => {
 				this.tip = data.data
 				addMeta("image", this.tip.image)
+				addMeta("og:image", this.tip.image)
 			})
 
 		const id = String(tipId)
 		const title = `Tip #${id.substr(id.length - 6)}`
 
 		document.title = title
-		addMeta("title", title)
-		addMeta("description", "Latest mehn")
+		addMeta("title", title, "name")
+		addMeta("description", "Latest mehn", "name")
+		addMeta("og:title", title)
+		addMeta("og:description", "Latest mehn")
+		addMeta("og:url", "bookmakr.com")
 
 	}
 

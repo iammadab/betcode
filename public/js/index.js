@@ -1,5 +1,10 @@
 Vue.config.devtools = true
 
+;(function(){
+	addMeta("og:title", "Big title")
+	addMeta("og:description", "Mad description")
+})()
+
 const app = new Vue({
 
 	el: "#app",
@@ -25,8 +30,8 @@ const app = new Vue({
 		this.tipster = filter ? hypenToSpace(filter) : "all"
 
 		document.title = this.tipster != "all" ? "Latest Tips from " + this.tipster : "Latest Tips"
-		addMeta("title", document.title)
-		addMeta("description", "Bookmakr de")
+		addMeta("title", document.title, "name")
+		addMeta("description", "Bookmakr de", "name")
 		addMeta("og:type", "website")
 		addMeta("og:url", "https://www.bookmakr.ng")
 		addMeta("og:title", document.title)
