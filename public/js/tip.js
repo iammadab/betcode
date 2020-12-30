@@ -1,27 +1,6 @@
-Vue.config.devtools = true
-
 const app = new Vue({
 	
 	el: "#app",
-
-	data: () => {
-
-		return {
-
-			tip: {  tipster: {}, bookmakers: {} }
-
-		}
-
-	},
-
-	computed: {
-	
-		shortid(){
-			const id = String(this.tip._id)
-			return id.substr(id.length - 6)
-		}
-
-	},
 
 	methods: {
 
@@ -54,30 +33,6 @@ const app = new Vue({
 			}, 3000)
 
 		}
-
-	},
-
-	created(){
-	
-		const tipId = new URLSearchParams(window.location.search).get("id")
-
-		fetch(`/api/post/${tipId}`)
-			.then(res => res.json())
-			.then(data => {
-				this.tip = data.data
-				addMeta("image", this.tip.image)
-				addMeta("og:image", this.tip.image)
-			})
-
-		const id = String(tipId)
-		const title = `Tip #${id.substr(id.length - 6)}`
-
-		document.title = title
-		addMeta("title", title, "name")
-		addMeta("description", "Latest mehn", "name")
-		addMeta("og:title", title)
-		addMeta("og:description", "Latest mehn")
-		addMeta("og:url", "bookmakr.com")
 
 	}
 
