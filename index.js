@@ -11,6 +11,7 @@ const toPage = require("./lib/toPage")
 const postController = require("./controllers/post")
 const tipsterController = require("./controllers/tipster")
 const tipMiddleware = require("./middlewares/tips")
+const metaMiddleware = require("./middlewares/meta")
 
 const app = express()
 
@@ -28,6 +29,7 @@ app.get(
 	toPage(postController.fetchAll, "tips"),
 	toPage(tipsterController.fetchAll, "tipsters"),
 	tipMiddleware.normalizeTips,
+  metaMiddleware.allTips,
 	(req, res) => {
 		res.render("index", { ...req.pageData, banner: "Nice" })
 	}
@@ -39,6 +41,7 @@ app.get(
 	toPage(postController.fetchBy("tipster"), "tips", "params"),
 	toPage(tipsterController.fetchAll, "tipsters"),
 	tipMiddleware.normalizeTips,
+  metaMiddleware.filteredTips,
 	(req, res) => {
 		res.render("index", { ...req.pageData, banner: "Nice", tipDate: "long" })
 	}
@@ -48,6 +51,7 @@ app.get(
 	"/tip/:postId", 
 	toPage(postController.fetchOne, "tipData", "params"),
 	tipMiddleware.normalizeTip,
+  metaMiddleware.singleTip,
 	(req, res) => res.render("tip", { ... req.pageData })
 )
 
