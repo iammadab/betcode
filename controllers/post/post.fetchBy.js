@@ -10,13 +10,13 @@ const fetchByValidator = createValidator("value.string.lowercase")
 // Please refactor
 const fetchBy = field => async (req, res) => {
 	
-	const validationResult = fetchByValidator.parse(req.params)
+	const validationResult = fetchByValidator.parse(req.body)
 	if(validationResult.error)
-		return res.json({
+		return {
 			status: 400,
 			code: "BAD_REQUEST_ERROR",
 			errors: validationResult.errors 
-		})
+		}
 
 	const { value } = validationResult.data
 
@@ -29,16 +29,16 @@ const fetchBy = field => async (req, res) => {
 		await on(postService.fetchBy(field, value, tipster._id))
 
 	if(fetchError)
-		return res.json({
+		return {
 			status: 500,
 			code: "COULD_NOT_FETCH_POST"
-		})
+		}
 
-	res.json({
+	return {
 		status: 200,
 		code: "POST_FETCHED",
 		data: posts
-	})
+	}
 
 }
 

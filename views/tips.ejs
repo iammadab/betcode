@@ -1,36 +1,40 @@
 <div class="content">		
 
-	<h6 class="title">Latest Tips {{ banner }}</h6>
+	<h6 class="title">Latest Tips <%= banner %></h6>
 	
 	<hr>
 
 	<ul class="tips">
 
-		<li v-for="tip of tips">
+		<% for(tip of tips.data) { %>
+
+		<li>
 			
-			<a :href="`/tip?id=${tip._id}`">
+			<a href="<%= `/tip/${tip._id}` %>">
 
 				<div class="tip hover">
 				
-					<span class="tip_pic"><img :src="tip.tipster.image" :alt="tip.tipster.name"></span>
+					<span class="tip_pic"><img src="<%= tip.tipster.image %>" alt="<%= tip.tipster.name %>"></span>
 
 					<div class="tipmain">
 					
-						<h6>{{ tip.tipster.name }}</h6>
+						<h6><%= tip.tipster.name %></h6>
 		
-						<span>{{ moment(tip.createdAt).fromNow() }}</span>
+						<span><%= tip.tipDate %></span>
 
-						<p>{{ tip.description }}</p>
+						<p><%= tip.description %></p>
 				
 					</div>
 
-					<div class="odds">{{ tip.odds }} <span>Odds</span></div>	
+					<div class="odds"><%= tip.odds %> <span>Odds</span></div>	
 			
 				</div> 
 
 			</a>	
 		
 		</li>
+
+		<% } %>
 
 	</ul>
 	

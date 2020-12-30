@@ -6,13 +6,13 @@ const fetchValidator = createValidator("postId.string")
 
 const fetchOne = async (req, res) => {
 	
-	const validationResult = fetchValidator.parse(req.params)
+	const validationResult = fetchValidator.parse(req.body)
 	if(validationResult.error) 
-		return res.json({
+		return {
 			status: 400,
 			code: "BAD_REQUEST_ERROR",
 			errors: validationResult.errors 
-		})
+		}
 
 	const { postId } = validationResult.data
 
@@ -20,16 +20,16 @@ const fetchOne = async (req, res) => {
 		await on(postService.fetchById(postId))
 
 	if(fetchError)
-		return res.json({
+		return {
 			status: 500,
 			code: "COULD_NOT_FETCH_POST"
-		})
+		}
 
-	res.json({
+	return {
 		status: 200,
 		code: "POST_FETCHED",
 		data: post
-	})
+	}
 
 }
 

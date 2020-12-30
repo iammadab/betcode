@@ -4,31 +4,36 @@
 <div id="app">
 	<%- include ("header.ejs") %>
 
+	<% tip = tipData.data %>
+
 	<div class="main">
 
 		<div class="container">
 
 			<div class="content">
 
-				<h6 class="title">Tip #<span class="text-uppercase">{{ shortid }}</span></h6>
+        <% const id = String(tip._id) %>
+        <% const shortId = id.substr(id.length - 6) %>
+				<h6 class="title">Tip #<span class="text-uppercase"><%= shortId %></span></h6>
 
 				<hr>
 
+
 				<div class="tip">
 			
-					<span class="tip_pic"><img :src="tip.tipster.image" :alt="tip.tipster.name"></span>
+					<span class="tip_pic"><img src="<%= tip.tipster.image %>" alt="tip.tipster.name"></span>
 
 					<div class="tipmain">
 				
-						<h6>{{ tip.tipster.name }}</h6>
+						<h6><%= tip.tipster.name %></h6>
 		
-						<span>{{ moment(tip.createdAt).fromNow() }}</span>
+						<span><%= tip.tipDate %></span>
 
 						<div class="sharethis-inline-share-buttons my-3"></div>
 
-						<p>{{ tip.description }}</p>
+						<p><%= tip.description %></p>
 
-						<div class="tipimg"><img :src="tip.image" /></div>
+						<div class="tipimg"><img src="<%= tip.image %>" /></div>
 
 						<div class="divider">
 						<span></span>
@@ -38,60 +43,19 @@
 
 						<ul class="betcodes">
 
-							<li v-if="tip.bookmakers.bet9ja">
-								<p>Bet9ja</p>
-								<p class="code">									 
-									<span>{{ tip.bookmakers.bet9ja }}</span>
+							<% Object.keys(tip.bookmakers).forEach((bookmaker, i) => { %>
+							<li>
+								<p><%= bookmaker %></p>
+								<p class="code">
+									<% let code = tip.bookmakers[bookmaker] %>
+									<span><%= code %></span>
 									<button @click="copy" class="btn btn-sm" href="#">
 										<i class="far fa-clone"></i> Copy
 									</button>
 								</p>
 							</li>
-							<li v-if="tip.bookmakers.betking">
-								<p>Betking</p>
-								<p class="code">
-									<span>{{ tip.bookmakers.betking }}</span>
-									<button @click="copy" class="btn btn-sm" href="#">
-										<i class="far fa-clone"></i> Copy
-									</button>
-								</p>
-							</li>
-							<li v-if="tip.bookmakers.sportybet">
-								<p>Sportybet</p>
-								<p class="code">
-									<span>{{ tip.bookmakers.sportybet }}</span>
-									<button @click="copy" class="btn btn-warning btn-sm" href="#">
-										<i class="far fa-clone"></i> Copy
-									</button>
-								</p>
-							</li>
-							<li v-if="tip.bookmakers.onexbet">
-								<p>1Xbet</p>
-								<p class="code">
-									<span>{{ tip.bookmakers.onexbet }}</span> 
-									<button @click="copy" class="btn btn-sm" href="#">
-										<i class="far fa-clone"></i> Copy
-									</button>
-								</p>
-							</li>
-							<li v-if="tip.bookmakers.twentytwobet">
-								<p>22bet</p>
-								<p class="code">
-									<span>{{ tip.bookmakers.twentytwobet }}</span> 
-									<button @click="copy" class="btn btn-sm" href="#">
-										<i class="far fa-clone"></i> Copy
-									</button>
-								</p>
-							</li>
-							<li v-if="tip.bookmakers.nairabet">
-								<p>Nairabet</p>
-								<p class="code">
-									<span>{{ tip.bookmakers.nairabet }}</span>
-									<button @click="copy" class="btn btn-sm" href="#">
-										<i class="far fa-clone"></i> Copy
-									</button>
-								</p>
-							</li>
+							<% }) %>
+
 
 						</ul>
 
@@ -107,7 +71,7 @@
 				
 					</div>
 
-					<div class="odds" style="border:0;padding:0;width:auto;">{{ tip.odds }} <span>Odds</span></div>
+					<div class="odds" style="border:0;padding:0;width:auto;"><%= tip.odds %> <span>Odds</span></div>
 
 				</div>
 

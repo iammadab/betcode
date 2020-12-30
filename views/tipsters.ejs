@@ -5,10 +5,19 @@
 	<hr>
 
 	<ul class="tipsters">
-		
-		<li v-for="tipster in tipsterList">
-			<a :href="tipster.link" :class="{ active: isActive(tipster.name) }">{{ tipster.name }}</a>
+			
+		<li>
+			<a href="/" class="active">All</a>
 		</li>
+
+		<% for(tipster of tipsters.data) { %>
+
+		<li>
+			<!-- Add class -->
+			<a href="/tipster/<%= tipster.name %>"><%= tipster.name %></a>
+		</li>
+
+		<% } %>
 	
 	</ul>
 

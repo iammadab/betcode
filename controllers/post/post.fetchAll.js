@@ -7,16 +7,16 @@ const fetchAll = async (req, res) => {
 		await on(postService.fetchAll())
 
 	if(fetchError)
-		return res.json({
+		return {
 			status: 500,
 			code: "COULD_NOT_FETCH_POSTS"
-		})
+		}
 
-	res.json({
+	return {
 		status: 200,
-		code: "POSTS_FETCHED",
+		code: "POST_FETCHED",
 		data: posts
-	})
+	}
 
 }
 

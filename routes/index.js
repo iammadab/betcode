@@ -6,16 +6,27 @@ const tipsterController = require("../controllers/tipster")
 
 const createUploader = require("../lib/createUploader")
 const handleUpload = require("../lib/handleUpload")
+const toApi = require("../lib/toApi")
 
 const { createValidator } = require("lazy-validator")
 
 router.post("/post", postController.createPost)
-router.get("/post", postController.fetchAll)
-router.get("/post/:postId", postController.fetchOne)
-router.get("/post/filter/:value", postController.fetchBy("tipster"))
+
+router.get("/post", toApi(postController.fetchAll))
+
+router.get(
+	"/post/:postId", 
+	toApi(postController.fetchOne, "params")
+)
+
+router.get(
+	"/post/filter/:value", 
+	toApi(postController.fetchBy("tipster"), "params")
+)
 
 router.post("/tipster", tipsterController.createTipster)
-router.get("/tipster", tipsterController.fetchAll)
+
+router.get("/tipster", toApi(tipsterController.fetchAll))
 
 const upload = createUploader({ folder: "uploads" })
 router.post("/upload", upload.single("file"), handleUpload)  
