@@ -34,7 +34,8 @@ exports.filteredTips = (req, res, next) => {
   req.pageData.meta = Object.assign({}, baseMeta, {
     url,
     image: baseUrl + tipster?.image,
-    title: `Latest tips from ${tipster?.name}` 
+    title: `Latest tips from ${tipster?.name}`,
+    tipsterName: tipster?.name
   })
 
   next()
