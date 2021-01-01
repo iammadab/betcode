@@ -31,7 +31,7 @@ app.get(
 	tipMiddleware.normalizeTips,
   metaMiddleware.allTips,
 	(req, res) => {
-		res.render("index", { ...req.pageData, banner: "Nice" })
+		res.render("index", { ...req.pageData })
 	}
 )
 
@@ -43,7 +43,7 @@ app.get(
 	tipMiddleware.normalizeTips,
   metaMiddleware.filteredTips,
 	(req, res) => {
-		res.render("index", { ...req.pageData, banner: "Nice", tipDate: "long" })
+		res.render("index", { ...req.pageData })
 	}
 )
 
