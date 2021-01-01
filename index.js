@@ -55,8 +55,19 @@ app.get(
 	(req, res) => res.render("tip", { ... req.pageData })
 )
 
-app.get("/admin/post", (req, res) => res.render("post"))
-app.get("/admin/tipster", (req, res) => res.render("add"))
+app.get(
+  "/admin/post", 
+  (req, res, next) => { req.pageData = {}; next() },
+  metaMiddleware.defaultMeta,
+  (req, res) => res.render("post", { ...req.pageData })
+)
+
+app.get(
+  "/admin/tipster", 
+  (req, res, next) => { req.pageData = {}; next() },
+  metaMiddleware.defaultMeta,
+  (req, res) => res.render("add", { ...req.pageData })
+)
 
 app.use("/api", apiRouter)
 

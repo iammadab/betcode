@@ -44,16 +44,18 @@
 						<ul class="betcodes">
 
 							<% Object.keys(tip.bookmakers).forEach((bookmaker, i) => { %>
-							<li>
-								<p><%= bookmaker %></p>
-								<p class="code">
-									<% let code = tip.bookmakers[bookmaker] %>
-									<span><%= code %></span>
-									<button @click="copy" class="btn btn-sm" href="#">
-										<i class="far fa-clone"></i> Copy
-									</button>
-								</p>
-							</li>
+                <% if(tip.bookmakers[bookmaker]){ %>
+                <li>
+                  <p><%= bookmaker %></p>
+                  <p class="code">
+                    <% let code = tip.bookmakers[bookmaker] %>
+                    <span><%= code %></span>
+                    <button @click="copy" class="btn btn-sm" href="#">
+                      <i class="far fa-clone"></i> Cop
+                    </button>
+                  </p>
+                </li>
+                <% } %>
 							<% }) %>
 
 

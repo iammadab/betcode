@@ -6,11 +6,21 @@ const baseMeta = {
   image: ""
 }
 
+exports.defaultMeta = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url
+  })
+
+  next()
+}
+
 exports.allTips = (req, res, next) => {
   const url = baseUrl + req.path
 
   req.pageData.meta = Object.assign({}, baseMeta, {
-    url,
+    url
   })
 
   next()
