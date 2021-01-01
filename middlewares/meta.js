@@ -18,10 +18,13 @@ exports.allTips = (req, res, next) => {
 
 exports.filteredTips = (req, res, next) => {
   const url = baseUrl + req.path
+  const tipster = req?.pageData?.tips?.data[0]?.tipster
+  console.log(tipster)
   
   req.pageData.meta = Object.assign({}, baseMeta, {
     url,
-    image: baseUrl + req.pageData.tips.data[0].tipster.image
+    image: baseUrl + tipster?.image,
+    title: `Latest tips from ${tipster?.name}` 
   })
 
   next()
@@ -36,7 +39,8 @@ exports.singleTip = (req, res, next) => {
   req.pageData.meta = Object.assign({}, baseMeta, {
     url,
     image: baseUrl + req.pageData.tipData.data.image,
-    title: `Tip #${shortTipId}`
+    title: `Tip #${shortTipId}`,
+    description: req.pageData.tipData.data.description
   })
 
   next()
