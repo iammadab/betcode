@@ -19,8 +19,7 @@ const app = new Vue({
 				betking: "",
 				sportybet: "",
 				"onexbet": "",
-				"twentytwobet": "",
-				nairabet: ""
+				"twentytwobet": ""
 			}
 
 		}
