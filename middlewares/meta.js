@@ -1,8 +1,8 @@
 const baseUrl = "https://bookmakr.ng"
 
 const baseMeta = {
-  title: "Bookmakr - Latest Bet Tips From Top Tipsters In Nigeria",
-  description: "Get the latest bet tips from top tipsters in Nigeria and the booking codes for Bet9ja, Betking, Sportybet, 1Xbet, 22bet, Nairabet and more!",
+  title: "Bookmakr - Bet Tips & Booking Codes",
+  description: "Get bet tips and booking codes (Bet9ja, Betking, Sportybet, 1Xbet, 22bet) from the top tipsters in Nigeria",
   image: ""
 }
 
