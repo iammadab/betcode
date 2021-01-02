@@ -29,7 +29,6 @@ exports.allTips = (req, res, next) => {
 exports.filteredTips = (req, res, next) => {
   const url = baseUrl + req.path
   const tipster = req?.pageData?.tips?.data[0]?.tipster
-  console.log(tipster)
   
   req.pageData.meta = Object.assign({}, baseMeta, {
     url,
