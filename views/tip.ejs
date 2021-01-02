@@ -49,9 +49,9 @@
                   <p><%= bookmaker %></p>
                   <p class="code">
                     <% let code = tip.bookmakers[bookmaker] %>
-                    <span><%= code %></span>
+                    <span data-bookmaker="<%= bookmaker %>"><%= code %></span>
                     <button @click="copy" class="btn btn-sm" href="#">
-                      <i class="far fa-clone"></i> Cop
+                      <i class="far fa-clone"></i> Copy
                     </button>
                   </p>
                 </li>

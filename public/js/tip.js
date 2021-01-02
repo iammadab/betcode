@@ -6,7 +6,8 @@ const app = new Vue({
 
 		copy(event){
 		
-			const code = event.target.previousElementSibling.innerText
+			const codeElement = event.target.previousElementSibling
+			const code = codeElement.innerText
 			const copyInput = document.querySelector("#copyinput")
 
 			copyInput.value = code
@@ -25,6 +26,13 @@ const app = new Vue({
 			} else if (document.selection) {  // IE?
 				document.selection.empty();
 			}
+
+			// Track the events
+			mixpanel.track("Copy", { 
+				code: code,
+				url: window.location.href, 
+				bookmakr: codeElement.dataset.bookmaker
+			})
 
 			//Change text to copied
 			event.target.innerHTML = `<i class="far fa-clone"></i> Copied`
