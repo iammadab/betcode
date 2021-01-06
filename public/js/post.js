@@ -70,8 +70,8 @@ const store = {
 	submitButton: document.querySelector("#submit"),
 	fileInput: document.querySelector("input[type=file]"),
 	inputs: Array.from(document.querySelectorAll("input, textarea")),
-  copyButton: document.querySelector(".copy-button"),
-  linkInput: document.querySelector(".link-input")
+	copyButton: document.querySelector(".copy-button"),
+ 	linkInput: document.querySelector(".link-input")
 }
 
 ;(function attachEvents(){
@@ -80,10 +80,12 @@ const store = {
 		input.addEventListener("input", () => {
 			hideAlert("#success")
 			hideAlert("#error")
+			hideAlert("#linker")
 		})
 		input.addEventListener("focus", () => {
 			hideAlert("#success")
 			hideAlert("#error")
+			hideAlert("#linker")
 		})
 	})
   store.copyButton.addEventListener("click", copy)
@@ -95,6 +97,7 @@ function createPost(event){
 
 	hideAlert("#error")
 	hideAlert("#success")
+	hideAlert("#linker")
 
 	if(!app.tipster || !app.odds || !app.description || !store.fileInput.value)
 		return showAlert("#error", "Plase complete the form")
@@ -139,9 +142,10 @@ function createPost(event){
 				app.reset()
 				store.fileInput.value = ""
 
-        const postId = data.data._id
-        store.linkInput.value = `https://bookmakr.ng/tip/${postId}`
+				const postId = data.data._id
+				store.linkInput.value = `https://bookmakr.ng/tip/${postId}`
 
+				showAlert("#linker")
 				return showAlert("#success", "Tip posted successfully")
 
 			}
@@ -153,7 +157,8 @@ function createPost(event){
 
 function showAlert(id, value){
 	const error = document.querySelector(id)
-	error.innerText = value
+	if(value)
+		error.innerText = value
 	error.style.display = "block"
 }
 
