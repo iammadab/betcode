@@ -69,7 +69,7 @@ const app = new Vue({
 const store = {
 	submitButton: document.querySelector("#submit"),
 	fileInput: document.querySelector("input[type=file]"),
-	inputs: Array.from(document.querySelectorAll("input, textarea")),
+	inputs: Array.from(document.querySelectorAll("textarea, input:not(#copyinput)")),
 	copyButton: document.querySelector(".copy-button"),
  	linkInput: document.querySelector(".link-input")
 }
@@ -145,7 +145,7 @@ function createPost(event){
 				const postId = data.data._id
 				store.linkInput.value = `https://bookmakr.ng/tip/${postId}`
 
-				showAlert("#linker")
+				showAlert("#linker", undefined, "flex")
 				return showAlert("#success", "Tip posted successfully")
 
 			}
@@ -155,11 +155,11 @@ function createPost(event){
 	
 }
 
-function showAlert(id, value){
+function showAlert(id, value, type){
 	const error = document.querySelector(id)
 	if(value)
 		error.innerText = value
-	error.style.display = "block"
+	error.style.display = type || "block"
 }
 
 function hideAlert(id, value){
