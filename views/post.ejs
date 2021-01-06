@@ -16,7 +16,7 @@
 				<form>
 
 
-					<div id="success" class="alert alert-success" role="alert">
+					<div id="success" style="display: none" class="alert alert-success" role="alert">
   						Tip posted and you can copy share link below
 					</div>
 
@@ -26,8 +26,8 @@
 					</div>
 
 					<div class="input-group mb-3">
-  						<input type="text" class="form-control" value="https://bookmakr.ng/tip?id=9238s" disabled>
- 						 <button class="btn btn-secondary" type="button" style="border-radius:0;">Copy</button>
+  						<input type="text" class="form-control link-input" value="https://bookmakr.ng/tip?id=9238s" disabled>
+ 						 <button class="btn btn-secondary copy-button" type="button" style="border-radius:0;">Copy</button>
 					</div>
 
 					<div class="divider mt-0 pt-0">
@@ -105,6 +105,8 @@
 	</div>
 
 </div>
+
+<input type="text" id="copyinput" style="transform: translateY(-50000px);"/>
 
 </body>
 </html>

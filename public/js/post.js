@@ -69,7 +69,9 @@ const app = new Vue({
 const store = {
 	submitButton: document.querySelector("#submit"),
 	fileInput: document.querySelector("input[type=file]"),
-	inputs: Array.from(document.querySelectorAll("input, textarea"))
+	inputs: Array.from(document.querySelectorAll("input, textarea")),
+  copyButton: document.querySelector(".copy-button"),
+  linkInput: document.querySelector(".link-input")
 }
 
 ;(function attachEvents(){
@@ -84,6 +86,7 @@ const store = {
 			hideAlert("#error")
 		})
 	})
+  store.copyButton.addEventListener("click", copy)
 })()
 
 function createPost(event){
@@ -132,9 +135,15 @@ function createPost(event){
 		.then(res => res.json())
 		.then(data => {
 			if(data.status == 200){
+
 				app.reset()
 				store.fileInput.value = ""
+
+        const postId = data.data._id
+        store.linkInput.value = `https://bookmakr.ng/tip/${postId}`
+
 				return showAlert("#success", "Tip posted successfully")
+
 			}
 		})
 
@@ -151,4 +160,36 @@ function showAlert(id, value){
 function hideAlert(id, value){
 	const error = document.querySelector(id)
 	error.style.display = "none"
+}
+
+
+function copy(event){
+
+  const linkElement = event.target.previousElementSibling
+  const link = linkElement.value
+  const copyInput = document.querySelector("#copyinput")
+
+  copyInput.value = link
+  copyInput.select()
+  copyInput.setSelectionRange(0, 99999)
+
+  document.execCommand("copy")
+
+  //Remove selection
+  if (window.getSelection) {
+    if (window.getSelection().empty) {  // Chrome
+      window.getSelection().empty();
+    } else if (window.getSelection().removeAllRanges) {  // Firefox
+      window.getSelection().removeAllRanges();
+    }
+  } else if (document.selection) {  // IE?
+    document.selection.empty();
+  }
+
+  //Change text to copied
+  event.target.innerHTML = `Copied`
+  setTimeout(() => {
+    event.target.innerHTML = `Copy`
+  }, 3000)
+
 }
