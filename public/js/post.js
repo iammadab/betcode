@@ -69,7 +69,9 @@ const app = new Vue({
 const store = {
 	submitButton: document.querySelector("#submit"),
 	fileInput: document.querySelector("input[type=file]"),
-	inputs: Array.from(document.querySelectorAll("input, textarea"))
+	inputs: Array.from(document.querySelectorAll("textarea, input:not(#copyinput)")),
+	copyButton: document.querySelector(".copy-button"),
+ 	linkInput: document.querySelector(".link-input")
 }
 
 ;(function attachEvents(){
@@ -78,12 +80,15 @@ const store = {
 		input.addEventListener("input", () => {
 			hideAlert("#success")
 			hideAlert("#error")
+			hideAlert("#linker")
 		})
 		input.addEventListener("focus", () => {
 			hideAlert("#success")
 			hideAlert("#error")
+			hideAlert("#linker")
 		})
 	})
+  store.copyButton.addEventListener("click", copy)
 })()
 
 function createPost(event){
@@ -92,6 +97,7 @@ function createPost(event){
 
 	hideAlert("#error")
 	hideAlert("#success")
+	hideAlert("#linker")
 
 	if(!app.tipster || !app.odds || !app.description || !store.fileInput.value)
 		return showAlert("#error", "Plase complete the form")
@@ -132,9 +138,16 @@ function createPost(event){
 		.then(res => res.json())
 		.then(data => {
 			if(data.status == 200){
+
 				app.reset()
 				store.fileInput.value = ""
+
+				const postId = data.data._id
+				store.linkInput.value = `https://bookmakr.ng/tip/${postId}`
+
+				showAlert("#linker", undefined, "flex")
 				return showAlert("#success", "Tip posted successfully")
+
 			}
 		})
 
@@ -142,13 +155,46 @@ function createPost(event){
 	
 }
 
-function showAlert(id, value){
+function showAlert(id, value, type){
 	const error = document.querySelector(id)
-	error.innerText = value
-	error.style.display = "block"
+	if(value)
+		error.innerText = value
+	error.style.display = type || "block"
 }
 
 function hideAlert(id, value){
 	const error = document.querySelector(id)
 	error.style.display = "none"
+}
+
+
+function copy(event){
+
+  const linkElement = event.target.previousElementSibling
+  const link = linkElement.value
+  const copyInput = document.querySelector("#copyinput")
+
+  copyInput.value = link
+  copyInput.select()
+  copyInput.setSelectionRange(0, 99999)
+
+  document.execCommand("copy")
+
+  //Remove selection
+  if (window.getSelection) {
+    if (window.getSelection().empty) {  // Chrome
+      window.getSelection().empty();
+    } else if (window.getSelection().removeAllRanges) {  // Firefox
+      window.getSelection().removeAllRanges();
+    }
+  } else if (document.selection) {  // IE?
+    document.selection.empty();
+  }
+
+  //Change text to copied
+  event.target.innerHTML = `Copied`
+  setTimeout(() => {
+    event.target.innerHTML = `Copy`
+  }, 3000)
+
 }

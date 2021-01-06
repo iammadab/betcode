@@ -16,18 +16,18 @@
 				<form>
 
 
-					<div id="success" class="alert alert-success" role="alert">
-  						Tip posted and you can copy share link below
+					<div id="success" style="display: none" class="alert alert-success" role="alert">
+						Tip posted and you can copy share link below
 					</div>
 
 					<div id="error" style="display: none" class="alert alert-danger" role="alert">
-  						Tip posted unsuccessfully, please try again later 
+						Tip posted unsuccessfully, please try again later 
 
 					</div>
 
-					<div class="input-group mb-3">
-  						<input type="text" class="form-control" value="https://bookmakr.ng/tip?id=9238s" disabled>
- 						 <button class="btn btn-secondary" type="button" style="border-radius:0;">Copy</button>
+					<div id="linker" style="display: none" class="input-group mb-3">
+						<input type="text" class="form-control link-input" value="" disabled>
+						 <button class="btn btn-secondary copy-button" type="button" style="border-radius:0;">Copy</button>
 					</div>
 
 					<div class="divider mt-0 pt-0">
@@ -52,7 +52,7 @@
 					<div class="form-group">
 						<div class="custom-file">
 							<input type="file" class="custom-file-input" accept='image/*'>
-      						<label class="custom-file-label">Choose Screenshot</label>
+						<label class="custom-file-label">Choose Screenshot</label>
 						</div>
 					</div>
 
@@ -105,6 +105,8 @@
 	</div>
 
 </div>
+
+<input type="text" id="copyinput" style="transform: translateY(-50000px);"/>
 
 </body>
 </html>
