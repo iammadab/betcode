@@ -295,7 +295,7 @@ line-height:1.3rem;
 }
 
 .tipimg{width:auto; margin:0 auto; padding:1rem 0;}
-.tipimg img{max-width:100%}
+.tipimg img{width:auto;max-width:100%}
 
 
 .odds{
