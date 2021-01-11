@@ -16,7 +16,18 @@ const createPost = async (req, res) => {
 			errors: validationResult.errors
 		})
 
-	const [ createError, post ] = await on(postService.createPost(validationResult.data))
+  const safe = validationResult.data
+
+  if(req.body.image2)
+    safe.image2 = req.body.image2
+
+  if(req.body.image3)
+    safe.image3 = req.body.image3
+
+  if(req.body.image4)
+    safe.image4 = req.body.image4
+
+	const [ createError, post ] = await on(postService.createPost(safe))
 
 	if(createError)
 		return res.json({

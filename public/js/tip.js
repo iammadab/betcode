@@ -48,7 +48,7 @@ const app = new Vue({
 })
 
 ;(function(){
-  const distrubutions = { t: "twitter" }
+  const distributions = { t: "twitter" }
 
   const urlParams = new URLSearchParams(window.location.search)
   const distribution = urlParams.get("d")

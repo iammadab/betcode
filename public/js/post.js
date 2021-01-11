@@ -68,7 +68,7 @@ const app = new Vue({
 
 const store = {
 	submitButton: document.querySelector("#submit"),
-	fileInput: document.querySelector("input[type=file]"),
+	fileInputs: Array.from(document.querySelectorAll("input[type=file]")),
 	inputs: Array.from(document.querySelectorAll("textarea, input:not(#copyinput)")),
 	copyButton: document.querySelector(".copy-button"),
  	linkInput: document.querySelector(".link-input")
@@ -99,29 +99,37 @@ function createPost(event){
 	hideAlert("#success")
 	hideAlert("#linker")
 
-	if(!app.tipster || !app.odds || !app.description || !store.fileInput.value)
+	if(!app.tipster || !app.odds || !app.description || !store.fileInputs[0].value)
 		return showAlert("#error", "Plase complete the form")
 
-	let imageLink
+	let imageLinks = []
 
 	// Upload the image
-	const files = store.fileInput.files
-	const formData = new FormData()
-	formData.append("file", files[0])
+	const files = store.fileInputs.map(input => input.files)
+  console.log(files)
+	let formDatas = files.map(file => {
+    if(!file[0]) return undefined
+    const f = new FormData()
+    f.append("file", file[0])
+    return f
+  })
+  formDatas = formDatas.filter(data => data)
+  console.log(formDatas)
 
-	fetch("/api/upload", {
-		method: "POST",
-		body: formData
-	})
-	.then(res => res.json())
-	.then(data => imageLink = data.link)
-	.then(addPost)
-	.catch(() => {
-		showAlert("#error", "Tip post unsucessfully, please try again")
-	})
+  Promise.all(formDatas.map(formData => {
+    return fetch("/api/upload", {
+      method: "POST",
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => imageLinks.push(data.link))
+  })).then(addPost).catch(() => {
+    showAlert("#error", "Tip post unsuccessfull, please try again")
+  })
 
 	//Add post
 	function addPost(){
+    console.log(imageLinks)
 		return fetch("/api/post", {
 			method: "POST",
 			headers: {
@@ -131,7 +139,10 @@ function createPost(event){
 				tipster: app.tipster,
 				description: app.description,
 				odds: app.odds,
-				image: imageLink,
+				image: imageLinks[0],
+        image2: imageLinks[1],
+        image3: imageLinks[2],
+        image4: imageLinks[3],
 				bookmakers: app.bookmakers
 			})
 		})
@@ -140,7 +151,8 @@ function createPost(event){
 			if(data.status == 200){
 
 				app.reset()
-				store.fileInput.value = ""
+        const form = document.querySelector("form")
+        form.reset()
 
 				const postId = data.data._id
         const message = generateMessage(data.data)

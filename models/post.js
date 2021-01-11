@@ -5,6 +5,9 @@ const postSchema = new mongoose.Schema({
 	description: { type: String },
 	odds: { type: Number },
 	image: { type: String },
+  image2: { type: String },
+  image3: { type: String },
+  image4: { type: String },
 	bookmakers: { type: Object, default: {} },
 	createdAt: { type: Date, default: Date.now }
 })
