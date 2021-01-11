@@ -31,7 +31,8 @@ const app = new Vue({
 			mixpanel.track("Copy", { 
 				code: code,
 				url: window.location.href, 
-				bookmakr: codeElement.dataset.bookmaker
+				bookmakr: codeElement.dataset.bookmaker,
+        tipster: codeElement.dataset.tipster
 			})
 
 			//Change text to copied
