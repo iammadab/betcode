@@ -7,7 +7,14 @@
     currentActive.classList.remove("active")
 
     const newActive = document.querySelector(`a[data-tipster=${tipsterName}]`)
+    if(!newActive) return
+
     newActive.classList.add("active")
+    
+    // Track filtering
+    mixpanel.track("filter", {
+      tipster: tipsterName
+    })
 
   }
 })()

@@ -3,3 +3,4 @@ node_modules
 analysis.txt
 .env
 uploads
+data

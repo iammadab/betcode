@@ -143,9 +143,11 @@ function createPost(event){
 				store.fileInput.value = ""
 
 				const postId = data.data._id
-				store.linkInput.value = `https://bookmakr.ng/tip/${postId}`
+        const message = generateMessage(data.data)
+        console.log(message)
+				store.linkInput.value = message
 
-				showAlert("#linker", undefined, "flex")
+				showAlert("#linker")
 				return showAlert("#success", "Tip posted successfully")
 
 			}
@@ -153,6 +155,35 @@ function createPost(event){
 
 	}
 	
+}
+
+function generateMessage(post){
+  const preference = [ "onexbet", "twentytwobet", "bet9ja", "betking", "sportybet" ]
+  let bookmaker, code
+  for(pref of preference){
+    if(post.bookmakers[pref]){
+      bookmaker = pref
+      code = post.bookmakers[pref]
+      break
+    }
+  }
+  
+  if(bookmaker == "onexbet")
+    bookmaker = "1Xbet"
+  else if(bookmaker == "twentytwobet")
+    bookmaker = "22bet"
+
+  const link = `https://bookmakr.ng/tip/${post._id}?d=t`
+
+  return `${capitalizeFirst(bookmaker)} ${code}. Get Bet9ja, Betking, Sportybet & 22bet booking codes on ${link} or follow @thebookmakr to request for another code.`
+
+}
+
+function capitalizeFirst(word){
+  word = String(word)
+  const letters = word.split("")
+  letters[0] = String(letters[0]).toUpperCase()
+  return letters.join("")
 }
 
 function showAlert(id, value, type){
@@ -169,6 +200,8 @@ function hideAlert(id, value){
 
 
 function copy(event){
+
+  event.preventDefault()
 
   const linkElement = event.target.previousElementSibling
   const link = linkElement.value
