@@ -52,7 +52,7 @@
                   <p class="text-capitalize"><%= bdisplay %></p>
                   <p class="code">
                     <% let code = tip.bookmakers[bookmaker] %>
-                    <span data-bookmaker="<%= bookmaker %>"><%= code %></span>
+                    <span data-bookmaker="<%= bookmaker %>" data-tipster="<%= tip.tipster.name %>"><%= code %></span>
                     <button @click="copy" class="btn btn-sm" href="#">
                       <i class="far fa-clone"></i> Copy
                     </button>
