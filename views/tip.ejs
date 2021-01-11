@@ -47,8 +47,8 @@
                 <% if(tip.bookmakers[bookmaker]){ %>
                 <li>
                   <% bdisplay = bookmaker %>
-		  <% if(bookmaker == "onexbet"){ bdisplay = "1xbet" } %>
-		  <% if(bookmaker == "twentytwobet"){ bdisplay = "22bet" } %>
+                  <% if(bookmaker == "onexbet"){ bdisplay = "1xbet" } %>
+                  <% if(bookmaker == "twentytwobet"){ bdisplay = "22bet" } %>
                   <p class="text-capitalize"><%= bdisplay %></p>
                   <p class="code">
                     <% let code = tip.bookmakers[bookmaker] %>
