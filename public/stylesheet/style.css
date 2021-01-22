@@ -39,6 +39,7 @@ text-transform:capitalize;
 color:#000;
 padding:1.35rem 0.75rem;
 background:#eee;
+border-bottom:1px solid #e1e1e1;
 }
 
 hr{
@@ -205,7 +206,7 @@ margin:1.5rem 0 0;
 }
 
 .content{
-border:1px solid #e1e1e1;
+border:2px solid #e1e1e1;
 border-radius:4px;
 background:#fff;
 margin:0 0 1.5rem;
@@ -421,38 +422,6 @@ padding: 0 2rem; }
 
 
 
-/*Post Section*/
-.post{
-padding:0 0 0.5rem;
-margin:0 auto;	
-}
-
-.form-control, .custom-select, .custom-file{
-color:#000; 
-border-color:1px solid #e1e1e1;
-}
-
-.post textarea{
-min-height:90px;	
-}
-
-.post input:focus, .post textarea:focus, .post select:focus{
-box-shadow: none;
-border:1px solid #8a2be2;  
-}
-
-.post .btn{
-font-weight:600;
-}
-
-.custom-file-label{
-font-size:1rem;	
-}
-
-
-/*End of Layout Section*/
-
-
 
 
 
@@ -571,3 +540,33 @@ margin:80px auto 0;
 
 
 /*End of Footer Section*/
+
+
+
+/*Login/Post Section*/
+
+.login{
+padding:1rem 0.75rem;	
+}
+
+.login textarea{
+min-height:90px;	
+}
+
+.login input, .login textarea, .login select{
+border:1px solid #e1e1e1;  
+}
+
+.login input:focus, .login textarea:focus, .login select:focus{
+box-shadow: none;
+border:2px solid #8a2be2;  
+}
+
+.login .btn{
+font-weight:600;
+padding:0.35rem 1rem;
+}
+
+.custom-file-label{
+font-size:1rem;
+}

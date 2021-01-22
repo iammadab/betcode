@@ -11,129 +11,128 @@
 
 		<div class="container">
 
-			<div class="post">
+			<div class="content">
+
+				<h6 class="title">Post New Tip</h6>
+
+				<div class="login">
 				
-				<form>
+					<form>
 
 
-					<div id="success" style="display: none" class="alert alert-success" role="alert">
-						Tip posted and you can copy share link below
-					</div>
+						<div id="success" style="display: none" class="alert alert-success" role="alert">
+							Tip posted and you can copy share link below
+						</div>
 
-					<div id="error" style="display: none" class="alert alert-danger" role="alert">
-						Tip posted unsuccessfully, please try again later 
+						<div id="error" style="display: none" class="alert alert-danger" role="alert">
+							Tip posted unsuccessfully, please try again later 
+						</div>
 
-					</div>
+						<!--
+						<div id="linker" style="display: none" class="input-group mb-3">
+							<input type="text" class="form-control link-input" value="" disabled>
+						 	<button class="btn btn-secondary copy-button" type="button" style="border-radius:0;">Copy</button>
+						</div>
+			          -->
 
-<!--
-					<div id="linker" style="display: none" class="input-group mb-3">
-						<input type="text" class="form-control link-input" value="" disabled>
-						 <button class="btn btn-secondary copy-button" type="button" style="border-radius:0;">Copy</button>
-					</div>
-          -->
-
-					<div id="linker" style="display: none" class="mb-3">	
-						<textarea class="form-control link-input" disabled>1Xbet 17CKA. Get Bet9ja, Betking, Sportybet & 22bet booking codes on https://bookmakr.ng/tip/173yedh3645wtr354 or follow @thebookmakr to request for another code.</textarea>
+						<div id="linker" style="display: none" class="mb-3">	
+							<textarea class="form-control link-input" disabled>1Xbet 17CKA. Get Bet9ja, Betking, Sportybet & 22bet booking codes on https://bookmakr.ng/tip/173yedh3645wtr354 or follow @thebookmakr to request for another code.</textarea>
 						<button class="btn btn-secondary mt-2 copy-button">Copy</button>	
-					</div>
-
-					<div class="divider mt-0 pt-0">
-						<span></span>
-						<span>Post New Tip Below</span>
-						<span></span>
-					</div>
-
-					<div class="form-group">
-						<select v-model="tipster" class="custom-select">
-							<option value="">Choose Tipster</option>
-							<option :value="tipster.id" v-for="tipster of tipsterList">
-								{{ tipster.name }}
-							</option>
-						</select>
-					</div>
-
-					<div class="form-group">
-						<textarea v-model="description" class="form-control" placeholder="Description"></textarea>
-					</div>
-
-					<div class="form-group">
-						<input v-model="odds" class="form-control" type="number" step="0.01" placeholder="Odds">
-					</div>
-
-
-					<div class="divider">
-						<span></span>
-						<span>Screenshots</span>
-						<span></span>
-					</div>
-
-					<div class="form-group">
-						<div class="custom-file">
-							<input type="file" data-name="image" class="custom-file-input" accept='image/*'>
-						<label class="custom-file-label">Screenshot 1</label>
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="custom-file">
-							<input type="file" data-name="image2" class="custom-file-input" accept='image/*'>
-						<label class="custom-file-label">Screenshot 2 (Optional)</label>
+
+						<div class="form-group">
+							<select v-model="tipster" class="custom-select" style="text-transform:capitalize;">
+								<option value="">Choose Tipster</option>
+								<option :value="tipster.id" v-for="tipster of tipsterList">
+									{{ tipster.name }}
+								</option>
+							</select>
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="custom-file">
-							<input type="file" data-name="image3" class="custom-file-input" accept='image/*'>
-						<label class="custom-file-label">Screenshot 3 (Optional)</label>
+
+						<div class="form-group">
+							<textarea v-model="description" class="form-control" placeholder="Description"></textarea>
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="custom-file">
-							<input type="file" data-name="image4" class="custom-file-input" accept='image/*'>
-						<label class="custom-file-label">Screenshot 4 (Optional)</label>
+
+						<div class="form-group">
+							<input v-model="odds" class="form-control" type="number" step="0.01" placeholder="Odds">
 						</div>
-					</div>
 
 
-					<div class="divider">
-						<span></span>
-						<span>Booking Code</span>
-						<span></span>
-					</div>
+						<div class="divider">
+							<span></span>
+							<span>Screenshots</span>
+							<span></span>
+						</div>
 
-					<div class="form-group">
-						<input v-model="bookmakers.bet9ja" class="form-control" type="text" placeholder="Bet9ja (Optional)">
-					</div>
+						<div class="form-group">
+							<div class="custom-file">
+								<input type="file" data-name="image" class="custom-file-input" accept='image/*'>
+							<label class="custom-file-label">Screenshot 1</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="custom-file">
+								<input type="file" data-name="image2" class="custom-file-input" accept='image/*'>
+							<label class="custom-file-label">Screenshot 2 (Optional)</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="custom-file">
+								<input type="file" data-name="image3" class="custom-file-input" accept='image/*'>
+							<label class="custom-file-label">Screenshot 3 (Optional)</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="custom-file">
+								<input type="file" data-name="image4" class="custom-file-input" accept='image/*'>
+							<label class="custom-file-label">Screenshot 4 (Optional)</label>
+							</div>
+						</div>
 
-					<div class="form-group">
-						<input v-model="bookmakers.betking" class="form-control" type="text" placeholder="Betking (Optional)">
-					</div>
 
-					<div class="form-group">
-						<input v-model="bookmakers.sportybet" class="form-control" type="text" placeholder="Sportybet (Optional)">
-					</div>
+						<div class="divider">
+							<span></span>
+							<span>Booking Code</span>
+							<span></span>
+						</div>
 
-					<div class="form-group">
-						<input v-model="bookmakers.onexbet" class="form-control" type="text" placeholder="1xbet (Optional)">
-					</div>
+						<div class="form-group">
+							<input v-model="bookmakers.bet9ja" class="form-control" type="text" placeholder="Bet9ja (Optional)">
+						</div>
 
-					<div class="form-group">
-						<input v-model="bookmakers.twentytwobet" class="form-control" type="text" placeholder="22bet (Optional)">
-					</div>
+						<div class="form-group">
+							<input v-model="bookmakers.betking" class="form-control" type="text" placeholder="Betking (Optional)">
+						</div>
 
-					<!-- <div class="form-group">
-						<input v-model="bookmakers.nairabet" class="form-control" type="text" placeholder="Nairabet">
-					</div> -->
-					
+						<div class="form-group">
+							<input v-model="bookmakers.sportybet" class="form-control" type="text" placeholder="Sportybet (Optional)">
+						</div>
 
-					<div class="form-group">
-						<button id="submit" type="submit" class="btn btn-success">Post</button>
-					</div>                                                           
+						<div class="form-group">
+							<input v-model="bookmakers.onexbet" class="form-control" type="text" placeholder="1xbet (Optional)">
+						</div>
+
+						<div class="form-group">
+							<input v-model="bookmakers.twentytwobet" class="form-control" type="text" placeholder="22bet (Optional)">
+						</div>
+
+						<!-- <div class="form-group">
+							<input v-model="bookmakers.nairabet" class="form-control" type="text" placeholder="Nairabet">
+						</div> -->
+						
+
+						<div class="form-group">
+							<button id="submit" type="submit" class="btn btn-success">Post</button>
+						</div>                                                           
+		
+					</form>
 	
-				</form>
-	
+				</div>
+
 			</div>
-
+		
 		</div>
-	
+
 	</div>
 
 </div>

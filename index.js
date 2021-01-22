@@ -55,6 +55,21 @@ app.get(
 	(req, res) => res.render("tip", { ... req.pageData })
 )
 
+
+app.get(
+  "/login", 
+  (req, res, next) => { req.pageData = {}; next() },
+  metaMiddleware.defaultMeta,
+  (req, res) => res.render("login", { ...req.pageData })
+)
+
+app.get(
+  "/register", 
+  (req, res, next) => { req.pageData = {}; next() },
+  metaMiddleware.defaultMeta,
+  (req, res) => res.render("register", { ...req.pageData })
+)
+
 app.get(
   "/admin/post", 
   (req, res, next) => { req.pageData = {}; next() },

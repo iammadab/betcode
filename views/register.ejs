@@ -1,0 +1,76 @@
+<%- include ("meta.ejs") %>
+</head>
+<body>
+<div id="app">
+	<%- include ("header.ejs") %>
+	<div class="main">
+		<div class="container" id="app">
+
+			<div class="content">
+
+				<h6 class="title">Create Account</h6>
+
+				<div class="login">
+
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="Full Name">
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="Username">
+					</div>
+				
+					<div class="form-group">
+						<input class="form-control" type="email" placeholder="Email Address">
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="Phone Number">
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" type="password" placeholder="Password">
+					</div>
+
+					<div class="form-group">
+						<textarea class="form-control" placeholder="Short Bio"></textarea>
+					</div>
+
+					<div class="form-group">
+						<div class="custom-file">
+							<input type="file" data-name="image" class="custom-file-input" accept='image/*'>
+						<label class="custom-file-label">Profile Picture (Optional)</label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="Twitter Handle (Optional)">
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="Telegram Channel (Optional)">
+					</div>
+					
+
+					<div class="form-group">
+						<button id="submit" type="submit" class="btn btn-success">Register</button>
+					</div>
+
+					<div class="divider">
+						<span></span>
+						<span>OR</span>
+						<span></span>
+					</div>
+
+					<div class="text-center">Already have an account yet? <a href="/login">Login</a></div>
+
+				</div>
+
+			</div>
+
+			
+		</div>
+	</div>
+</div>
+
+<%- include ("footer.ejs") %>

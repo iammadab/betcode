@@ -1,0 +1,44 @@
+<%- include ("meta.ejs") %>
+</head>
+<body>
+<div id="app">
+	<%- include ("header.ejs") %>
+	<div class="main">
+		<div class="container" id="app">
+
+			<div class="content">
+
+				<h6 class="title">Login Account</h6>
+
+				<div class="login">
+				
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="Email Address or Username">
+					</div>
+					
+					<div class="form-group">
+						<input class="form-control" type="password" placeholder="Password">
+					</div>
+
+					<div class="form-group">
+						<button id="submit" type="submit" class="btn btn-success">Login</button>
+					</div>
+
+					<div class="divider">
+						<span></span>
+						<span>OR</span>
+						<span></span>
+					</div>
+
+					<div class="text-center">Don't have an account yet? <a href="/register">Sign Up</a></div>
+
+				</div>
+
+			</div>
+
+			
+		</div>
+	</div>
+</div>
+
+<%- include ("footer.ejs") %>
