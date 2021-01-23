@@ -3,6 +3,7 @@ const router = express.Router()
 
 const postController = require("../controllers/post")
 const tipsterController = require("../controllers/tipster")
+const userController = require("../controllers/user")
 
 const createUploader = require("../lib/createUploader")
 const handleUpload = require("../lib/handleUpload")
@@ -42,5 +43,7 @@ router.get("/blame/:tipId", async (req, res) => {
 	}
 	res.json({ tipster: post.tipster })
 })
+
+router.post("/user", userController.createUser)
 
 module.exports = router
