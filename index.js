@@ -71,6 +71,27 @@ app.get(
 )
 
 app.get(
+  "/edit", 
+  (req, res, next) => { req.pageData = {}; next() },
+  metaMiddleware.defaultMeta,
+  (req, res) => res.render("edit", { ...req.pageData })
+)
+
+app.get(
+  "/profile", 
+  (req, res, next) => { req.pageData = {}; next() },
+  metaMiddleware.defaultMeta,
+  (req, res) => res.render("profile", { ...req.pageData })
+)
+
+app.get(
+  "/tipsters", 
+  (req, res, next) => { req.pageData = {}; next() },
+  metaMiddleware.defaultMeta,
+  (req, res) => res.render("tipsters", { ...req.pageData })
+)
+
+app.get(
   "/admin/post", 
   (req, res, next) => { req.pageData = {}; next() },
   metaMiddleware.defaultMeta,
