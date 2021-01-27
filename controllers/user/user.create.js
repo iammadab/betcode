@@ -18,10 +18,12 @@ const createUserValidator = joi.object({
 
 const createUser = async (data) => {
   
-  const { error, userDetails } = createUserValidator.validate(data)
+  const validationResult = createUserValidator.validate(data)
   
-  if(error)
+  if(validationResult.error)
     return { status: 400, code: "BAD_REQUEST_ERROR", errors: error }
+
+  const userDetails = validationResult.value
 
 
 
@@ -54,12 +56,20 @@ const createUser = async (data) => {
   }
 
 
+  
 
   // Hash password
+  const passwordHash = await hash(userDetails.password)
+
   // Create the user
+  const user = await userService.createUser({ ...userDetails, password: passwordHash })
+
+  if(!user || user.error)
+    return { status: 500, code: "ERROR_CREATING_USER" }
+
+
   // Login the user
-  // Potentially attach cookies
-  // Respond
+  // Attach cookies
 
   return { status: 200, code: "USER_CREATED" }
 
