@@ -394,10 +394,10 @@ line-height:1.5rem;
 }
 
 .t_info{
-border:1px solid #e1e1e1;
-padding:0.25rem 0.9rem;
+border:1px solid #ccc;
+padding:0.25rem 0.75rem;
 font-size:0.9rem;
-color:#333;
+color:#000;
 font-weight:600;
 border-radius:2rem;
 display:inline-block;
@@ -413,23 +413,23 @@ vertical-align:middle;
 }
 
 .t_info span{
-color:#666;
-line-height:1.2rem;
-font-weight:400;
-font-size:0.85rem;
-margin-left:1px;
+color:#333;
+margin-left:2px;
 }
 
 
 .showmore{
-padding:0.6rem 0;
+padding:0.7rem 0;
 border-top:1px solid #e1e1e1;
 /*background:#f8f8f8;*/
 text-align: center;
 }
 
 .showmore a{
-text-transform:uppercase;	
+text-transform:uppercase;
+font-size:0.9rem;
+font-weight:600;
+color:#666;	
 }
 
 /*single tip*/
@@ -573,7 +573,7 @@ margin-right:2px;
 }
 
 .betcodes .btn:hover{
-border:1px solid #ffd700;
+border:1px solid #000;
 background:#ffd700;
 }
 
