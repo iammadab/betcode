@@ -1,11 +1,7 @@
 /*
   Contents
   --------
-  toggleNav
   attachLogout
-  setDefaultOption
-  preprocess
-  scrollTop
   showView
   showError
   showAlert
@@ -26,25 +22,6 @@
   addCommaDecimal
 */
 
-;(function toggleNav(){
-    let topBarToggler = document.querySelector(".kt-header-mobile__toolbar-topbar-toggler")
-    let landingToggle = document.querySelector(".landing-toggle")
-    let userBar = document.querySelector(".user-dropdown")
-    let landingDropdown = document.querySelector(".landing-dropdown")
-
-    if(topBarToggler)
-        topBarToggler.onclick = function(event){
-            userBar.classList.toggle("show")
-            userBar.classList.toggle("show-menu")
-        }
-
-    if(landingToggle)
-        landingToggle.onclick = function(event){
-            landingDropdown.classList.toggle("show")
-            landingDropdown.classList.toggle("show-menu-landing")
-        }
-})()
-
 ;(function attachLogout(){
   let logoutButtons = Array.from(document.querySelectorAll(".logout"))
   if(logoutButtons.length == 0) return
@@ -60,42 +37,6 @@
     // console.log(tokenName)
     deleteCookie(tokenName)
     redirect(cookieData[tokenName].redirect)
-  }
-})()
-
-;(function setDefaultOption(){
-  let elementsWithDefaults = Array.from(document.querySelectorAll("[data-defaultValue]"))
-  elementsWithDefaults.forEach(element => {
-    element.value = element.dataset["defaultvalue"]
-  })
-})()
-
-;(function preprocess(){
-  let toProcess = Array.from(document.querySelectorAll("[data-format]"))
-  toProcess.forEach(element => {
-    if(element.dataset.format == "comma")
-      element.innerText = addCommaDecimal(element.innerText)
-  })
-})()
-
-;(function scrollTop(){
-  const elements = {
-    chatIcon: document.querySelector(".kt-scrolltop")
-  }
-
-  ;(function attachEvents(){
-    window.addEventListener("scroll", () => {
-      let scrollTop = getScrollTop()
-      if(scrollTop > 150)
-        document.body.classList.add("kt-scrolltop--on")
-      else
-        document.body.classList.remove("kt-scrolltop--on")
-    })
-  })()
-
-  function getScrollTop(){
-    var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
-    return scrollTop
   }
 })()
 
