@@ -12,7 +12,7 @@ const createUserValidator = joi.object({
   phone: joi.string().trim().regex(/^[0-9]+$/).required(),
   password: joi.string().trim().required(),
   bio: joi.string().trim().required(),
-  picture: joi.string().trim().uri().required(),
+  picture: joi.string().trim().uri(),
   twitter: joi.string().trim(),
   telegram: joi.string().trim()
 }).options({ abortEarly: false })
@@ -22,7 +22,7 @@ const createUser = async (data) => {
   const validationResult = createUserValidator.validate(data)
   
   if(validationResult.error)
-    return { status: 400, code: "BAD_REQUEST_ERROR", errors: error }
+    return { status: 400, code: "BAD_REQUEST_ERROR", errors: validationResult.error }
 
   const userDetails = validationResult.value
 
@@ -37,7 +37,12 @@ const createUser = async (data) => {
 
   if(userWithPhone){
     if(userWithPhone.error) return userWithPhone
-    return { status: 403, code: "USER_EXISTS", data: "PHONE" }
+    return { 
+      status: 403, 
+      code: "USER_EXISTS", 
+      data: "PHONE",
+      message: "An account with that phone number already exists"
+    }
   }
 
   // Email is unique
@@ -45,7 +50,12 @@ const createUser = async (data) => {
 
   if(userWithEmail){
     if(userWithEmail.error) return userWithEmail
-    return { status: 403, code: "USER_EXISTS", data: "EMAIL" }
+    return { 
+      status: 403, 
+      code: "USER_EXISTS", 
+      data: "EMAIL",
+      message: "An account with that email already exists" 
+    }
   }
 
   // Username is unique
@@ -53,7 +63,12 @@ const createUser = async (data) => {
 
   if(userWithUsername){
     if(userWithUsername.error) return userWithUsername
-    return { status: 403, code: "USER_EXISTS", data: "USERNAME" }
+    return { 
+      status: 403, 
+      code: "USER_EXISTS", 
+      data: "USERNAME",
+      message: "An account with that username already exists" 
+    }
   }
 
 

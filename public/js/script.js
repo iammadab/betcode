@@ -50,14 +50,13 @@ function showView(viewName){
 
 function showError(errorName, errorMessage){
   errorName = errorName.split("").filter(a => a != ".").join("")
-  let errorBox = document.querySelector(`.${errorName}`),
-    errorText = document.querySelector(`.${errorName} .alert-text`)
+  let errorBox = document.querySelector(`.${errorName}`)
 
-  if(errorBox)
+  if(errorBox){
     errorBox.style.display = "flex" 
+    errorBox.innerText = errorMessage
+  }
 
-  if(errorText)
-    errorText.innerText = errorMessage
 }
 
 let showAlert = showError

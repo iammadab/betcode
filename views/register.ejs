@@ -13,30 +13,38 @@
 					<h6>Create Account</h6>
 				</div>
 
-				<div class="login">
+				<div class="login register-form">
+
+          <div id="success" style="display: none" class="register-success alert alert-success" role="alert">
+            Tip posted and you can copy share link below
+          </div>
+
+          <div id="error" style="display: none" class="register-error alert alert-danger" role="alert">
+            Tip posted unsuccessfully, please try again later 
+          </div>
 
 					<div class="form-group">
-						<input class="form-control" type="text" placeholder="Full Name">
+						<input class="form-control" name="fullname" type="text" placeholder="Full Name">
 					</div>
 
 					<div class="form-group">
-						<input class="form-control" type="text" placeholder="Username">
+						<input class="form-control" name="username" type="text" placeholder="Username">
 					</div>
 				
 					<div class="form-group">
-						<input class="form-control" type="email" placeholder="Email Address">
+						<input class="form-control" name="email" type="email" placeholder="Email Address">
 					</div>
 
 					<div class="form-group">
-						<input class="form-control" type="text" placeholder="Phone Number">
+						<input class="form-control" name="phone" type="text" placeholder="Phone Number">
 					</div>
 
 					<div class="form-group">
-						<input class="form-control" type="password" placeholder="Password">
+						<input class="form-control" name="password" type="password" placeholder="Password">
 					</div>
 
 					<div class="form-group">
-						<textarea class="form-control" placeholder="Short Bio"></textarea>
+						<textarea class="form-control" name="bio" placeholder="Short Bio"></textarea>
 					</div>
 
 					<div class="form-group">
@@ -47,16 +55,18 @@
 					</div>
 
 					<div class="form-group">
-						<input class="form-control" type="text" placeholder="Twitter Handle (Optional)">
+						<input class="form-control" name="twitter" type="text" placeholder="Twitter Handle (Optional)">
 					</div>
 
 					<div class="form-group">
-						<input class="form-control" type="text" placeholder="Telegram Channel (Optional)">
+						<input class="form-control" name="telegram" type="text" placeholder="Telegram Channel (Optional)">
 					</div>
 					
 
 					<div class="form-group">
-						<button id="submit" type="submit" class="btn btn-success">Register Account</button>
+						<button id="submit" type="submit" class="register-button btn btn-success">
+              <span class="register-text">Register Account</span>
+            </button>
 					</div>
 
 					<div class="divider">
@@ -74,6 +84,9 @@
 		</div>
 	
 	</div>
+
+  <script src="/js/script.js"></script>
+  <script src="/js/pages/register.js"></script>
 
 <%- include ("footer.ejs") %>
 
