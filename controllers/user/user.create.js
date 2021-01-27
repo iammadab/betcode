@@ -1,5 +1,6 @@
 const { hash } = require("../../lib/crypt")
 const userService = require("../../services/user.service")
+const loginUser = require("./user.login")
 
 const joi = require("joi")
 
@@ -69,9 +70,13 @@ const createUser = async (data) => {
 
 
   // Login the user
-  // Attach cookies
+  let userLoginResult = await loginUser({ identifier: user.email, password: userDetails.password })
+  if(userLoginResult.status != 200)
+    userLoginResult = {}
 
-  return { status: 200, code: "USER_CREATED" }
+  // Overide the status and code from login result
+  // Keep token and cookie declarations
+  return { ...userLoginResult, status: 200, code: "USER_CREATED" }
 
 }
 
