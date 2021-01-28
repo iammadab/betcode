@@ -6,6 +6,11 @@ const store = {
 
 ;(function attachEvents(){
   addEvent([store.registerButton], "click", registerUser)
+  addEvent(
+    getFormInputs(store.registerFormTag),
+    "input,focus",
+    () => hideAlert(".register-error")
+  )
 })()
 
 

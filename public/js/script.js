@@ -180,5 +180,7 @@ function addCommaDecimal(number){
 }
 
 function getFormInputs(formTag = ""){
-  return Array.from(document.querySelectorAll(`${formTag} input`))
+  return Array.from(
+    document.querySelectorAll(`${formTag} input, ${formTag} textarea`)
+  )
 }
