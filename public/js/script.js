@@ -20,6 +20,7 @@
   createButton
   addComma
   addCommaDecimal
+  getFormInputs
 */
 
 ;(function attachLogout(){
@@ -176,4 +177,8 @@ function addCommaDecimal(number){
   let [main, fraction] = String(number).split(".")
   main = addComma(main)
   return `${main}${fraction ? "." : "" }${fraction ? fraction : ""}`
+}
+
+function getFormInputs(formTag = ""){
+  return Array.from(document.querySelectorAll(`${formTag} input`))
 }

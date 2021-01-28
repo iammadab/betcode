@@ -16,18 +16,28 @@
 					<h6>Enter Account</h6>
 				</div>
 
-				<div class="login">
-				
+				<div class="login login-form">
+
+          <div id="success" style="display: none" class="login-success alert alert-success" role="alert">
+            Tip posted and you can copy share link below
+          </div>
+
+          <div id="error" style="display: none" class="login-error alert alert-danger" role="alert">
+            Tip posted unsuccessfully, please try again later 
+          </div>
+
 					<div class="form-group">
-						<input class="form-control" type="text" placeholder="Email Address or Username">
+						<input class="form-control" name="identifier" type="text" placeholder="Email Address or Username">
 					</div>
 					
 					<div class="form-group">
-						<input class="form-control" type="password" placeholder="Password">
+						<input class="form-control" name="password" type="password" placeholder="Password">
 					</div>
 
 					<div class="form-group">
-						<button id="submit" type="submit" class="btn btn-success">Login Account</button>
+						<button id="submit" type="submit" class="login-button btn btn-success">
+              <span class="login-text">Login Account</span>
+            </button>
 					</div>
 
 					<div class="divider">
@@ -45,6 +55,9 @@
 		</div>
 	
 	</div>
+
+  <script src="/js/script.js"></script>
+  <script src="/js/pages/login.js"></script>
 
 	<%- include ("footer.ejs") %>
 
