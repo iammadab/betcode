@@ -13,6 +13,7 @@ const postController = require("./controllers/post")
 const tipsterController = require("./controllers/tipster")
 const tipMiddleware = require("./middlewares/tips")
 const metaMiddleware = require("./middlewares/meta")
+const cookieMiddleware = require("./middlewares/cookie")
 
 const app = express()
 
@@ -60,6 +61,7 @@ app.get(
 
 app.get(
   "/login", 
+  cookieMiddleware.cookieFound("/"),
   (req, res, next) => { req.pageData = {}; next() },
   metaMiddleware.defaultMeta,
   (req, res) => res.render("login", { ...req.pageData })
@@ -67,6 +69,7 @@ app.get(
 
 app.get(
   "/register", 
+  cookieMiddleware.cookieFound("/"),
   (req, res, next) => { req.pageData = {}; next() },
   metaMiddleware.defaultMeta,
   (req, res) => res.render("register", { ...req.pageData })

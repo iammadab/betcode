@@ -36,16 +36,18 @@ function loginUser(event){
     .catch(handleError)
 
   function handleLogin(data){
-    loginText("normal")
 
     if(data.status == 200)
-      return alert("Logged in")
+      return redirect("/")
+
+    loginText("normal")
 
     if(data.code == "USER_NOT_FOUND")
       return showAlert(".login-error", `Invalid username and password combination`)
 
     if(data.code == "INVALID_PASSWORD")
       return showAlert(".login-error", "Invalid username and password combination")
+
   }
   
   function handleError(){
