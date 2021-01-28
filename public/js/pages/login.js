@@ -14,7 +14,6 @@ const store = {
 
 const loginText = createButton(".login-text", "Login Account", "Logging in..")
 
-// TODO: Should allow for form submission by clicking enter
 function loginUser(event){
 
   event.preventDefault()
