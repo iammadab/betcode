@@ -1,5 +1,6 @@
 const Post = require("../models/post")
 const tipsterService = require("../services/tipster.service")
+const moment = require("moment")
 
 exports.createPost = async (data) => {
 
@@ -16,12 +17,20 @@ exports.createPost = async (data) => {
 }
 
 
-exports.fetchAll = async () => {
+exports.fetchAll = async (lastId, limit = 20) => {
 	
 	try{
-		return Post.find({}).populate("tipster").sort({ createdAt: -1 })
+
+    const query = lastId ? { _id: { $lt: lastId } } : {}
+		return Post.find(query)
+            .limit(limit)
+            .populate("tipster")
+            .sort({ createdAt: -1 })
+
 	} catch(error){
+
 		throw error
+
 	}
 
 }
@@ -44,4 +53,13 @@ exports.fetchById = id => {
 		throw error
 	}
 
+}
+
+exports.normalizeTips = tips => {
+  return tips.map(exports.normalizeTip)
+}
+
+exports.normalizeTip = tip => {
+  tip.tipDate = moment(tip.createdAt).fromNow()
+  return tip
 }

@@ -3,6 +3,7 @@ const path = require("path")
 const express = require("express")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 const { connectToDb } = require("./runners/database_runner")
 
 connectToDb()
@@ -12,9 +13,13 @@ const postController = require("./controllers/post")
 const tipsterController = require("./controllers/tipster")
 const tipMiddleware = require("./middlewares/tips")
 const metaMiddleware = require("./middlewares/meta")
+const cookieMiddleware = require("./middlewares/cookie")
+const tokenMiddleware = require("./middlewares/token")
+const pageMiddleware = require("./middlewares/pages")
 
 const app = express()
 
+app.use(cookieParser())
 app.use(bodyParser.json())
 
 app.set("view engine", "ejs")
@@ -26,9 +31,14 @@ const apiRouter = require("./routes")
 
 app.get(
 	"/", 
+  cookieMiddleware.cookieNotFound("/login"),
+  tokenMiddleware.validateToken(),
+  /*
 	toPage(postController.fetchAll, "tips"),
 	toPage(tipsterController.fetchAll, "tipsters"),
 	tipMiddleware.normalizeTips,
+  */
+  pageMiddleware.home,
   metaMiddleware.allTips,
 	(req, res) => {
 		res.render("index", { ...req.pageData })
@@ -58,6 +68,7 @@ app.get(
 
 app.get(
   "/login", 
+  cookieMiddleware.cookieFound("/"),
   (req, res, next) => { req.pageData = {}; next() },
   metaMiddleware.defaultMeta,
   (req, res) => res.render("login", { ...req.pageData })
@@ -65,6 +76,7 @@ app.get(
 
 app.get(
   "/register", 
+  cookieMiddleware.cookieFound("/"),
   (req, res, next) => { req.pageData = {}; next() },
   metaMiddleware.defaultMeta,
   (req, res) => res.render("register", { ...req.pageData })

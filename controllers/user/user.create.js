@@ -12,7 +12,7 @@ const createUserValidator = joi.object({
   phone: joi.string().trim().regex(/^[0-9]+$/).required(),
   password: joi.string().trim().required(),
   bio: joi.string().trim().required(),
-  picture: joi.string().trim().uri(),
+  picture: joi.string().trim(),
   twitter: joi.string().trim(),
   telegram: joi.string().trim()
 }).options({ abortEarly: false })

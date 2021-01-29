@@ -39,7 +39,7 @@ const loginUser = async (data) => {
   // Sign a token for the user
   const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: "30d" })
 
-  return { status: 200, code: "USER_LOGGED_IN", token }
+  return { status: 200, code: "USER_LOGGED_IN", token, cookie: ["token"] }
 
 }
 
