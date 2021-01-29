@@ -1,10 +1,10 @@
 const postService = require("../../services/post.service")
 const on = require("../../lib/on")
 
-const fetchAll = async (req, res) => {
+const fetchAll = async (data) => {
 	
 	const [ fetchError, posts ] = 
-		await on(postService.fetchAll())
+		await on(postService.fetchAll(data.lastId, data.limit))
 
 	if(fetchError)
 		return {

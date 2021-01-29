@@ -8,7 +8,7 @@
 
 		<% for(tip of tips) { %>
 
-		<li class="hover">
+		<li data-id="<%= tip._id %>" class="hover">
 			
 			<a href="<%= `/tip/${tip._id}` %>">
 
@@ -34,6 +34,6 @@
 
 	</ul>
 
-	<div class="showmore"><a href="#">Show More</a></div>
+	<div class="showmore">SHOW MORE</div>
 	
 </div>

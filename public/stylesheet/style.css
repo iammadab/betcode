@@ -423,6 +423,7 @@ padding:0.7rem 0;
 border-top:1px solid #e1e1e1;
 /*background:#f8f8f8;*/
 text-align: center;
+cursor: pointer;
 }
 
 .showmore a{

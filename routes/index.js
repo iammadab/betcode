@@ -1,6 +1,8 @@
 const express = require("express")
 const router = express.Router()
 
+const { bodyResponder, queryResponder } = require("../lib/adapter")
+
 const postController = require("../controllers/post")
 const tipsterController = require("../controllers/tipster")
 const userController = require("../controllers/user")
@@ -15,7 +17,7 @@ router.use("/user", userRouter)
 
 router.post("/post", postController.createPost)
 
-router.get("/post", toApi(postController.fetchAll))
+router.get("/post", queryResponder(postController.fetchAll))
 
 router.get(
 	"/post/:postId", 

@@ -22,10 +22,12 @@ exports.fetchAll = async (lastId, limit = 20) => {
 	try{
 
     const query = lastId ? { _id: { $lt: lastId } } : {}
-		return Post.find(query)
+		const posts = await Post.find(query)
             .limit(limit)
             .populate("tipster")
             .sort({ createdAt: -1 })
+
+    return exports.normalizeTips(posts)
 
 	} catch(error){
 
@@ -60,6 +62,7 @@ exports.normalizeTips = tips => {
 }
 
 exports.normalizeTip = tip => {
-  tip.tipDate = moment(tip.createdAt).fromNow()
-  return tip
+  const tipObj = Object.assign({}, tip._doc)
+  tipObj.tipDate = moment(tipObj.createdAt).fromNow()
+  return tipObj
 }
