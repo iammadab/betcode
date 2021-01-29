@@ -2,10 +2,9 @@ const { promisify } = require("util")
 const joi = require("joi")
 
 const verify = promisify(require("jsonwebtoken").verify)
-const userService = require("../../services/user.service")
+const userService = require("../services/user.service")
 
-
-let validateToken = tokenName => (req, res, next) => {
+exports.validateToken = tokenName => (req, res, next) => {
 
     tokenName = tokenName || "token"
 
@@ -46,5 +45,3 @@ let validateToken = tokenName => (req, res, next) => {
     }
 
 }
-
-module.exports = validateToken

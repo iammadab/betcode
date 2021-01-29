@@ -66,7 +66,7 @@ async function registerUser(event){
     registerText("normal")
 
     if(data.status == 200)
-      return alert("Registered")
+      return redirect("/")
 
     if(data.code == "USER_EXISTS" && data.message)
       return showAlert(".register-error", data.message)

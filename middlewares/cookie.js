@@ -25,8 +25,10 @@ exports.cookieNotFound = (redirectUrl, param) => {
     if(!req.cookies || !req.cookies[prop])
       res.redirect(redirectUrl)
 
-    else
+    else{
+      req.body[prop] = req.cookies[prop]
       next()
+    }
 
   }
 }

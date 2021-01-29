@@ -14,6 +14,7 @@ const tipsterController = require("./controllers/tipster")
 const tipMiddleware = require("./middlewares/tips")
 const metaMiddleware = require("./middlewares/meta")
 const cookieMiddleware = require("./middlewares/cookie")
+const tokenMiddleware = require("./middlewares/token")
 
 const app = express()
 
@@ -29,6 +30,8 @@ const apiRouter = require("./routes")
 
 app.get(
 	"/", 
+  cookieMiddleware.cookieNotFound("/login"),
+  tokenMiddleware.validateToken(),
 	toPage(postController.fetchAll, "tips"),
 	toPage(tipsterController.fetchAll, "tipsters"),
 	tipMiddleware.normalizeTips,
