@@ -90,31 +90,95 @@ font-size:0.95rem;
 /*List Section*/
 
 .tipsters{
-padding:0.3rem 0.75rem 0;
+padding:0 0 1rem;
+margin:0;
 }
 
 .tipsters li{
+width:100%;	
+padding:0.8rem 0.75rem;
 display:inline-block;
-padding:0.3rem 0.5rem 0 0;
-bac
+border-bottom:1px solid #e1e1e1;
 }
 
 .tipsters li a{
-text-transform:capitalize;
+display: flex;	
+display: -ms-flexbox;
+justify-content:flex-start;
+}
+
+.tipsters li:last-child{
+border-bottom:0;
+}
+
+
+.tipsters a:hover{
+text-decoration:none;
+}
+
+
+.tipsters img {
+width:65px;
+height:65px;
+border:1px solid #e1e1e1;
+border-radius:2rem;
+}
+
+@media (max-width: 480px) {
+.tipsters img{
+width:55px;
+height:55px;	
+}
+}
+
+
+.tipsters .details{
+display:flex;
+flex-direction: column;
+margin:0.5rem 0 0 1rem;
+flex:1 1 0;
+}
+
+.tipsters h6{
 color:#8a2be2;
-font-weight:600;
 font-size:0.85rem;
-text-decoration:underline;
 }
 
-.tipsters li a:hover{
-text-decoration:underline;
-color:#000;
+.tipsters span{
+font-size:0.7rem;
+color:#aeaeae;
+line-height:1rem;
+margin-bottom:2px;
 }
 
-.tipsters .active{
-color:#000;
+.tipsters p{
+color:#333;
+font-size:0.95rem;
+margin-bottom:0;
 }
+
+.tipbox{
+padding:0.4rem 0.8rem;
+border:1px solid #e1e1e1;
+align-self:flex-start;
+text-align:center;
+}
+
+.tipbox{
+color:#666;
+font-weight:600;
+font-size:0.9rem;	
+}
+
+.tipbox span{
+display:block;
+font-weight:400;
+}
+
+
+
+
+
 
 .container{
 width:50%;
@@ -385,7 +449,7 @@ margin:0.3rem 0;
 width:35px;
 height:35px;
 border:1px solid #e1e1e1;
-border-radius:5px;
+border-radius:2rem;
 }
 
 @media (max-width: 480px) {
@@ -401,7 +465,7 @@ width:100%;
 }
 
 .t_main p{
-margin:0.6rem 0;
+margin:0.3rem 0 0.6rem;
 color:#333;
 font-size:1rem;
 line-height:1.5rem;	
@@ -479,7 +543,7 @@ justify-content:flex-start;
 width:35px;
 height:35px;
 border:1px solid #e1e1e1;
-border-radius:5px;
+border-radius:2rem;
 }
 
 .s_details{
@@ -568,14 +632,6 @@ line-height:0;
 padding-bottom:1rem;	
 }
 
-/*.betcodes h6{
-line-height:0;
-padding-bottom:0.8rem;
-text-transform:uppercase;
-color:#ccc;
-font-size:0.8rem;
-text-align:center;	
-}*/
 
 .betcodes input, .betcodes select{
 border:1px solid #e1e1e1;

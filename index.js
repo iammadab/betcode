@@ -31,13 +31,11 @@ const apiRouter = require("./routes")
 
 app.get(
 	"/", 
-  cookieMiddleware.cookieNotFound("/login"),
-  tokenMiddleware.validateToken(),
-  /*
-	toPage(postController.fetchAll, "tips"),
+ // cookieMiddleware.cookieNotFound("/login"),
+ // tokenMiddleware.validateToken(),
+  toPage(postController.fetchAll, "tips"),
 	toPage(tipsterController.fetchAll, "tipsters"),
 	tipMiddleware.normalizeTips,
-  */
   pageMiddleware.home,
   metaMiddleware.allTips,
 	(req, res) => {
