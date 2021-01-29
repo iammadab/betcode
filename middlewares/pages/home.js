@@ -4,7 +4,7 @@ const postService = require("../../services/post.service")
 
 const home = async (req, res, next) => {
   
-  const allPosts = postService.normalizeTips((await postController.fetchAll()).data)
+  const allPosts = (await postController.fetchAll({})).data
 
   const allTipsters = (await tipsterController.fetchAll()).data
 
