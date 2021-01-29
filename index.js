@@ -15,6 +15,7 @@ const tipMiddleware = require("./middlewares/tips")
 const metaMiddleware = require("./middlewares/meta")
 const cookieMiddleware = require("./middlewares/cookie")
 const tokenMiddleware = require("./middlewares/token")
+const pageMiddleware = require("./middlewares/pages")
 
 const app = express()
 
@@ -32,9 +33,12 @@ app.get(
 	"/", 
   cookieMiddleware.cookieNotFound("/login"),
   tokenMiddleware.validateToken(),
+  /*
 	toPage(postController.fetchAll, "tips"),
 	toPage(tipsterController.fetchAll, "tipsters"),
 	tipMiddleware.normalizeTips,
+  */
+  pageMiddleware.home,
   metaMiddleware.allTips,
 	(req, res) => {
 		res.render("index", { ...req.pageData })
