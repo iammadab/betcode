@@ -17,12 +17,20 @@ exports.createPost = async (data) => {
 }
 
 
-exports.fetchAll = async () => {
+exports.fetchAll = async (lastId, limit = 20) => {
 	
 	try{
-		return Post.find({}).populate("tipster").sort({ createdAt: -1 })
+
+    const query = lastId ? { _id: { $lt: lastId } } : {}
+		return Post.find(query)
+            .limit(limit)
+            .populate("tipster")
+            .sort({ createdAt: -1 })
+
 	} catch(error){
+
 		throw error
+
 	}
 
 }
