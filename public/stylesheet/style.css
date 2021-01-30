@@ -147,13 +147,13 @@ font-size:0.85rem;
 .tipsters span{
 font-size:0.7rem;
 color:#aeaeae;
-line-height:1rem;
-margin-bottom:2px;
+line-height:0.6rem;
+margin-bottom:3px;
 }
 
 .tipsters p{
 color:#333;
-font-size:0.95rem;
+font-size:1rem;
 margin-bottom:0;
 }
 
@@ -165,14 +165,16 @@ text-align:center;
 }
 
 .tipbox{
-color:#666;
+color:#333;
 font-weight:600;
 font-size:0.9rem;	
 }
 
 .tipbox span{
 display:block;
-font-weight:400;
+text-transform:uppercase;
+margin-top:5px;
+font-size:0.65rem;
 }
 
 
@@ -320,7 +322,7 @@ z-index: 1071;
 
 .loglink a{
 color:#fff;
-padding:1.2rem 1.5rem;
+padding:0.9rem 1.5rem;
 font-size:0.9rem;
 font-weight:600;
 text-decoration:none;
@@ -330,6 +332,7 @@ text-decoration:none;
 .loglink a:hover{
 text-decoration:none;
 /*background-color: rgba(0, 0, 0, 0.8);*/	
+border-bottom:5px solid #fff;
 }
 
 .loglink a i{
@@ -338,11 +341,16 @@ margin:0 0.5rem 0 0;
 }
 
 .loglink .active{
-background-color: rgba(222, 222, 222, 0.3);
+/*background-color: rgba(222, 222, 222, 0.3);*/
+border-bottom:5px solid #fff;
 }
 
 .loglink .passive{
 padding-right:0;
+}
+
+.loglink .passive:hover{
+border-bottom:0;	
 }
 
 
@@ -359,7 +367,7 @@ margin-right:5px;
 @media (max-width: 768px) {
 
 .loglink a{
-padding:1rem 0.85rem;
+padding:0.8rem 0.85rem;
 font-size:0.85rem;
 }
 
@@ -502,24 +510,17 @@ border-top:1px solid #e1e1e1;
 /*background:#f8f8f8;*/
 text-align: center;
 cursor: pointer;
+text-transform:uppercase;
+font-size:0.85rem;
+font-weight:600;
+color:#666;
+width:100%;
+display:inline-block;
 }
 
 .showmore:hover{
 background:#f8f8f8;	
-}
-
-.showmore a{
-text-transform:uppercase;
-font-size:0.9rem;
-font-weight:600;
-color:#666;
-width:100%;
-display:inline-block;	
-}
-
-.showmore a:hover{
-text-decoration:none;
-color:#8a2be2;	
+color:#333;
 }
 
 /*single tip*/
@@ -640,7 +641,11 @@ color:#333;
 }
 
 .betcodes .form-group{
-margin:0.5rem 0;	
+margin:0.5rem 0 0;	
+}
+
+.betcodes .input-group{
+margin:0.5rem 0 0;	
 }
 
 .betcodes input{
@@ -871,12 +876,10 @@ text-decoration:none;
 .modal-window>div {
 margin:80px auto 0;
 }
+.modal-window p{
+font-size:1rem;
 }
-/*End of Modal Section*/
-
-
-
-/*End of Footer Section*/
+}
 
 
 
@@ -902,6 +905,10 @@ border:2px solid #8a2be2;
 .login .btn{
 padding:0.4rem 1rem;
 margin:0.2rem 0 0;
+}
+
+.login .form-control-lg{
+font-size:1.1rem;	
 }
 
 @media (max-width: 992px) {
@@ -971,4 +978,30 @@ font-size:0.9rem;
 
 .summary .btn i{
 margin-right:2px;	
+}
+
+
+/*Alerts*/
+
+.btn-success{
+background-color:#419500;
+border-color:#419500;	
+}
+
+.alert{
+padding:1rem 0.75rem;
+font-size:0.9rem;
+font-weight:600;
+}
+
+.alert-success{
+background-color:#cfe7b8;
+border:0;
+color:#000;
+}
+
+.alert-danger{
+background-color: #fdb9a7;
+border:0;
+color:#000;	
 }
