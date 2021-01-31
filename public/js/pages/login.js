@@ -12,7 +12,7 @@ const store = {
   )
 })()
 
-const loginText = createButton(".login-text", "Login Account", "Logging in..")
+const loginText = createButton(".login-text", "Login", "Logging in..")
 
 function loginUser(event){
 

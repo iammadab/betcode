@@ -14,7 +14,7 @@ const store = {
 })()
 
 
-const registerText = createButton(".register-text", "Register Account", "Registering...")
+const registerText = createButton(".register-text", "Register", "Registering...")
 
 async function registerUser(event){
   
@@ -35,7 +35,7 @@ async function registerUser(event){
   // Make sure the user put in a valid email
   if(!validEmail(userDetails.email)){
     registerText("normal")
-    return showAlert(".register-error", `Sorry, you entered an invalid email`)
+    return showAlert(".register-error", `Sorry, you entered an invalid email address`)
   }
 
   // Upload the image if it exists
