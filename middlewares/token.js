@@ -28,8 +28,11 @@ exports.validateToken = tokenName => (req, res, next) => {
       return verify(req.body[tokenName], process.env.SECRET_KEY)
     }
 
-    function attachUserInfo(decodedToken){
-      let user = decodedToken
+    async function attachUserInfo(decodedToken){
+      let user = await userService.findUserById(user)
+      if(!user)
+        return handleErrors({})
+
       req.body.user = user
     }
 
