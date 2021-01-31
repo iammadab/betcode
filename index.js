@@ -57,8 +57,7 @@ app.get(
 
 app.get(
 	"/tip/:postId", 
-	toPage(postController.fetchOne, "tipData", "params"),
-	tipMiddleware.normalizeTip,
+  pageMiddleware.tip,
   metaMiddleware.singleTip,
 	(req, res) => res.render("tip", { ... req.pageData })
 )

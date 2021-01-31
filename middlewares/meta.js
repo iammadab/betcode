@@ -42,15 +42,15 @@ exports.filteredTips = (req, res, next) => {
 
 exports.singleTip = (req, res, next) => {
   const url = baseUrl + req.path
-  const tip = req.pageData.tipData.data, tipId = String(tip._id)
+  const tip = req.pageData.tipData, tipId = String(tip._id)
 
   const shortTipId = tipId.substr(tipId.length - 6)
 
   req.pageData.meta = Object.assign({}, baseMeta, {
     url,
-    image: baseUrl + req.pageData.tipData.data.image,
+    image: baseUrl + tip.image,
     title: `Tip #${shortTipId}`,
-    description: req.pageData.tipData.data.description
+    description: tip.description
   })
 
   next()

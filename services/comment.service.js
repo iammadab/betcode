@@ -10,3 +10,13 @@ exports.createComment = async (data) => {
   }
 
 }
+
+exports.getPostComments = async (postId) => {
+  
+  try{
+    return Comment.find({ post: postId }).populate("user")
+  } catch(error){
+    throw error
+  }
+
+}

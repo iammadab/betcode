@@ -59,10 +59,11 @@ exports.fetchByTipsterId = async (id) => {
 
 // Handle casting errors
 // Preferably at root
-exports.fetchById = id => {
+exports.fetchById = async id => {
 
 	try{
-		return Post.findOne({ _id: id }).populate("tipster")
+	  const post = await Post.findOne({ _id: id }).populate("tipster")
+    return exports.normalizeTip(post)
 	} catch(error){
 		throw error
 	}
