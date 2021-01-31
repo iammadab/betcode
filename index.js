@@ -91,7 +91,9 @@ app.get(
 
 app.get(
   "/profile", 
-  (req, res, next) => { req.pageData = {}; next() },
+  cookieMiddleware.cookieNotFound("/login"),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.profile,
   metaMiddleware.defaultMeta,
   (req, res) => res.render("profile", { ...req.pageData })
 )

@@ -11,15 +11,19 @@
 			<div class="content">
 				
 				<div class="title">
-					<h6>Akinwumi's Profile</h6>
+					<h6><%= user.username %>'s Profile</h6>
 				</div>
 				
 				<div class="summary">
-					<img src="/image/logo/1.jpg">
-					<h5>Akin Wumi</h5>
-					<h6>@Akinwumi</h6>
-					<p>Just a basic / modest tipster</p>
-					<div><a href="#">Twitter</a> <span class="seperator">|</span> <a href="#">Telegram</a></div>
+					<img src="<%= user.picture %>">
+					<h5><%= user.fullname %></h5>
+					<h6>@<%= user.username %></h6>
+					<p><%= user.bio %></p>
+					<div>
+            <a href="#">Twitter</a> 
+            <span class="seperator">|</span> 
+            <a href="#">Telegram</a>
+          </div>
 					<div><a href="/edit" class="btn btn-light"><i class="far fa-edit"></i> Update Profile</a></div>	
 				</div>
 			
@@ -107,6 +111,9 @@
 		</div>
 
 	</div>
+
+  <script src="/js/script.js"></script> 
+  <script src="/js/pages/profile.js"></script>
 
 	<%- include ("footer.ejs") %>
 
