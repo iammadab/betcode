@@ -62,7 +62,7 @@ function loadPosts(){
               <i class="far fa-bookmark"></i> ${post.odds} <span>Odds</span>
             </div>
             <div class="t_info">
-              <i class="far fa-comment-alt"></i> 50 <span>Comments</span>
+              <i class="far fa-comment-alt"></i>${post.comments}<span>Discussions</span>
             </div>
           </div>
 

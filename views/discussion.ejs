@@ -1,6 +1,7 @@
 <div class="title two">
 	<h6>Discussions (<%= comments.length %>)</h6>
 </div>
+
 <ul class="discuss">
 	
   <% for(comment of comments){ %>
@@ -25,6 +26,6 @@
 		<textarea class="form-control comment-box" placeholder="Say something"></textarea>
 	</div>
 	<div class="form-group">
-		<button id="submit" data-post="<%= tip._id %>" type="submit" class="btn btn-success comment-button">Post</button>
+		<button id="submit" data-post="<%= tip._id %>" type="submit" class="btn btn-success comment-button"><span class="post-text">Post</span></button>
 	</div>
 </div>
