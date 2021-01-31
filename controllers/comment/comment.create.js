@@ -38,6 +38,9 @@ const createComment = async (data) => {
   if(!comment)
     return { status: 500, code: "INTERNAL_SERVER_ERROR" }
 
+  post.comments += 1
+  post.save()
+
   return { status: 200, code: "COMMENT_CREATED", data: comment }
 
 }
