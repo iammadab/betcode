@@ -9,7 +9,6 @@ const userController = require("../controllers/user")
 
 const userRouter = require("./user.router")
 const commentRouter = require("./comment.router")
-console.log(userRouter, commentRouter)
 
 const createUploader = require("../lib/createUploader")
 const handleUpload = require("../lib/handleUpload")

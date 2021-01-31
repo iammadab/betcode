@@ -10,7 +10,7 @@ exports.validateToken = tokenName => (req, res, next) => {
 
     const tokenValidator = joi.object({
       [tokenName]: joi.string().required()
-    }).options({ abortEarly: false })
+    }).options({ abortEarly: false }).unknown(true)
 
     let validationResult = tokenValidator.validate(req.body)
 

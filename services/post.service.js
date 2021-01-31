@@ -57,6 +57,8 @@ exports.fetchByTipsterId = async (id) => {
 
 }
 
+// Handle casting errors
+// Preferably at root
 exports.fetchById = id => {
 
 	try{
