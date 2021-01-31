@@ -62,8 +62,7 @@ exports.fetchByTipsterId = async (id) => {
 exports.fetchById = async id => {
 
 	try{
-	  const post = await Post.findOne({ _id: id }).populate("tipster")
-    return exports.normalizeTip(post)
+	  return Post.findOne({ _id: id }).populate("tipster")
 	} catch(error){
 		throw error
 	}

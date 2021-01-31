@@ -51,8 +51,14 @@ function copy(event){
 })()
 
 let store = {
-  codeDisplay: document.querySelector(".code-display")
+  codeDisplay: document.querySelector(".code-display"),
+  commentButton: document.querySelector(".comment-button"),
+  commentBox: document.querySelector(".comment-box")
 }
+
+;(function attachEvents(){
+  addEvent([store.commentButton], "click", comment)
+})()
 
 ;(function(){
   const bookmakerSelect = document.querySelector("select")
@@ -64,3 +70,32 @@ let store = {
   const copyButton = document.querySelector(".copy-button")
   copyButton.onclick = copy
 })()
+
+
+function comment(event){
+  event.preventDefault() 
+
+  const postText = createButton(".post-text", "Post", "Posting...")
+  postText()
+
+  const token = getToken()
+  const comment = store.commentBox.value
+  const postId = store.commentButton.dataset.post
+
+  api("/comment/", {
+    token,
+    comment,
+    post: postId
+  }).then(handleSuccess).catch(handleError)
+
+  function handleSuccess(data){
+    if(data.status == 200)
+      return reload()
+  }
+
+  function handleError(err){
+    postText("normal")
+    console.log(err)
+  }
+ 
+}

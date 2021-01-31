@@ -3,7 +3,7 @@ const commentService = require("../../services/comment.service")
 
 const tip = async (req, res, next) => {
   
-  const post = await postService.fetchById(req.params.postId)
+  const post = postService.normalizeTip(await postService.fetchById(req.params.postId))
 
   const comments = await commentService.getPostComments(req.params.postId)
 
