@@ -88,7 +88,7 @@ app.get(
 )
 
 app.get(
-  "/profile/:userId", 
+  "/profile", 
   cookieMiddleware.cookieNotFound("/login"),
   tokenMiddleware.validateToken(),
   pageMiddleware.profile,

@@ -9,17 +9,29 @@
   <div class="form-group">
     <select class="custom-select"> 
       <option>Choose Bookmaker</option>
-      <option value="Bet9ja">Bet9ja</option>
-      <option value="Betking">Betking</option>
-      <option value="Sportybet">Sportybet</option>
-      <option value="1xbet">1xbet</option>
-      <option value="22bet">22bet</option> 
+
+      <% Object.keys(tip.bookmakers).forEach((bookmaker, i) => { %>
+        <% if(tip.bookmakers[bookmaker]){ %>
+          
+          <% bdisplay = bookmaker %>
+          <% if(bookmaker == "onexbet"){ bdisplay = "1xbet" } %>
+          <% if(bookmaker == "twentytwobet"){ bdisplay = "22bet" } %>
+
+          <option
+            data-code="<%= tip.bookmakers[bookmaker] %>"
+            value="<%= bookmaker %>"
+          ><%= bdisplay %></option> 
+        <% } %>
+      <% }) %>
+
     </select>
   </div>
 
   <div class="input-group">
-    <input type="text" class="form-control" value="AXCDKHR" readonly>
-    <button class="btn" type="button"><i class="far fa-clone"></i> Copy</button>
+    <input type="text" class="form-control code-display" value="" readonly>
+    <button class="copy-button btn" type="button"><i class="far fa-clone"></i>
+      <span class="copy-text">Copy</span>
+    </button>
   </div>
 
 </div>

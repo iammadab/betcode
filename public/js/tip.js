@@ -1,51 +1,41 @@
-const app = new Vue({
-	
-	el: "#app",
+function copy(event){
+  const textButton = createButton(".copy-text", "Copy", "Copied")
+  const codeElement = document.querySelector(".code-display")
+  const code = codeElement.value
+  const copyInput = document.querySelector("#copyinput")
 
-	methods: {
+  copyInput.value = code
+  copyInput.select()
+  copyInput.setSelectionRange(0, 99999)
 
-		copy(event){
-		
-			const codeElement = event.target.previousElementSibling
-			const code = codeElement.innerText
-			const copyInput = document.querySelector("#copyinput")
+  document.execCommand("copy")
 
-			copyInput.value = code
-			copyInput.select()
-			copyInput.setSelectionRange(0, 99999)
+  //Remove selection
+  if (window.getSelection) {
+    if (window.getSelection().empty) {  // Chrome
+      window.getSelection().empty();
+    } else if (window.getSelection().removeAllRanges) {  // Firefox
+      window.getSelection().removeAllRanges();
+    }
+  } else if (document.selection) {  // IE?
+    document.selection.empty();
+  }
 
-			document.execCommand("copy")
+  // Track the events
+  mixpanel.track("Copy", { 
+    code: code,
+    url: window.location.href, 
+    bookmakr: codeElement.dataset.bookmaker,
+    tipster: codeElement.dataset.tipster
+  })
 
-			//Remove selection
-			if (window.getSelection) {
-				if (window.getSelection().empty) {  // Chrome
-					window.getSelection().empty();
-				} else if (window.getSelection().removeAllRanges) {  // Firefox
-					window.getSelection().removeAllRanges();
-				}
-			} else if (document.selection) {  // IE?
-				document.selection.empty();
-			}
+  //Change text to copied
+  textButton()
+  setTimeout(() => {
+    textButton("normal")
+  }, 3000)
 
-			// Track the events
-			mixpanel.track("Copy", { 
-				code: code,
-				url: window.location.href, 
-				bookmakr: codeElement.dataset.bookmaker,
-        tipster: codeElement.dataset.tipster
-			})
-
-			//Change text to copied
-			event.target.innerHTML = `<i class="far fa-clone"></i> Copied`
-			setTimeout(() => {
-				event.target.innerHTML = `<i class="far fa-clone"></i> Copy`
-			}, 3000)
-
-		}
-
-	}
-
-})
+}
 
 ;(function(){
   const distributions = { t: "twitter" }
@@ -58,4 +48,19 @@ const app = new Vue({
       platform: distributions[distribution],
       url: window.location.href
     })
+})()
+
+let store = {
+  codeDisplay: document.querySelector(".code-display")
+}
+
+;(function(){
+  const bookmakerSelect = document.querySelector("select")
+  bookmakerSelect.onchange = function(event){
+    const option = document.querySelector(`option[value="${event.target.value}"]`)   
+    store.codeDisplay.value = option.dataset.code
+  }
+
+  const copyButton = document.querySelector(".copy-button")
+  copyButton.onclick = copy
 })()
