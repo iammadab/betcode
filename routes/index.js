@@ -8,12 +8,15 @@ const tipsterController = require("../controllers/tipster")
 const userController = require("../controllers/user")
 
 const userRouter = require("./user.router")
+const commentRouter = require("./comment.router")
+console.log(userRouter, commentRouter)
 
 const createUploader = require("../lib/createUploader")
 const handleUpload = require("../lib/handleUpload")
 const toApi = require("../lib/toApi")
 
 router.use("/user", userRouter)
+router.use("/comment", commentRouter)
 
 router.post("/post", postController.createPost)
 
