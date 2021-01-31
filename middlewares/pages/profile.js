@@ -1,4 +1,5 @@
 const userService = require("../../services/user.service")
+const postService = require("../../services/post.service")
 
 const profile = async (req, res, next) => {
 
@@ -8,8 +9,11 @@ const profile = async (req, res, next) => {
   // delete the user cookie and 
   // redirect them to login
 
+  const tips = await postService.fetchByTipsterId(req.body.user.id)
+
   req.pageData = {
-    user
+    user,
+    tips
   }
   
   next()

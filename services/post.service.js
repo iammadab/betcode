@@ -47,6 +47,16 @@ exports.fetchBy = async ( field, value, id ) => {
 
 }
 
+exports.fetchByTipsterId = async (id) => {
+  
+  try{
+    return Post.find({ tipster: id }).populate("tipster").sort({ createdAt: -1 })
+  } catch(error){
+    throw error
+  }
+
+}
+
 exports.fetchById = id => {
 
 	try{

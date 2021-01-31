@@ -26,7 +26,7 @@ router.get(
 
 router.get(
 	"/post/filter/:value", 
-	toApi(postController.fetchBy("tipster"), "params")
+	postController.fetchBy("tipster")
 )
 
 router.post("/tipster", tipsterController.createTipster)
