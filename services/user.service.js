@@ -70,3 +70,17 @@ exports.findUserByUsername = async ({ username }) => {
   }
 
 }
+
+exports.fetchAllVerifiedTipsters = async () => {
+  
+  try {
+      
+    return User.find({ verifiedTipster: true })
+
+  } catch (error){
+
+    return { error: true, code: "ERROR_FETCHING_VERIFIED_TIPSTERS" }
+
+  }
+
+}
