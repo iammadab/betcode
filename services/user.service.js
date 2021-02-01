@@ -15,6 +15,20 @@ exports.createUser = async (data) => {
 
 }
 
+exports.findUserById = async ({ id }) => {
+  
+  try {
+  
+    return User.findOne({ _id: id })
+  
+  } catch(error){
+
+    return { error: true, code: "ERROR_FINDING_BY_ID" }
+
+  }
+
+}
+
 exports.findUserByPhone = async ({ phoneCode, phone }) => {
   
   try {
@@ -52,6 +66,20 @@ exports.findUserByUsername = async ({ username }) => {
   } catch(error){
     
     return { error: true, code: "ERROR_FINDING_BY_USERNAME" }
+
+  }
+
+}
+
+exports.fetchAllVerifiedTipsters = async () => {
+  
+  try {
+      
+    return User.find({ verifiedTipster: true })
+
+  } catch (error){
+
+    return { error: true, code: "ERROR_FETCHING_VERIFIED_TIPSTERS" }
 
   }
 

@@ -9,13 +9,19 @@
 			</div>
 
 			<div class="loglink">
-				<a href="/"><i class="far fa-lightbulb"></i>Tips</a>
-				<a href="/tipsters"><i class="far fa-star"></i>Tipsters</a>
-				<a href="#" class="active"><i class="far fa-user"></i>Profile</a>
+				<a href="/" class="<%= page == 'home' ? 'active' : '' %>">
+          <i class="far fa-lightbulb"></i>Tips
+        </a>
+				<a href="/profile/<%= user._id %>" class="<%= page == 'profile' ? 'active' : '' %>">
+          <i class="far fa-user"></i>Profile
+        </a>
+				<a href="/tipsters" class="<%= page == 'tipsters' ? 'active' : '' %>">
+          <i class="far fa-star"></i>Tipsters
+        </a>
 			</div>	
 
-			<div class="loglink">
-				<a href="#" class="passive"><i class="fas fa-external-link-alt"></i> Logout</a>
+			<div class="logout loglink">
+				<i class="fas fa-external-link-alt"></i> Logout
 			</div>
 		
 		</div>			

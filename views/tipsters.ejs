@@ -1,8 +1,10 @@
 <%- include ("meta.ejs") %>
+
 </head>
 <body>
 <article>
-	<%- include ("header_login.ejs") %>
+
+	<%- include ("header.ejs", { page: "tipsters" }) %>
 	<div class="main">
 		<div class="container" id="app">
 			<div class="content">
@@ -12,97 +14,34 @@
 				</div>
 				
 				<ul class="tipsters">
-						<li class="hover">
-							<a href="/profile">
-								<img src="/image/logo/1.jpg" alt="Akinwumi">
-								<div class="details">
-									<h6>Akin Wumi</h6>
-									<span>@akinwumi</span>
-									<p>Just a modest sports trader</p>
-								</div>
-								<div class="tipbox"><b>56</b> <span>Tips</span></div>
-							</a>
-						</li>
 
-						<li class="hover">
-							<a href="/profile">
-								<img src="/image/logo/2.jpg" alt="Akinwumi">
-								<div class="details">
-									<h6>Okiki Jegede</h6>
-									<span>@okiki</span>
-									<p>I am the 2 odds master and everyday I want us to have green tickets all through</p>
-								</div>
-								<div class="tipbox">8 <span>Tips</span></div>
-							</a>
-						</li>
+            <% for(tipster of tipsters) { %>
 
-						<li class="hover">
-							<a href="/profile">
-								<img src="/image/logo/4.jpg" alt="Akinwumi">
-								<div class="details">
-									<h6>Omolayo Ayeni</h6>
-									<span>@omlayo</span>
-									<p>The wizard of punting and the scarecrow of bookmakers. Follow me for updates!</p>
-								</div>
-								<div class="tipbox">24 <span>Tips</span></div>
-							</a>
-						</li>
+              <li class="hover">
+                <a href="/profile/<%= tipster._id %>">
+                  <img src="<%= tipster.picture %>" alt="<%= tipster.username %>">
+                  <div class="details">
+                    <h6><%= tipster.fullname %></h6>
+                    <span>@<%= tipster.username %></span>
+                    <p><%= tipster.bio %></p>
+                  </div>
+                  <div class="tipbox"><b>56</b> <span>Tips</span></div>
+                </a>
+              </li>
 
-						<li class="hover">
-							<a href="/profile">
-								<img src="/image/logo/5.jpeg" alt="Akinwumi">
-								<div class="details">
-									<h6>Wisdom Ogwu</h6>
-									<span>@iammadab</span>
-									<p>I don't speculate. Just here for fun</p>
-								</div>
-								<div class="tipbox">0 <span>Tips</span></div>
-							</a>
-						</li>
+            <% } %>
 
-						<li class="hover">
-							<a href="/profile">
-								<img src="/image/logo/3.jfif" alt="Akinwumi">
-								<div class="details">
-									<h6>Obed Femi</h6>
-									<span>@obedfm</span>
-									<p>Chasing the bag and trying to make millions this year. Impeccable records ...</p>
-								</div>
-								<div class="tipbox">499 <span>Tips</span></div>
-							</a>
-						</li>
-
-						<li class="hover">
-							<a href="/profile">
-								<img src="/image/logo/2.jpg" alt="Akinwumi">
-								<div class="details">
-									<h6>Okiki Jegede</h6>
-									<span>@okiki</span>
-									<p>I am the 2 odds master and everyday I want us to have green tickets all through</p>
-								</div>
-								<div class="tipbox">8 <span>Tips</span></div>
-							</a>
-						</li>
-
-						<li class="hover">
-							<a href="/profile">
-								<img src="/image/logo/4.jpg" alt="Akinwumi">
-								<div class="details">
-									<h6>Omolayo Ayeni</h6>
-									<span>@omlayo</span>
-									<p>The wizard of punting and the scarecrow of bookmakers. Follow me for updates!</p>
-								</div>
-								<div class="tipbox">24 <span>Tips</span></div>
-							</a>
-						</li>
-					
 				</ul>
 
 			</div>
 
 		</div>
 	</div>
+
+  <script src="/js/script.js"></script>
+
 	<%- include ("footer.ejs") %>
+
 </article>
 
 <%- include ("end.ejs") %>

@@ -29,6 +29,7 @@
   addEvent(logoutButtons, "click", logout)
   
   function logout(event){
+    console.log("I was clicked")
     event.preventDefault()
     let tokenName = window.location.href.includes("admin") ? "atoken" : "token"
     let cookieData = {
@@ -37,7 +38,8 @@
     }
     // console.log(tokenName)
     deleteCookie(tokenName)
-    redirect(cookieData[tokenName].redirect)
+    reload()
+    //redirect(cookieData[tokenName].redirect)
   }
 })()
 

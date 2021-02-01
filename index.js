@@ -31,11 +31,8 @@ const apiRouter = require("./routes")
 
 app.get(
 	"/", 
- // cookieMiddleware.cookieNotFound("/login"),
- // tokenMiddleware.validateToken(),
-  toPage(postController.fetchAll, "tips"),
-	toPage(tipsterController.fetchAll, "tipsters"),
-	tipMiddleware.normalizeTips,
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
   pageMiddleware.home,
   metaMiddleware.allTips,
 	(req, res) => {
@@ -57,8 +54,9 @@ app.get(
 
 app.get(
 	"/tip/:postId", 
-	toPage(postController.fetchOne, "tipData", "params"),
-	tipMiddleware.normalizeTip,
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.tip,
   metaMiddleware.singleTip,
 	(req, res) => res.render("tip", { ... req.pageData })
 )
@@ -67,7 +65,6 @@ app.get(
 app.get(
   "/login", 
   cookieMiddleware.cookieFound("/"),
-  (req, res, next) => { req.pageData = {}; next() },
   metaMiddleware.defaultMeta,
   (req, res) => res.render("login", { ...req.pageData })
 )
@@ -75,7 +72,6 @@ app.get(
 app.get(
   "/register", 
   cookieMiddleware.cookieFound("/"),
-  (req, res, next) => { req.pageData = {}; next() },
   metaMiddleware.defaultMeta,
   (req, res) => res.render("register", { ...req.pageData })
 )
@@ -88,15 +84,19 @@ app.get(
 )
 
 app.get(
-  "/profile", 
-  (req, res, next) => { req.pageData = {}; next() },
+  "/profile/:profileId", 
+  cookieMiddleware.cookieNotFound("/login"),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.profile,
   metaMiddleware.defaultMeta,
   (req, res) => res.render("profile", { ...req.pageData })
 )
 
 app.get(
   "/tipsters", 
-  (req, res, next) => { req.pageData = {}; next() },
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.tipsters,
   metaMiddleware.defaultMeta,
   (req, res) => res.render("tipsters", { ...req.pageData })
 )

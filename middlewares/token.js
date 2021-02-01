@@ -10,12 +10,16 @@ exports.validateToken = tokenName => (req, res, next) => {
 
     const tokenValidator = joi.object({
       [tokenName]: joi.string().required()
-    }).options({ abortEarly: false })
+    }).options({ abortEarly: false }).unknown(true)
 
     let validationResult = tokenValidator.validate(req.body)
 
-    if(validationResult.error)
+    if(validationResult.error){
+      if(req.pageData && req.pageData.dynamicPage)
+        return handleErrors({})
+      else
         return res.status(400).json({ code: "BAD_REQUEST_BODY", errors: validationResult.error })
+    }
 
     let cookiePath = req.url.includes("admin") ? "/admin" : ""
 
@@ -28,13 +32,33 @@ exports.validateToken = tokenName => (req, res, next) => {
       return verify(req.body[tokenName], process.env.SECRET_KEY)
     }
 
-    function attachUserInfo(decodedToken){
-      let user = decodedToken
+    async function attachUserInfo(decodedToken){
+      let user = await userService.findUserById(decodedToken)
+      if(!user)
+        return handleErrors({})
+
       req.body.user = user
+      if(req.pageData)
+        req.pageData.user = user
     }
 
     function handleErrors(error){
+      
+      // If you get here, it means you are not logged in properly
+      // Some pages are dynamic in which
+      // they don't care if the user is logged in or not
+      // for these kinds of pages, we just want to update
+      // the logged in status and continue on
+
+      if(req.pageData.dynamicPage){
+        req.pageData.loggedIn = false
+        return next()
+      }
+
+      // For other kinds of pages,
+      // actually log the user out
       res.clearCookie(tokenName, { path: cookiePath })
+
       return res.redirect(`${cookiePath}/login`)
       if(error.name == "TokenExpiredError")
           res.status(403).json({ code: "TOKEN_EXPIRED" })

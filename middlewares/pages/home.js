@@ -6,12 +6,9 @@ const home = async (req, res, next) => {
   
   const allPosts = (await postController.fetchAll({})).data
 
-  const allTipsters = (await tipsterController.fetchAll()).data
-
-  req.pageData = {
+  req.pageData = Object.assign({}, req.pageData, {
     tips: allPosts,
-    tipsters: allTipsters
-  }
+  })
 
   next()
 

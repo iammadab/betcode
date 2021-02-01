@@ -3,7 +3,7 @@
 <body>
 <article>
 
-	<%- include ("header_login.ejs") %>
+	<%- include ("header_login.ejs", { page: "profile" }) %>
 
 	<div class="main">
 		<div class="container" id="app">
@@ -11,42 +11,50 @@
 			<div class="content">
 				
 				<div class="title">
-					<h6>Akinwumi's Profile</h6>
+					<h6><%= user.username %>'s Profile</h6>
 				</div>
 				
 				<div class="summary">
-					<img src="/image/logo/1.jpg">
-					<h5>Akin Wumi</h5>
-					<h6>@akinwumi</h6>
-					<p>Just a basic / modest tipster</p>
-					<div><a href="#">Twitter</a> <span class="seperator">|</span> <a href="#">Telegram</a></div>
+					<img src="<%= user.picture %>">
+					<h5><%= user.fullname %></h5>
+					<h6>@<%= user.username %></h6>
+					<p><%= user.bio %></p>
+					<div>
+            <a href="#">Twitter</a> 
+            <span class="seperator">|</span> 
+            <a href="#">Telegram</a>
+          </div>
 					<div><a href="/edit" class="btn btn-light"><i class="far fa-edit"></i> Update Profile</a></div>	
 				</div>
 			
 				<div class="container_two">
 
+          <% if(tips.length > 0){ %>
 					<div class="title two">
-						<h6>Recent Tips (3)</h6>
+						<h6>Recent Tips (<%= tips.length %>)</h6>
 						<span>View all the tips posted by Akin Wumi</span>
 					</div>
+          <% } %>
 
 					<ul class="tips">
 
-						<li class="hover">
+            <% for(tip of tips) { %>
+
+						<li data-id="<%= tip._id %>" class="hover">
 							
-							<a href="#">
+							<a href="<%= `/tip/${tip._id}` %>">
 
 								<div class="t_header">
-									<img src="/image/logo/1.jpg" alt="Akinwumi">
+									<img src="<%= tip.tipster.image %>" alt="<%= tip.tipster.name %>">
 									<div class="t_details">
-										<h6>Akin Wumi</h6>
-										<span>an hour ago</span>
+										<h6><%= tip.tipster.name %></h6>
+										<span><%= tip.tipDate %></span>
 									</div>
 								</div>
 
 								<div class="t_main">
-									<p>Only game from me today. #100 might give you 800k!!! BC35KDGM Have a great weekend!!!</p>
-									<div class="t_info"><i class="far fa-bookmark"></i> 11 <span>Odds</span></div>
+									<p><%= tip.description %></p>
+									<div class="t_info"><i class="far fa-bookmark"></i> <%= tip.odds %> <span>Odds</span></div>
 									<div class="t_info"><i class="far fa-comment-alt"></i> 6 <span>Comments</span></div>
 								</div>	
 
@@ -54,50 +62,7 @@
 						
 						</li>
 
-
-						<li class="hover">
-							
-							<a href="#">
-
-								<div class="t_header">
-									<img src="/image/logo/1.jpg" alt="Akinwumi">
-									<div class="t_details">
-										<h6>Akin Wumi</h6>
-										<span>3 hour ago</span>
-									</div>
-								</div>
-
-								<div class="t_main">
-									<p>Double up on sportybet Gamble responsibly</p>
-									<div class="t_info"><i class="far fa-bookmark"></i> 3 <span>Odds</span></div>
-									<div class="t_info"><i class="far fa-comment-alt"></i> 4 <span>Comments</span></div>
-								</div>	
-
-							</a>	
-						
-						</li>
-
-						<li class="hover">
-							
-							<a href="#">
-
-								<div class="t_header">
-									<img src="/image/logo/1.jpg" alt="Akinwumi">
-									<div class="t_details">
-										<h6>Akin Wumi</h6>
-										<span>2 days ago</span>
-									</div>
-								</div>
-
-								<div class="t_main">
-									<p>BC35MEG9 all today. 4.9 odds</p>
-									<div class="t_info"><i class="far fa-bookmark"></i> 4.9 <span>Odds</span></div>
-									<div class="t_info"><i class="far fa-comment-alt"></i> 0 <span>Comments</span></div>
-								</div>	
-
-							</a>	
-						
-						</li>
+           <% } %>
 
 					</ul>
 
@@ -108,6 +73,9 @@
 		</div>
 
 	</div>
+
+  <script src="/js/script.js"></script> 
+  <script src="/js/pages/profile.js"></script>
 
 	<%- include ("footer.ejs") %>
 

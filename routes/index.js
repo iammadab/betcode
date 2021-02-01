@@ -8,12 +8,14 @@ const tipsterController = require("../controllers/tipster")
 const userController = require("../controllers/user")
 
 const userRouter = require("./user.router")
+const commentRouter = require("./comment.router")
 
 const createUploader = require("../lib/createUploader")
 const handleUpload = require("../lib/handleUpload")
 const toApi = require("../lib/toApi")
 
 router.use("/user", userRouter)
+router.use("/comment", commentRouter)
 
 router.post("/post", postController.createPost)
 
@@ -26,7 +28,7 @@ router.get(
 
 router.get(
 	"/post/filter/:value", 
-	toApi(postController.fetchBy("tipster"), "params")
+	postController.fetchBy("tipster")
 )
 
 router.post("/tipster", tipsterController.createTipster)

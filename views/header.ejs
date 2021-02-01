@@ -1,3 +1,4 @@
+<% if(!loggedIn) { %>
 <header class="navbar">
 	
 	<div class="container">
@@ -9,13 +10,21 @@
 			</div>
 
 			<div class="loglink">
-				<a href="/" class="active"><i class="fas fa-lightbulb"></i>Tips</a>
-				<a href="/tipsters"><i class="fas fa-star"></i>Tipsters</a>
-				<a href="/login"><i class="fas fa-lock"></i>Login</a>
+				<a href="/" class="<%= page == 'home' ? 'active' : '' %>">
+          <i class="fas fa-lightbulb"></i>Tips
+        </a>
+				<a href="/tipsters" class="<%= page == 'tipsters' ? 'active' : '' %>">
+          <i class="fas fa-star"></i>Tipsters
+        </a>
+				<a href="/login" class="<%= page == 'login' ? 'active' : '' %>">
+          <i class="fas fa-lock"></i>Login
+        </a>
 			</div>	
 
 			<div class="loglink">
-				<a href="/register" class="passive"><i class="fas fa-user-plus"></i> Sign Up</a>
+				<a href="/register" class="passive <%= page == 'register' ? 'active' : '' %>">
+          <i class="fas fa-user-plus"></i> Sign Up
+        </a>
 			</div>
 		
 		</div>			
@@ -23,3 +32,8 @@
 	</div>
 
 </header>
+<% } %>
+
+<% if(loggedIn) { %>
+  <%- include("header_login") %>
+<% } %>
