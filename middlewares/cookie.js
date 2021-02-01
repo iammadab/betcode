@@ -8,8 +8,10 @@ exports.cookieFound = (redirectUrl, param) => {
     if(req.cookies && req.cookies[prop])
       res.redirect(redirectUrl)
 
-    else
+    else{
+      req.body.loggedIn = false
       next()
+    }
 
   }
 }
@@ -27,8 +29,38 @@ exports.cookieNotFound = (redirectUrl, param) => {
 
     else{
       req.body[prop] = req.cookies[prop]
+      req.body.loggedIn = true
       next()
     }
 
+  }
+}
+
+
+// For pages where you can either be
+// logged in or not, use this to 
+// determine state
+exports.maybeCookie = () => {
+  return (req, res, next) => {
+
+    const prop = "token"
+
+    // Set the type of the page
+    // This means the page allows both logged in users and
+    // users not logged in
+    req.body.dynamicPage = true
+
+    if(req.cookies && req.cookies[prop]){
+      // Cookie is found, so the user is potentially logged in
+      // Attach the cookie to the req body and
+      req.body[prop] = req.cookies[prop]
+      req.body.loggedIn = true
+    }
+
+    else
+      req.body.loggedIn = false
+
+    next()
+   
   }
 }
