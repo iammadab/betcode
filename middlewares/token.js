@@ -14,8 +14,12 @@ exports.validateToken = tokenName => (req, res, next) => {
 
     let validationResult = tokenValidator.validate(req.body)
 
-    if(validationResult.error)
+    if(validationResult.error){
+      if(req.pageData.dynamicPage)
+        return handleErrors({})
+      else
         return res.status(400).json({ code: "BAD_REQUEST_BODY", errors: validationResult.error })
+    }
 
     let cookiePath = req.url.includes("admin") ? "/admin" : ""
 
@@ -34,6 +38,8 @@ exports.validateToken = tokenName => (req, res, next) => {
         return handleErrors({})
 
       req.body.user = user
+      if(req.pageData)
+        req.pageData.user = user
     }
 
     function handleErrors(error){

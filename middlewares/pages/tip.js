@@ -7,10 +7,10 @@ const tip = async (req, res, next) => {
 
   const comments = await commentService.getPostComments(req.params.postId)
 
-  req.pageData = {
+  req.pageData = Object.assign({}, req.pageData, {
     tipData: post,
     comments
-  }
+  })
 
   next()
 

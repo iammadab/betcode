@@ -1,4 +1,5 @@
 const Comment = require("../models/comment")
+const moment = require("moment")
 
 exports.createComment = async (data) => {
 
@@ -19,4 +20,14 @@ exports.getPostComments = async (postId) => {
     throw error
   }
 
+}
+
+exports.normalizeComment = comment => {
+  const commentObj = Object.assign({}, comment._doc)
+  commentObj.date = moment(commentObj.createdAt).fromNow()
+  return commentObj
+}
+
+exports.normalizeComments = comments => {
+  return comments.map(exports.normalizeComment)
 }
