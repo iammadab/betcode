@@ -5,7 +5,9 @@ const tip = async (req, res, next) => {
   
   const post = postService.normalizeTip(await postService.fetchById(req.params.postId))
 
-  const comments = await commentService.getPostComments(req.params.postId)
+  const comments = commentService.normalizeComments(
+    await commentService.getPostComments(req.params.postId)
+  )
 
   req.pageData = Object.assign({}, req.pageData, {
     tipData: post,

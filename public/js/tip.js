@@ -91,6 +91,7 @@ function comment(event){
   function handleSuccess(data){
     if(data.status == 200)
       return reload()
+    postText("normal")
   }
 
   function handleError(err){
