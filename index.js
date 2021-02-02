@@ -85,7 +85,7 @@ app.get(
 
 app.get(
   "/profile/:profileId", 
-  cookieMiddleware.cookieNotFound("/login"),
+  cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   pageMiddleware.profile,
   metaMiddleware.defaultMeta,
