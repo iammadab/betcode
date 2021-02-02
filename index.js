@@ -78,7 +78,8 @@ app.get(
 
 app.get(
   "/edit", 
-  (req, res, next) => { req.pageData = {}; next() },
+  cookieMiddleware.cookieNotFound("/login"),
+  tokenMiddleware.validateToken(),
   metaMiddleware.defaultMeta,
   (req, res) => res.render("edit", { ...req.pageData })
 )
