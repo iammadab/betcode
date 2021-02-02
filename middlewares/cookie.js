@@ -25,11 +25,14 @@ exports.cookieNotFound = (redirectUrl, param) => {
   return (req, res, next) => {
 
     req.pageData =  {}
+
+    // For ability to redirect to initial page
+    const toRedirect = redirectUrl + `?from=${req.url}`
       
     const prop = param ? param : "token"
 
     if(!req.cookies || !req.cookies[prop])
-      res.redirect(redirectUrl)
+      res.redirect(toRedirect)
 
     else{
       req.body[prop] = req.cookies[prop]
