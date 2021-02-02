@@ -3,7 +3,7 @@
 <body>
 <article>
 
-	<%- include ("header_login.ejs", { page: "profile" }) %>
+	<%- include ("header.ejs", { page: "profile" }) %>
 
 	<div class="main">
 		<div class="container" id="app">
@@ -24,7 +24,11 @@
             <span class="seperator">|</span> 
             <a href="#">Telegram</a>
           </div>
+
+          <% if(sameUser){ %>
 					<div><a href="/edit" class="btn btn-light"><i class="far fa-edit"></i> Update Profile</a></div>	
+          <% } %>
+
 				</div>
 			
 				<div class="container_two">

@@ -37,7 +37,7 @@
       "token": { path: "/", redirect: "/login" }
     }
     // console.log(tokenName)
-    deleteCookie(tokenName)
+    deleteCookie(tokenName, cookieData[tokenName])
     reload()
     //redirect(cookieData[tokenName].redirect)
   }
@@ -117,6 +117,7 @@ function redirect(url){
 }
 
 function reload(){
+  console.log("Reloading")
   redirect(window.location.href)
 }
 
@@ -160,8 +161,10 @@ function getToken(search){
   return token
 }
 
-function deleteCookie(cookieName){
-  document.cookie = cookieName + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+function deleteCookie(cookieName, cookieData){
+  const pathString = cookieData ? `path=${cookieData.path};` : ""
+  const cookieString = `${cookieName}=;${pathString}expires=Thu, 01 Jan 1970 00:00:00 UTC;`
+  document.cookie = cookieString
 }
 
 function createButton(element, normal, active){

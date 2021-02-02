@@ -78,14 +78,15 @@ app.get(
 
 app.get(
   "/edit", 
-  (req, res, next) => { req.pageData = {}; next() },
+  cookieMiddleware.cookieNotFound("/login"),
+  tokenMiddleware.validateToken(),
   metaMiddleware.defaultMeta,
   (req, res) => res.render("edit", { ...req.pageData })
 )
 
 app.get(
   "/profile/:profileId", 
-  cookieMiddleware.cookieNotFound("/login"),
+  cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   pageMiddleware.profile,
   metaMiddleware.defaultMeta,
@@ -121,3 +122,6 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
 	console.log(`Application listening at port ${PORT}`)
 })
+
+
+//require("./automation/tipsterToUsers")

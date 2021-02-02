@@ -75,7 +75,7 @@
 						<span></span>
 					</div>
 
-					<div class="text-center mb-3">Already have an account yet? <a href="/login">Login</a></div>
+					<div class="text-center mb-3">Already have an account yet? <a href="/login" class="login-link">Login</a></div>
 
 				</form>
 
@@ -87,6 +87,16 @@
 
   <script src="/js/script.js"></script>
   <script src="/js/pages/register.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+  </script>
 
 <%- include ("footer.ejs") %>
 

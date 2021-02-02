@@ -3,7 +3,8 @@
   <% banner = "" %>
   <% if(meta.tipsterName){ banner = `from ${meta.tipsterName}` } %>
 	<h6 class="title">Latest Tips <%= banner %></h6>
-	
+  
+  <% if(tips){ %>	
 	<ul class="tips">
 
 		<% for(tip of tips) { %>
@@ -33,6 +34,7 @@
 		<% } %>
 
 	</ul>
+  <% } %>
 
 	<div class="showmore">SHOW MORE</div>
 	

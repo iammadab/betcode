@@ -2,7 +2,7 @@
 </head>
 <body>
 <article>
-	<%- include ("header_login.ejs") %>
+	<%- include ("header.ejs", { page: "edit" }) %>
 	<div class="main">
 		
 		<div class="container">
@@ -16,27 +16,29 @@
 				<div class="login">
 
 					<div class="form-group">
-						<input class="form-control form-control-lg" type="text" placeholder="Full Name">
+						<input class="form-control form-control-lg" value="<%= user.fullname %>" type="text" placeholder="Full Name">
 					</div>
 
 					<div class="form-group">
-						<input class="form-control form-control-lg" type="text" placeholder="Username">
+						<input class="form-control form-control-lg" value="<%= user.username %>" type="text" placeholder="Username">
 					</div>
 				
 					<div class="form-group">
-						<input class="form-control form-control-lg" type="email" placeholder="Email Address">
+						<input class="form-control form-control-lg" value="<%= user.email %>" type="email" placeholder="Email Address">
 					</div>
 
 					<div class="form-group">
-						<input class="form-control form-control-lg" type="text" placeholder="Phone Number">
+						<input class="form-control form-control-lg" value="<%= user.phone %>" type="text" placeholder="Phone Number">
 					</div>
 
+          <!--
 					<div class="form-group">
 						<input class="form-control form-control-lg" type="password" placeholder="Password">
 					</div>
+          -->
 
 					<div class="form-group">
-						<textarea class="form-control form-control-lg" placeholder="Short Bio"></textarea>
+						<textarea class="form-control form-control-lg" placeholder="Short Bio"><%= user.bio %></textarea>
 					</div>
 
 					<div class="form-group">
@@ -47,11 +49,11 @@
 					</div>
 
 					<div class="form-group">
-						<input class="form-control form-control-lg" type="text" placeholder="Twitter Handle (Optional)">
+						<input class="form-control form-control-lg" type="text" value="<%= user.twitter %>" placeholder="Twitter Handle (Optional)">
 					</div>
 
 					<div class="form-group">
-						<input class="form-control form-control-lg" type="text" placeholder="Telegram Channel (Optional)">
+						<input class="form-control form-control-lg" type="text" value="<%= user.telegram %>" placeholder="Telegram Channel (Optional)">
 					</div>
 					
 
