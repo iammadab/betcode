@@ -15,6 +15,20 @@ exports.createUser = async (data) => {
 
 }
 
+exports.updateUser = async (identifier, updates) => {
+  
+  try {
+
+    return User.updateOne(identifier, updates)
+  
+  } catch(error){
+
+    return { error: true, code: "ERROR_UPDATING_USER" }
+
+  }
+
+}
+
 exports.findUserById = async ({ id }) => {
   
   try {
