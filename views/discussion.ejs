@@ -27,9 +27,16 @@
 		<textarea class="form-control comment-box" placeholder="Say something"></textarea>
 	</div>
 	<div class="form-group">
+
+    <% if(loggedIn){ %>
 		<button id="submit" data-post="<%= tip._id %>" type="submit" class="btn btn-success comment-button">
 			<span class="post-text">Post</span>
 		</button>
+    <% } %>
+
+    <% if(!loggedIn){ %>
 		<a href="#post" class="btn btn-success">Post</a>
+    <% } %>
+
 	</div>
 </div>

@@ -8,7 +8,7 @@ const store = {
   addEvent([store.moreButton], "click", loadPosts)
 })()
 
-const loadingButton = createButton(".showmore", "SHOW MORE", "Loading...")
+const loadingButton = createButton(".showmore", "SHOW MORE TIPS", "Loading...")
 
 function loadPosts(){
 
