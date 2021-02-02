@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
   picture: { type: String, required: true },
   twitter: { type: String },
   telegram: { type: String },
-  verifiedTipster: { type: Boolean, default: false }
+  verifiedTipster: { type: Boolean, default: false },
+  tips: { type: Number, default: 0 }
 })
 
 const userModel = mongoose.model("User", userSchema)

@@ -57,6 +57,7 @@ let store = {
 }
 
 ;(function attachEvents(){
+  appendRedirects()
   addEvent([store.commentButton], "click", comment)
 })()
 
@@ -99,4 +100,11 @@ function comment(event){
     console.log(err)
   }
  
+}
+
+function appendRedirects(){
+  const loginRedirect = document.querySelector(".login-redirect")
+  const signupRedirect = document.querySelector(".signup-redirect")
+
+  
 }
