@@ -1,10 +1,12 @@
 const store = {
   registerButton: document.querySelector(".register-button"),
   registerFormTag: ".register-form",
-  imageInput: document.querySelector("input[type=file]")
+  imageInput: document.querySelector("input[type=file]"),
+  loginLink: document.querySelector(".login-link")
 }
 
 ;(function attachEvents(){
+  appendLogin()
   addEvent([store.registerButton], "click", registerUser)
   addEvent(
     getFormInputs(store.registerFormTag),
@@ -12,6 +14,19 @@ const store = {
     () => hideAlert(".register-error")
   )
 })()
+
+function appendLogin(){
+  
+  const params = new URLSearchParams(window.location.search)
+  const redirectUrl = params.get("from")
+
+  if(!redirectUrl) return
+
+  if(!store.loginLink) return
+
+  store.loginLink.setAttribute("href", "/login?from=" + redirectUrl)
+
+}
 
 
 const registerText = createButton(".register-text", "Register", "Registering...")
@@ -63,10 +78,13 @@ async function registerUser(event){
 
   function handleRegistration(data){
 
-    registerText("normal")
+    if(data.status == 200){
+      let toRedirect = "/", params = new URLSearchParams(window.location.search)
+      toRedirect = params.get("from") ? params.get("from") : toRedirect
+      return redirect(toRedirect)
+    }
 
-    if(data.status == 200)
-      return redirect("/")
+    registerText("normal")
 
     if(data.code == "USER_EXISTS" && data.message)
       return showAlert(".register-error", data.message)

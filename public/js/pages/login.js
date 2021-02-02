@@ -1,9 +1,11 @@
 const store = {
   loginButton: document.querySelector(".login-button"),
-  loginFormTag: ".login-form"
+  loginFormTag: ".login-form",
+  registerLink: document.querySelector(".register-link")
 }
 
 ;(function attachEvents(){
+  appendRegister()
   addEvent([store.loginButton], "click", loginUser)
   addEvent(
     getFormInputs(store.loginFormTag),
@@ -11,6 +13,21 @@ const store = {
     () => hideAlert(".login-error")
   )
 })()
+
+function appendRegister(){
+ 
+  // Check if there is a redirect link in the login url
+  // If there is, append the same link to the register button
+  const params = new URLSearchParams(window.location.search)
+  const redirectUrl = params.get("from")
+
+  if(!redirectUrl) return
+  
+  if(!store.registerLink) return
+
+  store.registerLink.setAttribute("href", "/register?from=" + redirectUrl)
+
+}
 
 const loginText = createButton(".login-text", "Login", "Logging in..")
 
@@ -36,8 +53,11 @@ function loginUser(event){
 
   function handleLogin(data){
 
-    if(data.status == 200)
-      return redirect("/")
+    if(data.status == 200){
+      let toRedirect = "/", params = new URLSearchParams(window.location.search)
+      toRedirect = params.get("from") ? params.get("from") : toRedirect
+      return redirect(toRedirect)
+    }
 
     loginText("normal")
 
