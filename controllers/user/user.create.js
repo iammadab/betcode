@@ -12,7 +12,7 @@ const createUserValidator = joi.object({
   phone: joi.string().trim().regex(/^[0-9]+$/).required(),
   password: joi.string().trim().required(),
   bio: joi.string().trim().required(),
-  picture: joi.string().trim(),
+  picture: joi.string().trim().empty("").default("/image/logo/user.png"),
   twitter: joi.string().trim(),
   telegram: joi.string().trim()
 }).options({ abortEarly: false })
@@ -25,7 +25,6 @@ const createUser = async (data) => {
     return { status: 400, code: "BAD_REQUEST_ERROR", errors: validationResult.error }
 
   const userDetails = validationResult.value
-
 
 
   // Make sure the user is unique 
