@@ -28,9 +28,10 @@ const app = new Vue({
 
 	created(){
 
-		fetch("/api/tipster")
+		fetch("/api/user/tipsters")
 			.then(res => res.json())
 			.then(data => {
+        console.log(data)
 				this.tipsters = data.data
 			})
 
@@ -42,7 +43,7 @@ const app = new Vue({
 
 			const list =  this.tipsters.map(tipster => ({
 				id: tipster._id,
-				name: tipster.name,
+				name: tipster.username,
 			}))
 
 			return list
