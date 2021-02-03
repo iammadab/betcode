@@ -13,5 +13,6 @@ userRouter.post(
   tokenMiddleware.validateToken(),
   bodyResponder(userController.updateUser)
 )
+userRouter.get("/tipsters", bodyResponder(userController.verifiedTipsters))
 
 module.exports = userRouter
