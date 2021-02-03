@@ -310,6 +310,7 @@ border-bottom:5px solid #fff;
 
 .loglink .passive{
 padding-right:0;
+padding-left:0;
 }
 
 .loglink .passive:hover{
@@ -885,6 +886,16 @@ width:100%;
 font-size:1rem;
 }
 
+.ortxt{
+font-size:1rem;
+text-align:center;
+margin:0 0 1rem;	
+}
+
+.ortxt a{
+color:#8a2be2;	
+}
+
 
 /*Profile Section*/
 
@@ -947,10 +958,23 @@ margin-right:2px;
 
 /*Alerts*/
 
+.btn-book{
+background-color:#8a2be2;
+border:1px solid #8a2be2;
+color:#fff;	
+}
+
+.btn-book:hover{
+color:#fff;
+background:#6f1abd;
+border:1px solid #6f1abd;
+}
+
 .btn-success{
 background-color:#419500;
 border-color:#419500;	
 }
+
 
 .alert{
 padding:1rem 0.75rem;
