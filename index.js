@@ -89,7 +89,7 @@ app.get(
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   pageMiddleware.profile,
-  metaMiddleware.defaultMeta,
+  metaMiddleware.profile,
   (req, res) => res.render("profile", { ...req.pageData })
 )
 
@@ -109,14 +109,6 @@ app.get(
   (req, res) => res.render("post", { ...req.pageData })
 )
 
-/*
-app.get(
-  "/admin/tipster", 
-  (req, res, next) => { req.pageData = {}; next() },
-  metaMiddleware.defaultMeta,
-  (req, res) => res.render("add", { ...req.pageData })
-)*/
-
 app.use("/api", apiRouter)
 
 const PORT = process.env.PORT || 3000 
@@ -125,4 +117,4 @@ app.listen(PORT, () => {
 })
 
 
-require("./automation/tipsterToUsers")
+//require("./automation/tipsterToUsers")
