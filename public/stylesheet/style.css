@@ -150,6 +150,7 @@ flex:1 1 0;
 .tipsters h6{
 color:#8a2be2;
 font-size:0.85rem;
+text-transform:capitalize;
 }
 
 .tipsters span{
@@ -175,7 +176,7 @@ text-align:center;
 .tipbox{
 color:#333;
 font-weight:600;
-font-size:0.9rem;	
+font-size:0.85rem;	
 }
 
 .tipbox span{
@@ -917,7 +918,8 @@ border-radius:50px;
 padding:1rem 0;
 color:#8a2be2;
 font-size:1.2rem;
-line-height:0;	
+line-height:0;
+text-transform:capitalize;	
 } 
 
 .summary h6{
