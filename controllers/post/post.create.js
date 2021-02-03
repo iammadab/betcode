@@ -1,5 +1,5 @@
 const postService = require("../../services/post.service")
-const on = require("../../lib/on")
+const userService = require("../../services/user.service")
 const { createValidator } = require("lazy-validator")
 
 const createPostValidator 
@@ -18,6 +18,13 @@ const createPost = async (req, res) => {
 
   const safe = validationResult.data
 
+  const user = await user.findUserById({ id: safe.tipster })
+  if(!user)
+    return res.json({
+      status: 403,
+      code: "USER_NOT_FOUND"
+    })
+
   if(req.body.image2)
     safe.image2 = req.body.image2
 
@@ -34,6 +41,9 @@ const createPost = async (req, res) => {
 			status: 500,
 			code: "COULD_NOT_CREATE_POST"
 		})
+
+  user.tips += 1
+  user.save()
 
 	res.json({
 		status: 200,
