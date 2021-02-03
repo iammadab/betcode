@@ -109,12 +109,12 @@ app.get(
   (req, res) => res.render("post", { ...req.pageData })
 )
 
-/*app.get(
+app.get(
   "/admin/tipster", 
   (req, res, next) => { req.pageData = {}; next() },
   metaMiddleware.defaultMeta,
   (req, res) => res.render("add", { ...req.pageData })
-)*/
+)
 
 app.use("/api", apiRouter)
 

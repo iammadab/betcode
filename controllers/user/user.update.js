@@ -30,7 +30,7 @@ const updateUser = async (data) => {
 
   if(userWithPhone){
     if(userWithPhone.error) return userWithPhone
-    if(userWithPhone._id != data.user._id) 
+    if(String(userWithPhone._id) != String(data.user._id))
       return {
         status: 403,
         code: "USER_EXISTS",
@@ -45,7 +45,7 @@ const updateUser = async (data) => {
 
   if(userWithEmail){
     if(userWithEmail.error) return userWithEmail
-    if(userWithEmail._id != data.user._id)
+    if(String(userWithEmail._id) != String(data.user._id))
       return {
         status: 403,
         code: "USER_EXISTS",
@@ -60,7 +60,7 @@ const updateUser = async (data) => {
 
   if(userWithUsername){
     if(userWithUsername.error) return userWithUsername
-    if(userWithUsername._id != data.user._id)
+    if(String(userWithUsername._id) != String(data.user._id))
       return {
         status: 403,
         code: "USER_EXISTS",
@@ -74,12 +74,11 @@ const updateUser = async (data) => {
     { _id: data.user._id },
     updateDetails
   )
-  console.log(updatedUser)
 
-  if(!user)
+  if(!updatedUser)
     return { status: 500, code: "ERROR_UPDATING_USER" }
 
-  if(user.error)
+  if(updatedUser.error)
     return { status: 5000, code: "ERROR_CREATING_USER" }
 
   return { status: 200, code: "USER_UPDATED" }
