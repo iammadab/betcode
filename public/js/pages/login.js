@@ -31,6 +31,11 @@ function appendRegister(){
 
 const loginText = createButton(".login-text", "Login", "Logging in..")
 
+function mapper(name){
+  let nameMap = { identifier: "username" }
+  return nameMap[name] ? nameMap[name] : name
+}
+
 function loginUser(event){
 
   event.preventDefault()
@@ -39,12 +44,12 @@ function loginUser(event){
   const loginDetails = extractForm(store.loginFormTag)
   const missingDetails = hasKeys(
     loginDetails,
-    [ "username", "password" ]
+    [ "identifier", "password" ]
   )
 
   if(missingDetails.length > 0){
     loginText("normal")
-    return showAlert(".login-error", `Sorry, you didn't enter your ${missingDetails[0]}`)
+    return showAlert(".login-error", `Sorry, you didn't enter your ${mapper(missingDetails[0])}`)
   }
 
   api("/user/login", loginDetails)

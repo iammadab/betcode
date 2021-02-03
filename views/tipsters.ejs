@@ -18,7 +18,7 @@
             <% for(tipster of tipsters) { %>
 
               <li class="hover">
-                <a href="/profile/<%= tipster._id %>">
+                <a href="/profile/<%= tipster.username %>">
                   <img src="<%= tipster.picture %>" alt="<%= tipster.username %>">
                   <div class="details">
                     <h6><%= tipster.fullname %></h6>
