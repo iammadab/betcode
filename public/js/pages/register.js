@@ -53,6 +53,12 @@ async function registerUser(event){
     return showAlert(".register-error", `Sorry, you entered an invalid email address`)
   }
 
+  // Make sure the username contains no space
+  if(!validUsername(userDetails.username)){
+    registerText("normal")
+    return showAlert(".register-error", `Sorry, spaces are not allowed in usernames`)
+  }
+
   // Upload the image if it exists
   let profileLink = ""
 
@@ -101,4 +107,11 @@ async function registerUser(event){
 function validEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     return re.test(email)
+}
+
+function validUsername(username){
+  const trimmedUsername = String(username).trim()
+  if(trimmedUsername.indexOf(" ") > -1 )
+    return false
+  return true
 }
