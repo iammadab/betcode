@@ -57,6 +57,16 @@ exports.fetchByTipsterId = async (id) => {
 
 }
 
+exports.fetchByTipsterUsername = async (username) => {
+  
+  try{
+    return Post.find({ tipster: id }).populate("tipster").sort({ createdAt: -1 })
+  } catch(error){
+    throw error
+  }
+
+}
+
 // Handle casting errors
 // Preferably at root
 exports.fetchById = async id => {

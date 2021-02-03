@@ -4,13 +4,15 @@ const postService = require("../../services/post.service")
 const profile = async (req, res, next) => {
 
   const user = await userService.findUserByUsername({ username: req.params.username })
-  const tips = postService.normalizeTips(
-    await postService.fetchByTipsterId(req.params.profileId)
-  )
 
   // If no user redirect to home
   if(!user)
     return res.redirect("/")
+
+  const tips = postService.normalizeTips(
+    await postService.fetchByTipsterId(user._id)
+  )
+
 
   let sameUser = false
   if(req.pageData.loggedIn)
