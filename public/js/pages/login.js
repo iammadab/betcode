@@ -32,7 +32,7 @@ function appendRegister(){
 const loginText = createButton(".login-text", "Login", "Logging in..")
 
 function mapper(name){
-  let nameMap = { identifier: "username" }
+  let nameMap = { identifier: "email or username" }
   return nameMap[name] ? nameMap[name] : name
 }
 
