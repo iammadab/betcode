@@ -39,7 +39,7 @@ function loginUser(event){
   const loginDetails = extractForm(store.loginFormTag)
   const missingDetails = hasKeys(
     loginDetails,
-    [ "identifier", "password" ]
+    [ "username", "password" ]
   )
 
   if(missingDetails.length > 0){
