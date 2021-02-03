@@ -20,9 +20,15 @@
 					<h6>@<%= user.username %></h6>
 					<p><%= user.bio %></p>
 					<div>
-            <a href="#">Twitter</a> 
-            <span class="seperator">|</span> 
-            <a href="#">Telegram</a>
+            <% if(user.twitter){ %>
+              <a href="<%= user.twitter %>" target="_blank">Twitter</a> 
+            <% } %>
+            <% if(user.twitter && user.telegram) {%>
+              <span class="seperator">|</span> 
+            <% } %>
+            <% if(user.telegram) { %>
+              <a href="<%= user.telegram %>" target="_blank">Telegram</a>
+            <% } %>
           </div>
 
           <% if(sameUser){ %>
