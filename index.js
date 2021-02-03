@@ -65,14 +65,14 @@ app.get(
 app.get(
   "/login", 
   cookieMiddleware.cookieFound("/"),
-  metaMiddleware.defaultMeta,
+  metaMiddleware.login,
   (req, res) => res.render("login", { ...req.pageData })
 )
 
 app.get(
   "/register", 
   cookieMiddleware.cookieFound("/"),
-  metaMiddleware.defaultMeta,
+  metaMiddleware.register,
   (req, res) => res.render("register", { ...req.pageData })
 )
 

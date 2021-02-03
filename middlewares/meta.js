@@ -69,3 +69,25 @@ exports.profile = (req, res, next) => {
 
   next()
 }
+
+exports.login = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `Login`,
+  })
+
+  next()
+}
+
+exports.register = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `Register`,
+  })
+
+  next()
+}
