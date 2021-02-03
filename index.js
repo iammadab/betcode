@@ -85,7 +85,7 @@ app.get(
 )
 
 app.get(
-  "/profile/:profileId", 
+  "/profile/:username", 
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   pageMiddleware.profile,
@@ -124,4 +124,4 @@ app.listen(PORT, () => {
 })
 
 
-//require("./automation/tipsterToUsers")
+require("./automation/tipsterToUsers")

@@ -91,7 +91,7 @@ const createUser = async (data) => {
 
   // Overide the status and code from login result
   // Keep token and cookie declarations
-  return { ...userLoginResult, status: 200, code: "USER_CREATED" }
+  return { ...userLoginResult, user, status: 200, code: "USER_CREATED" }
 
 }
 

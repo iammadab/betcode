@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const postSchema = new mongoose.Schema({
-	tipster: { type: "ObjectId", ref: "Tipster" },
+	tipster: { type: "ObjectId", ref: "User" },
 	description: { type: String },
 	odds: { type: Number },
 	image: { type: String },
