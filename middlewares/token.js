@@ -50,7 +50,7 @@ exports.validateToken = tokenName => (req, res, next) => {
       // for these kinds of pages, we just want to update
       // the logged in status and continue on
 
-      if(req.pageData.dynamicPage){
+      if(req.pageData && req.pageData.dynamicPage){
         req.pageData.loggedIn = false
         return next()
       }
@@ -59,7 +59,9 @@ exports.validateToken = tokenName => (req, res, next) => {
       // actually log the user out
       res.clearCookie(tokenName, { path: cookiePath })
 
-      return res.redirect(`${cookiePath}/login`)
+      if(req.pageData)
+        return res.redirect(`${cookiePath}/login`)
+
       if(error.name == "TokenExpiredError")
           res.status(403).json({ code: "TOKEN_EXPIRED" })
       else if(error.name == "JsonWebTokenError")

@@ -103,8 +103,22 @@ function comment(event){
 }
 
 function appendRedirects(){
+
   const loginRedirect = document.querySelector(".login-redirect")
   const signupRedirect = document.querySelector(".signup-redirect")
 
-  
+  const currentUrl = window.location.href.split("/")
+  currentUrl.shift()
+  currentUrl.shift()
+  currentUrl.shift()
+
+  const relativeUrl = "/" + currentUrl.join("/")
+  const redirectUrl = relativeUrl.split("#")[0]
+
+ if(loginRedirect)
+  loginRedirect.setAttribute("href", `/login?from=${redirectUrl}`)
+
+ if(signupRedirect)
+  signupRedirect.setAttribute("href", `/register?from=${redirectUrl}`)
+
 }
