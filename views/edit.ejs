@@ -1,0 +1,99 @@
+<%- include ("meta.ejs") %>
+</head>
+<body>
+<article>
+	<%- include ("header.ejs", { page: "edit" }) %>
+	<div class="main">
+		
+		<div class="container">
+
+			<div class="content">
+
+				<div class="title">
+					<h6>Update Account</h6>
+				</div>
+
+				<form class="login edit-form">
+
+          <div id="success" style="display: none" class="edit-success alert alert-success" role="alert">
+            Tip posted and you can copy share link below
+          </div>
+
+          <div id="error" style="display: none" class="edit-error alert alert-danger" role="alert">
+            Tip posted unsuccessfully, please try again later 
+          </div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg text-capitalize" name="fullname" value="<%= user.fullname %>" type="text" placeholder="Full Name">
+					</div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg text-capitalize" name="username" value="<%= user.username %>" type="text" placeholder="Username">
+					</div>
+				
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="email" value="<%= user.email %>" type="email" placeholder="Email Address">
+					</div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="phone" value="<%= user.phone %>" type="text" placeholder="Phone Number">
+					</div>
+
+          <!--
+					<div class="form-group">
+						<input class="form-control form-control-lg" type="password" placeholder="Password">
+					</div>
+          -->
+
+					<div class="form-group">
+						<textarea class="form-control form-control-lg" name="bio" placeholder="Short Bio"><%= user.bio %></textarea>
+					</div>
+
+					<div class="form-group">
+						<div class="custom-file">
+							<input type="file" data-name="image" name="picture" class="custom-file-input" accept='image/*'>
+						<label class="custom-file-label">Profile Picture (Optional)</label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="twitter" type="text" value="<%= user.twitter %>" placeholder="Twitter Username (Optional) e.g @thebookmakr">
+					</div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="telegram" type="text" value="<%= user.telegram %>" placeholder="Telegram username (Optional) e.g Bookmakr">
+					</div>
+					
+
+					<div class="form-group mb-4">
+						<button id="submit" type="submit" class="edit-button btn btn-book">
+			              <span class="edit-text">Edit</span>
+            			</button>
+					</div>
+
+				</form>
+
+			</div>
+
+		</div>
+	
+	</div>
+
+  <script src="/js/script.js"></script>
+  <script src="/js/pages/edit.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+  </script>
+
+<%- include ("footer.ejs") %>
+
+</article>
+
+<%- include ("end.ejs") %>

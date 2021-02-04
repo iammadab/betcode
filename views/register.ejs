@@ -1,0 +1,105 @@
+<%- include ("meta.ejs") %>
+</head>
+<body>
+<article>
+	<%- include ("header.ejs", { page: "register" }) %>
+	<div class="main">
+		
+		<div class="container">
+
+			<div class="content">
+
+				<div class="title">
+					<h6>Create Account</h6>
+				</div>
+
+				<form class="login register-form" autocomplete="off">
+
+          <div id="success" style="display: none" class="register-success alert alert-success" role="alert">
+            Tip posted and you can copy share link below
+          </div>
+
+          <div id="error" style="display: none" class="register-error alert alert-danger" role="alert">
+            Tip posted unsuccessfully, please try again later 
+          </div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="fullname" type="text" placeholder="Full Name">
+					</div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="username" type="text" placeholder="Username">
+					</div>
+				
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="email" type="email" placeholder="Email Address">
+					</div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="phone" type="text" placeholder="Phone Number">
+					</div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="password" type="password" placeholder="Password">
+					</div>
+
+					<div class="form-group">
+						<textarea class="form-control form-control-lg" name="bio" placeholder="Short Bio"></textarea>
+					</div>
+
+					<div class="form-group">
+						<div class="custom-file">
+							<input type="file" data-name="image" class="custom-file-input" accept='image/*'>
+						<label class="custom-file-label">Profile Picture (Optional)</label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="twitter" type="text" placeholder="Twitter Username (Optional) e.g @thebookmakr">
+					</div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="telegram" type="text" placeholder="Telegram Username (Optional) e.g Bookmakr">
+					</div>
+					
+
+					<div class="form-group">
+						<button id="submit" type="submit" class="register-button btn btn-book">
+           				   <span class="register-text">Register</span>
+            			</button>
+					</div>
+
+					<div class="divider">
+						<span></span>
+						<span>OR</span>
+						<span></span>
+					</div>
+
+					<div class="ortxt">Already have an account yet? <a href="/login" class="login-link">Login</a></div>
+
+				</form>
+
+			</div>
+
+		</div>
+	
+	</div>
+
+  <script src="/js/script.js"></script>
+  <script src="/js/pages/register.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+  </script>
+
+<%- include ("footer.ejs") %>
+
+</article>
+
+<%- include ("end.ejs") %>

@@ -1,24 +1,47 @@
-<div class="content">
+<%- include ("meta.ejs") %>
 
-	<h6 class="title">Popular Tipsters</h6>
-	
-	<hr>
+</head>
+<body>
+<article>
 
-	<ul class="tipsters">
-			
-		<li>
-			<a href="/" class="active">All</a>
-		</li>
+	<%- include ("header.ejs", { page: "tipsters" }) %>
+	<div class="main">
+		<div class="container" id="app">
+			<div class="content">
 
-		<% for(tipster of tipsters.data) { %>
+				<div class="title">
+					<h6>Popular Tipsters</h6>
+				</div>
+				
+				<ul class="tipsters">
 
-		<li>
-			<!-- Add class -->
-			<a href="/tipster/<%= tipster.name %>" data-tipster="<%= tipster.name %>"><%= tipster.name %></a>
-		</li>
+            <% for(tipster of tipsters) { %>
 
-		<% } %>
-	
-	</ul>
+              <li class="hover">
+                <a href="/profile/<%= tipster.username %>">
+                  <img src="<%= tipster.picture %>" alt="<%= tipster.username %>">
+                  <div class="details">
+                    <h6><%= tipster.fullname %></h6>
+                    <span>@<%= tipster.username %></span>
+                    <p><%= tipster.bio %></p>
+                  </div>
+                  <div class="tipbox"><b><%= tipster.tips %></b> <span>Tips</span></div>
+                </a>
+              </li>
 
-</div>
+            <% } %>
+
+				</ul>
+
+			</div>
+
+		</div>
+	</div>
+
+  <script src="/js/script.js"></script>
+
+	<%- include ("footer.ejs") %>
+
+</article>
+
+<%- include ("end.ejs") %>

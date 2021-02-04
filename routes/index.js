@@ -1,18 +1,25 @@
 const express = require("express")
 const router = express.Router()
 
+const { bodyResponder, queryResponder } = require("../lib/adapter")
+
 const postController = require("../controllers/post")
 const tipsterController = require("../controllers/tipster")
+const userController = require("../controllers/user")
+
+const userRouter = require("./user.router")
+const commentRouter = require("./comment.router")
 
 const createUploader = require("../lib/createUploader")
 const handleUpload = require("../lib/handleUpload")
 const toApi = require("../lib/toApi")
 
-const { createValidator } = require("lazy-validator")
+router.use("/user", userRouter)
+router.use("/comment", commentRouter)
 
 router.post("/post", postController.createPost)
 
-router.get("/post", toApi(postController.fetchAll))
+router.get("/post", queryResponder(postController.fetchAll))
 
 router.get(
 	"/post/:postId", 
@@ -21,7 +28,7 @@ router.get(
 
 router.get(
 	"/post/filter/:value", 
-	toApi(postController.fetchBy("tipster"), "params")
+	postController.fetchBy("tipster")
 )
 
 router.post("/tipster", tipsterController.createTipster)
@@ -30,17 +37,5 @@ router.get("/tipster", toApi(tipsterController.fetchAll))
 
 const upload = createUploader({ folder: "uploads" })
 router.post("/upload", upload.single("file"), handleUpload)  
-
-const postModel = require("../models/post")
-router.get("/blame/:tipId", async (req, res) => {
-	const { tipId } = req.params
-	const post = await postModel.findOne({ _id: tipId }).populate("tipster")
-	if(!post){
-		console.log(tipId)
-		res.json({ error: true })
-		return
-	}
-	res.json({ tipster: post.tipster })
-})
 
 module.exports = router

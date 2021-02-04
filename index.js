@@ -3,6 +3,8 @@ const path = require("path")
 const express = require("express")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+const morgan = require("morgan")
 const { connectToDb } = require("./runners/database_runner")
 
 connectToDb()
@@ -12,9 +14,14 @@ const postController = require("./controllers/post")
 const tipsterController = require("./controllers/tipster")
 const tipMiddleware = require("./middlewares/tips")
 const metaMiddleware = require("./middlewares/meta")
+const cookieMiddleware = require("./middlewares/cookie")
+const tokenMiddleware = require("./middlewares/token")
+const pageMiddleware = require("./middlewares/pages")
 
 const app = express()
 
+app.use(morgan("tiny"))
+app.use(cookieParser())
 app.use(bodyParser.json())
 
 app.set("view engine", "ejs")
@@ -26,9 +33,9 @@ const apiRouter = require("./routes")
 
 app.get(
 	"/", 
-	toPage(postController.fetchAll, "tips"),
-	toPage(tipsterController.fetchAll, "tipsters"),
-	tipMiddleware.normalizeTips,
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.home,
   metaMiddleware.allTips,
 	(req, res) => {
 		res.render("index", { ...req.pageData })
@@ -49,10 +56,52 @@ app.get(
 
 app.get(
 	"/tip/:postId", 
-	toPage(postController.fetchOne, "tipData", "params"),
-	tipMiddleware.normalizeTip,
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.tip,
   metaMiddleware.singleTip,
 	(req, res) => res.render("tip", { ... req.pageData })
+)
+
+
+app.get(
+  "/login", 
+  cookieMiddleware.cookieFound("/"),
+  metaMiddleware.login,
+  (req, res) => res.render("login", { ...req.pageData })
+)
+
+app.get(
+  "/register", 
+  cookieMiddleware.cookieFound("/"),
+  metaMiddleware.register,
+  (req, res) => res.render("register", { ...req.pageData })
+)
+
+app.get(
+  "/edit", 
+  cookieMiddleware.cookieNotFound("/login"),
+  tokenMiddleware.validateToken(),
+  metaMiddleware.defaultMeta,
+  (req, res) => res.render("edit", { ...req.pageData })
+)
+
+app.get(
+  "/profile/:username", 
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.profile,
+  metaMiddleware.profile,
+  (req, res) => res.render("profile", { ...req.pageData })
+)
+
+app.get(
+  "/tipsters", 
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.tipsters,
+  metaMiddleware.tipsters,
+  (req, res) => res.render("tipsters", { ...req.pageData })
 )
 
 app.get(
@@ -62,15 +111,12 @@ app.get(
   (req, res) => res.render("post", { ...req.pageData })
 )
 
-app.get(
-  "/admin/tipster", 
-  (req, res, next) => { req.pageData = {}; next() },
-  metaMiddleware.defaultMeta,
-  (req, res) => res.render("add", { ...req.pageData })
-)
-
 app.use("/api", apiRouter)
 
-app.listen(3000, () => {
-	console.log("Application listening at port 3000")
+const PORT = process.env.PORT || 3000 
+app.listen(PORT, () => {
+	console.log(`Application listening at port ${PORT}`)
 })
+
+
+//require("./automation/tipsterToUsers")

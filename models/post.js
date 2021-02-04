@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const postSchema = new mongoose.Schema({
-	tipster: { type: "ObjectId", ref: "Tipster" },
+	tipster: { type: "ObjectId", ref: "User" },
 	description: { type: String },
 	odds: { type: Number },
 	image: { type: String },
@@ -9,6 +9,7 @@ const postSchema = new mongoose.Schema({
   image3: { type: String },
   image4: { type: String },
 	bookmakers: { type: Object, default: {} },
+  comments: { type: Number, default: 0 },
 	createdAt: { type: Date, default: Date.now }
 })
 

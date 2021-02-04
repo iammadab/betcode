@@ -1,0 +1,31 @@
+<header class="navbar">
+	
+	<div class="container">
+
+		<div class="head">
+			
+			<div class="logo">
+				<img src="/image/logo/newico.png" class="icon" alt="Bookmakr">
+			</div>
+
+			<div class="loglink">
+				<a href="/" class="<%= page == 'home' ? 'active' : '' %>">
+          			<i class="fas fa-lightbulb"></i>Tips
+        		</a>
+				<a href="/tipsters" class="<%= page == 'tipsters' ? 'active' : '' %>">
+          			<i class="fas fa-star"></i>Tipsters
+        		</a>
+        		<a href="/profile/<%= user.username %>" class="<%= page == 'profile' ? 'active' : '' %>">
+          			<i class="fas fa-user"></i>Profile
+        		</a>
+			</div>	
+
+			<div class="logout loglink">
+				<b class="passive"><i class="fas fa-external-link-square-alt" style="vertical-align:middle;"></i> Logout</b>
+			</div>
+		
+		</div>			
+		
+	</div>
+
+</header>
