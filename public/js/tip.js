@@ -63,7 +63,9 @@ let store = {
 
 ;(function(){
   const bookmakerSelect = document.querySelector("select")
+  const copyBox = document.querySelector(".copier")
   bookmakerSelect.onchange = function(event){
+    copyBox.style.display = "flex"
     const option = document.querySelector(`option[value="${event.target.value}"]`)   
     store.codeDisplay.value = option.dataset.code
   }

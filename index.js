@@ -98,7 +98,7 @@ app.get(
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   pageMiddleware.tipsters,
-  metaMiddleware.defaultMeta,
+  metaMiddleware.tipsters,
   (req, res) => res.render("tipsters", { ...req.pageData })
 )
 
