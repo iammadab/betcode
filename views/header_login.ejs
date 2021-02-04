@@ -10,18 +10,18 @@
 
 			<div class="loglink">
 				<a href="/" class="<%= page == 'home' ? 'active' : '' %>">
-          <i class="far fa-lightbulb"></i>Tips
-        </a>
-				<a href="/profile/<%= user.username %>" class="<%= page == 'profile' ? 'active' : '' %>">
-          <i class="far fa-user"></i>Profile
-        </a>
+          			<i class="fas fa-lightbulb"></i>Tips
+        		</a>
 				<a href="/tipsters" class="<%= page == 'tipsters' ? 'active' : '' %>">
-          <i class="far fa-star"></i>Tipsters
-        </a>
+          			<i class="fas fa-star"></i>Tipsters
+        		</a>
+        		<a href="/profile/<%= user.username %>" class="<%= page == 'profile' ? 'active' : '' %>">
+          			<i class="fas fa-user"></i>Profile
+        		</a>
 			</div>	
 
 			<div class="logout loglink">
-				<i class="fas fa-external-link-alt"></i> Logout
+				<b class="passive"><i class="fas fa-external-link-square-alt" style="vertical-align:middle;"></i> Logout</b>
 			</div>
 		
 		</div>			
