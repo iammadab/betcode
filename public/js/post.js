@@ -101,7 +101,7 @@ function createPost(event){
 	hideAlert("#linker")
 
 	if(!app.tipster || !app.odds || !app.description || !store.fileInputs[0].value)
-		return showAlert("#error", "Plase complete the form")
+		return showAlert("#error", "Please complete the form")
 
 	let imageLinks = []
 

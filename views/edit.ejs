@@ -24,11 +24,11 @@
           </div>
 
 					<div class="form-group">
-						<input class="form-control form-control-lg" name="fullname" value="<%= user.fullname %>" type="text" placeholder="Full Name">
+						<input class="form-control form-control-lg text-capitalize" name="fullname" value="<%= user.fullname %>" type="text" placeholder="Full Name">
 					</div>
 
 					<div class="form-group">
-						<input class="form-control form-control-lg" name="username" value="<%= user.username %>" type="text" placeholder="Username">
+						<input class="form-control form-control-lg text-capitalize" name="username" value="<%= user.username %>" type="text" placeholder="Username">
 					</div>
 				
 					<div class="form-group">
@@ -57,15 +57,15 @@
 					</div>
 
 					<div class="form-group">
-						<input class="form-control form-control-lg" name="twitter" type="text" value="<%= user.twitter %>" placeholder="Twitter Handle (Optional)">
+						<input class="form-control form-control-lg" name="twitter" type="text" value="<%= user.twitter %>" placeholder="Twitter Username (Optional) e.g @thebookmakr">
 					</div>
 
 					<div class="form-group">
-						<input class="form-control form-control-lg" name="telegram" type="text" value="<%= user.telegram %>" placeholder="Telegram Channel (Optional)">
+						<input class="form-control form-control-lg" name="telegram" type="text" value="<%= user.telegram %>" placeholder="Telegram username (Optional) e.g Bookmakr">
 					</div>
 					
 
-					<div class="form-group">
+					<div class="form-group mb-4">
 						<button id="submit" type="submit" class="edit-button btn btn-book">
 			              <span class="edit-text">Edit</span>
             			</button>

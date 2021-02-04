@@ -1,8 +1,8 @@
 const baseUrl = "https://bookmakr.ng"
 
 const baseMeta = {
-  title: "Bookmakr - Latest Bet Tips & Booking Codes",
-  description: "Get the latest bet tips and booking codes (Bet9ja, Betking, Sportybet, 1Xbet, 22bet) from the top tipsters in Nigeria",
+  title: "Bookmakr - Latest Tips",
+  description: "Get the latest bet tips from top tipsters in Nigeria",
   image: ""
 }
 
@@ -70,12 +70,14 @@ exports.profile = (req, res, next) => {
   next()
 }
 
+
+
 exports.login = (req, res, next) => {
   const url = baseUrl + req.path
 
   req.pageData.meta = Object.assign({}, baseMeta, {
     url,
-    title: `Login`,
+    title: `Bookmakr - Login`,
   })
 
   next()
@@ -86,7 +88,7 @@ exports.register = (req, res, next) => {
 
   req.pageData.meta = Object.assign({}, baseMeta, {
     url,
-    title: `Register`,
+    title: `Bookmakr - Register`,
   })
 
   next()

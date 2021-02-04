@@ -21,13 +21,13 @@
 					<p><%= user.bio %></p>
 					<div>
             <% if(user.twitter){ %>
-              <a href="<%= user.twitter %>" target="_blank">Twitter</a> 
+              <a href="https://twitter.com/<%= user.twitter %>" class="social" target="_blank">Twitter</a> 
             <% } %>
             <% if(user.twitter && user.telegram) {%>
               <span class="seperator">|</span> 
             <% } %>
             <% if(user.telegram) { %>
-              <a href="<%= user.telegram %>" target="_blank">Telegram</a>
+              <a href="https://t.me/<%= user.telegram %>" class="social" target="_blank">Telegram</a>
             <% } %>
           </div>
 
@@ -37,12 +37,12 @@
 
 				</div>
 			
-				<div class="container_two">
+				<div class="container_two mt-2">
 
           <% if(tips.length > 0){ %>
 					<div class="title two">
 						<h6>Recent Tips (<%= tips.length %>)</h6>
-						<span>View all <!-- the tips posted by Akin Wumi --></span>
+						<span>View All Below <!-- the tips posted by Akin Wumi --></span>
 					</div>
           <% } %>
 
@@ -65,8 +65,10 @@
 
 								<div class="t_main">
 									<p><%= tip.description %></p>
-									<div class="t_info"><i class="far fa-bookmark"></i> <%= tip.odds %> <span>Odds</span></div>
-									<div class="t_info"><i class="far fa-comment-alt"></i> <%= tip.comments %> <span>Comments</span></div>
+									<div class="t_info"><i class="far fa-bookmark"></i><span>Odds</span>(<%= tip.odds %>)</div>
+									<div class="t_info">
+										<i class="far fa-comment-alt"></i><span>Discussions</span>(<%= tip.comments %>)
+									</div>
 								</div>	
 
 							</a>	
