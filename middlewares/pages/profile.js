@@ -12,11 +12,10 @@ const profile = async (req, res, next) => {
   const tips = postService.normalizeTips(
     await postService.fetchByTipsterId(user._id)
   )
-
-
+  
   let sameUser = false
   if(req.pageData.loggedIn)
-    if(req.body.user.id == req.params.profileId)
+    if(req.body.user.username == req.params.username)
       sameUser = true
     
   req.pageData = Object.assign({}, req.pageData, {

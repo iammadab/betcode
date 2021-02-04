@@ -55,3 +55,39 @@ exports.singleTip = (req, res, next) => {
 
   next()
 }
+
+exports.profile = (req, res, next) => {
+  const url = baseUrl + req.path
+  const user = req.pageData.user
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    image: user.picture,
+    title: `${user.fullname} (@${user.username})`,
+    description: user.bio
+  })
+
+  next()
+}
+
+exports.login = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `Login`,
+  })
+
+  next()
+}
+
+exports.register = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `Register`,
+  })
+
+  next()
+}

@@ -98,3 +98,14 @@ exports.fetchAllVerifiedTipsters = async () => {
   }
 
 }
+
+exports.normalizeUsers = users => {
+  return users.map(exports.normalizeUser)
+}
+
+exports.normalizeUser = user => {
+ const userObj = Object.assign({}, user._doc)
+ if(!userObj.picture)
+  userObj.picture = "/image/logo/user.png"
+ return userObj
+}
