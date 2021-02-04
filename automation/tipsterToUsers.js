@@ -5,6 +5,8 @@ const userController = require("../controllers/user")
 const userModel = require("../models/user")
 const postModel = require("../models/post")
 
+tipsterService.fetchAll().then(console.log)
+
 // Get all tipsters
 // Use their details to create user accounts, and verify them
 // Update all the posts of the tipster to reflect a change in their id
@@ -19,6 +21,9 @@ const postModel = require("../models/post")
     // Create a user and retrieve id
     // Update all the user posts to reflect the new id
     // Update the user post count
+
+    if(tipster.name == "predict hq")
+      return console.log("Skipping", tipster)
 
     const userData = {
       fullname: tipster.name,
