@@ -4,6 +4,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const morgan = require("morgan")
 const { connectToDb } = require("./runners/database_runner")
 
 connectToDb()
@@ -19,6 +20,7 @@ const pageMiddleware = require("./middlewares/pages")
 
 const app = express()
 
+app.use(morgan("tiny"))
 app.use(cookieParser())
 app.use(bodyParser.json())
 
@@ -98,7 +100,7 @@ app.get(
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   pageMiddleware.tipsters,
-  metaMiddleware.defaultMeta,
+  metaMiddleware.tipsters,
   (req, res) => res.render("tipsters", { ...req.pageData })
 )
 
