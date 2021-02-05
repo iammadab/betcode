@@ -49,9 +49,9 @@ function loadPosts(){
         <a href="/tip/${post._id}">
 
           <div class="t_header">
-            <img src="${post.tipster.image}" alt="${post.tipster.name}" />
+            <img src="${post.tipster.picture}" alt="${post.tipster.username}" />
             <div class="t_details">
-              <h6>${post.tipster.name}</h6>
+              <h6>${post.tipster.username}</h6>
               <span>${post.tipDate}</span>
             </div>
           </div>
@@ -59,10 +59,10 @@ function loadPosts(){
           <div class="t_main">
             <p>${post.description} ${post.tipDate}</p>
             <div class="t_info">
-              <i class="far fa-bookmark"></i> ${post.odds} <span>Odds</span>
+              <i class="far fa-bookmark"></i> <span>Odds</span> (${post.odds}) 
             </div>
             <div class="t_info">
-              <i class="far fa-comment-alt"></i>${post.comments}<span>Discussions</span>
+              <i class="far fa-comment-alt"></i><span>Discussions</span>(${post.comments})
             </div>
           </div>
 

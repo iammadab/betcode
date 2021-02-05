@@ -3,9 +3,11 @@ const commentService = require("../../services/comment.service")
 
 const tip = async (req, res, next) => {
   
-  const post = postService.normalizeTip(
-    await postService.fetchById(req.params.postId)
-  )
+  let post = await postService.fetchById(req.params.postId)
+  if(!post)
+    return res.redirect("/")
+
+  post = postService.normalizeTip(post)
 
   const comments = commentService.normalizeComments(
     await commentService.getPostComments(req.params.postId)
