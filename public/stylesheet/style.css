@@ -951,7 +951,8 @@ line-height:0;
 .summary p{
 color:#333;
 margin:0.5rem 0;
-font-size:1rem;	
+font-size:1rem;
+text-align: center;	
 }
 
 .summary .social{
