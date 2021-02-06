@@ -34,7 +34,10 @@ exports.validateToken = tokenName => (req, res, next) => {
 
     async function attachUserInfo(decodedToken){
       let user = await userService.findUserById(decodedToken)
+
       if(!user)
+        return handleErrors({})
+      if(user.error)
         return handleErrors({})
 
       req.body.user = user

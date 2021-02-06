@@ -31,15 +31,11 @@ exports.updateUser = async (identifier, updates) => {
 
 exports.findUserById = async ({ id }) => {
   
-  try {
-  
     return User.findOne({ _id: id })
-  
-  } catch(error){
-
-    return { error: true, code: "ERROR_FINDING_BY_ID" }
-
-  }
+               .catch(err => {
+                 console.log(error)
+                 return { error: true, code: "ERROR_FETCHING_BY_ID" }
+               })
 
 }
 
