@@ -7,6 +7,11 @@ const tip = async (req, res, next) => {
   if(!post)
     return res.redirect("/")
 
+  if(post.error){
+    console.log(error)
+    return res.redirect("/")
+  }
+
   post = postService.normalizeTip(post)
 
   const comments = commentService.normalizeComments(
