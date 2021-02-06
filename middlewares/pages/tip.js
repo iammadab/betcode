@@ -8,7 +8,7 @@ const tip = async (req, res, next) => {
     return res.redirect("/")
 
   if(post.error){
-    console.log(error)
+    console.log(post.error)
     return res.redirect("/")
   }
 

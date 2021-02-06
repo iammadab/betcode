@@ -66,14 +66,12 @@ exports.fetchByTipsterId = async (id) => {
 // Handle casting errors
 // Preferably at root
 exports.fetchById = async id => {
-
-	try{
-	  return Post.findOne({ _id: id }).populate("tipster")
-	} catch(error){
-    console.log(error)
-    return { error: true, code: "ERROR_FETCHING_BY_ID" }
-	}
-
+	  return Post.findOne({ _id: id })
+               .populate("tipster")
+               .catch(err => { 
+                 console.log(err)
+                 return { error: true, code: "ERROR_FETCHING_BY_ID" }
+               })
 }
 
 exports.normalizeTips = tips => {
