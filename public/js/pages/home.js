@@ -57,7 +57,7 @@ function loadPosts(){
           </div>
 
           <div class="t_main">
-            <p>${post.description} ${post.tipDate}</p>
+            <p>${post.description}</p>
             <div class="t_info">
               <i class="far fa-bookmark"></i> <span>Odds</span> (${post.odds}) 
             </div>

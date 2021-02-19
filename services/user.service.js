@@ -33,7 +33,7 @@ exports.findUserById = async ({ id }) => {
   
     return User.findOne({ _id: id })
                .catch(err => {
-                 console.log(error)
+                 console.log(err)
                  return { error: true, code: "ERROR_FETCHING_BY_ID" }
                })
 
