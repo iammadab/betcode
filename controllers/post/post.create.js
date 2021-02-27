@@ -25,6 +25,11 @@ const createPost = async (req, res) => {
       status: 403,
       code: "USER_NOT_FOUND"
     })
+  if(user.error)
+    return res.json({
+      status: 403,
+      code: "USER_NOT_FOUND"
+    })
 
   if(req.body.image2)
     safe.image2 = req.body.image2

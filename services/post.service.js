@@ -11,7 +11,10 @@ exports.createPost = async (data) => {
 		return newPost.save()
 
 	} catch(error){
-		throw error
+
+    console.log(error)
+    return { error: true, code: "ERROR_CREATING_POST" }
+
 	}
 
 }
@@ -31,7 +34,8 @@ exports.fetchAll = async (lastId, limit = 20) => {
 
 	} catch(error){
 
-		throw error
+    console.log(error)
+    return { error: true, code: "ERROR_FETCHING_ALL_POSTS" }
 
 	}
 
@@ -42,7 +46,8 @@ exports.fetchBy = async ( field, value, id ) => {
 	try{
 		return Post.find({ [field]: id }).populate("tipster").sort({ createdAt: -1 })
 	} catch(error){
-		throw error
+    console.log(error)
+    return { error: true, code: "ERROR_FETCHING_POST_BY" }
 	}
 
 }
@@ -52,7 +57,8 @@ exports.fetchByTipsterId = async (id) => {
   try{
     return Post.find({ tipster: id }).populate("tipster").sort({ createdAt: -1 })
   } catch(error){
-    throw error
+    console.log(error)
+    return { error: true, code: "ERROR_FETCHING_BY_TIPSTER_ID" }
   }
 
 }
@@ -60,13 +66,12 @@ exports.fetchByTipsterId = async (id) => {
 // Handle casting errors
 // Preferably at root
 exports.fetchById = async id => {
-
-	try{
-	  return Post.findOne({ _id: id }).populate("tipster")
-	} catch(error){
-		throw error
-	}
-
+	  return Post.findOne({ _id: id })
+               .populate("tipster")
+               .catch(err => { 
+                 console.log(err)
+                 return { error: true, code: "ERROR_FETCHING_BY_ID" }
+               })
 }
 
 exports.normalizeTips = tips => {
