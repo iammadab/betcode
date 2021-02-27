@@ -43,7 +43,7 @@
 						<div class="form-group">
 							<select v-model="tipster" class="custom-select custom-select-lg" style="text-transform:capitalize;">
 								<option value="">Choose Tipster</option>
-								<option :value="tipster.id" v-for="tipster of tipsterList">
+								<option :value="tipster.name" v-for="tipster of tipsterList">
 									{{ tipster.name }}
 								</option>
 							</select>

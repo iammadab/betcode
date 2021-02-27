@@ -46,6 +46,8 @@ const createPost = async (req, res) => {
   if(req.body.image4)
     safe.image4 = req.body.image4
 
+  // Overide username with id
+  safe.tipster = user._id
 	const [ createError, post ] = await on(postService.createPost(safe))
 
 	if(createError)

@@ -100,6 +100,7 @@ function createPost(event){
 	hideAlert("#success")
 	hideAlert("#linker")
 
+  console.log(app.tipster)
 	if(!app.tipster || !app.odds || !app.description || !store.fileInputs[0].value)
 		return showAlert("#error", "Please complete the form")
 
