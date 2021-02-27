@@ -18,8 +18,14 @@ const createPost = async (req, res) => {
 		})
 
   const safe = validationResult.data
+  
+  let user
 
-  const user = await userService.findUserById({ id: safe.tipster })
+  user = await userService.findUserByUsername({ username: safe.tipster })
+
+  if(!user)
+    user = await userservice.findUserById({ id: safe.tipster })
+
   if(!user)
     return res.json({
       status: 403,
