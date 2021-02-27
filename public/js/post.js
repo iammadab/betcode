@@ -101,33 +101,37 @@ function createPost(event){
 	hideAlert("#linker")
 
   console.log(app.tipster)
-	if(!app.tipster || !app.odds || !app.description || !store.fileInputs[0].value)
+	if(!app.tipster || !app.odds || !app.description)
 		return showAlert("#error", "Please complete the form")
 
 	let imageLinks = []
 
 	// Upload the image
-	const files = store.fileInputs.map(input => input.files)
-  console.log(files)
-	let formDatas = files.map(file => {
-    if(!file[0]) return undefined
-    const f = new FormData()
-    f.append("file", file[0])
-    return f
-  })
-  formDatas = formDatas.filter(data => data)
-  console.log(formDatas)
-
-  Promise.all(formDatas.map(formData => {
-    return fetch("/api/upload", {
-      method: "POST",
-      body: formData
+  if(store.fileInputs.length > 0){
+    const files = store.fileInputs.map(input => input.files)
+    console.log(files)
+    let formDatas = files.map(file => {
+      if(!file[0]) return undefined
+      const f = new FormData()
+      f.append("file", file[0])
+      return f
     })
-    .then(res => res.json())
-    .then(data => imageLinks.push(data.link))
-  })).then(addPost).catch(() => {
-    showAlert("#error", "Tip post unsuccessfull, please try again")
-  })
+    formDatas = formDatas.filter(data => data)
+    console.log(formDatas)
+
+    Promise.all(formDatas.map(formData => {
+      return fetch("/api/upload", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => imageLinks.push(data.link))
+    })).then(addPost).catch(() => {
+      showAlert("#error", "Tip post unsuccessfull, please try again")
+    })
+  } else{
+    addPost()
+  }
 
 	//Add post
 	function addPost(){

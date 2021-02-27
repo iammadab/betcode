@@ -4,7 +4,7 @@ const on = require("../../lib/on")
 const { createValidator } = require("lazy-validator")
 
 const createPostValidator 
-	= createValidator("tipster.string.lowercase, description.string, odds.number, image.string, bookmakers.object")
+	= createValidator("tipster.string.lowercase, description.string, odds.number, bookmakers.object")
 
 const createPost = async (req, res) => {
 
@@ -36,6 +36,9 @@ const createPost = async (req, res) => {
       status: 403,
       code: "USER_NOT_FOUND"
     })
+
+  if(req.body.image)
+    safe.image = req.body.image
 
   if(req.body.image2)
     safe.image2 = req.body.image2
