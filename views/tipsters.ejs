@@ -1,47 +1,50 @@
-<%- include ("meta.ejs") %>
-
-</head>
-<body>
-<article>
-
-	<%- include ("header.ejs", { page: "tipsters" }) %>
-	<div class="main">
-		<div class="container" id="app">
-			<div class="content">
-
-				<div class="title">
-					<h6>Popular Tipsters</h6>
-				</div>
-				
-				<ul class="tipsters">
-
-            <% for(tipster of tipsters) { %>
-
-              <li class="hover">
-                <a href="/profile/<%= tipster.username %>">
-                  <img src="<%= tipster.picture %>" alt="<%= tipster.username %>">
-                  <div class="details">
-                    <h6><%= tipster.fullname %></h6>
-                    <span>@<%= tipster.username %></span>
-                    <p><%= tipster.bio %></p>
-                  </div>
-                  <div class="tipbox"><b><%= tipster.tips %></b> <span>Tips</span></div>
-                </a>
-              </li>
-
-            <% } %>
-
-				</ul>
-
-			</div>
-
+<div class="content">
+	<div class="title">
+		<h6>Followed Tipsters</h6>
+	</div>
+	<div class="tipsters">
+		<div class="tags">
+			<a href="#" class="tag">All</a>
+			<a href="#" class="tag">Mrbankstips</a>
+			<a href="#" class="tag">Betaffairs</a>
+			<a href="#" class="tag">Pbtips</a>
+			<a href="#" class="tag">Louie</a>
+			<a href="#" class="tag">Freeman Tips</a>
+			<a href="#" class="tag active">Mayor Of Ekiti</a>
+			<a href="#" class="tag">Donsoj52</a>
+			<a href="#" class="tag">Faridonki Bet</a>
+			<a href="#" class="tag">Chizzy Tips</a>
+			<a href="#" class="tag">Woozzaabets</a>
+			<a href="#" class="tag">Sakasticbet</a>
+			<a href="#" class="tag">Lifeofadunni</a>
+			<a href="#" class="tag">Ada_daddyya</a>
+			<a href="#" class="tag">Spiritual</a>
+			<a href="#" class="tag">Manebets</a>
+			<a href="#" class="tag">Oracle Tips</a>
+			<a href="#" class="tag">Joyful Tips</a>
+			<a href="#" class="tag">Cindy Monel</a>
+			<a href="#" class="tag">Boomerang</a>
+			<!-- <a href="#" class="tag">All</a>
+			<a href="#" class="tag">Mrbankstips</a>
+			<a href="#" class="tag">Betaffairs</a>
+			<a href="#" class="tag">Pbtips</a>
+			<a href="#" class="tag">Louie</a>
+			<a href="#" class="tag">Freeman Tips</a>
+			<a href="#" class="tag">Mayor Of Ekiti</a>
+			<a href="#" class="tag">Donsoj52</a>
+			<a href="#" class="tag">Faridonki Bet</a>
+			<a href="#" class="tag">Chizzy Tips</a>
+			<a href="#" class="tag">Woozzaabets</a>
+			<a href="#" class="tag">Sakasticbet</a>
+			<a href="#" class="tag">Lifeofadunni</a>
+			<a href="#" class="tag">Ada_daddyya</a>
+			<a href="#" class="tag">Spiritual</a>
+			<a href="#" class="tag">Manebets</a>
+			<a href="#" class="tag">Oracle Tips</a>
+			<a href="#" class="tag">Joyful Tips</a>
+			<a href="#" class="tag">Cindy Monel</a>
+			<a href="#" class="tag">Boomerang</a> -->
 		</div>
 	</div>
-
-  <script src="/js/script.js"></script>
-
-	<%- include ("footer.ejs") %>
-
-</article>
-
-<%- include ("end.ejs") %>
+	<div class="showmore">Show More</div>
+</div>
