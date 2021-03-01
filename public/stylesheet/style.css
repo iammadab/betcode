@@ -125,11 +125,14 @@ color:#666;
 padding:1.1rem 0.75rem;	
 background:#fff;
 border-top:1px solid #e1e1e1;
+border-top-left-radius:0;
+border-top-right-radius:0;
 flex-direction:column;
 }
 
 .two h6{
 font-size:0.95rem;
+line-height:0.5rem;
 }
 
 .two span{
@@ -200,6 +203,10 @@ flex-direction:row;
 justify-content:space-between;
 flex:1 1 0;
 align-items:center;
+}
+
+.head-admin{
+justify-content:center;
 }
 
 .logo .icon{
@@ -563,14 +570,7 @@ margin:0.3rem 0.35rem 0;
 font-size:0.85rem;
 color:#8a2be2;
 text-transform:capitalize;
-}
-
-.t_details h6 a{
-color:#8a2be2;	
-}
-
-.t_details h6 a:hover{
-text-decoration:underline;	
+line-height:0.5rem;
 }
 
 
@@ -681,10 +681,11 @@ flex-direction: column;
 margin:0.3rem 0.35rem 0;
 }
 
-.s_details h6 a{
+.s_details h6{
 font-size:0.85rem;
 color:#8a2be2;
 text-transform:capitalize;
+line-height:0.6rem;
 }
 
 .s_details span{
@@ -705,8 +706,19 @@ font-size:1rem;
 }
 
 
-.s_img{width:auto; margin:0 auto; padding:1rem 0 0;}
-.s_img img{width:auto;max-width:100%}
+.s_img{
+/*width:auto; margin:0 auto; padding:1rem 0 0;*/
+padding:1rem 0;
+display:flex;
+flex-direction:row;
+flex-wrap:wrap;
+justify-content:space-between;
+}
+.s_img img{
+width:49.9%;
+border:1px solid #ccc;
+margin:0.1rem 0 0;	
+}
 
 
 /*Comments Section*/
@@ -747,7 +759,7 @@ font-size:1rem;
 /*Betcodes Section*/
 
 .betcodes{
-padding:1.5rem 0.75rem 1.5rem;
+padding:0.5rem 0.75rem 1.5rem;
 border:1px solid #f8f8f8;
 background:#f8f8f8;
 margin:0 0 2.5rem;
@@ -1025,11 +1037,12 @@ padding:1rem 0.75rem 0.5rem;
 min-height:90px;	
 }
 
-.login input, .login textarea, .login select{
+.login input, .login textarea, .login select, .tweet_form input, .tweet_form textarea, .tweet_form select{
 border:1px solid #e1e1e1;  
 }
 
-.login input:focus, .login textarea:focus, .login select:focus{
+.login input:focus, .login textarea:focus, .login select:focus, 
+.tweet_form input:focus, .tweet_form textarea:focus, .tweet_form select:focus{
 box-shadow: none;
 border:2px solid #8a2be2;  
 }
@@ -1067,7 +1080,7 @@ color:#8a2be2;
 
 /*Profile Section*/
 
-.summary{
+/*.summary{
 padding:1.5rem 0.75rem 0;
 display:flex;
 flex-direction:column;
@@ -1122,7 +1135,7 @@ font-size:0.9rem;
 
 .summary .btn i{
 margin-right:2px;	
-}
+}*/
 
 
 /*Alerts*/
@@ -1217,7 +1230,7 @@ font-weight:600;
 }
 
 .popular-banner{
-margin:5rem 0 0;	
+margin:6rem 0 0;	
 }
 
 .popular-banner h1{
@@ -1243,7 +1256,7 @@ text-align:center;
 
 .faq{
 margin:1rem 0 1rem;
-padding:1rem 1.5rem 0;
+padding:0.5rem 0.75rem 0;
 }
 .faq h6{
 color:#333;
@@ -1265,7 +1278,7 @@ margin-bottom:2rem;
 }
 .faq{
 margin:1rem 0 0;
-padding:0.5rem 1.5rem 0;
+padding:0.5rem 0.75rem 0;
 }
 .faq h6{
 font-size:1rem;
@@ -1291,9 +1304,10 @@ color:#666;
 font-weight:600;
 border-radius:0.3rem;
 text-align:center;
-margin:0 0 0.3rem 0;
+margin:0 0.1rem 0.3rem;
 background:#fff;
-width:24.25%;
+/*width:24.25%;*/
+flex:1 1 auto;
 }
 
 .popular-banner .tag{
@@ -1302,7 +1316,7 @@ color:#000;
 
 @media (max-width: 768px) {
 .tag{
-width:49.5%;	
+/*width:49.5%;*/	
 }
 }
 
@@ -1315,4 +1329,110 @@ border-color:#8a2be2;
 
 .tipsters{
 padding:1rem 0.75rem 0.7rem;	
+}
+
+
+
+/*Tab Section*/
+.tab-header{
+background:#fff;
+border-bottom:1px solid #e1e1e1;
+border-top-left-radius:4px;
+border-top-right-radius:4px;
+padding:1rem 0.75rem;
+}
+
+/*.tab-header .nav{
+display:block;	
+}*/
+
+.tab-content{
+padding:0;	
+}
+
+.tab-header .nav-link{
+padding:0.5rem 0;
+color:#000;
+text-transform:uppercase;
+font-weight:600;
+font-size:0.9rem;
+}
+
+.tweets{
+padding:0;
+margin:0;	
+}
+
+.tweets li{
+border-bottom:1px solid #e1e1e1;
+display:inline-block;
+width:100%;	
+cursor:pointer;
+padding:1rem 0.75rem;
+}
+
+.tweets li a:hover{
+text-decoration:none;
+}
+
+.tweets li:last-child{
+border-bottom:0;
+}
+
+.tweet_header{
+display: flex;	
+display: -ms-flexbox;
+justify-content:space-between;
+}
+.tweet_add{
+color:#666;
+font-size:1.2rem;	
+}
+
+.tweet_add:hover{
+color:#000;	
+}
+
+.tweet_details{
+display:flex;
+flex-direction: column;
+margin:0.3rem 0 0;
+}
+
+.tweet_details h6{
+font-size:0.85rem;
+color:#8a2be2;
+text-transform:capitalize;
+line-height:0.5rem;
+}
+
+
+.tweet_details span{
+font-size:0.7rem;
+color:#aeaeae;
+line-height:0;
+margin:0.3rem 0;	
+}
+
+.tweet_main{
+margin:0;
+width:100%;
+}
+
+.tweet_main p{
+margin:0.3rem 0 0;
+color:#333;
+font-size:1rem;
+line-height:1.5rem;	
+}
+
+.tweet_form{
+padding:1rem 0 0.5rem;	
+display:flex;
+flex-direction:row;
+justify-content:space-between;
+}
+.tweet_form .form-group{
+width:33%;
+margin:0;
 }
