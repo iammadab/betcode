@@ -91,5 +91,15 @@ Tasks
   Create a new model for tweets (done)
   Move the twitter stream app to the betcode project (done)
   Link the schema to the twitter stream function (done)
-  Create an api to fetch tweets based on their status
+  Create an api to fetch tweets based on their status (done)
+
+The next set of tasks will deal with rendering the unclassified tips on the tweets page
+
+Tasks
+  Fetch the unclassified tweets (done)
+  Create a function to convert a tweet to a dom element (done)
+  Render all the unclassified tweets (done)
+  Display the number of classified and potential tips
+  Add link to view the original post
+  On click move the tweet to the other section
 
