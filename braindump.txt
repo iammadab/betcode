@@ -1,0 +1,58 @@
+When the cookie is found, I am attaching the decoded token to the user object.
+Next up is displaying the post properly.
+Filtering tipsters still works properly.
+
+Still have to deal with pagenation, but that should come later.
+Want to handle profile first.
+
+Something that will happen a lot is that some pages will require data from the database.
+These pages will require specific versions of that data and as such must be able to send in their own input.
+So pages should be able to call specific functions and do things with those functions
+Currently, I am creating each function as a middleware and all the functions are operating on a single source of truth.
+Thinking of turning those functions into functions without side effects, more like services or controllers.
+Then each page will have it's own combiner that makes everything work. Think this is the approach to go with it makes it easier to compose in differnt ways.
+
+
+Just implemented pagination, next up is the implementation of the profile page.
+
+How does the application know that somebody is logged in??
+I need to show different headers based on whether the user is logged in or not, this is across all pages
+This means there has to be a common dedicated middleware across all pages that somehow figures out if the user is logged in.
+If the user is logged in, it attaches an identifier to an object the pages can have access to.
+Meaning all pages can ask, is this user logged in or not?
+
+This middleware not only has to determine if there is a cookie, but it also has to make sure that a user with the id stored in the cookie exists.
+I have middlewares that allow you to pass or not depending on whether you have a token or not.
+I also have a middleware that does token validation.
+I will most likely have to use a combination of the "cookieFound" and the "validateToken" middlewares
+
+There will be three types of pages
+1. Pages that you must not be logged in to access (e.g. login, register)
+2. Pages that you must be logged in to access (e.g. comment, view personal profile)
+3. Pages that you can be logged in or not to access (e.g. aggregated tips, user profiles)
+
+Pages 1 and 2 already have user logged in detector middlewares, all that need to be added is the means of communicating the result to the page. Most likely from the validateToken middleware.
+The solution I am seeing is the cookie detector will be the one to determine if the user is logged in or not and update the data source.
+If the user is not logged in, the validate token middleware just calls next if the cookie detector says the user is logged in then the cookie detector further verifies this status.
+
+Sometimes, a user might have a cookie that has expired, so the cookie detector will say, yes this user is logged in, but the token validator will say no this user is not logged in, what do you do then?
+In a page that requires you to be logged in, you have to clear the cookie.
+In a page that required you not to be logged in, we don't care about this as the cookie detector would have cancelled you.
+In a page where you can either be logged in or not, you should be allowed to pass.
+So the validate token middleware has to have an idea of the state of that page.
+
+Time to code
+
+
+TODO
+----
+Solve mongodb id cast error problems
+
+
+Next problem to tackle is that of converting tipsters to user with a verified tipster marker.
+We first started with just a tipster data structure, now we are transitioning to everyone is a user structure.
+The most important thing here is the fact that there are old posts by the tipsters that we must preserve.
+The tipster model has enough information to atleast create their user accounts.
+When we create the user account, we will get their id.
+Next up is to find all the posts that that user has created before then change the id to be their new user id.
+The function will be called tipsters to converters.
