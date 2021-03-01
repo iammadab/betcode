@@ -3,7 +3,7 @@
 <body>
 <article>
 
-	<%- include ("header.ejs", { page: "home" }) %>
+	<%- include ("header.ejs", { page: "tip" }) %>
 
 	<% tip = tipData %>
 
@@ -17,7 +17,7 @@
         		<% const shortId = id.substr(id.length - 6) %>
 				<div class="title">
 					<h6>Tip #<span class="text-uppercase"><%= shortId %></span></h6>
-					<a href="#disclaimer" title="Disclaimer"><i class="fas fa-exclamation-circle"></i></a>
+					<!-- <a href="#disclaimer" title="Disclaimer"><i class="fas fa-exclamation-circle"></i></a> -->
 				</div>
 
 				<div class="s_tip">
@@ -27,10 +27,10 @@
 							<img src="<%= tip.tipster.picture %>" alt="<%= tip.tipster.fullname %>" class="img">
 							<div class="s_details">
 								<h6><a href="/profile/<%= tip.tipster.username %>"><%= tip.tipster.fullname %></a></h6>
-								<span><%= tip.tipDate %></span>
+								<span><%= tip.tipDate %>&nbsp; | &nbsp; Bet9ja</span>
 							</div>
 						</div>
-						<div class="t_info s_info"><i class="far fa-bookmark"></i> <%= tip.odds %> <span>Odds</span></div>
+						<div class="odds"><i class="far fa-bookmark"></i> <%= tip.odds %> <span>Odds</span></div>
 					</div>
 
 					<div class="s_main">

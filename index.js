@@ -42,6 +42,51 @@ app.get(
 	}
 )
 
+app.get(
+  "/home", 
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.home,
+  metaMiddleware.allTips,
+  (req, res) => {
+    res.render("home", { ...req.pageData })
+  }
+)
+
+app.get(
+  "/convert", 
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.home,
+  metaMiddleware.allTips,
+  (req, res) => {
+    res.render("convert", { ...req.pageData })
+  }
+)
+
+app.get(
+  "/codes", 
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.home,
+  metaMiddleware.allTips,
+  (req, res) => {
+    res.render("codes", { ...req.pageData })
+  }
+)
+
+
+app.get(
+  "/topup", 
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.home,
+  metaMiddleware.allTips,
+  (req, res) => {
+    res.render("topup", { ...req.pageData })
+  }
+)
+
 
 app.get(
 	"/tipster/:value", 

@@ -1,0 +1,82 @@
+<%- include ("meta.ejs") %>
+</head>
+<body>
+
+<article>
+
+	<%- include ("header.ejs", { page: "convert" }) %>
+	
+	<div class="main">
+		
+		<div class="container">
+
+			<div class="content">
+
+				<div class="title">
+					<h6>Bet Conversion</h6>
+				</div>
+
+				<form class="login" autocomplete="off">
+
+					<div id="error" class="alert alert-danger" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					    </button>
+		            	Sorry, your balance is insufficient. Top up <a href="/topup">here</a>
+		          	</div>
+		          	<div class="alert alert-info" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					    </button>
+		            	&#8358;10 will be deducted from your balance
+		          	</div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="identifier" type="text" placeholder="Enter Booking Code">
+					</div>
+					
+					<div class="form-group">
+						<select class="custom-select custom-select-lg">
+							<option>From</option>
+							<option>Bet9ja</option>
+							<option>Betking</option>
+							<option>Sportybet</option>
+							<option>1Xbet</option>
+							<option>22bet</option>
+							<option>Msport</option>	
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="custom-select custom-select-lg">
+							<option>To</option>
+							<option>Bet9ja</option>
+							<option>Betking</option>
+							<option>Sportybet</option>
+							<option>1Xbet</option>
+							<option>22bet</option>
+							<option>Msport</option>	
+						</select>
+					</div>
+
+					<div class="form-group">
+						<button id="submit" type="submit" class="login-button btn btn-book">
+              				<span class="login-text">Convert</span>
+			            </button>
+					</div>
+
+				</form>
+
+			</div>
+			
+		</div>
+	
+	</div>
+
+<!--   <script src="/js/script.js"></script>
+  <script src="/js/pages/login.js"></script> -->
+
+	<%- include ("footer.ejs") %>
+
+</article>
+
+<%- include ("end.ejs") %>

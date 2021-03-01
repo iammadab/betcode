@@ -1,31 +1,38 @@
 <header class="navbar">
-	
 	<div class="container">
-
 		<div class="head">
-			
 			<div class="logo">
-				<img src="/image/logo/newico.png" class="icon" alt="Bookmakr">
+				<a href="/"><img src="/image/logo/newico.png" class="icon" alt="Bookmakr"></a>
 			</div>
-
-			<div class="loglink">
-				<a href="/" class="<%= page == 'home' ? 'active' : '' %>">
-          			<i class="fas fa-lightbulb"></i>Tips
+			<div class="header-link">
+				<a href="/home" class="<%= page == 'home' ? 'active' : '' %>" title="Home">
+          			<i class="fas fa-lightbulb"></i><span>Home</span>
         		</a>
-				<a href="/tipsters" class="<%= page == 'tipsters' ? 'active' : '' %>">
-          			<i class="fas fa-star"></i>Tipsters
+        		<a href="/codes" class="book <%= page == 'codes' ? 'active' : '' %>" data-book="" title="History">
+          			<i class="fas fa-bookmark"></i>
+          			<span>Codes</span>
         		</a>
-        		<a href="/profile/<%= user.username %>" class="<%= page == 'profile' ? 'active' : '' %>">
-          			<i class="fas fa-user"></i>Profile
+				<a href="/convert" class="<%= page == 'convert' ? 'active' : '' %>" title="Convert">
+          			<i class="fas fa-clone"></i><span>Convert</span>
         		</a>
 			</div>	
-
-			<div class="logout loglink">
-				<b class="passive"><i class="fas fa-external-link-square-alt" style="vertical-align:middle;"></i> Logout</b>
-			</div>
-		
+			<div class="dropdown">
+			    <a class="user-profile" id="user-profile" data-toggle="dropdown">
+			    	<i class="fas fa-user-circle mr-1"></i><span class="mr-1">Akinwumi</span>
+			    	<i class="dropdown-toggle"></i>
+			    </a>
+			    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="user-profile">
+			      <li class="dropdown-header" style="font-weight:600;">Wallet Balance: &#8358;100</li>
+			      <li><a href="/topup" class="dropdown-item">Top Up</a></li>
+			      <li><a href="/edit" class="dropdown-item">Account Settings</a></li>
+			      <li class="dropdown-divider"></li>
+			      <li><a href="https://t.me/bookmakr" class="dropdown-item">Telegram Group</a></li>
+			      <li><a href="#" class="dropdown-item">Get Support</a></li>
+			      <li><a href="#" class="dropdown-item">Send Suggestion</a></li>
+			      <li class="dropdown-divider"></li>
+			      <li><a href="#" class="logout dropdown-item">Logout</a></li>
+			    </ul>
+  			</div>
 		</div>			
-		
 	</div>
-
 </header>

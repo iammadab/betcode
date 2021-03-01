@@ -1,0 +1,58 @@
+<%- include ("meta.ejs") %>
+</head>
+<body>
+
+<article>
+
+	<%- include ("header.ejs", { page: "topup" }) %>
+	
+	<div class="main">
+		
+		<div class="container">
+
+			<div class="content">
+
+				<div class="title">
+					<h6>Load Wallet</h6>
+				</div>
+
+				<form class="login" autocomplete="off">
+
+					<div id="error" class="alert alert-danger" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					    </button>
+		            	Sorry, payment unsuccessful. Get support <a href="/topup">here</a> 
+		          	</div>
+
+					<div class="form-group">
+						<input class="form-control form-control-lg" name="identifier" type="text" placeholder="Enter Amount e.g 1000">
+					</div>
+
+					<div class="form-group">
+						<button id="submit" type="submit" class="login-button btn btn-book">
+              				<span class="login-text">Top Up</span>
+			            </button>
+					</div>
+
+					<div class="divider">
+						<span></span>
+						<span>or</span>
+						<span></span>
+					</div>
+
+					<div class="ortxt">Can't make payment? <a href="#" class="register-link">Get support</a></div>
+
+				</form>
+
+			</div>
+			
+		</div>
+	
+	</div>
+
+	<%- include ("footer.ejs") %>
+
+</article>
+
+<%- include ("end.ejs") %>
