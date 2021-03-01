@@ -65,13 +65,13 @@ app.get(
 )
 
 app.get(
-  "/bookings", 
+  "/codes", 
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   pageMiddleware.home,
   metaMiddleware.allTips,
   (req, res) => {
-    res.render("booking", { ...req.pageData })
+    res.render("codes", { ...req.pageData })
   }
 )
 
