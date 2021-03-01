@@ -56,3 +56,37 @@ The tipster model has enough information to atleast create their user accounts.
 When we create the user account, we will get their id.
 Next up is to find all the posts that that user has created before then change the id to be their new user id.
 The function will be called tipsters to converters.
+
+
+
+
+
+
+
+
+
+
+1/03/2021
+The goal of this session is to allow for conversion of twitter tips to post on the website.
+Currently we are storing tweets in the database, as we find them.
+
+Need to first fetch all the tweets that are not classified
+Display them on the tweets page
+  It will be cool to show the number of classified and unclassified tips
+When you click any of the unclassified tips they move over to the tips section
+  They instantly become classified as tips, not sure if this is the best tho.
+  Think a better model might be to batch them, but we will see
+  Thought about it, and it is better to batch to transformation
+    This allows for faster perceived speed from the operators point of view
+A tweet is one of these many stages.
+  Unclassified, nottip, tip, post
+  The tweet interface shows unclassified and tip only
+So at the start, we fetch all the unclassified tips and actual tips in the database.
+Render that, then further processing can occur.
+
+Need an api that allows for batch transformation of tweets to nottips, tips and post
+  Okay, maybe not post, as the tips are posted we convert the status
+
+Tasks
+  Create a new model for tweets
+  Create an api to fetch tweets based on their status
