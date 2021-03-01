@@ -88,5 +88,8 @@ Need an api that allows for batch transformation of tweets to nottips, tips and 
   Okay, maybe not post, as the tips are posted we convert the status
 
 Tasks
-  Create a new model for tweets
+  Create a new model for tweets (done)
+  Move the twitter stream app to the betcode project (done)
+  Link the schema to the twitter stream function (done)
   Create an api to fetch tweets based on their status
+

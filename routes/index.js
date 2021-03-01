@@ -11,6 +11,7 @@ const userRouter = require("./user.router")
 const postRouter = require("./post.router")
 const commentRouter = require("./comment.router")
 const tipsterRouter = require("./tipster.router")
+const tweetRouter = require("./tweet.router")
 
 // Setup upload functionality
 const createUploader = require("../lib/createUploader")
@@ -21,6 +22,7 @@ router.use("/user", userRouter)
 router.use("/comment", commentRouter)
 router.use("/post", postRouter)
 router.use("/tipster", tipsterRouter)
+router.use("/tweet", tweetRouter)
 
 router.post("/upload", upload.single("file"), handleUpload)  
 
