@@ -26,7 +26,7 @@
 						<div class="s_header">
 							<img src="<%= tip.tipster.picture %>" alt="<%= tip.tipster.fullname %>" class="img">
 							<div class="s_details">
-								<h6><a href="/profile/<%= tip.tipster.username %>"><%= tip.tipster.fullname %></a></h6>
+								<h6><%= tip.tipster.fullname %></h6>
 								<span><%= tip.tipDate %>&nbsp; | &nbsp; Bet9ja</span>
 							</div>
 						</div>
@@ -39,19 +39,18 @@
 
 						<p><%= tip.description %></p>
 
-						<div class="s_img"><img src="<%= tip.image %>" /></div>
-
-				        <% if(tip.image2){ %>
-				          <div class="s_img"><img src="<%= tip.image2 %>" /></div>
-				        <% } %>
-
-				        <% if(tip.image3){ %>
-				          <div class="s_img"><img src="<%= tip.image3 %>" /></div>
-				        <% } %>
-
-				        <% if(tip.image4){ %>
-				          <div class="s_img"><img src="<%= tip.image4 %>" /></div>
-				        <% } %>
+						<div class="s_img">
+							<img src="<%= tip.image %>" />
+					        <% if(tip.image2){ %>
+					          <img src="<%= tip.image2 %>" />
+					        <% } %>
+					        <% if(tip.image3){ %>
+					          <img src="<%= tip.image3 %>" />
+					        <% } %>
+					        <% if(tip.image4){ %>
+					          <img src="<%= tip.image4 %>" />
+					        <% } %>
+					    </div>
 
 				    </div>
 
