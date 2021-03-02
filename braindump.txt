@@ -99,7 +99,6 @@ Tasks
   Fetch the unclassified tweets (done)
   Create a function to convert a tweet to a dom element (done)
   Render all the unclassified tweets (done)
-  Display the number of classified and potential tips
-  Add link to view the original post
+  Display the number of unclassified tips (done)
   On click move the tweet to the other section
-
+    Currently, all the tips are stored in an array, on click we want to move the tip to the other section. How do we achieve this? 

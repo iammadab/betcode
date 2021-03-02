@@ -1,5 +1,7 @@
 const store = {
   unclassifiedSection: document.querySelector("#tweet > .tweets"),
+  unclassifiedCount: document.querySelector(".unclassified-count"),
+  tipCount: document.querySelector(".tip-count"),
   tweets: []
 }
 
@@ -14,6 +16,7 @@ const store = {
 
   tweetElements = store.tweets.map(tweetToDOM).join("")
   store.unclassifiedSection.innerHTML = tweetElements
+  store.unclassifiedCount.innerText = store.tweets.length
 
 })()
 
