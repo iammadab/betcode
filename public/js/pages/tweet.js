@@ -45,11 +45,46 @@ function attachEvents(){
 }
 
 function moveTweet(elem){
-  // Figure out where it is coming from
-  // Move the id to the opposing array
-  // Delete the id from the current array
-  // Actually move the element 
+  
+  const states = {
+    "tweet-unclassified": {
+      sectionIds: store.nottips,
+      otherSectionIds: store.tips,
+      otherSectionContainer: store.tipSection,
+      otherSectionState: "tweet-tip",
+    },
+    "tweet-tip": {
+      sectionIds: store.tips,
+      otherSectionIds: store.nottips,
+      otherSectionContainer: store.unclassifiedSection,
+      otherSectionState: "tweet-unclassified"
+    }
+  }
+
+  const { state, id } = elem.dataset
+  const { sectionIds, otherSectionIds, otherSectionContainer, otherSectionState } = 
+    states[state]
+  
+  // Remove the id from the current section
+  const index = sectionIds.indexOf(id)
+  if(index == -1)
+    // The id does not belong to the current section
+    // Integrity is lost, don't do anything
+    return
+
+  sectionIds.splice(index, 1) // Actually removes the id
+
+
+  // Add the id to the other section
+  otherSectionIds.push(id)
+
+  // Update the element and actually move it
+  elem.dataset.state = otherSectionState
+  otherSectionContainer.appendChild(elem)
+
   // Update the count
+  updateCount()
+
 }
 
 function updateCount(){
