@@ -1,8 +1,18 @@
 const store = {
+  
+  // Tweet containers
   unclassifiedSection: document.querySelector("#tweet > .tweets"),
+  tipSection: document.querySelector("#tip > .tweets"),
+  
+  // Section counts
   unclassifiedCount: document.querySelector(".unclassified-count"),
   tipCount: document.querySelector(".tip-count"),
-  tweets: []
+
+  // Data
+  tweets: {},
+  nottips: [],
+  tips: []
+
 }
 
 ;(async function loadTweets(){
@@ -12,17 +22,50 @@ const store = {
   if(res.status != 200)
     alert("Failed to load tweets, reload or contact support")
 
-  store.tweets = res.data
+  store.tweets = objArrayToHashMap(res.data, "_id")
+  store.nottips = Object.keys(store.tweets)
 
-  tweetElements = store.tweets.map(tweetToDOM).join("")
+  // Convert all the unclassified tweet ids to tweet elements
+  // and insert into the dom
+  const tweetElements = store.nottipElements = store.nottips.map(idToTweetElement).join("")
   store.unclassifiedSection.innerHTML = tweetElements
-  store.unclassifiedCount.innerText = store.tweets.length
+
+  updateCount()
+  attachEvents()
 
 })()
 
+function attachEvents(){
+  const nottipElements = Array.from(document.querySelectorAll("[data-state=tweet-unclassified]"))
+  nottipElements.forEach(elem => {
+    elem.addEventListener("click", (event) => {
+      moveTweet(elem)
+    })
+  })
+}
+
+function moveTweet(elem){
+  // Figure out where it is coming from
+  // Move the id to the opposing array
+  // Delete the id from the current array
+  // Actually move the element 
+  // Update the count
+}
+
+function updateCount(){
+  store.unclassifiedCount.innerText = store.nottips.length
+  store.tipCount.innerText = store.tips.length
+}
+
+
+function idToTweetElement(tweetId){
+  if(!store.tweets[tweetId]) return ""
+  return tweetToDOM(store.tweets[tweetId])
+}
+
 function tweetToDOM(tweet){
   return `
-    <li data-state="tweet-unclassified" class="hover">
+    <li data-state="tweet-unclassified" data-id="${tweet._id}" class="hover">
       <a href="#">
         <div class="tweet_header">
           <div class="tweet_details">
@@ -59,4 +102,12 @@ function tweetToDOM(tweet){
       </a>
     </li>	
   `
+}
+
+function objArrayToHashMap(array, prop){
+  const result = {}
+  array.forEach(elem => {
+    result[elem[prop]] = elem
+  })
+  return result
 }

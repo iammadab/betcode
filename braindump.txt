@@ -99,6 +99,17 @@ Tasks
   Fetch the unclassified tweets (done)
   Create a function to convert a tweet to a dom element (done)
   Render all the unclassified tweets (done)
+
+2/03/2021
+Tasks
   Display the number of unclassified tips (done)
-  On click move the tweet to the other section
-    Currently, all the tips are stored in an array, on click we want to move the tip to the other section. How do we achieve this? 
+
+
+Currently, all the tips are stored in an array, on click we want to move the tip to the other section. How do we achieve this?
+We can have two additional arrays, one for tips and not tips. These array will just contain ids of posts, the building of the dom will happen from this.
+Arrays (all, nottips, tips), build dom from nottips and tips, clicking on a tip should move the id to the other array, while manipulating the dom of course.
+
+Just discovered that dom.appendChild actually move the elem from it's parent to the new parent you are appending to, this is cool for the movement task.
+
+Tasks
+    On click move the tweet to the other section
