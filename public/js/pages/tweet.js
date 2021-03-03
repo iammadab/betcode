@@ -42,6 +42,9 @@ function attachEvents(){
       moveTweet(elem)
     })
   })
+
+  const clearTweetsButton = document.querySelector(".clear-tweets")
+  clearTweetsButton.onclick = clearNottips
 }
 
 function moveTweet(elem){
@@ -145,4 +148,37 @@ function objArrayToHashMap(array, prop){
     result[elem[prop]] = elem
   })
   return result
+}
+
+
+
+
+
+
+
+
+async function clearNottips(event){
+  
+  const clearButton = createButton(".clear-tweets", "Clear Tweets", "Clearing...")
+  clearButton()
+
+  const res = await api("/tweet/classify/nottip", {
+    ids: store.nottips
+  })
+
+  if(res.status == 200){
+    clearNode(store.unclassifiedSection)
+    store.nottips = []
+    updateCount()
+  }
+
+  clearButton("normal")
+  
+}
+
+function clearNode(elem){
+  if(!elem) return
+  while(elem.firstChild){
+    elem.firstChild.remove()
+  }
 }

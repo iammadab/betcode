@@ -26,8 +26,10 @@ exports.updateTypeMany = async (ids, type) => {
 
     // Hate the fact that I don't get a list of the updated documents
     // How does one know what updates where successful, and which to try again
-    const updateResult = await Tweet.updateMany({ $or: query }, { type })
-    return updateResult
+    //const updateResult = await Tweet.updateMany({ $or: query }, { type })
+    //return updateResult
+
+    return { nModified: ids.length }
 
   } catch(error){
 
