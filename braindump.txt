@@ -112,4 +112,12 @@ Arrays (all, nottips, tips), build dom from nottips and tips, clicking on a tip 
 Just discovered that dom.appendChild actually move the elem from it's parent to the new parent you are appending to, this is cool for the movement task.
 
 Tasks
-    On click move the tweet to the other section (done)
+  On click move the tweet to the other section (done)
+
+
+Tasks
+  Implement api to batch classify as nottips (done)
+  Implement api to batch classify as tips (done)
+
+Couldn't find a way to get the ids of all documents that have been updated in mongoose.
+The ideas was that I'll send an array of ids, it will update all of them, then i'll get back a list of all the id's that where successfully updated. Then I can use that for futher logic on the frontend.
