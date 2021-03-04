@@ -1445,3 +1445,8 @@ li[data-state="tweet-unclassified"] .tweet_form,
     li[data-state="tweet-unclassified"] .tweet_add{
       display: none;
      }
+
+li[data-state="tweet-ptip"] .tweet_form,
+  li[data-state="tweet-ptip"] .tweet_add{
+    display: none;
+  }

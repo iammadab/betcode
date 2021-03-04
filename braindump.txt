@@ -133,7 +133,7 @@ New format of writing tasks, tasks are enclosed in []
 Any information indented underneath a [] is explainging the tasks above, by explaining I just mean thinking out loud about the task.
 
 [Create a new tab for potential tips](done)
-[Modify the tweet movement to move through those two tabs]
+[Modify the tweet movement to move through those two tabs](done)
 [Only display the tweet and the picture in the potential tweets section]
 [Create a means to convert all the potential tweets to tips]
 [In the tip section, allow for clickable forms]
