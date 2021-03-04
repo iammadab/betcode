@@ -134,8 +134,11 @@ Any information indented underneath a [] is explainging the tasks above, by expl
 
 [Create a new tab for potential tips](done)
 [Modify the tweet movement to move through those two tabs](done)
-[Only display the tweet and the picture in the potential tweets section]
-[Create a means to convert all the potential tweets to tips]
+[Only display the tweet and the picture in the potential tweets section](done)
+[Create a means to convert all the potential tweets to tips](done)
+[Move tips to tip section when converted from potential tips]
+  - For this, I will need a way to easily access the dom elements by id
+  - Then all I need to do is move them to another section
 [In the tip section, allow for clickable forms]
 [Represents the forms internally as a data structure]
 [Update the forms to maintain integrity]

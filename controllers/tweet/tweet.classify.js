@@ -31,7 +31,7 @@ const classify = type => async data => {
   if(data.ids.length == updateResult.nModified)
     updatedAll = true
 
-  return { status: 200, code: "CLASSIFIED_NOT_TIPS", data: data.ids, updatedAll }
+  return { status: 200, code: "CLASSIFIED_TWEETS", data: data.ids, updatedAll }
 
 }
 

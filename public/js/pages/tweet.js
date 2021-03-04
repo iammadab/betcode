@@ -14,7 +14,10 @@ const store = {
   tweets: {},
   nottips: [],
   ptips: [], // Potential tips
-  tips: []
+  tips: [],
+
+  // Dom data
+  elements: []
 
 }
 
@@ -30,8 +33,15 @@ const store = {
 
   // Convert all the unclassified tweet ids to tweet elements
   // and insert into the dom
-  const tweetElements = store.nottipElements = store.nottips.map(idToTweetElement).join("")
+  const tweetElements = store.nottips.map(idToTweetElement).join("")
   store.unclassifiedSection.innerHTML = tweetElements
+
+
+  // Gather all the tweet dom elements
+  store.elements = Array.from(document.querySelectorAll(
+      "[data-state=tweet-unclassified], [data-state=tweet-ptip], [data-state=tweet-tips]"
+    ))
+  store.elements = objArrayToHashMap(store.elements, "dataset", "id")
 
   updateCount()
   attachEvents()
@@ -48,6 +58,9 @@ function attachEvents(){
 
   const clearTweetsButton = document.querySelector(".clear-tweets")
   clearTweetsButton.onclick = clearNottips
+
+  const allTipsButton = document.querySelector(".all-tips")
+  allTipsButton.onclick = makeAllTips
 }
 
 function moveTweet(elem){
@@ -68,8 +81,14 @@ function moveTweet(elem){
   }
 
   const { state, id } = elem.dataset
+
+  // Don't move tip if not in the required state
+  if(!states[state])
+    return
+
   const { sectionIds, otherSectionIds, otherSectionContainer, otherSectionState } = 
     states[state]
+
   
   // Remove the id from the current section
   const index = sectionIds.indexOf(id)
@@ -146,10 +165,17 @@ function tweetToDOM(tweet){
   `
 }
 
-function objArrayToHashMap(array, prop){
+function objArrayToHashMap(array, ...props){
   const result = {}
   array.forEach(elem => {
-    result[elem[prop]] = elem
+    let value = elem
+    for(prop of props){
+      value = value[prop]
+      if(value == undefined)
+        break
+    }
+    if(value)
+      result[value] = elem
   })
   return result
 }
@@ -178,6 +204,36 @@ async function clearNottips(event){
 
   clearButton("normal")
   
+}
+
+async function makeAllTips(event){
+  
+  const allTipsButton = createButton(".all-tips", "All Tips", "Making tips...")
+  allTipsButton()
+
+  const res = await api("/tweet/classify/tip", {
+    ids: store.ptips
+  })
+
+  if(res.status == 200){
+    // Move all the tips to the tip sections
+    res.data.forEach(id => {
+      const elem = store.elements[id]
+      if(elem){
+        // Change the state of the element
+        elem.dataset.state = "tweet-tip" 
+
+        store.tips.push(id)
+        store.tipSection.appendChild(elem)
+      }
+    })
+
+    store.ptips = []
+    updateCount()
+  }
+
+  allTipsButton("normal")
+
 }
 
 function clearNode(elem){
