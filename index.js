@@ -65,13 +65,24 @@ app.get(
 )
 
 app.get(
-  "/codes", 
+  "/history", 
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   pageMiddleware.home,
   metaMiddleware.allTips,
   (req, res) => {
-    res.render("codes", { ...req.pageData })
+    res.render("history", { ...req.pageData })
+  }
+)
+
+app.get(
+  "/code", 
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.home,
+  metaMiddleware.allTips,
+  (req, res) => {
+    res.render("code", { ...req.pageData })
   }
 )
 
@@ -114,6 +125,20 @@ app.get(
   cookieMiddleware.cookieFound("/"),
   metaMiddleware.login,
   (req, res) => res.render("login", { ...req.pageData })
+)
+
+app.get(
+  "/forgot", 
+  cookieMiddleware.cookieFound("/"),
+  metaMiddleware.login,
+  (req, res) => res.render("forgot", { ...req.pageData })
+)
+
+app.get(
+  "/verify", 
+  cookieMiddleware.cookieFound("/"),
+  metaMiddleware.login,
+  (req, res) => res.render("verify", { ...req.pageData })
 )
 
 app.get(
