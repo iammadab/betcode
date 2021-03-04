@@ -2,15 +2,18 @@ const store = {
   
   // Tweet containers
   unclassifiedSection: document.querySelector("#tweet > .tweets"),
+  potentialTipSection: document.querySelector("#ptip > .tweets"),
   tipSection: document.querySelector("#tip > .tweets"),
   
   // Section counts
   unclassifiedCount: document.querySelector(".unclassified-count"),
+  potentialTipCount: document.querySelector(".potential-count"),
   tipCount: document.querySelector(".tip-count"),
 
   // Data
   tweets: {},
   nottips: [],
+  ptips: [], // Potential tips
   tips: []
 
 }
@@ -52,12 +55,12 @@ function moveTweet(elem){
   const states = {
     "tweet-unclassified": {
       sectionIds: store.nottips,
-      otherSectionIds: store.tips,
-      otherSectionContainer: store.tipSection,
-      otherSectionState: "tweet-tip",
+      otherSectionIds: store.ptips,
+      otherSectionContainer: store.potentialTipSection,
+      otherSectionState: "tweet-ptip",
     },
-    "tweet-tip": {
-      sectionIds: store.tips,
+    "tweet-ptip": {
+      sectionIds: store.ptips,
       otherSectionIds: store.nottips,
       otherSectionContainer: store.unclassifiedSection,
       otherSectionState: "tweet-unclassified"
@@ -92,6 +95,7 @@ function moveTweet(elem){
 
 function updateCount(){
   store.unclassifiedCount.innerText = store.nottips.length
+  store.potentialTipCount.innerText = store.ptips.length,
   store.tipCount.innerText = store.tips.length
 }
 
