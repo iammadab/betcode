@@ -125,4 +125,19 @@ The ideas was that I'll send an array of ids, it will update all of them, then i
 3/03/2021
 
 Tasks
-  Make the clear tweets button work 
+  Make the clear tweets button work (done)
+
+4/03/2021
+
+New format of writing tasks, tasks are enclosed in []
+Any information indented underneath a [] is explainging the tasks above, by explaining I just mean thinking out loud about the task.
+
+[Create a new tab for potential tips](done)
+[Modify the tweet movement to move through those two tabs]
+[Only display the tweet and the picture in the potential tweets section]
+[Create a means to convert all the potential tweets to tips]
+[In the tip section, allow for clickable forms]
+[Represents the forms internally as a data structure]
+[Update the forms to maintain integrity]
+[Create a means to convert the forms datastructure to posts]
+ 
