@@ -165,14 +165,14 @@ function makePostForm(id){
   return `
   <div data-id="${id}" class="tweet_form">
     <div class="form-group">
-      <input class="form-control" type="text" placeholder="Booking Code">
+      <input class="form-control booking-code" type="text" placeholder="Booking Code">
     </div>
     <div class="form-group">
-      <input class="form-control" type="text" placeholder="Total Odds">
+      <input class="form-control odds" type="text" placeholder="Total Odds">
     </div>
     <div class="form-group">
-      <select class="custom-select">
-        <option>Bookmaker</option>
+      <select class="custom-select bookmaker">
+        <option value="">Bookmaker</option>
         <option>Bet9ja</option>
         <option>Betking</option>
         <option>Sportybet</option>
@@ -258,7 +258,57 @@ async function makeAllTips(event){
 
 
 async function makeAllPosts(event){
-  // 
+  // Get all the dom elements for post
+  // For each element, we want to convert it to an object representing the post data
+  // For each of those post data, make a create post api call and classify the post as a tip
+
+  const postElements = Array.from(document.querySelectorAll("[data-state='tweet-tip'] .tweet_form"))
+  const postsData = postElements.map(makePostData).filter(a => a)
+
+  postsData.forEach(async (data) => {
+    const response = await api("/post", data).catch(console.log)
+
+    // If successful, remove from dom
+    // remove from tip id array
+    // update count
+    if(response.status == 200){
+      store.elements[data.tweet].remove() 
+      removeFromArray(store.tips, data.tweet)
+      updateCount()
+    }
+  })
+
+}
+
+function makePostData(postElement){
+  const id = postElement.dataset.id
+  const code = postElement.querySelector(".booking-code").value
+  const odds = postElement.querySelector(".odds").value
+  const bookmaker = postElement.querySelector(".bookmaker").value
+
+  if(!code || !odds || !bookmaker)
+    return null
+
+  const tweet = store.tweets[id]
+
+  const imageObj = {}
+
+  for(let i = 0; i < tweet.images.length; i++){
+    const index = i == 0 ? "" : i
+    imageObj[`image${index}`] = tweet.images[i]
+  }
+
+  return {
+    tipster: "iammadab",
+    tweet: id,
+    description: tweet.text,
+    odds,
+    bookmakers: {
+      [bookmaker]: code
+    },
+    ...imageObj
+  }
+
 }
 
 function clearNode(elem){
@@ -266,4 +316,10 @@ function clearNode(elem){
   while(elem.firstChild){
     elem.firstChild.remove()
   }
+}
+
+function removeFromArray(array, elem){
+  const index = array.indexOf(elem)
+  if(index > -1)
+    array.splice(index, 1)
 }

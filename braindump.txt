@@ -155,7 +155,9 @@ Any information indented underneath a [] is explainging the tasks above, by expl
   - Once the operator is sure that all the forms have been filled correctly, they hit convert to post of something
   - The successful ones get removed and the one with error stay, the errors should probably be displayed, but I don't know about that yet.
 
-[Allow for the addition of multiple forms per tweet]
-[On all posts button, convert the dom to post instruction]
-[Make api calls for each instruction]
-[Remove the successful post from the ui and update count]
+[Allow for the addition of multiple forms per tweet](done)
+[On all posts button, convert the dom to post instruction](done)
+[Make api calls for each instruction](done)
+[Add an optional tweet id to the post model](done)
+[Remove the successful post from the ui and update count](done)
+[When a user tries to post, if it is from a tweet, change the status of the tweet on post](done)
