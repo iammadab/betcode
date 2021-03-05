@@ -136,11 +136,26 @@ Any information indented underneath a [] is explainging the tasks above, by expl
 [Modify the tweet movement to move through those two tabs](done)
 [Only display the tweet and the picture in the potential tweets section](done)
 [Create a means to convert all the potential tweets to tips](done)
-[Move tips to tip section when converted from potential tips]
+[Move tips to tip section when converted from potential tips](done)
   - For this, I will need a way to easily access the dom elements by id
   - Then all I need to do is move them to another section
-[In the tip section, allow for clickable forms]
-[Represents the forms internally as a data structure]
-[Update the forms to maintain integrity]
-[Create a means to convert the forms datastructure to posts]
- 
+[In the tip section, allow for clickable forms](done)
+
+
+5/03/2021
+
+[Design datastrcutre to represent posts instructions](done)
+  - I need the simplest way to represent a post
+  - A post cares about the (tipster, description, odds, bookmaker(with code), images)
+  - All these, I know I can somehow get
+  - Note: Posts should point back to the id of the tweet that created them
+
+  - The main problem with this task for me is dealing with posts that have more than one betcode underneath them. Let me start by making the assumption that the operator is rational, and as such will make the right actions.
+  - So if there are two betcodes in a tweets, the operator should create two forms, and fill them up
+  - Once the operator is sure that all the forms have been filled correctly, they hit convert to post of something
+  - The successful ones get removed and the one with error stay, the errors should probably be displayed, but I don't know about that yet.
+
+[Allow for the addition of multiple forms per tweet]
+[On all posts button, convert the dom to post instruction]
+[Make api calls for each instruction]
+[Remove the successful post from the ui and update count]

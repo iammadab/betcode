@@ -61,6 +61,18 @@ function attachEvents(){
 
   const allTipsButton = document.querySelector(".all-tips")
   allTipsButton.onclick = makeAllTips
+
+  const allPostsButton = document.querySelector(".all-posts")
+  allPostsButton.onclick = makeAllPosts
+
+  const addFormButtons = Array.from(document.querySelectorAll(".tweet_add"))
+  addFormButtons.forEach(elem => {
+    elem.addEventListener("click", event => { 
+      const id = elem.dataset.id
+      const container = document.querySelector(`.form-container[data-id='${id}']`)
+      container.innerHTML += makePostForm(id)
+    })
+  })
 }
 
 function moveTweet(elem){
@@ -133,28 +145,12 @@ function tweetToDOM(tweet){
             <h6>${tweet.user}</h6>
             <span>2 hours ago</span>
           </div>
-          <a class="tweet_add" href="#"><i class="far fa-edit"></i></a>
+            <span data-id="${tweet._id}" class="tweet_add"><i class="far fa-edit"></i></span>
         </div>
         <div class="tweet_main">
           <p>${tweet.text}</p>
-          <div class="tweet_form">
-            <div class="form-group">
-              <input class="form-control" type="text" placeholder="Booking Code">
-            </div>
-            <div class="form-group">
-              <input class="form-control" type="text" placeholder="Total Odds">
-            </div>
-            <div class="form-group">
-              <select class="custom-select">
-                <option>Bookmaker</option>
-                <option>Bet9ja</option>
-                <option>Betking</option>
-                <option>Sportybet</option>
-                <option>1Xbet</option>
-                <option>22bet</option>
-                <option>Msport</option>	
-              </select>
-            </div>
+          <div data-id="${tweet._id}" class="form-container">
+            ${makePostForm(tweet._id)}
           </div>
           <div class="s_img">
             ${tweet.images.map(link => "<img src='" + link + "'/>")}
@@ -162,6 +158,30 @@ function tweetToDOM(tweet){
         </div>
       </a>
     </li>	
+  `
+}
+
+function makePostForm(id){
+  return `
+  <div data-id="${id}" class="tweet_form">
+    <div class="form-group">
+      <input class="form-control" type="text" placeholder="Booking Code">
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="text" placeholder="Total Odds">
+    </div>
+    <div class="form-group">
+      <select class="custom-select">
+        <option>Bookmaker</option>
+        <option>Bet9ja</option>
+        <option>Betking</option>
+        <option>Sportybet</option>
+        <option>1Xbet</option>
+        <option>22bet</option>
+        <option>Msport</option>	
+      </select>
+    </div>
+  </div>
   `
 }
 
@@ -234,6 +254,11 @@ async function makeAllTips(event){
 
   allTipsButton("normal")
 
+}
+
+
+async function makeAllPosts(event){
+  // 
 }
 
 function clearNode(elem){
