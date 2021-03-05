@@ -60,7 +60,7 @@ const createPost = async (req, res) => {
   // First update the status of the tip to post
   // If successful then proceed
   const tipUpdateResult = await tweetService.updateTypeMany([ safe.tweet ], "post")
-  if(tipUpdateResult.nModified != 1)
+  if(tipUpdateResult.n != 1)
     return res.json({
       status: 200,
       code: "TIP_UPDATE_FAILED"
