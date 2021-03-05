@@ -223,6 +223,7 @@ async function clearNottips(event){
   }
 
   clearButton("normal")
+  moveToTab("#ptip")
   
 }
 
@@ -253,6 +254,7 @@ async function makeAllTips(event){
   }
 
   allTipsButton("normal")
+  moveToTab("#tip")
 
 }
 
