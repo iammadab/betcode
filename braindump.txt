@@ -161,3 +161,10 @@ Any information indented underneath a [] is explainging the tasks above, by expl
 [Add an optional tweet id to the post model](done)
 [Remove the successful post from the ui and update count](done)
 [When a user tries to post, if it is from a tweet, change the status of the tweet on post](done)
+[Write a function that can switch tabs](done)
+  - nav-link control the tab header by having a class active
+  - tab-pane control the tab content
+
+  - nav-link can be identified with href
+  - tab-pane can be identified with id
+[Programmatically move tabs to improve the experience]

@@ -299,7 +299,7 @@ function makePostData(postElement){
   }
 
   return {
-    tipster: "iammadab",
+    tipster: tweet.user,
     tweet: id,
     description: tweet.text,
     odds,
@@ -322,4 +322,18 @@ function removeFromArray(array, elem){
   const index = array.indexOf(elem)
   if(index > -1)
     array.splice(index, 1)
+}
+
+function moveToTab(tabId){
+  const currentTabHeader = document.querySelector(`.nav-link.active`)
+  if(currentTabHeader) currentTabHeader.classList.remove("active")
+
+  const currentTabSection = document.querySelector(".tab-pane.active")
+  if(currentTabSection) currentTabSection.classList.remove("active")
+
+  const newTabHeader = document.querySelector(`[href='${tabId}']`)
+  newTabHeader.classList.add("active")
+
+  const newTabSection = document.querySelector(tabId)
+  newTabSection.classList.add("active")
 }
