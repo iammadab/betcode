@@ -22,13 +22,15 @@ const store = {
 }
 
 ;(async function loadTweets(){
-  
-  const res = await fetch("/api/tweet/status/unclassified").then(res => res.json())
 
-  if(res.status != 200)
+  // First we load up all the unclassified tips
+  // Fetch all the unclassified tips
+  const unclassifiedTips = await fetch("/api/tweet/status/unclassified").then(res => res.json())
+
+  if(unclassifiedTips.status != 200)
     alert("Failed to load tweets, reload or contact support")
 
-  store.tweets = objArrayToHashMap(res.data, "_id")
+  store.tweets = objArrayToHashMap(unclassifiedTips.data, "_id")
   store.nottips = Object.keys(store.tweets)
 
   // Convert all the unclassified tweet ids to tweet elements
@@ -37,9 +39,26 @@ const store = {
   store.unclassifiedSection.innerHTML = tweetElements
 
 
+
+  // Next we load up all the tips
+  // Fetch all the tips
+  const tips = await fetch("/api/tweet/status/tip").then(res => res.json())
+  if(tips.status != 200)
+    alert("Failed to load tips, reload or contact support")
+
+  const tipObjs = objArrayToHashMap(tips.data, "_id")
+  store.tweets = Object.assign({}, store.tweets, tipObjs)
+  store.tips = Object.keys(tipObjs)
+
+  // Convert all the tips to tweet elements
+  const tipElements = store.tips.map(idToTipElement).join("")
+  store.tipSection.innerHTML = tipElements
+
+
+
   // Gather all the tweet dom elements
   store.elements = Array.from(document.querySelectorAll(
-      "[data-state=tweet-unclassified], [data-state=tweet-ptip], [data-state=tweet-tips]"
+      "[data-state=tweet-unclassified], [data-state=tweet-ptip], [data-state=tweet-tip]"
     ))
   store.elements = objArrayToHashMap(store.elements, "dataset", "id")
 
@@ -136,9 +155,14 @@ function idToTweetElement(tweetId){
   return tweetToDOM(store.tweets[tweetId])
 }
 
-function tweetToDOM(tweet){
+function idToTipElement(tweetId){
+  if(!store.tweets[tweetId]) return ""
+  return tweetToDOM(store.tweets[tweetId], "tweet-tip")
+}
+
+function tweetToDOM(tweet, state="tweet-unclassified"){
   return `
-    <li data-state="tweet-unclassified" data-id="${tweet._id}" class="hover">
+    <li data-state="${state}" data-id="${tweet._id}" class="hover">
       <a href="#">
         <div class="tweet_header">
           <div class="tweet_details">

@@ -167,4 +167,17 @@ Any information indented underneath a [] is explainging the tasks above, by expl
 
   - nav-link can be identified with href
   - tab-pane can be identified with id
-[Programmatically move tabs to improve the experience]
+[Programmatically move tabs to improve the experience](done)
+
+
+And the above concludes version one of tweet to posts. Hurray!!!!
+
+07/03/2021
+
+The goals of today, handle state recovery, discovery and automatic account creation from twitter
+
+[On refresh, load both non-tips and tips]
+[Use localstorage to remember potential tips]
+[Brainstorm how discovery will work]
+[Rewrite the filter function to allow for better filtering]
+[Allow for filtering on the ui]
