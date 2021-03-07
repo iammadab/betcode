@@ -1,10 +1,24 @@
 const postService = require("../../services/post.service")
 const on = require("../../lib/on")
 
+const joi = require("joi")
+
+const fetchAllValidator = joi.object({
+  lastId: joi.string().trim(),
+  limit: joi.number()
+}).options({ abortEarly: false })
+
 const fetchAll = async (data) => {
+
+  const validationResult = fetchAllValidator.validate(data)
+
+  if(validationResult.error)
+    return { status: 400, code: "BAD_REQUEST_ERROR", errors: validationResult.error }
+
+  const filter = validationResult.value
 	
 	const [ fetchError, posts ] = 
-		await on(postService.fetchAll(data.lastId, data.limit))
+		await on(postService.fetchAll(filter))
 
 	if(fetchError)
 		return {

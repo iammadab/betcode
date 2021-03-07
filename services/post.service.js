@@ -20,7 +20,7 @@ exports.createPost = async (data) => {
 }
 
 
-exports.fetchAll = async (lastId, limit = 20) => {
+exports.fetchAll = async ({ lastId, limit = 20 }) => {
 	
 	try{
 
