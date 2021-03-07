@@ -1,6 +1,6 @@
 const store = {
   loading: false,
-  moreButton: document.querySelector(".showmore"),
+  moreButton: document.querySelector(".showmore.tips"),
   tips: document.querySelector("ul.tips")
 }
 
@@ -8,7 +8,7 @@ const store = {
   addEvent([store.moreButton], "click", loadPosts)
 })()
 
-const loadingButton = createButton(".showmore", "SHOW MORE TIPS", "Loading...")
+const loadingButton = createButton(".showmore.tips", "SHOW MORE TIPS", "Loading...")
 
 function loadPosts(){
 
@@ -18,6 +18,8 @@ function loadPosts(){
   store.loading = true
 
   const lastTip = store.tips.lastElementChild
+  console.log(store.tips)
+  console.log(lastTip)
   
   const id = lastTip ? lastTip.dataset.id : ""
 
