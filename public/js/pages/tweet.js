@@ -62,13 +62,28 @@ const store = {
     ))
   store.elements = objArrayToHashMap(store.elements, "dataset", "id")
 
+  // Remember the potential tips
+  let ptipsIds = window.localStorage.getItem("ptips")
+  if(ptipsIds){
+    ptipsIds = JSON.parse(ptipsIds)
+    ptipsIds.forEach(id => {
+      const elem = store.elements[id]
+      if(elem)
+        moveTweet(elem)
+    })
+  }
+
   updateCount()
   attachEvents()
 
 })()
 
 function attachEvents(){
-  const nottipElements = Array.from(document.querySelectorAll("[data-state=tweet-unclassified]"))
+  const nottipElements = Array.from(
+    document.querySelectorAll(
+       "[data-state=tweet-unclassified], [data-state=tweet-ptip]"
+    )
+  )
   nottipElements.forEach(elem => {
     elem.addEventListener("click", (event) => {
       moveTweet(elem)
@@ -133,6 +148,9 @@ function moveTweet(elem){
 
   // Add the id to the other section
   otherSectionIds.push(id)
+  
+  // Update the ptips store
+  updateStore("ptips", store.ptips)
 
   // Update the element and actually move it
   elem.dataset.state = otherSectionState
@@ -274,6 +292,7 @@ async function makeAllTips(event){
     })
 
     store.ptips = []
+    updateStore("ptips", store.ptips)
     updateCount()
   }
 
@@ -362,4 +381,8 @@ function moveToTab(tabId){
 
   const newTabSection = document.querySelector(tabId)
   newTabSection.classList.add("active")
+}
+
+function updateStore(name, value){
+  window.localStorage.setItem(name, JSON.stringify(value))
 }
