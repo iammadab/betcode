@@ -7,7 +7,9 @@ const fetchAllValidator = joi.object({
   lastId: joi.string().trim(),
   limit: joi.number(),
   tipster: joi.string().trim(),
-  bookmaker: joi.string().trim().lowercase()
+  bookmaker: joi.string().trim().lowercase(),
+  minOdds: joi.number(),
+  maxOdds: joi.number()
 }).options({ abortEarly: false })
 
 const fetchAll = async (data) => {

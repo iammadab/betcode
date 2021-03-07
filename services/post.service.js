@@ -38,7 +38,7 @@ exports.fetchAll = async ({ lastId, limit = 20, tipster, bookmaker, minOdds = 0,
     // Made up of min and max or any one
     const minOddsQuery = minOdds ? { $gte: minOdds } : {}
     const maxOddsQuery = maxOdds ? { $lte: maxOdds } : {}
-    const oddsQuery = minOdds || maxOdds ? { odds: { ...minOdds, ...maxOdds } } : {}
+    const oddsQuery = minOdds || maxOdds ? { odds: { ...minOddsQuery, ...maxOddsQuery } } : {}
     
 
     // Combine the individal queries into on big query
