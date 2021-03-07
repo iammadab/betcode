@@ -20,17 +20,27 @@ exports.createPost = async (data) => {
 }
 
 
-exports.fetchAll = async ({ lastId, limit = 20, tipster }) => {
+exports.fetchAll = async ({ lastId, limit = 20, tipster, bookmaker }) => {
 	
 	try{
 
+    // Build up the individual queries
     const paginationQuery = lastId ? { _id: { $lt: lastId } } : {}
     const tipsterQuery = tipster ? { tipster } : {}
+    const bookmakerQuery = 
+       bookmaker ?
+        { [`bookmakers.${bookmaker}`] : { $exists: true } } :
+          {}
+    
+
+    // Combine the individal queries into on big query
     const query = {
       ...paginationQuery,
-      ...tipsterQuery
+      ...tipsterQuery,
+      ...bookmakerQuery,
     }
     console.log(query)
+
 		const posts = await Post.find(query)
             .limit(limit)
             .populate("tipster")
