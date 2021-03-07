@@ -20,11 +20,17 @@ exports.createPost = async (data) => {
 }
 
 
-exports.fetchAll = async ({ lastId, limit = 20 }) => {
+exports.fetchAll = async ({ lastId, limit = 20, tipster }) => {
 	
 	try{
 
-    const query = lastId ? { _id: { $lt: lastId } } : {}
+    const paginationQuery = lastId ? { _id: { $lt: lastId } } : {}
+    const tipsterQuery = tipster ? { tipster } : {}
+    const query = {
+      ...paginationQuery,
+      ...tipsterQuery
+    }
+    console.log(query)
 		const posts = await Post.find(query)
             .limit(limit)
             .populate("tipster")
