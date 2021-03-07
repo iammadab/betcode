@@ -183,6 +183,7 @@ The goals of today, handle state recovery, discovery and automatic account creat
   - I'll also have a list of potential tip ids
   - All I need to do is move those tips, think I already have a function for that
   - At any point when I am updating the ptip array, I need to update the local storge version also
-[Brainstorm how discovery will work]
-[Rewrite the filter function to allow for better filtering]
+[Implement filtering by tipster]
+[Implement filtering by odds]
+[Implement filtering by bookmaker]
 [Allow for filtering on the ui]
