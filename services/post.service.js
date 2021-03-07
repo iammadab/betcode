@@ -29,7 +29,7 @@ exports.fetchAll = async ({ lastId, limit = 20, tipster, bookmaker }) => {
     const tipsterQuery = tipster ? { tipster } : {}
     const bookmakerQuery = 
        bookmaker ?
-        { [`bookmakers.${bookmaker}`] : { $exists: true } } :
+        { [`bookmakers.${bookmaker}`] : { $in: [ /\S/ ] } } :
           {}
     
 
