@@ -21,7 +21,7 @@ font-size: 0.85rem;
 
 
 article {
-min-height: 100%;
+min-height: auto;
 display: grid;
 grid-template-rows: auto 1fr auto;
 grid-template-columns: 100%;
@@ -154,7 +154,7 @@ margin:0 auto;
 }
 
 .container_two{
-padding:1rem 0.75rem;	
+padding:0 0.75rem;	
 }
 
 @media (max-width: 1400px) {
@@ -575,10 +575,16 @@ line-height:0.5rem;
 
 
 .t_details span{
-font-size:0.7rem;
+font-size:0.75rem;
 color:#aeaeae;
 line-height:0;
 margin:0.3rem 0;	
+}
+
+.slash{
+color:#ddd;
+font-size:0.8rem;
+margin:0 0.5rem;	
 }
 
 .t_header img {
@@ -647,7 +653,9 @@ display:inline-block;
 }
 
 .showmore:hover{
-background:#f8f8f8;	
+background:#f8f8f8;
+text-decoration:none;
+color:#333;	
 }
 
 /*single tip*/
@@ -689,7 +697,7 @@ line-height:0.6rem;
 }
 
 .s_details span{
-font-size:0.7rem;
+font-size:0.75rem;
 color:#aeaeae;
 line-height:0;
 margin:0.3rem 0 0.9rem;	
@@ -759,7 +767,7 @@ font-size:1rem;
 /*Betcodes Section*/
 
 .betcodes{
-padding:0.5rem 0.75rem 1.5rem;
+padding:1.5rem 0.75rem 1.5rem;
 border:1px solid #f8f8f8;
 background:#f8f8f8;
 margin:0 0 2.5rem;
@@ -776,6 +784,7 @@ padding-bottom:1rem;
 .betcodes input, .betcodes select{
 border:1px solid #e1e1e1;
 color:#333;
+font-size:1rem;
 }
 
 .betcodes .form-group{
@@ -805,7 +814,7 @@ box-shadow: none;
 border:1px solid #e1e1e1;  
 }
 
-.betcodes input:read-only {
+.betcodes input:read-only{
 background-color:#fff;
 }
 
@@ -819,6 +828,7 @@ text-transform:capitalize;
 padding:0 0.6rem;
 background:#fff;
 border:1px solid #e1e1e1;
+border-radius:4px;
 border-top-left-radius:0;
 border-bottom-left-radius:0;
 color:#000;	
@@ -843,27 +853,143 @@ box-shadow:none;
 color:#fff;	
 }
 
-/*.betcodes li{
+/*Booking code section*/
+.codes{
+padding:0 0;	
+}
+.codes li{
+border-bottom:1px solid #e1e1e1;
 display:inline-block;
 width:100%;
+padding:0.5rem 0.75rem;	
+}
+.codes li:last-child{
+border-bottom:0;
+padding-bottom:0.25rem;	
+}
+
+.codes li a:hover{
+text-decoration:none;	
+}
+
+.code-main{
+display:flex;
+flex-direction:row;
+justify-content:space-between;
 padding:0;
+font-size:0.95rem;	
 }
 
-.betcodes li p{
-display:inline-block;
-font-weight:600;
-font-size:0.9rem;	
-line-height:0;
+.code-main span{
+color:#333;	
 }
 
-.betcodes li p span{
-display:inline-block;
-font-size:0.8rem;
-margin:0 0.2rem 0 0;
-color:#666;
+.code-main b{
 font-weight:400;
+}
+
+.code-bottom{
+display:flex;
+flex-direction:row;
+justify-content:space-between;	
+}
+
+.code-sub{
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+margin:0;
+}
+
+.code-bottom i{	
+color:#ccc;
+}
+
+.time{
+color:#aeaeae;
+font-size:0.8rem;
+margin:0.2rem 0 0;	
+}
+
+.status{
+padding:0 0.5rem;
+border-radius:0.3rem;
+font-size:0.75rem;
+font-weight:600;
+margin:0.3rem 0 0;
+align-self:flex-start;
+text-transform:capitalize;
+}
+
+.pending{
+background:rgba(255,215,0,0.6);
+color:#000;	
+}
+
+.done{
+background:rgba(65,149,0,0.8);	
+color:#fff;	
+}
+
+.failed{
+background-color:#fdb9a7;
+color:#000;	
+}
+
+.partial{
+background-color:#87cefa;
+color:#000; 	
+}
+
+
+.code{
+padding:0.5rem 0.75rem;	
+}
+
+
+.code-single{
+display:flex;
+flex-direction:row;
+justify-content:space-between;
+color:#333;
+padding:0.5rem 0;
+}
+
+.code-single span{
+font-size:1rem;	
+}
+
+
+.code-single .btn{
+border:1px solid #ccc;
+font-size:0.75rem;
 text-transform:uppercase;
-}*/
+}
+
+
+.code-single .status{
+margin:0;
+font-size:0.9rem;	
+}
+
+.code-single .time{
+margin:0;	
+}
+
+.code .alert{
+margin:0.5rem 0 0;	
+}
+
+.code .betcodes{
+margin:1rem 0;	
+}
+
+.code .ortxt{
+margin:1rem 0;	
+}
+
+
+
 
 /*Divider Section*/
 
@@ -1052,8 +1178,18 @@ padding:0.4rem 1rem;
 margin:0.2rem 0 0;
 }
 
-.login .form-control-lg{
-font-size:1.1rem;	
+.login .terms{
+color:#333;
+text-align:center;
+margin:0.5rem 0;
+}
+
+.login .terms a{
+color:#8a2be2;	
+}
+
+.login .form-control-lg,.login .custom-select-lg{
+font-size:1rem;	
 }
 
 @media (max-width: 992px) {
@@ -1140,6 +1276,8 @@ margin-right:2px;
 
 /*Alerts*/
 
+
+
 .btn-book{
 background-color:#8a2be2;
 border:1px solid #8a2be2;
@@ -1150,6 +1288,11 @@ color:#fff;
 color:#fff;
 background:#6f1abd;
 border:1px solid #6f1abd;
+}
+
+.btn-warning{
+background:#ffd700;
+border:1px solid #ffd700;	
 }
 
 .btn-success{
@@ -1199,7 +1342,7 @@ color:#000;
 .banner{
 padding: 2rem 1.5rem;
 background:#fff;
-box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.3);
+box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.3);
 margin:0 0 1rem;
 border-radius:4px;
 }
@@ -1245,28 +1388,43 @@ line-height:0;
 color:#aeaeae;
 font-size:1rem;
 text-align:center;
-margin-top:0.8rem;	
+margin:0.8rem 0 1.6rem;	
 }
 
 .popular-banner .text{
-padding:2rem 0.75rem 0;
+padding:1rem 0.75rem 0;
 font-size:1rem;
-text-align:center;	
+text-align:center;
+line-height:1.5rem;
 }
 
-.faq{
-margin:1rem 0 1rem;
-padding:0.5rem 0.75rem 0;
+.accordion{
+margin:0 0 4rem;	
 }
-.faq h6{
-color:#333;
-margin:0.5rem 0 0.5rem;
+
+/*Accordion*/
+
+.card{
+border:1px solid #e1e1e1;
+}
+
+.card-header{
+background:#fff;
+padding:0.5rem 0;
+}
+
+.card-header .btn{
+font-size:0.95rem;
+font-weight:600;
+color:#000;
+}
+
+.card-body{
 font-size:1rem;
+padding:1.2rem 0.75rem;
+color:#333;	
 }
-.faq p{
-color:#666;
-font-size:1rem;	
-}
+
 
 
 @media (max-width: 991px) {
@@ -1276,15 +1434,6 @@ font-size: 30px;
 .banner .left{
 margin-bottom:2rem;	
 }
-.faq{
-margin:1rem 0 0;
-padding:0.5rem 0.75rem 0;
-}
-.faq h6{
-font-size:1rem;
-margin-bottom:0.5rem;	
-}
-
 }
 
 
@@ -1306,18 +1455,12 @@ border-radius:0.3rem;
 text-align:center;
 margin:0 0.1rem 0.2rem;
 background:#fff;
-/*width:24.25%;*/
+cursor:pointer;
 flex:1 1 auto;
 }
 
 .popular-banner .tag{
 color:#000;	
-}
-
-@media (max-width: 768px) {
-.tag{
-/*width:49.5%;*/	
-}
 }
 
 .tag:hover, .tags .active{
@@ -1328,7 +1471,7 @@ border-color:#8a2be2;
 }
 
 .tipsters{
-padding:1rem 0.75rem 0.7rem;	
+padding:0.75rem 0.7rem;	
 }
 
 
