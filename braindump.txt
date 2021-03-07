@@ -183,7 +183,9 @@ The goals of today, handle state recovery, discovery and automatic account creat
   - I'll also have a list of potential tip ids
   - All I need to do is move those tips, think I already have a function for that
   - At any point when I am updating the ptip array, I need to update the local storge version also
-[Implement filtering by tipster]
+[Implement filtering by tipster](done)
+[Implement filtering by bookmaker](done)
 [Implement filtering by odds]
-[Implement filtering by bookmaker]
+  - Want to use the format of min odds and max odds
+  - Min should be 0, if not supplied, maximum cannot have a default value
 [Allow for filtering on the ui]
