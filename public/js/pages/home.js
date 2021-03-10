@@ -1,11 +1,19 @@
 const store = {
   loading: false,
   moreButton: document.querySelector(".showmore.tips"),
-  tips: document.querySelector("ul.tips")
+  tips: document.querySelector("ul.tips"),
+  tipsters: Array.from(document.querySelectorAll(".tipster-tag")),
+  filter: {
+    tipster: "",
+    bookmaker: "",
+    minOdds: "",
+    maxOdds: ""
+  }
 }
 
 ;(function attachEvents(){
   addEvent([store.moreButton], "click", loadPosts)
+  addEvent(store.tipsters, "click", filterTipster)
 })()
 
 const loadingButton = createButton(".showmore.tips", "SHOW MORE TIPS", "Loading...")
@@ -73,5 +81,20 @@ function loadPosts(){
     `
   }
 
+}
+
+function filterTipster(event, element){
+
+  const tipsterId = element.dataset.id
+  store.filter.tipster = tipsterId
+
+  // Make element active
+  // Remove current active
+  const currentActive = document.querySelector(".tipster-tag.active")
+  if(currentActive)
+    currentActive.classList.remove("active")
+
+  // Add to the clicked element
+  element.classList.add("active")
 
 }

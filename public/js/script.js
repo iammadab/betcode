@@ -95,7 +95,9 @@ function addEvent(elements, eventString, cb){
   elements.forEach(element => {
     events.forEach(event => {
       if(!element) console.log("Can't find", element)
-      else element.addEventListener(event, cb)
+      else element.addEventListener(event, event => {
+        cb(event, element)
+      })
     })
   })
 }

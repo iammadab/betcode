@@ -207,9 +207,13 @@ What's left
 
 Let's see if we can hit this target!.
 
-[Create a function to return a list of all the tipsters and their ids]
-[Display the tipster list on the frontend]
+[Create a function to return a list of all the tipsters and their ids](done)
+[Display the tipster list on the frontend](done)
 [Implement show more tipsters]
+  - Show more comes in handy when you have so many tipsters
+  - How do you restrict the tipsters in the first place??
+  - Does it make sense to do pagination for the tipsters??
 [Implement filtering by tipster]
 [Allow for filter drop down to show clicked on item]
 [Implement filtering by odds and bookmaker]
+[Track filtering with mighty]

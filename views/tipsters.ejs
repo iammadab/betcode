@@ -4,9 +4,11 @@
 	</div>
 	<div class="tipsters">
 		<div class="tags">
-			<a href="#" class="tag">All</a>
+			<span class="tag tipster-tag active" data-id="">All</span>
       <% tipsters.forEach(tipster => { %>
-        <a href="#" class="tag"><%= tipster.fullname %></a>
+        <span href="#" class="tag tipster-tag" data-id="<%= tipster._id %>">
+            <%= tipster.fullname %>
+        </span>
       <% }) %>
 		</div>
 	</div>
