@@ -6,7 +6,6 @@ const home = async (req, res, next) => {
   
   const allPosts = (await postController.fetchAll({})).data
   const allTipsters = (await userController.verifiedTipsters()).data
-  console.log(allTipsters)
 
   req.pageData = Object.assign({}, req.pageData, {
     tips: allPosts,
