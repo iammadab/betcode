@@ -114,9 +114,17 @@ function filterTipster(event, element){
 function filterBookmaker(event, element){
   const bookmaker = element.innerText
   store.bookmakerDropDownDisplay.innerText = bookmaker == "All" ? "Bookmaker" : bookmaker
+  store.filter.bookmaker = bookmaker == "All" ? "" : bookmaker
 }
 
 function filterOdds(event, element){
+  
   const odds = element.innerText
   store.oddsDropDownDisplay.innerText = odds == "All" ? "Odds" : odds
+
+  console.log(element)
+  console.log(element.dataset)
+  store.filter.minOdds = element.dataset.minodds
+  store.filter.maxOdds = element.dataset.maxodds
+
 }

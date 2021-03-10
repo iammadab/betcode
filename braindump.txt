@@ -215,7 +215,7 @@ Let's see if we can hit this target!.
   - Does it make sense to do pagination for the tipsters??
 [Update tipster filter state on change](done)
 [Allow for filter drop down to show clicked on item](done)
-[Update bookmaker filter state on change]
-[Update odds filter state on change]
+[Update bookmaker filter state on change](done)
+[Update odds filter state on change](done)
 [Implement function to actually filter]
 [Track filtering with mighty]
