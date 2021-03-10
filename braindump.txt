@@ -185,7 +185,31 @@ The goals of today, handle state recovery, discovery and automatic account creat
   - At any point when I am updating the ptip array, I need to update the local storge version also
 [Implement filtering by tipster](done)
 [Implement filtering by bookmaker](done)
-[Implement filtering by odds]
+[Implement filtering by odds](done)
   - Want to use the format of min odds and max odds
   - Min should be 0, if not supplied, maximum cannot have a default value
-[Allow for filtering on the ui]
+
+Going to pause making discovery available on the ui for now, as the ui has not been finalized
+
+
+10/03/2021
+
+New update, the version 3 has to be finished in 4 days!
+What's left
+  - Filtering (today)
+  - Adding verified tipsters by their username (today)
+  - Verification system (tomorrow)
+  - Wallet system (tomorrow)
+  - Payment system (tomorrow)
+  - Conversion system (12/03/2021)
+  - Notification System (12/03/2021)
+  - Distribution (13/03/2021)
+
+Let's see if we can hit this target!.
+
+[Create a function to return a list of all the tipsters and their ids]
+[Display the tipster list on the frontend]
+[Implement show more tipsters]
+[Implement filtering by tipster]
+[Allow for filter drop down to show clicked on item]
+[Implement filtering by odds and bookmaker]
