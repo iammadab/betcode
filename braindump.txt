@@ -214,7 +214,7 @@ Let's see if we can hit this target!.
   - How do you restrict the tipsters in the first place??
   - Does it make sense to do pagination for the tipsters??
 [Update tipster filter state on change](done)
-[Allow for filter drop down to show clicked on item]
+[Allow for filter drop down to show clicked on item](done)
 [Update bookmaker filter state on change]
 [Update odds filter state on change]
 [Implement function to actually filter]

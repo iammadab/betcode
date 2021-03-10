@@ -3,6 +3,8 @@ const store = {
   moreButton: document.querySelector(".showmore.tips"),
   tips: document.querySelector("ul.tips"),
   tipsters: Array.from(document.querySelectorAll(".tipster-tag")),
+  bookmakerDropDownDisplay: document.querySelector(".bookmaker-display"),
+  oddsDropDownDisplay: document.querySelector(".odds-display"),
   filter: {
     tipster: "",
     bookmaker: "",
@@ -14,6 +16,16 @@ const store = {
 ;(function attachEvents(){
   addEvent([store.moreButton], "click", loadPosts)
   addEvent(store.tipsters, "click", filterTipster)
+  
+  // Bookmaker dropdown
+  const bookmakerDropDownElements = Array.from(document.querySelectorAll(".dropdown-item.bookmaker"))
+  addEvent(bookmakerDropDownElements, "click", filterBookmaker)
+
+  // Odds dropdown
+  const oddsDropDownElements = Array.from(document.querySelectorAll(".dropdown-item.odds"))
+  addEvent(oddsDropDownElements, "click", filterOdds)
+
+   
 })()
 
 const loadingButton = createButton(".showmore.tips", "SHOW MORE TIPS", "Loading...")
@@ -97,4 +109,14 @@ function filterTipster(event, element){
   // Add to the clicked element
   element.classList.add("active")
 
+}
+
+function filterBookmaker(event, element){
+  const bookmaker = element.innerText
+  store.bookmakerDropDownDisplay.innerText = bookmaker == "All" ? "Bookmaker" : bookmaker
+}
+
+function filterOdds(event, element){
+  const odds = element.innerText
+  store.oddsDropDownDisplay.innerText = odds == "All" ? "Odds" : odds
 }
