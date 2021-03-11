@@ -65,33 +65,6 @@ function loadPosts(){
     loadingButton("normal")
   }
 
-  function buildElement(post){
-    return `
-     <li data-id="${post._id}" class="hover">
-        <a href="/tip/${post._id}">
-
-          <div class="t_header">
-            <img src="${post.tipster.picture}" alt="${post.tipster.username}" />
-            <div class="t_details">
-              <h6>${post.tipster.username}</h6>
-              <span>${post.tipDate}</span>
-            </div>
-          </div>
-
-          <div class="t_main">
-            <p>${post.description}</p>
-            <div class="t_info">
-              <i class="far fa-bookmark"></i> <span>Odds</span> (${post.odds}) 
-            </div>
-            <div class="t_info">
-              <i class="far fa-comment-alt"></i><span>Discussions</span>(${post.comments})
-            </div>
-          </div>
-
-        </a>
-     </li>
-    `
-  }
 
 }
 
@@ -109,12 +82,17 @@ function filterTipster(event, element){
   // Add to the clicked element
   element.classList.add("active")
 
+  updateFilteredPost()
+
 }
 
 function filterBookmaker(event, element){
   const bookmaker = element.innerText
   store.bookmakerDropDownDisplay.innerText = bookmaker == "All" ? "Bookmaker" : bookmaker
   store.filter.bookmaker = bookmaker == "All" ? "" : bookmaker
+  
+  updateFilteredPost()
+
 }
 
 function filterOdds(event, element){
@@ -124,6 +102,8 @@ function filterOdds(event, element){
 
   store.filter.minOdds = element.dataset.minodds
   store.filter.maxOdds = element.dataset.maxodds
+
+  updateFilteredPost()
 
 }
 
@@ -141,4 +121,51 @@ function generatePostUrl(lastId = ""){
 
   return url
 
+}
+
+async function updateFilteredPost(){
+
+  const response = await api(generatePostUrl())
+
+  if(response.status != 200)
+    return
+
+  const posts = response.data
+
+  // Clear the tips
+  clearNode(store.tips)
+
+  // Build and insert each post
+  posts.forEach(post => {
+    store.tips.insertAdjacentHTML("beforeend", buildElement(post))
+  })
+
+}
+
+function buildElement(post){
+  return `
+   <li data-id="${post._id}" class="hover">
+      <a href="/tip/${post._id}">
+
+        <div class="t_header">
+          <img src="${post.tipster.picture}" alt="${post.tipster.username}" />
+          <div class="t_details">
+            <h6>${post.tipster.username}</h6>
+            <span>${post.tipDate}</span>
+          </div>
+        </div>
+
+        <div class="t_main">
+          <p>${post.description}</p>
+          <div class="t_info">
+            <i class="far fa-bookmark"></i> <span>Odds</span> (${post.odds}) 
+          </div>
+          <div class="t_info">
+            <i class="far fa-comment-alt"></i><span>Discussions</span>(${post.comments})
+          </div>
+        </div>
+
+      </a>
+   </li>
+  `
 }

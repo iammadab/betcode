@@ -222,7 +222,13 @@ Let's see if we can hit this target!.
 11/03/2021
 Already behind schedule.
 
-[Implement function to fetch based on filter]
-[Insert the fetched elements into the filter section]
-[Implement show more tips to work with the filter]
+[Implement function to fetch based on filter](done)
+[Insert the fetched elements into the filter section](done)
+[Implement show more tips to work with the filter](done)
+  - Filtering is done, the experience is not the best but it works quite well
+  - A loader might be needed, to show that filtering is happening
 [Track filtering with mighty]
+  - How do we track filtering?? What are the params we care about??
+  - What is the goal?
+[Fix the tweet to post bug when adding a new post under the same tweet]
+  - User element.insertAdjacentHTML("beforeend", html)

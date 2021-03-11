@@ -21,6 +21,7 @@
   addComma
   addCommaDecimal
   getFormInputs
+  clearNode
 */
 
 ;(function attachLogout(){
@@ -190,4 +191,11 @@ function getFormInputs(formTag = ""){
   return Array.from(
     document.querySelectorAll(`${formTag} input, ${formTag} textarea`)
   )
+}
+
+function clearNode(elem){
+  if(!elem) return
+  while(elem.firstChild){
+    elem.firstChild.remove()
+  }
 }
