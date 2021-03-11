@@ -248,3 +248,4 @@ Second phase done (i.e easily add new tipsters and track automatically)
 Next phase is to build a telegram lib to send messages
 
 [Build a library that can send telegram messages, given a chatId and message](done)
+[Implement telgram account grouping, to bulk send to a group of users](done)
