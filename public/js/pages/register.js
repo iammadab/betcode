@@ -2,7 +2,7 @@ const store = {
   registerButton: document.querySelector(".register-button"),
   registerFormTag: ".register-form",
   imageInput: document.querySelector("input[type=file]"),
-  loginLink: document.querySelector(".login-link")
+  loginLinks: Array.from(document.querySelectorAll(".login-element"))
 }
 
 ;(function attachEvents(){
@@ -22,9 +22,11 @@ function appendLogin(){
 
   if(!redirectUrl) return
 
-  if(!store.loginLink) return
+  if(!store.loginLinks || store.loginLinks.length == 0) return
 
-  store.loginLink.setAttribute("href", "/login?from=" + redirectUrl)
+  store.loginLinks.forEach(link => {
+    link.setAttribute("href", "/login?from=" + redirectUrl)
+  })
 
 }
 

@@ -271,3 +271,4 @@ Third phase done, next up is proper account verification
 
 Future task
 [Make sure all the pages can logout]
+[Fix terms and condition links]
