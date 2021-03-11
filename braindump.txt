@@ -256,6 +256,13 @@ Third phase done, next up is proper account verification
 [Show the correct account details on the home page](done)
 [Add wallet to model and display](done)
 [Fix register to work with new parameters](done)
+[Design verification flow](done)
+  - We have users currently, that are not verified
+  - Then we have new users that are not in the system at all
+  - On registration, we send you an otp, if you put in the correct one, you are verified
+  - For users that are already in the system
+    - We log everyone out, and on login we send an otp to their numbers
+    - While also giving the ability to change their whatsapp phone numbers
 [Build otp model]
 [Create endpoint to send an otp to a number]
 [Create an endpoint to verify an otp]
