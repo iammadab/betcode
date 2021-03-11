@@ -1592,3 +1592,7 @@ li[data-state="tweet-ptip"] .tweet_form,
   li[data-state="tweet-ptip"] .tweet_add{
     display: none;
   }
+
+.hide{
+  display: none;
+}

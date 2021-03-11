@@ -1,11 +1,13 @@
 <%- include ("meta.ejs") %>
 </head>
 <body>
+
 <article>
 	<%- include ("header.ejs", { page: "forgot" }) %>
-     <%- include("partials/verify.ejs") %>
+     <%- include("partials/verify.ejs", { display: "" }) %>
   <script src="/js/script.js"></script>
   <script src="/js/pages/login.js"></script>
 	<%- include ("footer.ejs") %>
 </article>
+
 <%- include ("end.ejs") %>
