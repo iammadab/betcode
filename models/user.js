@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   bio: { type: String, required: true },
   picture: { type: String },
   twitter: { type: String },
+  twitterId: { type: String },
   telegram: { type: String },
   verifiedTipster: { type: Boolean, default: false },
   tips: { type: Number, default: 0 }
