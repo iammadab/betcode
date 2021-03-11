@@ -238,7 +238,8 @@ Already behind schedule.
 First phase done (i.e filtering), next up verfied tipster from username
 
 [Explore getting a users details from their twitter profile](done)
-[Add a twitter property to the user model]
+[Add a twitter property to the user model](done)
+[Create a verifed tipster from their username]
 [Refactor application to have tipster details come from a sinlge place across application]
   - This includes the tweet to post section i.e knowing who to track e.t.c
   - We already have a database for the tipsters i.e user (verified users)

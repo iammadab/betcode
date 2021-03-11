@@ -14,6 +14,7 @@ const createUserValidator = joi.object({
   bio: joi.string().trim().required(),
   picture: joi.string().trim().empty("").default("/image/logo/user.png"),
   twitter: joi.string().trim(),
+  twitterId: joi.string().trim(),
   telegram: joi.string().trim()
 }).options({ abortEarly: false })
 
