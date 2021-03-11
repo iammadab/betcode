@@ -266,6 +266,7 @@ Third phase done, next up is proper account verification
 [Build otp model](done)
 [Create endpoint to send an otp to a number](done)
 [Create an endpoint to verify an otp](done)
+[Implement function that deletes all otp for a particular number](done)
 [Refactor register to make use of otp]
 
 

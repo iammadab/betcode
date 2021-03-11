@@ -19,8 +19,7 @@ exports.findOtp = async ({ phone, code }) => {
   
   try {
 
-    const otpObj = await Otp.findOne({ phone, code })
-    return otpObj
+    return await Otp.findOne({ phone, code })
 
   } catch(error){
 
@@ -29,3 +28,19 @@ exports.findOtp = async ({ phone, code }) => {
   }
 
 }
+
+exports.deleteOtpsFor = async ({ phone }) => {
+  
+  try {
+
+    return await Otp.deleteMany({ phone })
+
+  } catch(error){
+
+    return { error: true, code: "FAILED_TO_DELETE_OTPS" }
+
+  }
+
+}
+
+exports.deleteOtpsFor({phone: 09092268168 }).then(console.log)
