@@ -48,7 +48,7 @@ function loadPosts(){
 
   loadingButton()
 
-  api(`/post?lastId=${id}`)
+  api(generatePostUrl(id))
     .then(handleNewPosts)
     .catch(handleError)
 
@@ -122,9 +122,23 @@ function filterOdds(event, element){
   const odds = element.innerText
   store.oddsDropDownDisplay.innerText = odds == "All" ? "Odds" : odds
 
-  console.log(element)
-  console.log(element.dataset)
   store.filter.minOdds = element.dataset.minodds
   store.filter.maxOdds = element.dataset.maxodds
+
+}
+
+function generatePostUrl(lastId = ""){
+  // Based on the filter and the last id
+  // Generate the appropriate post fetch url
+ 
+  const paginationQuery = lastId ? `lastId=${lastId}&` : ""
+  const tipsterQuery = store.filter.tipster ? `tipster=${store.filter.tipster}&` : ""
+  const bookmakerQuery = store.filter.bookmaker ? `bookmaker=${store.filter.bookmaker}&` : ""
+  const minOddsQuery = store.filter.minOdds ? `minOdds=${store.filter.minOdds}&` : ""
+  const maxOddsQuery = store.filter.maxOdds ? `maxOdds=${store.filter.maxOdds}&` : ""
+
+  const url = `/post?${paginationQuery}${tipsterQuery}${bookmakerQuery}${minOddsQuery}${maxOddsQuery}`
+
+  return url
 
 }

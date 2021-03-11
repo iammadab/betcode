@@ -217,5 +217,12 @@ Let's see if we can hit this target!.
 [Allow for filter drop down to show clicked on item](done)
 [Update bookmaker filter state on change](done)
 [Update odds filter state on change](done)
-[Implement function to actually filter]
+
+
+11/03/2021
+Already behind schedule.
+
+[Implement function to fetch based on filter]
+[Insert the fetched elements into the filter section]
+[Implement show more tips to work with the filter]
 [Track filtering with mighty]
