@@ -243,3 +243,8 @@ First phase done (i.e filtering), next up verfied tipster from username
 [Create a user service to grab verified tipsters with tipster ids](done)
 [Make everything work as before but with the automatically generated tipsters](done)
 [Add the twitter ids to the production db and make sure usernames are the same](done)
+
+Second phase done (i.e easily add new tipsters and track automatically)
+Next phase is to build a telegram lib to send messages
+
+[Build a library that can send telegram messages, given a chatId and message]
