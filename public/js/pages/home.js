@@ -84,6 +84,11 @@ function filterTipster(event, element){
 
   updateFilteredPost()
 
+  mixpanel.track("Filter", {
+    type: "tipster",
+    url: generatePostUrl()
+  })
+
 }
 
 function filterBookmaker(event, element){
@@ -92,6 +97,11 @@ function filterBookmaker(event, element){
   store.filter.bookmaker = bookmaker == "All" ? "" : bookmaker
   
   updateFilteredPost()
+
+  mixpanel.track("Filter", {
+    type: "bookmaker",
+    url: generatePostUrl()
+  })
 
 }
 
@@ -104,6 +114,11 @@ function filterOdds(event, element){
   store.filter.maxOdds = element.dataset.maxodds
 
   updateFilteredPost()
+
+  mixpanel.track("Filter", {
+    type: "odds",
+    url: generatePostUrl()
+  })
 
 }
 
