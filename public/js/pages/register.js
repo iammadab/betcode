@@ -41,7 +41,7 @@ async function registerUser(event){
   const userDetails = extractForm(store.registerFormTag)
   const missingKeys = hasKeys(
     userDetails,
-    ["fullname", "username", "email", "phone", "password", "bio"]
+    ["fullname", "username", "email", "phone", "password"]
   )
 
   if(missingKeys.length > 0){
@@ -61,33 +61,14 @@ async function registerUser(event){
     return showAlert(".register-error", `Sorry, spaces are not allowed in usernames`)
   }
 
-  // Upload the image if it exists
-  let profileLink = ""
-
-  const file = store.imageInput.files
-
-  if(file[0]){
-    const formData = new FormData()
-    formData.append("file", file[0])
-  
-    const uploadData = 
-      await fetch("/api/upload", { method: "POST", body: formData })
-              .then(res => res.json())
-
-    console.log(uploadData)
-    if(uploadData.status == 200)
-      profileLink = uploadData.link
-  }
-
-
-  api("/user", { ...userDetails, phoneCode: "+234", picture: profileLink })
+  api("/user", { ...userDetails, phoneCode: "+234" })
     .then(handleRegistration)
 
 
   function handleRegistration(data){
 
     if(data.status == 200){
-      let toRedirect = "/", params = new URLSearchParams(window.location.search)
+      let toRedirect = "/home", params = new URLSearchParams(window.location.search)
       toRedirect = params.get("from") ? params.get("from") : toRedirect
       return redirect(toRedirect)
     }

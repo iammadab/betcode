@@ -255,7 +255,7 @@ Third phase done, next up is proper account verification
 [Make the logout button work](done)
 [Show the correct account details on the home page](done)
 [Add wallet to model and display](done)
-[Fix register to work with new parameters]
+[Fix register to work with new parameters](done)
 [Build otp model]
 [Create endpoint to send an otp to a number]
 [Create an endpoint to verify an otp]
