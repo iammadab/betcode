@@ -59,7 +59,7 @@ function loginUser(event){
   function handleLogin(data){
 
     if(data.status == 200){
-      let toRedirect = "/", params = new URLSearchParams(window.location.search)
+      let toRedirect = "/home", params = new URLSearchParams(window.location.search)
       toRedirect = params.get("from") ? params.get("from") : toRedirect
       return redirect(toRedirect)
     }

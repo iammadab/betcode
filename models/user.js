@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
   twitterId: { type: String },
   telegram: { type: String },
   verifiedTipster: { type: Boolean, default: false },
-  tips: { type: Number, default: 0 }
+  tips: { type: Number, default: 0 },
+  wallet: { type: Number, default: 0 }
 })
 
 const userModel = mongoose.model("User", userSchema)

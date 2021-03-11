@@ -33,7 +33,7 @@ const apiRouter = require("./routes")
 
 app.get(
 	"/", 
-  cookieMiddleware.maybeCookie(),
+  cookieMiddleware.cookieFound("/home"),
   tokenMiddleware.validateToken(),
   pageMiddleware.home,
   metaMiddleware.allTips,
@@ -124,14 +124,14 @@ app.get(
 
 app.get(
   "/login", 
-  cookieMiddleware.cookieFound("/"),
+  cookieMiddleware.cookieFound("/home"),
   metaMiddleware.login,
   (req, res) => res.render("login", { ...req.pageData })
 )
 
 app.get(
   "/forgot", 
-  cookieMiddleware.cookieFound("/"),
+  cookieMiddleware.cookieFound("/home"),
   metaMiddleware.login,
   (req, res) => res.render("forgot", { ...req.pageData })
 )
