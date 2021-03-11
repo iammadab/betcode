@@ -263,7 +263,7 @@ Third phase done, next up is proper account verification
   - For users that are already in the system
     - We log everyone out, and on login we send an otp to their numbers
     - While also giving the ability to change their whatsapp phone numbers
-[Build otp model]
+[Build otp model](done)
 [Create endpoint to send an otp to a number]
 [Create an endpoint to verify an otp]
 [Refactor register to make use of otp]
