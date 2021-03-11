@@ -44,11 +44,13 @@ app.get(
 
 app.get(
   "/home", 
-  cookieMiddleware.maybeCookie(),
+  cookieMiddleware.cookieNotFound("/login"),
   tokenMiddleware.validateToken(),
   pageMiddleware.home,
   metaMiddleware.allTips,
   (req, res) => {
+    //console.log(req.pageData)
+    console.log("Page starting")
     res.render("home", { ...req.pageData })
   }
 )

@@ -43,6 +43,8 @@ const tipsters = {
   const ids = Object.values(tipsters).join(",")
   const tags = Object.keys(tipsters).map(v => v.toLowerCase())
   console.log(ids)
+  console.log(tags)
+  console.log(tags.length)
 
   // Twitter bot
   const twit = require("twit")

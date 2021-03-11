@@ -242,3 +242,4 @@ First phase done (i.e filtering), next up verfied tipster from username
 [Create a verifed tipster from their username](done)
 [Create a user service to grab verified tipsters with tipster ids](done)
 [Make everything work as before but with the automatically generated tipsters](done)
+[Add the twitter ids to the production db and make sure usernames are the same](done)
