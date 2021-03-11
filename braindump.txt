@@ -227,8 +227,10 @@ Already behind schedule.
 [Implement show more tips to work with the filter](done)
   - Filtering is done, the experience is not the best but it works quite well
   - A loader might be needed, to show that filtering is happening
-[Track filtering with mighty]
+[Track filtering with mighty](done)
   - How do we track filtering?? What are the params we care about??
   - What is the goal?
+  - The idea is to know if people are making use of the feature, and what exactly are they filtering based on
+  - We should track the type of filtering, and the query
 [Fix the tweet to post bug when adding a new post under the same tweet]
   - User element.insertAdjacentHTML("beforeend", html)
