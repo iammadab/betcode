@@ -104,7 +104,7 @@ function attachEvents(){
     elem.addEventListener("click", event => { 
       const id = elem.dataset.id
       const container = document.querySelector(`.form-container[data-id='${id}']`)
-      container.innerHTML += makePostForm(id)
+      container.insertAdjacentHTML("beforeend", makePostForm(id))
     })
   })
 }
