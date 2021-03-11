@@ -247,4 +247,4 @@ First phase done (i.e filtering), next up verfied tipster from username
 Second phase done (i.e easily add new tipsters and track automatically)
 Next phase is to build a telegram lib to send messages
 
-[Build a library that can send telegram messages, given a chatId and message]
+[Build a library that can send telegram messages, given a chatId and message](done)
