@@ -39,10 +39,11 @@ function run(){
     if(userCreateResponse.status != 200)
       return console.log("Failed to create user")
 
-    const user = userCreateResponse.user
-    console.log(user)
+    let user = userCreateResponse.user
+    console.(user)
     user.verifiedTipster = true
-    await user.save()
+    user = await user.save()
+    console.log(user)
 
     console.log(`${data.screen_name} account created`)
 
