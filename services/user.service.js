@@ -95,6 +95,20 @@ exports.fetchAllVerifiedTipsters = async () => {
 
 }
 
+exports.fetchAllTwitterTipsters = async () => {
+  
+  try {
+
+    return User.find({ verifiedTipster: true, twitterId: { $in: [/\S/] } })
+
+  } catch(error){
+
+    return { error: true, code: "ERROR_FETCHING_TWITTER_TIPSTERS" }
+
+  }
+
+}
+
 exports.normalizeUsers = users => {
   return users.map(exports.normalizeUser)
 }

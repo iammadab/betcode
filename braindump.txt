@@ -239,9 +239,6 @@ First phase done (i.e filtering), next up verfied tipster from username
 
 [Explore getting a users details from their twitter profile](done)
 [Add a twitter property to the user model](done)
-[Create a verifed tipster from their username]
-[Refactor application to have tipster details come from a sinlge place across application]
-  - This includes the tweet to post section i.e knowing who to track e.t.c
-  - We already have a database for the tipsters i.e user (verified users)
-  - The main motivation behind this was to make sure the twitter username of the tipster is the same as their account name on our platform
-[Create an api endpoint that takes a twitter name and creates the profile]
+[Create a verifed tipster from their username](done)
+[Create a user service to grab verified tipsters with tipster ids](done)
+[Make everything work as before but with the automatically generated tipsters](done)
