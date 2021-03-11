@@ -78,6 +78,17 @@ app.get(
 )
 
 app.get(
+  "/alert", 
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  pageMiddleware.home,
+  metaMiddleware.allTips,
+  (req, res) => {
+    res.render("alert", { ...req.pageData })
+  }
+)
+
+app.get(
   "/code", 
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
