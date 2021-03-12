@@ -61,6 +61,15 @@ async function registerUser(event){
     return showAlert(".register-error", `Sorry, spaces are not allowed in usernames`)
   }
 
+  api("/otp/", { phone: userDetails.phone })
+    .then(handleOtpCreation)
+
+  function handleOtpCreation(){
+    showVerifySection()
+  }
+
+
+  /*
   api("/user", { ...userDetails, phoneCode: "+234" })
     .then(handleRegistration)
 
@@ -84,6 +93,8 @@ async function registerUser(event){
       return showAlert(".register-error", "Something went wrong, try again later or contact support")
 
   }
+
+  */
       
 }
 
@@ -97,4 +108,15 @@ function validUsername(username){
   if(trimmedUsername.indexOf(" ") > -1 )
     return false
   return true
+}
+
+function showVerifySection(){
+  const verifySection = document.querySelector(".verify-section")
+  const registerSection = document.querySelector(".register-section")
+
+  if(verifySection)
+    verifySection.classList.remove("hide")
+
+  if(registerSection)
+    registerSection.classList.add("hide")
 }

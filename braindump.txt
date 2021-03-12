@@ -267,11 +267,21 @@ Third phase done, next up is proper account verification
 [Create endpoint to send an otp to a number](done)
 [Create an endpoint to verify an otp](done)
 [Implement function that deletes all otp for a particular number](done)
-[Add the verify page in register]
-[Hide the verify page in register]
-[Implement method to toggle between them]
-[On register, create and otp then toogle]
+[Add the verify page in register](done)
+[Hide the verify page in register](done)
+[Implement method to toggle between them](done)
 
+12/03/2021
+[Create function to toggle verification screen](done)
+[On register, create an otp](done)
+[Create a dedicated api to check if a username exists]
+[Create a dedicated api to check if an email exists]
+[Create a dedicated api to check if a phone number exists]
+[On register, make all the checks and show appropriate errors if need be]
+[If no errors, create otp and switch to verification]
+[Verify otp is correct]
+[Depending on the result, display the appropriate message]
+[Implement countdown, to prevent otp creation spamming]
 
 
 

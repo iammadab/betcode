@@ -33,7 +33,7 @@ const apiRouter = require("./routes")
 
 app.get(
 	"/", 
-  cookieMiddleware.cookieFound("/home"),
+  cookieMiddleware.maybeCookie("/home"),
   tokenMiddleware.validateToken(),
   pageMiddleware.home,
   metaMiddleware.allTips,

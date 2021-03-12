@@ -42,5 +42,3 @@ exports.deleteOtpsFor = async ({ phone }) => {
   }
 
 }
-
-exports.deleteOtpsFor({phone: 09092268168 }).then(console.log)
