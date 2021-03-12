@@ -4,9 +4,17 @@
       <div class="title">
         <h6>Verify Account</h6>
       </div>
-      <form class="login login-form" autocomplete="off">
 
-        <div class="hide change-number-section">
+        <div class="login login-form hide change-number-section">
+
+          <div id="success" style="display: none" class="register-success alert alert-success" role="alert">
+            Tip posted and you can copy share link below
+          </div>
+
+          <div id="error" style="display: none" class="register-error alert alert-danger" role="alert">
+            Tip posted unsuccessfully, please try again later 
+          </div>
+
           <div class="form-group">
             <input class="form-control form-control-lg" name="whatsapp" type="text" placeholder="Enter WhatsApp Number">
           </div>
@@ -24,14 +32,23 @@
           <div class="ortxt">Need support? <a href="#" class="register-link">Click here</a></div>
         </div>
 
-        <div class="enter-otp-section">
+        <div class="login login-form enter-otp-section">
+
+          <div id="success" style="display: none" class="verify-success alert alert-success" role="alert">
+            Tip posted and you can copy share link below
+          </div>
+
+          <div id="error" style="display: none" class="verify-error alert alert-danger" role="alert">
+            Tip posted unsuccessfully, please try again later 
+          </div>
+
           <div class="form-group">
-            <input class="form-control form-control-lg" name="whatsapp" type="text" placeholder="Enter OTP">
+            <input class="form-control form-control-lg otp-input" name="whatsapp" type="text" placeholder="Enter OTP">
           </div>
           <div class="form-group" align="center">
-            <button id="submit" type="submit" class="login-button btn btn-book">
-                      <span class="login-text">Complete Registration</span>
-                  </button>
+            <button class="complete-registration-button login-button btn btn-book">
+                <span class="login-text">Complete Registration</span>
+            </button>
           </div>
           <div class="terms">Didn't get OTP sent to 0908****13? Resend in 
             <a href="#">30 seconds</a>
@@ -44,7 +61,6 @@
           <div class="ortxt">Change your WhatsApp number <a href="#" class="change-number-link register-link">here</a></div>
         </div>
 
-      </form>
     </div>
   </div>
 </div>

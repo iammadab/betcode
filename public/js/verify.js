@@ -1,7 +1,9 @@
 let verificationStore = {
   changeNumberSection: document.querySelector(".verify-section .change-number-section"),
   enterOtpSection: document.querySelector(".verify-section .enter-otp-section"),
-  changeNumberLink: document.querySelector(".verify-section .change-number-link")
+  changeNumberLink: document.querySelector(".verify-section .change-number-link"),
+  completeRegistrationButton: document.querySelector(".verify-section .complete-registration-button"),
+  otpInput: document.querySelector(".verify-section .otp-input")
 }
 
 ;(function attachEvents(){

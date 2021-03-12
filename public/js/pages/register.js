@@ -1,4 +1,5 @@
 const store = {
+  userDetails: {},
   registerButton: document.querySelector(".register-button"),
   registerFormTag: ".register-form",
   imageInput: document.querySelector("input[type=file]"),
@@ -13,6 +14,7 @@ const store = {
     "input,focus",
     () => hideAlert(".register-error")
   )
+  addEvent([verificationStore.completeRegistrationButton], "click", verifyOtp)
 })()
 
 function appendLogin(){
@@ -38,7 +40,7 @@ async function registerUser(event){
   event.preventDefault()
   registerText()
 
-  const userDetails = extractForm(store.registerFormTag)
+  const userDetails = store.userDetails = extractForm(store.registerFormTag)
   const missingKeys = hasKeys(
     userDetails,
     ["fullname", "username", "email", "phone", "password"]
@@ -70,7 +72,7 @@ async function registerUser(event){
     registerText("normal")
 
     // Create otp for the user
-    //const otpCreationResponse = await api(`/kkj
+    const otpCreationResponse = await api("/otp", { phone: userDetails.phone })
 
   }
 
@@ -147,4 +149,17 @@ function showVerifySection(){
 
   if(registerSection)
     registerSection.classList.add("hide")
+}
+
+async function verifyOtp(event){
+  event.preventDefault()
+
+  const otp = verificationStore.otpInput.value
+  console.log(otp)
+
+  const phone = store.userDetails.phone
+  console.log(phone)
+
+  const verifyOtpResponse = await api("otp/verify", { phone, code: otp })
+  console.log(verifyOtpResponse)
 }
