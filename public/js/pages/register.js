@@ -162,4 +162,9 @@ async function verifyOtp(event){
 
   const verifyOtpResponse = await api("otp/verify", { phone, code: otp })
   console.log(verifyOtpResponse)
+
+  if(verifyOtpResponse.status != 200)
+    return showAlert(".verify-error", `Invalid code`)
+
+  showAlert(".verify-success", "Verification Successful")
 }

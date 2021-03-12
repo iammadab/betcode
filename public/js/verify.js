@@ -3,12 +3,16 @@ let verificationStore = {
   enterOtpSection: document.querySelector(".verify-section .enter-otp-section"),
   changeNumberLink: document.querySelector(".verify-section .change-number-link"),
   completeRegistrationButton: document.querySelector(".verify-section .complete-registration-button"),
-  otpInput: document.querySelector(".verify-section .otp-input")
+  otpInput: document.querySelector(".verify-section .otp-input"),
+  allInputs: Array.from(document.querySelectorAll(".verify-section input"))
 }
 
 ;(function attachEvents(){
   
   addEvent([verificationStore.changeNumberLink], "click", showChangeNumberSection)
+  addEvent(verificationStore.allInputs, "input,focus", () => {
+    [".verify-error", ".verify-success"].map(hideAlert)
+  })
 
 })()
 
