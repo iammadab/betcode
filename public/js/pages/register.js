@@ -64,10 +64,37 @@ async function registerUser(event){
   api("/otp/", { phone: userDetails.phone })
     .then(handleOtpCreation)
 
-  function handleOtpCreation(){
-    showVerifySection()
+  async function handleOtpCreation(){
+    
+    await verifyUniqueDetails()
+    registerText("normal")
+
+    // Create otp for the user
+    //const otpCreationResponse = await api(`/kkj
+
   }
 
+  async function verifyUniqueDetails(){
+
+      
+    // Verify username
+    const uniqueUsernameResponse = await api(`/user/exists/username/${userDetails.username}`)
+    if(uniqueUsernameResponse.status != 200)
+      return showAlert(".register-error", `Sorry, that username is already taken`)
+
+    // Verify email
+    const uniqueEmailResponse = await api(`/user/exists/email/${userDetails.email}`)
+    if(uniqueEmailResponse.status != 200)
+      return showAlert(".register-error", `Sorry, that email is already taken`)
+
+    // Verify phonw
+    const uniquePhoneResponse = await api(`/user/exists/phone/${userDetails.phone}`)
+    if(uniquePhoneResponse.status != 200)
+      return showAlert(".register-error", `Sorry, that phone number is already taken`)
+
+    showVerifySection()
+
+  }
 
   /*
   api("/user", { ...userDetails, phoneCode: "+234" })
@@ -109,6 +136,7 @@ function validUsername(username){
     return false
   return true
 }
+
 
 function showVerifySection(){
   const verifySection = document.querySelector(".verify-section")
