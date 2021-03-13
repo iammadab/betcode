@@ -22,6 +22,7 @@ let verificationStore = {
   })
   addEvent([verificationStore.completeRegistrationButton], "click", verifyOtp)
   addEvent([verificationStore.resendOtpButton], "click", resendOtp)
+  addEvent([verificationStore.changeNumberButton], "click", changeNumber)
 
 })()
 
@@ -46,6 +47,23 @@ function resendOtp(){
   api("/otp/", { token: getToken() })
     .then(startTimer)
 
+}
+
+function changeNumber(){
+  const number = verificationStore.changeNumberInput.value
+
+  api("/user/update", { token: getToken(), phone: number })
+    .then(handleResponse)
+
+  function handleResponse(response){
+
+    if(response.status == 200)
+      return redirect("/verify")
+
+    else if(response.code == "USER_EXISTS")
+      return showAlert(".change-number-error", "An account with that phone number already exists")
+
+  }
 }
 
 function showChangeNumberSection(event){
