@@ -7,7 +7,7 @@ const updateUserValidator = joi.object({
   username: joi.string().trim().lowercase().required(),
   email: joi.string().trim().email().lowercase().required(),
   phone: joi.string().trim().required(),
-  bio: joi.string().trim().required(),
+  bio: joi.string().trim(),
   picture: joi.string().trim(),
   twitter: joi.string().trim(),
   telegram: joi.string().trim()

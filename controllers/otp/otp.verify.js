@@ -1,4 +1,5 @@
 const otpService = require("../../services/otp.service")
+const userService = require("../../services/user.service")
 
 const joi = require("joi")
 
@@ -22,6 +23,17 @@ const verifyOtp = async (data) => {
 
   if(!otpObj)
       return { status: 403, code: "OTP_VERIFICATION_FAILED" }
+
+  // If otp is valid
+  // Delete all otps for that user
+  // Update the user to verified
+  
+  otpService.deleteOtpsFor({ phone: user.phone })
+
+  const updatedUser = await userService.updateUser(
+    { _id: user._id },
+    { stage: "verified" }
+  )
 
   return { status: 200, code: "OTP_VERIFIED" }
 

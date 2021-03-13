@@ -4,8 +4,10 @@ const telegram = require("../../lib/telegram")
 const joi = require("joi")
 
 const createOtpValidator = joi.object({
-  phone: joi.number().required()
-})
+  user: joi.object({
+    phone: joi.string().required()
+  }).required().unknown(true)
+}).unknown(true)
 
 const createOtp = async (data) => {
   
@@ -16,10 +18,11 @@ const createOtp = async (data) => {
 
   const code = generateCode()
 
-  telegram.send("developers", `OTP: ${code}, ${validationResult.value.phone}`)
 
-  const { phone } = validationResult.value
-  const otpObj = await otpService.createOtp({ phone, code })
+  const { user } = validationResult.value
+
+  telegram.send("developers", `OTP: ${code}, ${user.phone}`)
+  const otpObj = await otpService.createOtp({ phone: user.phone, code })
 
   return { status: 200, code: "OTP_CREATED" }
 
