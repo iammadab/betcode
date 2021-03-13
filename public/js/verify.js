@@ -6,14 +6,16 @@ let verificationStore = {
   otpInput: document.querySelector(".verify-section .otp-input"),
   allInputs: Array.from(document.querySelectorAll(".verify-section input")),
   resendOtpButton: document.querySelector(".resend-otp"),
-  otpTimer: document.querySelector(".otp-timer")
+  otpTimer: document.querySelector(".otp-timer"),
+  changeNumberInput: document.querySelector(".change-number-input"),
+  changeNumberButton: document.querySelector(".change-number-button")
 }
 
 ;(function attachEvents(){
   
   addEvent([verificationStore.changeNumberLink], "click", showChangeNumberSection)
   addEvent(verificationStore.allInputs, "input,focus", () => {
-    [".verify-error", ".verify-success"].map(hideAlert)
+    [".verify-error", ".verify-success", ".change-number-error", ".change-number-success"].map(hideAlert)
   })
 
 })()

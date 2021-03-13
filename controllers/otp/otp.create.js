@@ -16,7 +16,7 @@ const createOtp = async (data) => {
 
   const code = generateCode()
 
-  telegram.send("developers", `OTP: ${code}`)
+  telegram.send("developers", `OTP: ${code}, ${validationResult.value.phone}`)
 
   const { phone } = validationResult.value
   const otpObj = await otpService.createOtp({ phone, code })

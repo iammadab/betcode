@@ -300,6 +300,8 @@ Third phase done, next up is proper account verification
   - Then tie features like free credits, to "you must have a verifiedPhone"
   - Also puting the default otp in an env file will keep it safe
 [Register the user if their otp verification is successful](done)
+[On register, if a user submits their whatsapp number, change their details and resend an otp]
+
 
 
 

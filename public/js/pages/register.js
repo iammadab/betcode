@@ -16,6 +16,7 @@ const store = {
   )
   addEvent([verificationStore.completeRegistrationButton], "click", verifyOtp)
   addEvent([verificationStore.resendOtpButton], "click", sendOtp)
+  addEvent([verificationStore.changeNumberButton], "click", changeNumber)
 })()
 
 function appendLogin(){
@@ -63,24 +64,11 @@ async function registerUser(event){
     registerText("normal")
     return showAlert(".register-error", `Sorry, spaces are not allowed in usernames`)
   }
-
-  api("/otp/", { phone: userDetails.phone })
-    .then(handleOtpCreation)
-
-  async function handleOtpCreation(){
-    
-    await verifyUniqueDetails()
-    registerText("normal")
-
-    // Create otp for the user
-    sendOtp()
-
-
-
-  }
+  
+  verifyUniqueDetails()
+  registerText("normal")
 
   async function verifyUniqueDetails(){
-
       
     // Verify username
     const uniqueUsernameResponse = await api(`/user/exists/username/${userDetails.username}`)
@@ -98,6 +86,7 @@ async function registerUser(event){
       return showAlert(".register-error", `Sorry, that phone number is already taken`)
 
     showVerifySection()
+    sendOtp()
 
   }
 
@@ -189,3 +178,22 @@ function register(){
   }
 
 }
+
+async function changeNumber(){
+
+  const number = verificationStore.changeNumberInput.value
+
+  if(!number)
+    return showAlert(".change-number-error", "Sorry, you didn't enter a number")
+
+  store.userDetails.phone = number
+
+  // Verify phonw
+  const uniquePhoneResponse = await api(`/user/exists/phone/${store.userDetails.phone}`)
+  if(uniquePhoneResponse.status != 200)
+    return showAlert(".change-number-error", `Sorry, that phone number is already taken`)
+
+  sendOtp()
+  showOtpSection()
+
+} 
