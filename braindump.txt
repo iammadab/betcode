@@ -323,6 +323,8 @@ Let's begin
   - Want to see if there is a way I can modify this to allow for certain fields
 [Implement an api that allows a user to change their phone number](done)
 [Implement phone number change on the frontend](done)
+[Convert the verification sections to forms](done)
+[Fix change number button changing to login](done)
 
 
 

@@ -5,7 +5,7 @@
         <h6>Verify Account</h6>
       </div>
 
-        <div class="login login-form hide change-number-section">
+        <form class="login login-form hide change-number-section">
 
           <div id="success" style="display: none" class="change-number-success alert alert-success" role="alert">
             Tip posted and you can copy share link below
@@ -20,7 +20,7 @@
           </div>
           <div class="form-group" align="center">
             <button id="submit" type="submit" class="change-number-button login-button btn btn-book">
-                <span class="login-text">Change</span>
+                <span class="change-number-text">Change Number</span>
             </button>
           </div>
           <div class="divider">
@@ -30,9 +30,9 @@
           </div>
 
           <div class="ortxt">Need support? <a href="#" class="register-link">Click here</a></div>
-        </div>
+        </form>
 
-        <div class="login login-form enter-otp-section">
+        <form class="login login-form enter-otp-section">
 
           <div id="success" style="display: none" class="verify-success alert alert-success" role="alert">
             Tip posted and you can copy share link below
@@ -47,7 +47,7 @@
           </div>
           <div class="form-group" align="center">
             <button class="complete-registration-button login-button btn btn-book">
-                <span class="login-text">Complete Registration</span>
+                <span class="verify-text">Complete Registration</span>
             </button>
           </div>
           <div class="terms">Didn't get OTP sent to <%= hiddenNumber %>? Resend
@@ -60,7 +60,7 @@
             <span></span>
           </div>
           <div class="ortxt">Change your WhatsApp number <a href="#" class="change-number-link register-link">here</a></div>
-        </div>
+        </form>
 
     </div>
   </div>

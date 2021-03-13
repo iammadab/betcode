@@ -26,7 +26,11 @@ let verificationStore = {
 
 })()
 
+const verifyButton = createButton(".verify-text", "Complete Registration", "Verifying...")
+
 function verifyOtp(){
+
+  verifyButton()
 
   const code = verificationStore.otpInput.value
 
@@ -34,10 +38,14 @@ function verifyOtp(){
     .then(handleResponse)
 
   function handleResponse(response){
+
+    verifyButton("normal")
+
     if(response.status == 200)
       return redirect("/home")
     else
       showAlert(".verify-error", "Invalid Otp")
+
   }
 
 }
@@ -49,13 +57,20 @@ function resendOtp(){
 
 }
 
+const changeButton = createButton(".change-number-text", "Change Number", "Updating...")
+
 function changeNumber(){
+
+  changeButton()
+
   const number = verificationStore.changeNumberInput.value
 
   api("/user/update", { token: getToken(), phone: number })
     .then(handleResponse)
 
   function handleResponse(response){
+
+    changeButton("normal")
 
     if(response.status == 200)
       return redirect("/verify")
