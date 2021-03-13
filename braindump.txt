@@ -313,8 +313,14 @@ Let's begin
 [Implement an api that verifies a user, via otp mechanism](done)
 [Implement an api that sends otp via token](done)
 [Implement the verification on the frontend](done)
-[Reimplement the resend button]
-[Reimplement the countdown timer]
+[Reimplement the resend button](done)
+[Reimplement the countdown timer](done)
+[Create an asterik view of the number](done)
+  - The goal is to turn a number like 09092268168 to 0909****68
+  - Is there an accepted standard for things like this??
+[Figure out how to update a users phone number]
+  - Currently, there is an api that does this, but it requires certain field
+  - Want to see if there is a way I can modify this to allow for certain fields
 [Implement an api that allows a user to change their phone number]
 
 

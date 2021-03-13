@@ -7,7 +7,8 @@ const verifyNumber = async (req, res, next) => {
   otpController.createOtp({ user })
 
   req.pageData = Object.assign({}, req.pageData, {
-    user
+    user,
+    hiddenNumber: numberToAsterik(user.phone)
   })
 
   next()
@@ -15,3 +16,8 @@ const verifyNumber = async (req, res, next) => {
 }
 
 module.exports = verifyNumber
+
+function numberToAsterik(number){
+  const numberString = String(number)
+  return numberString.slice(0, 4) + numberString.slice(2).replace(/.(?=...)/g, "*")
+}
