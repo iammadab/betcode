@@ -78,7 +78,6 @@ const createUser = async (data) => {
 
   // Create the user
   const user = await userService.createUser({ ...userDetails, password: passwordHash })
-  console.log(user)
 
   if(!user || user.error)
     return { status: 500, code: "ERROR_CREATING_USER" }

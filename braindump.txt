@@ -306,8 +306,8 @@ The entire application still feels off by a lot, might be better to just allow p
 Let's begin
 
 [Add a stage parameter to each user](done)
-[Remove otp from registration]
-[On register, set the parameter to equal unverified]
+[Remove otp from registration](done)
+[On register, set the parameter to equal unverified](done)
 [Create a stage router that forces unverified users to the verify page]
 [Implement an api that verifies a user, via otp mechanism]
 [Implement an api that allows a user to change their phone number]
