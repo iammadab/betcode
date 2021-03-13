@@ -300,7 +300,18 @@ Third phase done, next up is proper account verification
   - Then tie features like free credits, to "you must have a verifiedPhone"
   - Also puting the default otp in an env file will keep it safe
 [Register the user if their otp verification is successful](done)
-[On register, if a user submits their whatsapp number, change their details and resend an otp]
+[On register, if a user submits their whatsapp number, change their details and resend an otp](done)
+
+The entire application still feels off by a lot, might be better to just allow people register but be unverified as akin suggested, this will make it a lot more simple
+Let's begin
+
+[Add a stage parameter to each user]
+[Remove otp from registration]
+[On register, set the parameter to equal unverified]
+[Create a stage router that forces unverified users to the verify page]
+[Implement an api that verifies a user, via otp mechanism]
+[Implement an api that allows a user to change their phone number]
+[Implement the verification on the frontend]
 
 
 

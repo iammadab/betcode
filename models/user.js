@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   phoneCode: { type: String, required: true },
   phone: { type: String, required: true },
   password: { type: String, required: true },
+  stage: { type: String, default: "unverified", enum: [ "unverified", "verified" ] },
   bio: { type: String },
   picture: { type: String },
   twitter: { type: String },
