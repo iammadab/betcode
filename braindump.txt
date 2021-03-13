@@ -309,6 +309,7 @@ Let's begin
 [Remove otp from registration](done)
 [On register, set the parameter to equal unverified](done)
 [Create a stage router that forces unverified users to the verify page](done)
+[Send an otp to the user when they hit the verify page]
 [Implement an api that verifies a user, via otp mechanism]
 [Implement an api that allows a user to change their phone number]
 [Implement the verification on the frontend]
