@@ -15,7 +15,7 @@ const T = new twit({
 
 function run(){
 
-  T.get("/users/lookup", { screen_name: "lifeofadunni" }, async (error, data, response) => {
+  T.get("/users/lookup", { screen_name: "pbtips_" }, async (error, data, response) => {
     if(error){
       console.log(error)
       return
@@ -32,7 +32,8 @@ function run(){
       password: "password",
       bio: data.description,
       picture: data.profile_image_url_https,
-      twitterId: data.id_str
+      twitterId: data.id_str,
+      otp: process.env.DEFAULT_OTP
     }
 
     const userCreateResponse = await userController.createUser(userData)
@@ -40,7 +41,7 @@ function run(){
       return console.log("Failed to create user")
 
     let user = userCreateResponse.user
-    console.(user)
+    console.log(user)
     user.verifiedTipster = true
     user = await user.save()
     console.log(user)

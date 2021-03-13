@@ -101,10 +101,6 @@ async function registerUser(event){
 
   }
 
-  /*
-
-  */
-      
 }
 
 function validEmail(email) {
@@ -135,13 +131,10 @@ async function verifyOtp(event){
   event.preventDefault()
 
   const otp = store.userDetails.otp = verificationStore.otpInput.value
-  console.log(otp)
 
   const phone = store.userDetails.phone
-  console.log(phone)
 
   const verifyOtpResponse = await api("otp/verify", { phone, code: otp })
-  console.log(verifyOtpResponse)
 
   if(verifyOtpResponse.status != 200)
     return showAlert(".verify-error", `Invalid code`)
