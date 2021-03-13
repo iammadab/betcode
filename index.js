@@ -148,6 +148,7 @@ app.get(
   cookieMiddleware.cookieNotFound("/login"),
   tokenMiddleware.validateToken(),
   stageRouter("unverified"),
+  pageMiddleware.verifyNumber,
   metaMiddleware.login,
   (req, res) => res.render("verify", { ...req.pageData })
 )
