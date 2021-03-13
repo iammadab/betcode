@@ -41,7 +41,7 @@ display:none;
 font-weight:600;
 }
 
-.btn:focus, .code .btn:active{
+.btn:focus{
 box-shadow: none;
 }
 
@@ -777,8 +777,18 @@ margin:0 0 2.5rem;
 .betcodes .divider{
 margin:0;
 line-height:0;
-padding-bottom:1rem;	
+padding-bottom:1rem;
 }
+
+.betcodes .alert{
+margin:0.5rem 0 0;	
+}
+
+/*.betcodes .ortxt{
+margin:2rem 0 0;
+line-height:0;
+color:#666;
+}*/
 
 
 .betcodes input, .betcodes select{
@@ -819,7 +829,7 @@ background-color:#fff;
 }
 
 .betcodes .btn{
-margin:1rem 0 0;
+margin:0.5rem 0 0;
 width:100%;
 text-transform:capitalize;	
 }
@@ -854,25 +864,25 @@ color:#fff;
 }
 
 /*Booking code section*/
-.codes{
+.alerts{
 padding:0 0;	
 }
-.codes li{
+.alerts li{
 border-bottom:1px solid #e1e1e1;
 display:inline-block;
 width:100%;
 padding:0.5rem 0.75rem;	
 }
-.codes li:last-child{
+.alerts li:last-child{
 border-bottom:0;
 padding-bottom:0.25rem;	
 }
 
-.codes li a:hover{
+.alerts li a:hover{
 text-decoration:none;	
 }
 
-.code-main{
+.alert-main{
 display:flex;
 flex-direction:row;
 justify-content:space-between;
@@ -880,29 +890,20 @@ padding:0;
 font-size:1rem;	
 }
 
-.code-main span{
+.alert-main i{	
+color:#bbb;
+margin-top:0.5rem;
+}
+
+.alert-main span{
 color:#333;	
 }
 
-.code-main b{
-font-weight:400;
-}
-
-.code-bottom{
-display:flex;
-flex-direction:row;
-justify-content:space-between;	
-}
-
-.code-sub{
+.alert-bottom{
 display:flex;
 flex-direction:column;
 justify-content:flex-start;
 margin:0;
-}
-
-.code-bottom i{	
-color:#bbb;
 }
 
 .time{
@@ -912,18 +913,19 @@ margin:0;
 }
 
 .status{
-padding:0 0.5rem;
+padding:0.15rem 0.5rem;
 border-radius:0.3rem;
 font-size:0.75rem;
-margin:0.2rem 0 0.1rem;
+line-height:1rem;
+margin:0;
 align-self:flex-start;
 text-transform:capitalize;
 }
 
-.pending{
+/*.pending{
 background:rgba(255,215,0,0.6);
 color:#000;	
-}
+}*/
 
 .done{
 background:rgba(65,149,0,0.8);	
@@ -941,51 +943,6 @@ color:#000;
 }
 
 
-.code{
-padding:0.5rem 0.75rem;	
-}
-
-
-.code-single{
-display:flex;
-flex-direction:row;
-justify-content:space-between;
-color:#333;
-padding:0.5rem 0;
-}
-
-.code-single span{
-font-size:1rem;	
-}
-
-
-.code-single .btn{
-border:1px solid #ccc;
-font-size:0.75rem;
-text-transform:uppercase;
-}
-
-
-.code-single .status{
-margin:0;
-font-size:0.9rem;	
-}
-
-.code-single .time{
-margin:0;	
-}
-
-.code .alert{
-margin:0.5rem 0 0;	
-}
-
-.code .betcodes{
-margin:1rem 0;	
-}
-
-.code .ortxt{
-margin:1rem 0;	
-}
 
 
 
@@ -1319,6 +1276,10 @@ color:#000;
 .alert-danger{
 background-color: #fdb9a7;
 border:0;
+color:#000;	
+}
+
+.alert-info{
 color:#000;	
 }
 
