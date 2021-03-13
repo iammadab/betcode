@@ -4,7 +4,7 @@ const verifyNumber = async (req, res, next) => {
   
   const user = req.body.user
 
-  otpController.createOtp({ phone: user.phone })
+  otpController.createOtp({ user })
 
   req.pageData = Object.assign({}, req.pageData, {
     user

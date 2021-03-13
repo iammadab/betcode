@@ -14,9 +14,6 @@ const store = {
     "input,focus",
     () => hideAlert(".register-error")
   )
-  addEvent([verificationStore.completeRegistrationButton], "click", verifyOtp)
-  addEvent([verificationStore.resendOtpButton], "click", sendOtp)
-  addEvent([verificationStore.changeNumberButton], "click", changeNumber)
 })()
 
 function appendLogin(){
@@ -65,89 +62,7 @@ async function registerUser(event){
     return showAlert(".register-error", `Sorry, spaces are not allowed in usernames`)
   }
   
-  verifyUniqueDetails()
-  registerText("normal")
-
-  async function verifyUniqueDetails(){
-      
-    // Verify username
-    const uniqueUsernameResponse = await api(`/user/exists/username/${userDetails.username}`)
-    if(uniqueUsernameResponse.status != 200)
-      return showAlert(".register-error", `Sorry, that username is already taken`)
-
-    // Verify email
-    const uniqueEmailResponse = await api(`/user/exists/email/${userDetails.email}`)
-    if(uniqueEmailResponse.status != 200)
-      return showAlert(".register-error", `Sorry, that email is already taken`)
-
-    // Verify phonw
-    const uniquePhoneResponse = await api(`/user/exists/phone/${userDetails.phone}`)
-    if(uniquePhoneResponse.status != 200)
-      return showAlert(".register-error", `Sorry, that phone number is already taken`)
-
-    showVerifySection()
-    sendOtp()
-
-  }
-
-}
-
-function validEmail(email) {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    return re.test(email)
-}
-
-function validUsername(username){
-  const trimmedUsername = String(username).trim()
-  if(trimmedUsername.indexOf(" ") > -1 )
-    return false
-  return true
-}
-
-
-function showVerifySection(){
-  const verifySection = document.querySelector(".verify-section")
-  const registerSection = document.querySelector(".register-section")
-
-  if(verifySection)
-    verifySection.classList.remove("hide")
-
-  if(registerSection)
-    registerSection.classList.add("hide")
-}
-
-async function verifyOtp(event){
-  event.preventDefault()
-
-  const otp = store.userDetails.otp = verificationStore.otpInput.value
-
-  const phone = store.userDetails.phone
-
-  const verifyOtpResponse = await api("otp/verify", { phone, code: otp })
-
-  if(verifyOtpResponse.status != 200)
-    return showAlert(".verify-error", `Invalid code`)
-
-  showAlert(".verify-success", "Verification Successful")
-
   register()
-}
-
-async function sendOtp(){
-
-  api("/otp", { phone: store.userDetails.phone })
-
-  showOtpTimer()
-
-  getCounter(5, 
-     (seconds) => {
-        verificationStore.otpTimer.innerText = `in ${seconds} seconds`
-     },
-     () => {
-       verificationStore.otpTimer.innerText = `in 30 seconds`
-       showResendButton()
-     }
-  )
 
 }
 
@@ -179,21 +94,34 @@ function register(){
 
 }
 
-async function changeNumber(){
+function validEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(email)
+}
 
-  const number = verificationStore.changeNumberInput.value
+function validUsername(username){
+  const trimmedUsername = String(username).trim()
+  if(trimmedUsername.indexOf(" ") > -1 )
+    return false
+  return true
+}
 
-  if(!number)
-    return showAlert(".change-number-error", "Sorry, you didn't enter a number")
 
-  store.userDetails.phone = number
+/*async function sendOtp(){
 
-  // Verify phonw
-  const uniquePhoneResponse = await api(`/user/exists/phone/${store.userDetails.phone}`)
-  if(uniquePhoneResponse.status != 200)
-    return showAlert(".change-number-error", `Sorry, that phone number is already taken`)
+  api("/otp", { phone: store.userDetails.phone })
 
-  sendOtp()
-  showOtpSection()
+  showOtpTimer()
 
-} 
+  getCounter(5, 
+     (seconds) => {
+        verificationStore.otpTimer.innerText = `in ${seconds} seconds`
+     },
+     () => {
+       verificationStore.otpTimer.innerText = `in 30 seconds`
+       showResendButton()
+     }
+  )
+
+}*/
+
