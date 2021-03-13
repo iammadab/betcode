@@ -17,8 +17,24 @@ let verificationStore = {
   addEvent(verificationStore.allInputs, "input,focus", () => {
     [".verify-error", ".verify-success", ".change-number-error", ".change-number-success"].map(hideAlert)
   })
+  addEvent([verificationStore.completeRegistrationButton], "click", verifyOtp)
 
 })()
+
+function verifyOtp(){
+  const code = verificationStore.otpInput.value
+
+  api("/otp/verify", { token: getToken(), code })
+    .then(handleResponse)
+
+  function handleResponse(response){
+    if(response.status == 200)
+      return redirect("/home")
+    else
+      showAlert(".verify-error", "Invalid Otp")
+  }
+
+}
 
 function showChangeNumberSection(event){
   verificationStore.changeNumberSection.classList.remove("hide")

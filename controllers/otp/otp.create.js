@@ -18,7 +18,6 @@ const createOtp = async (data) => {
 
   const code = generateCode()
 
-
   const { user } = validationResult.value
 
   telegram.send("developers", `OTP: ${code}, ${user.phone}`)
