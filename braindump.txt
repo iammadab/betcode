@@ -298,7 +298,8 @@ Third phase done, next up is proper account verification
   - What's the worse case scenario, they will have multiple accounts, if we are giving out free credits then they will basically be getting free units for as long as they want.
   - Another thing to do might be to put a verifiedPhone field, and set it to false for any one that uses that pass otp
   - Then tie features like free credits, to "you must have a verifiedPhone"
-[Register the user if their otp verification is successful]
+  - Also puting the default otp in an env file will keep it safe
+[Register the user if their otp verification is successful](done)
 
 
 

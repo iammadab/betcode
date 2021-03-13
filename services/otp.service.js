@@ -16,6 +16,7 @@ exports.createOtp = async (data) => {
 }
 
 exports.findOtp = async ({ phone, code }) => {
+  console.log(phone, code)
   
   try {
 

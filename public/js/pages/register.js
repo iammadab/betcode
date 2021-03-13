@@ -102,29 +102,6 @@ async function registerUser(event){
   }
 
   /*
-  api("/user", { ...userDetails, phoneCode: "+234" })
-    .then(handleRegistration)
-
-
-  function handleRegistration(data){
-
-    if(data.status == 200){
-      let toRedirect = "/home", params = new URLSearchParams(window.location.search)
-      toRedirect = params.get("from") ? params.get("from") : toRedirect
-      return redirect(toRedirect)
-    }
-
-    registerText("normal")
-
-    if(data.code == "USER_EXISTS" && data.message)
-      return showAlert(".register-error", data.message)
-
-    // If we get to this point, something is definitely wrong
-    // Ideally we should be pinged when this happens
-    else
-      return showAlert(".register-error", "Something went wrong, try again later or contact support")
-
-  }
 
   */
       
@@ -157,7 +134,7 @@ function showVerifySection(){
 async function verifyOtp(event){
   event.preventDefault()
 
-  const otp = verificationStore.otpInput.value
+  const otp = store.userDetails.otp = verificationStore.otpInput.value
   console.log(otp)
 
   const phone = store.userDetails.phone
@@ -170,6 +147,8 @@ async function verifyOtp(event){
     return showAlert(".verify-error", `Invalid code`)
 
   showAlert(".verify-success", "Verification Successful")
+
+  register()
 }
 
 async function sendOtp(){
@@ -187,5 +166,33 @@ async function sendOtp(){
        showResendButton()
      }
   )
+
+}
+
+function register(){
+
+  api("/user", { ...store.userDetails, phoneCode: "+234" })
+    .then(handleRegistration)
+
+
+  function handleRegistration(data){
+
+    if(data.status == 200){
+      let toRedirect = "/home", params = new URLSearchParams(window.location.search)
+      toRedirect = params.get("from") ? params.get("from") : toRedirect
+      return redirect(toRedirect)
+    }
+
+    registerText("normal")
+
+    if(data.code == "USER_EXISTS" && data.message)
+      return showAlert(".register-error", data.message)
+
+    // If we get to this point, something is definitely wrong
+    // Ideally we should be pinged when this happens
+    else
+      return showAlert(".register-error", "Something went wrong, try again later or contact support")
+
+  }
 
 }

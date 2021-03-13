@@ -1,5 +1,6 @@
 const { hash } = require("../../lib/crypt")
 const userService = require("../../services/user.service")
+const otpService = require("../../services/otp.service")
 const loginUser = require("./user.login")
 
 const joi = require("joi")
@@ -73,13 +74,25 @@ const createUser = async (data) => {
   }
 
 
-  
+  // Verify otp then delete all otps sent to this user
+  //
+  if(userDetails.otp != process.env.DEFAULT_OTP){
+    console.log(userDetails)
+    const otpObj = await otpService.findOtp({ phone: userDetails.phone, code: userDetails.otp })
+    console.log(otpObj)
+    if(otpObj)
+      await otpService.deleteOtpsFor({ phone: userDetails.phone })
+    else
+      return { status: 403, code: "INVALID_OTP" }
+  }
+    
 
   // Hash password
   const passwordHash = await hash(userDetails.password)
 
   // Create the user
   const user = await userService.createUser({ ...userDetails, password: passwordHash })
+  console.log(user)
 
   if(!user || user.error)
     return { status: 500, code: "ERROR_CREATING_USER" }
