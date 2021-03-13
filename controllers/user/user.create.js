@@ -12,7 +12,6 @@ const createUserValidator = joi.object({
   phoneCode: joi.string().trim().required(),
   phone: joi.string().trim().regex(/^[0-9]+$/).required(),
   password: joi.string().trim().required(),
-  otp: joi.number().required(),
   bio: joi.string().trim(),
   picture: joi.string().trim().empty("").default("/image/logo/user.png"),
   twitter: joi.string().trim(),
@@ -73,17 +72,6 @@ const createUser = async (data) => {
     }
   }
 
-
-  // Verify otp then delete all otps sent to this user
-  //
-  if(userDetails.otp != process.env.DEFAULT_OTP){
-    const otpObj = await otpService.findOtp({ phone: userDetails.phone, code: userDetails.otp })
-    if(otpObj)
-      await otpService.deleteOtpsFor({ phone: userDetails.phone })
-    else
-      return { status: 403, code: "INVALID_OTP" }
-  }
-    
 
   // Hash password
   const passwordHash = await hash(userDetails.password)

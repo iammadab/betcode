@@ -305,7 +305,7 @@ Third phase done, next up is proper account verification
 The entire application still feels off by a lot, might be better to just allow people register but be unverified as akin suggested, this will make it a lot more simple
 Let's begin
 
-[Add a stage parameter to each user]
+[Add a stage parameter to each user](done)
 [Remove otp from registration]
 [On register, set the parameter to equal unverified]
 [Create a stage router that forces unverified users to the verify page]
