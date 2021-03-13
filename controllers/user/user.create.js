@@ -11,6 +11,7 @@ const createUserValidator = joi.object({
   phoneCode: joi.string().trim().required(),
   phone: joi.string().trim().regex(/^[0-9]+$/).required(),
   password: joi.string().trim().required(),
+  otp: joi.number().required(),
   bio: joi.string().trim(),
   picture: joi.string().trim().empty("").default("/image/logo/user.png"),
   twitter: joi.string().trim(),

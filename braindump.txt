@@ -281,10 +281,26 @@ Third phase done, next up is proper account verification
 [If no errors, create otp and switch to verification](done)
 [On complete registration, verify tha the otp is correct](done)
 [Depending on the result, display the appropriate message](done)
+
+13/03/2021
 [Create a send otp again button](done)
 [Hide the send otp button by default](done)
 [Implement countdown, to prevent otp creation spamming](done)
 [Once the counter is done, show the send otp button again](done)
+[Figure out how to modify the registration api to require an otp code](done)
+  - Automatic tipster creation from user name uses the register controller
+  - Adding an otp requirement, will affect that process
+  - Hence, the automatic generator will need to send an otp
+  - They are not real, hence no otp will be sent to them
+  - How do I resolve this, the obvious solution is to hardcode a just pass otp
+  - But this is not secure, as anybody that has access to the codebase will have the ability ...
+  - to create as many accounts as the can.
+  - What's the worse case scenario, they will have multiple accounts, if we are giving out free credits then they will basically be getting free units for as long as they want.
+  - Another thing to do might be to put a verifiedPhone field, and set it to false for any one that uses that pass otp
+  - Then tie features like free credits, to "you must have a verifiedPhone"
+[Register the user if their otp verification is successful]
+
+
 
 
 
