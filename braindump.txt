@@ -312,7 +312,9 @@ Let's begin
 [Send an otp to the user when they hit the verify page](done)
 [Implement an api that verifies a user, via otp mechanism](done)
 [Implement an api that sends otp via token](done)
-[Implement the verification on the frontend]
+[Implement the verification on the frontend](done)
+[Reimplement the resend button]
+[Reimplement the countdown timer]
 [Implement an api that allows a user to change their phone number]
 
 

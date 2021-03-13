@@ -13,15 +13,20 @@ let verificationStore = {
 
 ;(function attachEvents(){
   
+  // On page load, an otp is sent immediately so the timer should be started
+  startTimer()
+
   addEvent([verificationStore.changeNumberLink], "click", showChangeNumberSection)
   addEvent(verificationStore.allInputs, "input,focus", () => {
     [".verify-error", ".verify-success", ".change-number-error", ".change-number-success"].map(hideAlert)
   })
   addEvent([verificationStore.completeRegistrationButton], "click", verifyOtp)
+  addEvent([verificationStore.resendOtpButton], "click", resendOtp)
 
 })()
 
 function verifyOtp(){
+
   const code = verificationStore.otpInput.value
 
   api("/otp/verify", { token: getToken(), code })
@@ -33,6 +38,13 @@ function verifyOtp(){
     else
       showAlert(".verify-error", "Invalid Otp")
   }
+
+}
+
+function resendOtp(){
+
+  api("/otp/", { token: getToken() })
+    .then(startTimer)
 
 }
 
@@ -57,4 +69,18 @@ function showOtpTimer(){
 function showAndHide(toShow, toHide){
   toShow.classList.remove("hide")
   toHide.classList.add("hide")
+}
+
+function startTimer(){
+  showOtpTimer()
+
+  getCounter(30, 
+    (seconds) => {
+      verificationStore.otpTimer.innerText = `in ${seconds} seconds`
+    },
+    () => {
+      verificationStore.otpTimer.innerText = `in 30 seconds`
+      showResendButton()
+    }
+  )
 }
