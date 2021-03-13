@@ -9,7 +9,6 @@ const { connectToDb } = require("./runners/database_runner")
 
 connectToDb()
 
-const toPage = require("./lib/toPage") 
 const postController = require("./controllers/post")
 const tipsterController = require("./controllers/tipster")
 const tipMiddleware = require("./middlewares/tips")
@@ -17,6 +16,7 @@ const metaMiddleware = require("./middlewares/meta")
 const cookieMiddleware = require("./middlewares/cookie")
 const tokenMiddleware = require("./middlewares/token")
 const pageMiddleware = require("./middlewares/pages")
+const stageRouter = require("./middlewares/stageRouter")
 
 const app = express()
 
@@ -35,6 +35,7 @@ app.get(
 	"/", 
   cookieMiddleware.maybeCookie("/home"),
   tokenMiddleware.validateToken(),
+  stageRouter(),
   pageMiddleware.home,
   metaMiddleware.allTips,
 	(req, res) => {
@@ -46,6 +47,7 @@ app.get(
   "/home", 
   cookieMiddleware.cookieNotFound("/login"),
   tokenMiddleware.validateToken(),
+  stageRouter(),
   pageMiddleware.home,
   metaMiddleware.allTips,
   (req, res) => {
@@ -59,6 +61,7 @@ app.get(
   "/convert", 
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
+  stageRouter(),
   pageMiddleware.home,
   metaMiddleware.allTips,
   (req, res) => {
@@ -70,6 +73,7 @@ app.get(
   "/history", 
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
+  stageRouter(),
   pageMiddleware.home,
   metaMiddleware.allTips,
   (req, res) => {
@@ -81,6 +85,7 @@ app.get(
   "/alert", 
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
+  stageRouter(),
   pageMiddleware.home,
   metaMiddleware.allTips,
   (req, res) => {
@@ -92,6 +97,7 @@ app.get(
   "/code", 
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
+  stageRouter(),
   pageMiddleware.home,
   metaMiddleware.allTips,
   (req, res) => {
@@ -104,6 +110,7 @@ app.get(
   "/topup", 
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
+  stageRouter(),
   pageMiddleware.home,
   metaMiddleware.allTips,
   (req, res) => {
@@ -111,22 +118,11 @@ app.get(
   }
 )
 
-
-app.get(
-	"/tipster/:value", 
-	toPage(postController.fetchBy("tipster"), "tips", "params"),
-	toPage(tipsterController.fetchAll, "tipsters"),
-	tipMiddleware.normalizeTips,
-  metaMiddleware.filteredTips,
-	(req, res) => {
-		res.render("index", { ...req.pageData })
-	}
-)
-
 app.get(
 	"/tip/:postId", 
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
+  stageRouter(),
   pageMiddleware.tip,
   metaMiddleware.singleTip,
 	(req, res) => res.render("tip", { ... req.pageData })
@@ -149,7 +145,9 @@ app.get(
 
 app.get(
   "/verify", 
-  cookieMiddleware.cookieFound("/"),
+  cookieMiddleware.cookieNotFound("/login"),
+  tokenMiddleware.validateToken(),
+  stageRouter("unverified"),
   metaMiddleware.login,
   (req, res) => res.render("verify", { ...req.pageData })
 )
@@ -165,6 +163,7 @@ app.get(
   "/edit", 
   cookieMiddleware.cookieNotFound("/login"),
   tokenMiddleware.validateToken(),
+  stageRouter(),
   metaMiddleware.defaultMeta,
   (req, res) => res.render("edit", { ...req.pageData })
 )
@@ -173,6 +172,7 @@ app.get(
   "/profile/:username", 
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
+  stageRouter(),
   pageMiddleware.profile,
   metaMiddleware.profile,
   (req, res) => res.render("profile", { ...req.pageData })
@@ -182,6 +182,7 @@ app.get(
   "/tipsters", 
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
+  stageRouter(),
   pageMiddleware.tipsters,
   metaMiddleware.tipsters,
   (req, res) => res.render("tipsters", { ...req.pageData })
