@@ -137,7 +137,7 @@ function getCounter(seconds, cb, endcb){
 
   function toTimeString(seconds){
     let secondsValue = seconds % 60, minutesValue = (seconds - secondsValue) / 60
-    return `${padZero(minutesValue)} : ${padZero(secondsValue)}`
+    return `${padZero(secondsValue)}`
 
     function padZero(val){
       return (("" + val).length == 1) ? "0" + val : val

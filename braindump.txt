@@ -280,8 +280,11 @@ Third phase done, next up is proper account verification
 [On register, make all the checks and show appropriate errors if need be](done)
 [If no errors, create otp and switch to verification](done)
 [On complete registration, verify tha the otp is correct](done)
-[Depending on the result, display the appropriate message]
-[Implement countdown, to prevent otp creation spamming]
+[Depending on the result, display the appropriate message](done)
+[Create a send otp again button](done)
+[Hide the send otp button by default](done)
+[Implement countdown, to prevent otp creation spamming](done)
+[Once the counter is done, show the send otp button again](done)
 
 
 

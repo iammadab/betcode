@@ -15,6 +15,7 @@ const store = {
     () => hideAlert(".register-error")
   )
   addEvent([verificationStore.completeRegistrationButton], "click", verifyOtp)
+  addEvent([verificationStore.resendOtpButton], "click", sendOtp)
 })()
 
 function appendLogin(){
@@ -72,7 +73,9 @@ async function registerUser(event){
     registerText("normal")
 
     // Create otp for the user
-    const otpCreationResponse = await api("/otp", { phone: userDetails.phone })
+    sendOtp()
+
+
 
   }
 
@@ -167,4 +170,22 @@ async function verifyOtp(event){
     return showAlert(".verify-error", `Invalid code`)
 
   showAlert(".verify-success", "Verification Successful")
+}
+
+async function sendOtp(){
+
+  api("/otp", { phone: store.userDetails.phone })
+
+  showOtpTimer()
+
+  getCounter(5, 
+     (seconds) => {
+        verificationStore.otpTimer.innerText = `in ${seconds} seconds`
+     },
+     () => {
+       verificationStore.otpTimer.innerText = `in 30 seconds`
+       showResendButton()
+     }
+  )
+
 }
