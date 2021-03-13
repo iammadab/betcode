@@ -47,7 +47,7 @@ app.get(
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   pageMiddleware.home,
-  metaMiddleware.allTips,
+  metaMiddleware.home,
   (req, res) => {
     res.render("home", { ...req.pageData })
   }
@@ -58,20 +58,9 @@ app.get(
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   pageMiddleware.home,
-  metaMiddleware.allTips,
+  metaMiddleware.convert,
   (req, res) => {
     res.render("convert", { ...req.pageData })
-  }
-)
-
-app.get(
-  "/history", 
-  cookieMiddleware.maybeCookie(),
-  tokenMiddleware.validateToken(),
-  pageMiddleware.home,
-  metaMiddleware.allTips,
-  (req, res) => {
-    res.render("history", { ...req.pageData })
   }
 )
 
@@ -80,7 +69,7 @@ app.get(
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   pageMiddleware.home,
-  metaMiddleware.allTips,
+  metaMiddleware.alert,
   (req, res) => {
     res.render("alert", { ...req.pageData })
   }
@@ -103,7 +92,7 @@ app.get(
   cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   pageMiddleware.home,
-  metaMiddleware.allTips,
+  metaMiddleware.topup,
   (req, res) => {
     res.render("topup", { ...req.pageData })
   }
@@ -141,14 +130,14 @@ app.get(
 app.get(
   "/forgot", 
   cookieMiddleware.cookieFound("/"),
-  metaMiddleware.login,
+  metaMiddleware.forgot,
   (req, res) => res.render("forgot", { ...req.pageData })
 )
 
 app.get(
   "/verify", 
   cookieMiddleware.cookieFound("/"),
-  metaMiddleware.login,
+  metaMiddleware.verify,
   (req, res) => res.render("verify", { ...req.pageData })
 )
 
@@ -163,7 +152,7 @@ app.get(
   "/edit", 
   cookieMiddleware.cookieNotFound("/login"),
   tokenMiddleware.validateToken(),
-  metaMiddleware.defaultMeta,
+  metaMiddleware.edit,
   (req, res) => res.render("edit", { ...req.pageData })
 )
 

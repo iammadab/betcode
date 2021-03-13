@@ -26,11 +26,14 @@
 						<div class="s_header">
 							<img src="<%= tip.tipster.picture %>" alt="<%= tip.tipster.fullname %>" class="img">
 							<div class="s_details">
-								<h6><%= tip.tipster.fullname %></h6>
-								<span><%= tip.tipDate %><b class="slash">|</b>Bet9ja</span>
+								<h6>Mayor Of Ekiti</h6>
+								<span><%= tip.tipDate %></span>
 							</div>
 						</div>
-						<div class="odds"><i class="far fa-bookmark"></i> <%= tip.odds %> <span>Odds</span></div>
+						<div>
+							<div class="t_info"><%= tip.odds %><span>Odds</span></div>
+							<div class="t_info">Sportybet</div>
+						</div>
 					</div>
 
 					<div class="s_main">
@@ -54,12 +57,9 @@
 
 				    </div>
 
-				</div>
+				    <%- include ("booking.ejs") %>
 
-				<div class="container_two">
-					<%- include ("booking.ejs") %>
-					<%- include ("discussion.ejs") %>
-				</div>	
+				</div>
 
 			</div>
 
