@@ -340,7 +340,10 @@ Lot's of unsolved problems there.
     - Converting from tip to post
     - On the tip page when a user wants to request for a conversion
     - They are all dropdowns, so the idea will be to fetch the list then send them in as dropdowns
-[Create a file with the list of all the bookmakers]
+[Create a file with the list of all the bookmakers](done)
+[Create an api to return that list of bookmakers]
+[Modify the tweet to post section to make use of the bookmaker list]
+[Modify the filter section to make use of the bookmaker list]
 
 
 

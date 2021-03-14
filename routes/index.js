@@ -28,4 +28,9 @@ router.use("/otp", otpRouter)
 
 router.post("/upload", upload.single("file"), handleUpload)  
 
+router.get("/bookmakers", (req, res) => {
+  const list = require("../lib/bookmakers")
+  res.json({ status: 200, data: list })
+})
+
 module.exports = router
