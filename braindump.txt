@@ -387,9 +387,50 @@ i.e if another request has both the same source and destination, the two request
 Can't think of the entire system up front, so will start working on components (from most isolated to most dependent)
 The most isolated is the tip page, let's see how we can modify it to work with the new system
 
-[Figure out how to structure the error and success boxes]
-[Hide the unecessary alerts]
-[Figure out the data structure to signify accesible code and non accessible codes]
+[Figure out how to structure the error and success boxes](done)
+[Hide the unecessary alerts](done)
+[Figure out the data structure to signify accesible code and non accessible codes](done)
+  - First thing to change, the dropdown should list all the bookmakers
+  - Not just the bookmakers that the tip provided
+  - We also need a way of communicating the codes of a tip to the application
+    - Guess this will be done by data elements
+  - We have three different type of codes
+    - Original codes 
+      - codes that are free and where part of the original tip
+    - Requested codes 
+      - these codes have metadata, representing the state of the request
+      - the states include success, failed, partial, pending e.t.c
+      - depending on the state, different things can happen
+    - Unaccesible codes
+      - these codes are not free and you haven't paid for them 
+  - So given the above description and a dropdown of all the bookmakers
+  - When a user selects any bookmaker, we need to know the state of that code and act accordingly
+  - If we check the tip model, we can get the bookmakers that fall into the original codes category
+  - To get the requested codes, we have to interface with the conversion request system
+  - And unaccesible codes are just the rest of the bookmakers that weren't assigned anything in the previous steps
+  - Now it is possible to come up with an object that describes each bookmaker based on the criterias above
+  - And I guess the frontend will need this information to know how to react, this information is too verbose to put it into the html data elements themselves.
+  - Thinking of creating an api that a user can request to get the details as an object
+  - So what happens during the pre-processing front i.e ejs rendering
+    - We can just render the list of all the bookmakers
+    - But in the rendering, we would like to show the free bookmaker first
+    - Hence, it is looking like the pre-rendering stage has to somehow know the state of the bookmakers
+    - Meaning the request has to be made more than once, at the pre-rendering stage and once the page loads
+    - I don't really like the sound of that!
+  - Which takes me back to the question of is it possible to transfer that knowledge from the pre-rendering phase to the frontend phase
+  - The only way both can communicate is by html
+    - I am not sure this assumption is correct, what happens if I create a script tag and populate it with what I want??
+    - Haha! It works!!!
+    - Nice, so I can make the request at the prerendering phase, order the elements as needed
+    - Then pass the remaining data to the frontend
+    - The frontend can then do whatever it likes with that data
+  - I will be start by just distinguishing between original codes and unaccessible codes
+  - Another thing to note is that bookmakers have a database name and a display name
+  - So the database name, the display name and it's property has to be sent to the frontend
+  - Datastructure is looking something like this
+    -   { bet9ja: { display: "Bet9ja", data: // information about the code } }
+
+
 
 
 

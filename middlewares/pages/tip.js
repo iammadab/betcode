@@ -1,5 +1,6 @@
 const postService = require("../../services/post.service")
 const commentService = require("../../services/comment.service")
+const bookmakers = require("../../lib/bookmakers")
 
 const tip = async (req, res, next) => {
   
@@ -14,13 +15,16 @@ const tip = async (req, res, next) => {
 
   post = postService.normalizeTip(post)
 
+  console.log(post)
+
   const comments = commentService.normalizeComments(
     await commentService.getPostComments(req.params.postId)
   )
 
   req.pageData = Object.assign({}, req.pageData, {
     tipData: post,
-    comments
+    comments,
+    bookmakers
   })
 
   next()
