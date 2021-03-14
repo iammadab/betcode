@@ -2,6 +2,11 @@ const stageRouter = requiredStage => (req, res, next) => {
   
   const user = req.body.user
 
+  // If there is not user and the page is one that can both
+  // accept logged in and not logged in users, then let them pass
+  if(!user && req.pageData.dynamicPage)
+    return next()
+
   // If the page requires access control and the user has them, proceed
   if(user.stage == requiredStage)
     return next()

@@ -343,14 +343,53 @@ Lot's of unsolved problems there.
 [Create a file with the list of all the bookmakers](done)
 [Create an api to return that list of bookmakers](done)
 [Modify the tweet to post section to make use of the bookmaker list](done)
-[Modify the filter section to make use of the bookmaker list]
+[Modify the filter section to make use of the bookmaker list](done)
 
+Time to brain storm on some conversion ideas.
+The first part is setting up the scene for conversion
+Every tip has one or more codes for one or more of the bookmakers we offer.
+Going forward, there will be only one code assigned to each post (i.e the default code the tipster released originally)
+Viewing the default code will be free, to view any other code, you have to pay
 
+So every tip has a set of free codes and a set of paid codes
+The total number of codes is equal to the total number of bookmakers
+Every user can see the set of free codes
+Only users that have paid for a paid code can see that code
 
+Users can see every tip
+When a user views a tip, they should see all the codes the have the right to see (this includes free and paid codes)
+So on tip view request, the application needs to check if a user has paid for any code in that tip, and send that forward if found.
 
+Hence the distinction between codes should not be free and paid instead something more in line with can view and can't view
+More than one user might request the same code for the same tip at varying times
+But they are thought of more as subscribers to a conversion request.
 
+A conversion request encapsulates a conversion
+A conversion request has different states
+A conversion request has a list of subscribers
+You become a subscriber by paying for that conversion request
+When a conversion request has been resolved, all the subscribers are alerted with the resolution
 
+I see communication happening between the conversion module and the tip display module in order to determine what to display to each user for a particular tip
 
+There is also manual conversion
+
+The goal of this brainstorm is to come up with a unified framework that takes all these parts and brings them into a cohesive whole
+Need to brainstorm offline for a while
+
+Came up with the idea of a source and destination
+  - source: original bookmaker and original code
+  - destination: requested bookmaker
+
+A conversion request is identified by both the source and the destination
+i.e if another request has both the same source and destination, the two requests can be considered the same, hence you can just add the user as a subscriber to the first conversion request
+
+Can't think of the entire system up front, so will start working on components (from most isolated to most dependent)
+The most isolated is the tip page, let's see how we can modify it to work with the new system
+
+[Figure out how to structure the error and success boxes]
+[Hide the unecessary alerts]
+[Figure out the data structure to signify accesible code and non accessible codes]
 
 
 
