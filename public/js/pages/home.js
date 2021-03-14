@@ -92,9 +92,12 @@ function filterTipster(event, element){
 }
 
 function filterBookmaker(event, element){
-  const bookmaker = element.innerText
-  store.bookmakerDropDownDisplay.innerText = bookmaker == "All" ? "Bookmaker" : bookmaker
-  store.filter.bookmaker = bookmaker == "All" ? "" : bookmaker
+  const bookmaker = element.dataset.bookmaker, bookmakerDisplay = element.innerText
+  store.bookmakerDropDownDisplay.innerText = bookmaker == "" ? "Bookmaker" : bookmakerDisplay
+  store.filter.bookmaker = bookmaker
+
+  console.log(bookmaker)
+  console.log(bookmakerDisplay)
   
   updateFilteredPost()
 

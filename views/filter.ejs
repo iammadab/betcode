@@ -20,13 +20,12 @@
          <span class="bookmaker-display">Bookmaker</span> <i class="fa fa-caret-down"></i></a>
 	    <ul class="dropdown-menu dropdown-menu-right">
 	      <li class="dropdown-header bookmaker">Bookmaker</li>
-	      <li><span class="dropdown-item bookmaker">All</span></li>
-	      <li><span class="dropdown-item bookmaker">Bet9ja</span></li>
-	      <li><span class="dropdown-item bookmaker">Betking</span></li>
-	      <li><span class="dropdown-item bookmaker">Sportybet</span></li>
-	      <li><span class="dropdown-item bookmaker">1Xbet</span></li>
-	      <li><span class="dropdown-item bookmaker">22bet</span></li>
-	      <li><span class="dropdown-item bookmaker">Msport</span></li>
+	      <li><span class="dropdown-item bookmaker" data-bookmaker="">All</span></li>
+        <% Object.keys(bookmakers).forEach(bookmaker => { %>
+          <li><span class="dropdown-item bookmaker" data-bookmaker="<%=bookmaker%>">
+               <%= bookmakers[bookmaker] %>
+          </span></li>
+        <% }) %>
 	    </ul>
 	</div>
 </div>

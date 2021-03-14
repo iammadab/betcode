@@ -357,3 +357,4 @@ Lot's of unsolved problems there.
 Future task
 [Make sure all the pages can logout]
 [Fix terms and condition links]
+[Verify form submit by hiting enter doesn't work]

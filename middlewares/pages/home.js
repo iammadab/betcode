@@ -1,6 +1,7 @@
 const postController = require("../../controllers/post")
 const userController = require("../../controllers/user")
 const postService = require("../../services/post.service")
+const bookmakers = require("../../lib/bookmakers")
 
 const home = async (req, res, next) => {
   
@@ -9,7 +10,8 @@ const home = async (req, res, next) => {
 
   req.pageData = Object.assign({}, req.pageData, {
     tips: allPosts,
-    tipsters: allTipsters
+    tipsters: allTipsters,
+    bookmakers
   })
 
   next()
