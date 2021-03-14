@@ -326,6 +326,23 @@ Let's begin
 [Convert the verification sections to forms](done)
 [Fix change number button changing to login](done)
 
+Everything seems to work now with verification, that's great.
+Might work on forgot password for the rest of the day, but desperatly need to get to the conversion section of the project
+
+14/03/2021
+
+Decided to leave the forgot password feature for later, want to get started with the conversion bit.
+Lot's of unsolved problems there.
+
+[Figure out how to unify the bookmaker list across the application]
+  - The goal is a single source of truth for which bookmakers we are offering
+  - Bookmkaers show up when we are:
+    - Converting from tip to post
+    - On the tip page when a user wants to request for a conversion
+    - They are all dropdowns, so the idea will be to fetch the list then send them in as dropdowns
+[Create a file with the list of all the bookmakers]
+
+
 
 
 
