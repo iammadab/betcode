@@ -26,13 +26,13 @@
 						<div class="s_header">
 							<img src="<%= tip.tipster.picture %>" alt="<%= tip.tipster.fullname %>" class="img">
 							<div class="s_details">
-								<h6>Mayor Of Ekiti</h6>
+								<h6><%= tip.tipster.fullname %></h6>
 								<span><%= tip.tipDate %></span>
 							</div>
 						</div>
 						<div>
-							<div class="t_info"><%= tip.odds %><span>Odds</span></div>
-							<div class="t_info">Sportybet</div>
+							<div class="t_info"><i class="fas fa-calculator"></i><%= tip.odds %><span>Odds</span></div>
+							<div class="t_info"><i class="fas fa-globe-africa"></i>Betway</div>
 						</div>
 					</div>
 
@@ -58,6 +58,7 @@
 				    </div>
 
 				    <%- include ("booking.ejs") %>
+				    <%- include ("support.ejs") %>
 
 				</div>
 

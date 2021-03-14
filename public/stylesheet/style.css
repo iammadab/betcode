@@ -617,28 +617,29 @@ line-height:1.5rem;
 }
 
 .t_info{
-border:1px solid #ccc;
-padding:0.25rem 0.65rem;
-font-size:0.9rem;
+border:1px solid #e1e1e1;
+padding:0.2rem 0.75rem;
+font-size:0.85rem;
 color:#000;
 font-weight:600;
 border-radius:0.3rem;
 display:inline-block;
 width:auto;
 margin:0 0.05rem 0.2rem 0;
-text-transform:capitalize
+text-transform:capitalize;
 }
 
-/*.t_info i{
+.t_info i{
 margin:0 0.4rem 0 0;
 font-size:0.9rem;
 color:#8a2be2;
-}*/
+display:none;
+}
 
 
 .t_info span{
 color:#333;
-margin-left:0.3rem;
+margin-left:0.2rem;
 font-size:0.8rem;
 }
 
@@ -774,7 +775,7 @@ font-size:1rem;
 padding:1.5rem 0.75rem 1.5rem;
 border:1px solid #f8f8f8;
 background:#f8f8f8;
-margin:0 0 0.5rem;
+margin:0 0 1.5rem;
 /*border-radius:3px;*/
 }
 
@@ -1380,7 +1381,7 @@ padding:0.5rem 0;
 .card-header .btn{
 font-size:0.95rem;
 font-weight:600;
-color:#000;
+color:#333;
 }
 
 .card-body{
