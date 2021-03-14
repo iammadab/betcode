@@ -40,8 +40,8 @@
   </div>
   <div class="form-group">
     <select class="custom-select text-capitalize"> 
-      <% Object.keys(bookmakers).forEach(bookmaker => { %>
-        <option value="<%= bookmaker %>"><%= bookmakers[bookmaker] %></option>
+      <% bookmakerOrder.forEach(bookmaker => { %>
+        <option value="<%= bookmaker %>"><%= bookmakers[bookmaker].display %></option>
       <% }) %>
     </select>
   </div>

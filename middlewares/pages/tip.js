@@ -16,6 +16,25 @@ const tip = async (req, res, next) => {
   post = postService.normalizeTip(post)
 
   console.log(post)
+  
+  // Want to order the bookmakers
+  // Original first, then paid
+  const original = [], paid = Object.keys(bookmakers)
+
+  const bookmakerVerbose = {}
+  Object.keys(bookmakers).forEach(bookmaker => {
+    bookmakerVerbose[bookmaker] = {
+      display: `${bookmakers[bookmaker]} (#10)`
+    }
+  })
+
+  Object.keys(post.bookmakers).forEach(bookmaker => {
+    const normalized = String(bookmaker).toLowerCase()
+    original.push(normalized)
+    bookmakerVerbose[normalized].display = bookmakers[normalized]
+  })
+
+  const bookmakerOrder = Array.from(new Set(original.concat(paid)))
 
   const comments = commentService.normalizeComments(
     await commentService.getPostComments(req.params.postId)
@@ -24,7 +43,8 @@ const tip = async (req, res, next) => {
   req.pageData = Object.assign({}, req.pageData, {
     tipData: post,
     comments,
-    bookmakers
+    bookmakers: bookmakerVerbose,
+    bookmakerOrder
   })
 
   next()

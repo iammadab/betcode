@@ -430,6 +430,12 @@ The most isolated is the tip page, let's see how we can modify it to work with t
   - Datastructure is looking something like this
     -   { bet9ja: { display: "Bet9ja", data: // information about the code } }
 
+[Show all the bookmakers in the dropdown](done)
+[Append nothing beside original codes and the request amount beside the unaccesible codes](done)
+  - With post.bookmakers, I can get all the available bookmakers (i.e original)
+  - All other bookmakers can be considered unacessible
+  - I'll append the display to the bookmaker obj
+[Order the dropdown list by showing the original bookmaker first](done)
 
 
 
