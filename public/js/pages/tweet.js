@@ -1,5 +1,7 @@
 const store = {
   
+  bookmakers: {},
+
   // Tweet containers
   unclassifiedSection: document.querySelector("#tweet > .tweets"),
   potentialTipSection: document.querySelector("#ptip > .tweets"),
@@ -22,6 +24,13 @@ const store = {
 }
 
 ;(async function loadTweets(){
+
+  const bookmakers = await api("/bookmakers")
+  if(bookmakers.status != 200)
+    return alert("Failed to fetch bookmakers, contact support")
+
+  store.bookmakers = bookmakers.data
+  console.log(store.bookmakers)
 
   // First we load up all the unclassified tips
   // Fetch all the unclassified tips
@@ -204,6 +213,11 @@ function tweetToDOM(tweet, state="tweet-unclassified"){
 }
 
 function makePostForm(id){
+
+  const bookmakerHTML = Object.keys(store.bookmakers).map(bookmaker => {
+    return `<option value="${bookmaker}">${store.bookmakers[bookmaker]}</option>`
+  }).join("")
+
   return `
   <div data-id="${id}" class="tweet_form">
     <div class="form-group">
@@ -215,16 +229,12 @@ function makePostForm(id){
     <div class="form-group">
       <select class="custom-select bookmaker">
         <option value="">Bookmaker</option>
-        <option>Bet9ja</option>
-        <option>Betking</option>
-        <option>Sportybet</option>
-        <option>1Xbet</option>
-        <option>22bet</option>
-        <option>Msport</option>	
+        ${bookmakerHTML}
       </select>
     </div>
   </div>
   `
+
 }
 
 function objArrayToHashMap(array, ...props){
