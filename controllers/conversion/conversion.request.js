@@ -1,4 +1,5 @@
 const walletService = require("../../services/wallet.service")
+const conversionService = require("../../services/conversion.service")
 
 const joi = require("joi")
 
@@ -6,7 +7,7 @@ const requestConversionValidator = joi.object({
   source: joi.string().lowercase().trim().required(),
   code: joi.string().lowercase().trim().required(),
   destination: joi.string().lowercase().trim().required(),
-  tipId: joi.string().trim(),
+  tipId: joi.string().trim().required(),
   token: joi.string().required(),
   user: joi.object({
     _id: joi.object().required(),
@@ -32,7 +33,6 @@ const requestConversion = async (data) => {
     return { status: 403, code: "INSUFFICIENT_FUNDS" }
 
   const walletDeductionResult = await walletService.deductAmount(data.user._id, WALLET_AMOUNT)
-  console.log(walletDeductionResult)
   if(walletDeductionResult.error)
     return {
       status: walletDeductionResult.status ? walletDeductionResult.status : 403,

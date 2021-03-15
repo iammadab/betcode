@@ -517,14 +517,15 @@ Okay, resolved
 
 [Create the conversion request model](done)
 [Upgrade the conversion request validator to fit the model](done)
-[Create the conversion request service to actually create the conversion request]
-[Create a function that adds an automatic subscriber]
-[If the user is the first subscriber add the tip id to the conversion request model]
-[Keep track of the expected end time of the conversion]
+[Create the conversion request service to actually create the conversion request](done)
+[Create a function that adds an automatic subscriber](done)
+[If the user is the first subscriber add the tip id to the conversion request model](done)
+[Keep track of the expected end time of the conversion](done)
   - Prefer tracking end time as opposed to start time 
   - Because I see us improving the expected end time as the technology get better
-[On conversion request creation, add the user as a subscriber]
-  
+[Make the tipId a compulsory parameter when making a conversion request](done)
+[On conversion request, create the conversion]
+[After conversion creation, add the subscriber to the conversion request]
 
 
 

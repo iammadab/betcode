@@ -1,6 +1,6 @@
 const Conversion = require("../models/conversion")
 
-exports.requestConversion = async ({ source, code, destination }) => {
+exports.requestConversion = async ({ source, code, destination, subscriberId, tipId }) => {
 
   try{
 
@@ -12,7 +12,7 @@ exports.requestConversion = async ({ source, code, destination }) => {
 
     console.log(conversion)
 
-    return await conversion.save()
+    return await addSubscriber(conversion, { subscriberId, tipId })
 
   } catch(error){
 
@@ -21,9 +21,9 @@ exports.requestConversion = async ({ source, code, destination }) => {
 
   }
 
-})
+}
 
-exports.addSubscriber = async (conversionRequest, { subscriberId, tipId }) => {
+async function addSubscriber(conversionRequest, { subscriberId, tipId }){
   
   try{
 
