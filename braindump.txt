@@ -557,7 +557,7 @@ Okay, resolved
 [Display the actual name of the bookmaker on the pending timer](done)
 [Write a function to figure out how many seconds is left from now to an end time](done)
 [Combine this value with getCounter to update timer](done)
-
+[Fix default time showing problem]
 
 
 Future task

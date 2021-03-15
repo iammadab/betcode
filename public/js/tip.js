@@ -121,7 +121,7 @@ function showRequested(codeDetails){
   hideAll()
   
   if(codeDetails.data.status == "pending"){
-    const message = `Converting to ${codeDetails.display} in <span class='conversion-timer'>20 mins : 49 sec</span>`
+    const message = `Converting to ${codeDetails.display} <span class='conversion-timer'></span>`
     showAlertPro("success", message)
     
     const secondsLeft = secondsBetween(Date.now(), codeDetails.data.endTime)
@@ -131,7 +131,7 @@ function showRequested(codeDetails){
     console.log(timer)
 
     if(secondsLeft <= 0)
-      return timer.innerText = "0 mins : 0 sec"
+      return timer.innerText = "in 0 mins : 0 sec"
 
     getCounter(secondsLeft, 
       (seconds) => {
@@ -141,7 +141,7 @@ function showRequested(codeDetails){
         console.log("The timer is done")
       },
       (seconds, minutes) => {
-        return `${minutes} min : ${seconds} sec`
+        return ` in ${minutes} min : ${seconds} sec`
       }
     )
 
