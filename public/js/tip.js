@@ -60,7 +60,8 @@ let store = {
   copyButton: document.querySelector(".copy-button"),
   proceedButton: document.querySelector(".proceed-button"),
   bookmaker: "",
-  bookmakerDetails: undefined
+  bookmakerDetails: undefined,
+  originalBookmaker: originalBookmaker
 }
 
 ;(function attachEvents(){
@@ -211,6 +212,9 @@ function generateMessage(type){
 }
 
 function makeConversionRequest(){
+  const source = store.originalBookmaker
+  const code = bookmakerData[source].code
   const destination = store.bookmaker
-  console.log(destination)
+
+  console.log(source, code, destination)
 }
