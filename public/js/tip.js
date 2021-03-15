@@ -201,7 +201,8 @@ function showSection(type){
 function generateMessage(type){
 
   const messageMap = {
-    "about-to-pay": "10 naira will be deducted from your wallet"
+    "about-to-pay": "10 naira will be deducted from your wallet",
+    "insufficient-funds": "Sorry, your balance is insufficient. Top up <a href='/topup'>here</a>"
   }
 
   if(messageMap[type])
@@ -224,7 +225,7 @@ function makeConversionRequest(){
       return reload()
    
     if(response.code == "INSUFFICIENT_FUNDS")
-      return showAlert("danger", generateMessage("insufficient-funds"))
+      return showAlertPro("danger", generateMessage("insufficient-funds"))
   }
 
 }
