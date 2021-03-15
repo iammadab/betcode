@@ -515,8 +515,8 @@ What if there is a manual request for a code before there is an automatic reques
   - If it is the first subscriber that they are adding, they should add the necessary meta data
 Okay, resolved
 
-[Create the conversion request model]
-[Upgrade the conversion request validator to fit the model]
+[Create the conversion request model](done)
+[Upgrade the conversion request validator to fit the model](done)
 [Create the conversion request service to actually create the conversion request]
 [Create a function that adds an automatic subscriber]
 [If the user is the first subscriber add the tip id to the conversion request model]
@@ -532,3 +532,4 @@ Future task
 [Make sure all the pages can logout]
 [Fix terms and condition links]
 [Verify form submit by hiting enter doesn't work]
+[Track conversion resolution time]

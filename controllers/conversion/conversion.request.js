@@ -6,6 +6,7 @@ const requestConversionValidator = joi.object({
   source: joi.string().lowercase().trim().required(),
   code: joi.string().lowercase().trim().required(),
   destination: joi.string().lowercase().trim().required(),
+  tipId: joi.string().trim(),
   token: joi.string().required(),
   user: joi.object({
     _id: joi.object().required(),
@@ -19,6 +20,8 @@ const requestConversion = async (data) => {
 
   if(validationResult.error)
     return { status: 400, code: "BAD_REQUEST_ERROR", errors: validationResult.error }
+
+  data = validationResult.value
 
   // Make sure the user has enough money in their wallet
   // to perform this request
