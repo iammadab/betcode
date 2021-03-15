@@ -553,8 +553,11 @@ Okay, resolved
 [Use the tip to generate objects](done)
 [Set the requested tips to have highest priority i.e should come first](done)
 [Display the pending alert for the code on the frontend](done)
-[Send the list of bookmakers to the frontend]
-[Display the actual name of the bookmaker on the pending timer]
+[Send the list of bookmakers to the frontend](done)
+[Display the actual name of the bookmaker on the pending timer](done)
+[Write a function to figure out how many seconds is left from now to an end time](done)
+[Combine this value with getCounter to update timer](done)
+
 
 
 Future task

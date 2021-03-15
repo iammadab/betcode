@@ -121,7 +121,30 @@ function showRequested(codeDetails){
   hideAll()
   
   if(codeDetails.data.status == "pending"){
-    showAlertPro("success", `Converting to ${codeDetails.display} in <span class='conversion-timer'>20 mins : 49 sec</span>`)
+    const message = `Converting to ${codeDetails.display} in <span class='conversion-timer'>20 mins : 49 sec</span>`
+    showAlertPro("success", message)
+    
+    const secondsLeft = secondsBetween(Date.now(), codeDetails.data.endTime)
+    console.log("Seconds left", secondsLeft)
+
+    const timer = document.querySelector(".conversion-timer")
+    console.log(timer)
+
+    if(secondsLeft <= 0)
+      return timer.innerText = "0 mins : 0 sec"
+
+    getCounter(secondsLeft, 
+      (seconds) => {
+        timer.innerText = seconds 
+      },
+      () => {
+        console.log("The timer is done")
+      },
+      (seconds, minutes) => {
+        return `${minutes} min : ${seconds} sec`
+      }
+    )
+
   }
 
 }
@@ -241,4 +264,13 @@ function makeConversionRequest(){
       return showAlertPro("danger", generateMessage("insufficient-funds"))
   }
 
+}
+
+function secondsBetween(b, a){
+  const dateA = new Date(a), dateB = new Date(b)
+  console.log("A", dateA)
+  console.log("B", dateB)
+  console.log("Original", b)
+  const diff = dateA.getTime() - dateB.getTime()
+  return Math.floor(diff / 1000)
 }
