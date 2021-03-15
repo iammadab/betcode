@@ -216,5 +216,15 @@ function makeConversionRequest(){
   const code = bookmakerData[source].code
   const destination = store.bookmaker
 
-  console.log(source, code, destination)
+  api("/conversion/", { source, code, destination, token: getToken() })
+    .then(handleResponse)
+
+  function handleResponse(response){
+    if(response.status == 200)
+      return reload()
+   
+    if(response.code == "INSUFFICIENT_FUNDS")
+      return showAlert("danger", generateMessage("insufficient-funds"))
+  }
+
 }
