@@ -176,7 +176,7 @@ function showAlertPro(type, message){
     return
 
   store.alertBox.className = `alert ${classIdentifier}`
-  store.alertBox.innerText = message
+  store.alertBox.innerHTML = message
 }
 
 function hideAll(){
