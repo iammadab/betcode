@@ -436,6 +436,19 @@ The most isolated is the tip page, let's see how we can modify it to work with t
   - All other bookmakers can be considered unacessible
   - I'll append the display to the bookmaker obj
 [Order the dropdown list by showing the original bookmaker first](done)
+[Figure out how to display different code views, based on the state of the code](done)
+  - The frontend has to be watching the changes in the bookmaker selection
+  - The frontend also has to have access to the data to make deductions from
+  - Based on the value for the boomaker and the associated data
+  - It displays the right view and sends the correct parameters 
+
+15/03/2021
+[Pass the data to the frontend](done)
+  - Ran into some problem passing the data to the frontend 
+  - Due to unicode errors, but it has been resolved not
+[Add a type to each bookmaker object]
+[If it is free, show the code and make the copy button visible]
+[If it is paid, show that 10 naira will be deducted from your account and the continue button]
 
 
 

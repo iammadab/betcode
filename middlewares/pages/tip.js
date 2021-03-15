@@ -15,8 +15,6 @@ const tip = async (req, res, next) => {
 
   post = postService.normalizeTip(post)
 
-  console.log(post)
-  
   // Want to order the bookmakers
   // Original first, then paid
   const original = [], paid = Object.keys(bookmakers)
@@ -24,7 +22,8 @@ const tip = async (req, res, next) => {
   const bookmakerVerbose = {}
   Object.keys(bookmakers).forEach(bookmaker => {
     bookmakerVerbose[bookmaker] = {
-      display: `${bookmakers[bookmaker]} (#10)`
+      display: `${bookmakers[bookmaker]} (10 Naira)`,
+      type: "paid"
     }
   })
 
@@ -32,6 +31,7 @@ const tip = async (req, res, next) => {
     const normalized = String(bookmaker).toLowerCase()
     original.push(normalized)
     bookmakerVerbose[normalized].display = bookmakers[normalized]
+    bookmakerVerbose[normalized].type = "original"
   })
 
   const bookmakerOrder = Array.from(new Set(original.concat(paid)))

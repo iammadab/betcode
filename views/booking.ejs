@@ -59,6 +59,12 @@
   </div>
 </div>
 
+<!-- send the data to the frontend -->
+<script type="text/javascript">
+  let bookmakerData = `<%= JSON.stringify(bookmakers) %>`
+  bookmakerData = JSON.parse(bookmakerData.replace(/&#34;/g, '"'))
+</script>
+
 <!-- Request for code section
 
 <div class="betcodes">
