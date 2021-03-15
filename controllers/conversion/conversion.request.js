@@ -39,6 +39,18 @@ const requestConversion = async (data) => {
       code: walletDeductionResult.code
     }
 
+  const requestConversionResult = await conversionService.requestConversion({
+    source: data.source,
+    code: data.code,
+    destination: data.destination,
+    subscriberId: data.user._id,
+    tipId: data.tipId
+  })
+  console.log(requestConversionResult)
+  if(requestConversionResult.error)
+    return { status: 403, code: requestConversionResult.code }
+
+  return { status: 200, code: "CONVERSION_REQUEST" }
   
 }
 

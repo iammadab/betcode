@@ -120,8 +120,10 @@ function redirect(url){
 }
 
 function reload(){
-  console.log("Reloading")
-  redirect(window.location.href)
+  if(location)
+    location.reload()
+  else
+    window.location.href = window.location.href
 }
 
 function getCounter(seconds, cb, endcb){

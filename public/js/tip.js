@@ -61,7 +61,8 @@ let store = {
   proceedButton: document.querySelector(".proceed-button"),
   bookmaker: "",
   bookmakerDetails: undefined,
-  originalBookmaker: originalBookmaker
+  originalBookmaker: originalBookmaker,
+  tipId: tipId
 }
 
 ;(function attachEvents(){
@@ -217,7 +218,7 @@ function makeConversionRequest(){
   const code = bookmakerData[source].code
   const destination = store.bookmaker
 
-  api("/conversion/", { source, code, destination, token: getToken() })
+  api("/conversion/", { source, code, destination, tipId: store.tipId, token: getToken() })
     .then(handleResponse)
 
   function handleResponse(response){

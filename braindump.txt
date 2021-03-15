@@ -524,8 +524,9 @@ Okay, resolved
   - Prefer tracking end time as opposed to start time 
   - Because I see us improving the expected end time as the technology get better
 [Make the tipId a compulsory parameter when making a conversion request](done)
-[On conversion request, create the conversion]
-[After conversion creation, add the subscriber to the conversion request]
+[On conversion request, create the conversion](done)
+[After conversion creation, add the subscriber to the conversion request](done)
+[Test on the frontend]
 
 
 

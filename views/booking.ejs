@@ -34,6 +34,7 @@
   let bookmakerData = `<%= JSON.stringify(bookmakers) %>`
   bookmakerData = JSON.parse(bookmakerData.replace(/&#34;/g, '"'))
   let originalBookmaker = "<%= tip.originalBookmaker %>"
+  let tipId = "<%= tip._id %>"
 </script>
 
 <!-- Request for code section
