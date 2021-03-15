@@ -78,7 +78,8 @@ let store = {
 
   const functionMap = {
     "original": showOriginal,
-    "paid": showPaid
+    "paid": showPaid,
+    "requested": showRequested
   }
 
   function loadBookmaker(event){
@@ -111,6 +112,17 @@ function showPaid(){
   hideAll()
   showAlertPro("info", generateMessage("about-to-pay"))
   showSection("proceed")
+
+}
+
+function showRequested(codeDetails){
+  
+  console.log(codeDetails)
+  hideAll()
+  
+  if(codeDetails.data.status == "pending"){
+    showAlertPro("success", `Converting to Bet9ja in <span class='conversion-timer'>20 mins : 49 sec</span>`)
+  }
 
 }
 

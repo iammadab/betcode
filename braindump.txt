@@ -552,7 +552,7 @@ Okay, resolved
 [On tip load, fetch all the conversions for that tip that the user is a subscriber to](done)
 [Use the tip to generate objects](done)
 [Set the requested tips to have highest priority i.e should come first](done)
-
+[Properly display the pending status of a tip on the frontend]
 
 
 
