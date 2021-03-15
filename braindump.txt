@@ -454,7 +454,11 @@ The most isolated is the tip page, let's see how we can modify it to work with t
 [If it is original, show the code and make the copy button visible](done)
 [Add the code to originals from the backend](done)
 [If it is paid, show that 10 naira will be deducted from your account and the continue button](done)
-[Write a function that generates the appropriate message for different states
+[Write a function that generates the appropriate message for different states](done)
+  - Currently only populated with data from about-to-pay
+  - Will update it as I need
+[Track the current bookmaker](done)
+[Track the type of code that was copied](done)
 
 
 

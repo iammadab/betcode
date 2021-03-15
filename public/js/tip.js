@@ -26,7 +26,8 @@ function copy(event){
     code: code,
     url: window.location.href, 
     bookmakr: codeElement.dataset.bookmaker,
-    tipster: codeElement.dataset.tipster
+    tipster: codeElement.dataset.tipster,
+    type: store.bookmakerDetails ? store.bookmakerDetails.type : "unknown"
   })
 
   //Change text to copied
@@ -57,7 +58,9 @@ let store = {
   alertBox: document.querySelector(".alert"),
   copySection: document.querySelector(".bookmaker-copier"),
   copyButton: document.querySelector(".copy-button"),
-  proceedButton: document.querySelector(".proceed-button")
+  proceedButton: document.querySelector(".proceed-button"),
+  bookmaker: "",
+  bookmakerDetails: undefined
 }
 
 ;(function attachEvents(){
@@ -76,8 +79,8 @@ let store = {
   }
 
   bookmakerSelect.onchange = function(event){
-    const bookmaker = bookmakerSelect.value
-    const codeDetails = bookmakerData[bookmaker]
+    const bookmaker = store.bookmaker = bookmakerSelect.value
+    const codeDetails = store.bookmakerDetails = bookmakerData[bookmaker]
   
     const fn = functionMap[codeDetails.type]
     if(!fn)
