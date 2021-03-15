@@ -97,7 +97,11 @@ function showOriginal(codeDetails){
 }
 
 function showPaid(){
-  console.log("Showing paid")
+
+  hideAll()
+  showAlertPro("info", generateMessage("about-to-pay"))
+  showSection("proceed")
+
 }
 
 
@@ -183,4 +187,17 @@ function showSection(type){
     return
 
   element.classList.remove("hide")
+}
+
+function generateMessage(type){
+
+  const messageMap = {
+    "about-to-pay": "10 naira will be deducted from your wallet"
+  }
+
+  if(messageMap[type])
+    return messageMap[type]
+
+  return ""
+
 }

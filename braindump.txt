@@ -452,8 +452,9 @@ The most isolated is the tip page, let's see how we can modify it to work with t
 [Watch for changes in the bookmaker dropdown](done)
 [Create a function to show or hide an alert](done)
 [If it is original, show the code and make the copy button visible](done)
-[Add the code to originals from the backend]
-[If it is paid, show that 10 naira will be deducted from your account and the continue button]
+[Add the code to originals from the backend](done)
+[If it is paid, show that 10 naira will be deducted from your account and the continue button](done)
+[Write a function that generates the appropriate message for different states
 
 
 
