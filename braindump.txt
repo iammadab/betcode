@@ -488,7 +488,7 @@ At the end of the second stage, I should be able to create conversion request, d
 [Pass the original bookmaker on the home page](done)
 [Pass the original bookmaker to the frontend of the tip page](done)
 [When proceed is clicked, gather all the required data to make a conversion request](done)
-[Create the api structure to make a conversion request]
+[Create the api structure to make a conversion request](done)
 [Protect api route with token verification]
 [Perform wallet amount verification before letting through]
 
