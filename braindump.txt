@@ -484,6 +484,7 @@ At the end of the second stage, I should be able to create conversion request, d
       - e.g notify(subscriberList, conversionObj)
       - the conversinObj will have all the necessary info needed for notification
   - This is sufficient for now, will expand further as I build
+
 [Watch clicks on the proceed button](done)
 [Pass the original bookmaker on the home page](done)
 [Pass the original bookmaker to the frontend of the tip page](done)
@@ -492,7 +493,17 @@ At the end of the second stage, I should be able to create conversion request, d
 [Protect api route with token verification](done)
 [Test the conversion api route from the frontend](done)
 [Perform wallet amount verification before letting through](done)
-[Show the insufficient funds error on the frontend]
+[Show the insufficient funds error on the frontend](done)
+[Figure out wallet system](done)
+  - Thinking there will be a need for a wallet system to handle all wallet co-ordinations
+  - Prevent negative amounts, update wallet amounts e.t.c
+  - Think it should be a service as opposed to a controller
+  - Transactions will be handled later
+
+[Create a wallet service]
+[Add the fund wallet function to the wallet service]
+  - Should take the amount and the user id
+  
 
 
 
