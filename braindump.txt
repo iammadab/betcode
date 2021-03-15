@@ -506,6 +506,24 @@ At the end of the second stage, I should be able to create conversion request, d
   - Just funded myself N120 :)
 [Create wallet service function to deduct from a user wallet](done)
 [Deduct the money from the users wallet before making the conversion request](done)
+
+Something just came up
+What if there is a manual request for a code before there is an automatic request
+  - The conversion request should not care if the request was automatic or not
+  - It should just keep track of subscribers
+  - So it is the subscriber addition function that will worry about that
+  - If it is the first subscriber that they are adding, they should add the necessary meta data
+Okay, resolved
+
+[Create the conversion request model]
+[Upgrade the conversion request validator to fit the model]
+[Create the conversion request service to actually create the conversion request]
+[Create a function that adds an automatic subscriber]
+[If the user is the first subscriber add the tip id to the conversion request model]
+[Keep track of the expected end time of the conversion]
+  - Prefer tracking end time as opposed to start time 
+  - Because I see us improving the expected end time as the technology get better
+[On conversion request creation, add the user as a subscriber]
   
 
 
