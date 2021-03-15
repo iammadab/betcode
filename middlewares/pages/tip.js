@@ -29,10 +29,17 @@ const tip = async (req, res, next) => {
 
   Object.keys(post.bookmakers).forEach(bookmaker => {
     const normalized = String(bookmaker).toLowerCase()
+
+    const code = post.bookmakers[bookmaker]
+    if(!code)
+      return
+
     original.push(normalized)
+
     bookmakerVerbose[normalized].display = bookmakers[normalized]
     bookmakerVerbose[normalized].type = "original"
     bookmakerVerbose[normalized].code = post.bookmakers[bookmaker]
+
   })
 
   const bookmakerOrder = Array.from(new Set(original.concat(paid)))

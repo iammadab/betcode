@@ -465,7 +465,28 @@ That concludes phase 1 i.e implementing the frontend structrue
 Next up is creating conversion requests
 At the end of the second stage, I should be able to create conversion request, display the status on the frontend with the timer and all
 
-
+[Figure out the datastruture for a conversion request](done)
+  - Definitely needs source, code and destination
+  - Then a list of subscribers
+    - Haven't fully decided if the list of subscribers should be in the conversion request doc or not
+  - The conversion request needs a status
+    - One of three
+      - Pending
+      - Success
+      - Partial
+      - Failed
+  - The converion request needs the tip id (to notifiy the automatic users)
+  - Once the status is not pending, all the subscribers need to be notified
+    - The notification system has to be reusable
+    - because there will be subscribers that will be added after resolution
+    - meaning the mass subscriber notification would not be triggered again
+    - hence there has to be a way to trigger it again per subscriber
+      - e.g notify(subscriberList, conversionObj)
+      - the conversinObj will have all the necessary info needed for notification
+  - This is sufficient for now, will expand further as I build
+[Watch clicks on the proceed button](done)
+[Pass the original bookmaker on the home page](done)
+[Pass the original bookmaker to the frontend of the tip page]
 
 
 

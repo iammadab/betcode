@@ -103,8 +103,15 @@ exports.normalizeTips = tips => {
   return tips.map(exports.normalizeTip)
 }
 
+const bookmakers = require("../lib/bookmakers")
 exports.normalizeTip = tip => {
   const tipObj = Object.assign({}, tip._doc)
   tipObj.tipDate = moment(tipObj.createdAt).fromNow()
+  for(bookmaker of Object.keys(tip.bookmakers)){
+    if(tip.bookmakers[bookmaker]){
+      tipObj.originalBookmaker = bookmakers[bookmaker.toLowerCase()]
+      break
+    }
+  }
   return tipObj
 }

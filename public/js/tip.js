@@ -67,6 +67,7 @@ let store = {
   appendRedirects()
   addEvent([store.commentButton], "click", comment)
   addEvent([store.copyButton], "click", copy)
+  addEvent([store.proceedButton], "click", makeConversionRequest)
 })()
 
 ;(function(){
@@ -207,4 +208,9 @@ function generateMessage(type){
 
   return ""
 
+}
+
+function makeConversionRequest(){
+  const destination = store.bookmaker
+  console.log(destination)
 }
