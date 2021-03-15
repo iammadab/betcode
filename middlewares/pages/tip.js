@@ -32,6 +32,7 @@ const tip = async (req, res, next) => {
     original.push(normalized)
     bookmakerVerbose[normalized].display = bookmakers[normalized]
     bookmakerVerbose[normalized].type = "original"
+    bookmakerVerbose[normalized].code = post.bookmakers[bookmaker]
   })
 
   const bookmakerOrder = Array.from(new Set(original.concat(paid)))

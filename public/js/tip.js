@@ -53,26 +53,52 @@ function copy(event){
 let store = {
   codeDisplay: document.querySelector(".code-display"),
   commentButton: document.querySelector(".comment-button"),
-  commentBox: document.querySelector(".comment-box")
+  commentBox: document.querySelector(".comment-box"),
+  alertBox: document.querySelector(".alert"),
+  copySection: document.querySelector(".bookmaker-copier"),
+  copyButton: document.querySelector(".copy-button"),
+  proceedButton: document.querySelector(".proceed-button")
 }
 
 ;(function attachEvents(){
   appendRedirects()
   addEvent([store.commentButton], "click", comment)
+  addEvent([store.copyButton], "click", copy)
 })()
 
 ;(function(){
-  const bookmakerSelect = document.querySelector("select")
-  const copyBox = document.querySelector(".copier")
-  bookmakerSelect.onchange = function(event){
-    copyBox.style.display = "flex"
-    const option = document.querySelector(`option[value="${event.target.value}"]`)   
-    store.codeDisplay.value = option.dataset.code
+
+  const bookmakerSelect = document.querySelector(".bookmaker-select")
+
+  const functionMap = {
+    "original": showOriginal,
+    "paid": showPaid
   }
 
-  const copyButton = document.querySelector(".copy-button")
-  copyButton.onclick = copy
+  bookmakerSelect.onchange = function(event){
+    const bookmaker = bookmakerSelect.value
+    const codeDetails = bookmakerData[bookmaker]
+  
+    const fn = functionMap[codeDetails.type]
+    if(!fn)
+      return
+
+    fn(codeDetails)
+  }
+
 })()
+
+function showOriginal(codeDetails){
+
+  hideAll()
+  store.codeDisplay.value = codeDetails.code
+  showSection("copy")
+
+}
+
+function showPaid(){
+  console.log("Showing paid")
+}
 
 
 function comment(event){
@@ -123,4 +149,38 @@ function appendRedirects(){
  if(signupRedirect)
   signupRedirect.setAttribute("href", `/register?from=${redirectUrl}`)
 
+}
+
+function showAlertPro(type, message){
+  const types = {
+    "success": "alert-success",
+    "danger": "alert-danger",
+    "info": "alert-info"
+  }
+  
+  const classIdentifier = types[type]
+  if(!classIdentifier)
+    return
+
+  store.alertBox.className = `alert ${classIdentifier}`
+  store.alertBox.innerText = message
+}
+
+function hideAll(){
+  store.alertBox.classList.add("hide")
+  store.copySection.classList.add("hide")
+  store.proceedButton.classList.add("hide")
+}
+
+function showSection(type){
+  const typeElementMap = {
+    copy: store.copySection,
+    proceed: store.proceedButton
+  }
+
+  const element = typeElementMap[type]
+  if(!element)
+    return
+
+  element.classList.remove("hide")
 }

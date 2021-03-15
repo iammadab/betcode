@@ -441,13 +441,18 @@ The most isolated is the tip page, let's see how we can modify it to work with t
   - The frontend also has to have access to the data to make deductions from
   - Based on the value for the boomaker and the associated data
   - It displays the right view and sends the correct parameters 
+  - Think the best way will be to figure out how to hide everything at once
+  - So when changing views, I can just hide everything then show the ones I want
 
 15/03/2021
 [Pass the data to the frontend](done)
   - Ran into some problem passing the data to the frontend 
   - Due to unicode errors, but it has been resolved not
-[Add a type to each bookmaker object]
-[If it is free, show the code and make the copy button visible]
+[Add a type to each bookmaker object](done)
+[Watch for changes in the bookmaker dropdown](done)
+[Create a function to show or hide an alert](done)
+[If it is original, show the code and make the copy button visible](done)
+[Add the code to originals from the backend]
 [If it is paid, show that 10 naira will be deducted from your account and the continue button]
 
 
