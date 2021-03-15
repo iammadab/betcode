@@ -500,9 +500,12 @@ At the end of the second stage, I should be able to create conversion request, d
   - Think it should be a service as opposed to a controller
   - Transactions will be handled later
 
-[Create a wallet service]
-[Add the fund wallet function to the wallet service]
+[Create a wallet service](done)
+[Add the fund wallet function to the wallet service](done)  
   - Should take the amount and the user id
+  - Just funded myself N120 :)
+[Create wallet service function to deduct from a user wallet](done)
+[Deduct the money from the users wallet before making the conversion request]
   
 
 

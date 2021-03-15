@@ -1,3 +1,5 @@
+const walletService = require("../../services/wallet.service")
+
 const joi = require("joi")
 
 const requestConversionValidator = joi.object({
