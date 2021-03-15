@@ -78,7 +78,7 @@ let store = {
     "paid": showPaid
   }
 
-  bookmakerSelect.onchange = function(event){
+  function loadBookmaker(event){
     const bookmaker = store.bookmaker = bookmakerSelect.value
     const codeDetails = store.bookmakerDetails = bookmakerData[bookmaker]
   
@@ -88,6 +88,10 @@ let store = {
 
     fn(codeDetails)
   }
+
+  bookmakerSelect.onchange = loadBookmaker
+
+  loadBookmaker()
 
 })()
 

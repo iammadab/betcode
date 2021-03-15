@@ -459,6 +459,12 @@ The most isolated is the tip page, let's see how we can modify it to work with t
   - Will update it as I need
 [Track the current bookmaker](done)
 [Track the type of code that was copied](done)
+[Run the view algorithm on the first select element, on page load](done)
+
+That concludes phase 1 i.e implementing the frontend structrue
+Next up is creating conversion requests
+At the end of the second stage, I should be able to create conversion request, display the status on the frontend with the timer and all
+
 
 
 
