@@ -121,7 +121,7 @@ function showRequested(codeDetails){
   hideAll()
   
   if(codeDetails.data.status == "pending"){
-    showAlertPro("success", `Converting to Bet9ja in <span class='conversion-timer'>20 mins : 49 sec</span>`)
+    showAlertPro("success", `Converting to ${codeDetails.display} in <span class='conversion-timer'>20 mins : 49 sec</span>`)
   }
 
 }
