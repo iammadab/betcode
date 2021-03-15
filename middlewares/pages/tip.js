@@ -73,7 +73,8 @@ const tip = async (req, res, next) => {
     tipData: post,
     comments,
     bookmakers: bookmakerVerbose,
-    bookmakerOrder
+    bookmakerOrder,
+    bookmakerMap: bookmakers
   })
 
   next()
