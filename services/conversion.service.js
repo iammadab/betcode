@@ -10,8 +10,6 @@ exports.requestConversion = async ({ source, code, destination, subscriberId, ti
       destination
     })
 
-    console.log(conversion)
-
     return await addSubscriber(conversion, { subscriberId, tipId })
 
   } catch(error){
@@ -26,9 +24,6 @@ exports.requestConversion = async ({ source, code, destination, subscriberId, ti
 async function addSubscriber(conversionRequest, { subscriberId, tipId }){
   
   try{
-
-    console.log("Add subscriber")
-    console.log(conversionRequest)
 
     // Check that the user is not already a subscriber
     if(conversionRequest.subscribers.indexOf(subscriberId) > -1)
@@ -47,6 +42,28 @@ async function addSubscriber(conversionRequest, { subscriberId, tipId }){
 
     console.log(error)
     return { error: true, code: "FAILED_TO_ADD_SUBSCRIBER" }
+
+  }
+
+}
+
+// Fetch all the conversion a particular user
+// has made for a particular tip
+exports.fetchUserTipConversions = async (userId, tipId) => {
+  
+  try {
+
+    const conversions = await Conversion.find({
+      tipId,
+      subscribers: userId
+    })
+
+    return conversions
+
+  } catch(error){
+
+    console.log(error)
+    return { error: true, code: "FAILED_TO_FETCH_USR_TIP_CONVERSIONS" }
 
   }
 

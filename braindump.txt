@@ -528,6 +528,32 @@ Okay, resolved
 [After conversion creation, add the subscriber to the conversion request](done)
 [Test on the frontend]
 
+[Figure out conversion display on the frontend](done)
+  - The system has been extended to original, paid and now requested codes
+  - I think the requested codes should take a higher precedence than all the other forms 
+    - As you can't use paid, you saw original earlier but still requested
+    - Hence you must care more about what you requested than the original
+  - As long as I send the end time I will be able to figure out the timer at the front end
+  - So the main thing will be querying the conversions to see if I have requested a conversion for that tip
+    - How will this work?
+    - If you are added as a subscriber, and it's an automatic request the tip id will be appeneded 
+    - What I am not sure of, is if I would like base the query on the tip id
+    - Especially considering that it is optional and not present in manual requests
+    - I could base it solely on source, code and destination but I have to really think about this
+    - Going got an offline think
+    - Decided on tip Id
+      - Was swinging more for s,c,d but the concern that betcodes might be shortlived
+      - As such bookmakers might reuse the same code more than once (actually I can say this with 99% prob)
+      - Hene a clash is possible, but with a tipId the prob of that happening is unlikely
+    - This will mean tipId will also be used to make sure that a request has not happened before
+    - Extra protections have to be put in place for manual transactions
+
+[Write a conversion service function to return conversion for a tip and user](done)
+[On tip load, fetch all the conversions for that tip that the user is a subscriber to](done)
+[Use the tip to generate objects](done)
+[Set the requested tips to have highest priority i.e should come first](done)
+
+
 
 
 Future task
