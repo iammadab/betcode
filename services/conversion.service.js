@@ -1,4 +1,5 @@
 const Conversion = require("../models/conversion")
+const notificationService = require("../services/notification.service")
 const telegram = require("../lib/telegram")
 
 exports.fetchConversionById = async (conversionId) => {
@@ -165,9 +166,20 @@ exports.resolveConversion = async ( conversionObj, status, code ) => {
 }
 
 exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
+
+  const { code, source, destination } = conversionObj
   
   const link = `https://bookmakr.ng/tip/${conversionObj.tipId}`
   console.log(link)
+
+  const notificationObj = await notificationService.createNotification({
+    user: subscriberId,
+    message: `Convert ${code} from ${source} to ${destination}`,
+    data: {
+      status: conversionObj.status
+    }
+  })
+  console.log(notificationObj)
 
   // What if these fails??
   telegram.send("developers", link)  
