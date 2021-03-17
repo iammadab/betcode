@@ -147,6 +147,10 @@ function showRequested(codeDetails){
 
   }
 
+  else if(codeDetails.data.status == "success"){
+    showOriginal({ code: codeDetails.data.code })
+  }
+
 }
 
 
