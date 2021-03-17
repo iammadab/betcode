@@ -151,6 +151,11 @@ function showRequested(codeDetails){
     showOriginal({ code: codeDetails.data.code })
   }
 
+  else if(codeDetails.data.status == "partial"){
+    showOriginal({ code: codeDetails.data.code })
+    showAlertPro("info", generateMessage("partial-code"))
+  }
+
 }
 
 
@@ -242,7 +247,8 @@ function generateMessage(type){
 
   const messageMap = {
     "about-to-pay": "10 naira will be deducted from your wallet",
-    "insufficient-funds": "Sorry, your balance is insufficient. Top up <a href='/topup'>here</a>"
+    "insufficient-funds": "Sorry, your balance is insufficient. Top up <a href='/topup'>here</a>",
+    "partial-code": `Partial! Some options are unavailable on ${store.bookmaker}`
   }
 
   if(messageMap[type])
