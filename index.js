@@ -83,10 +83,10 @@ app.get(
 
 app.get(
   "/alert", 
-  cookieMiddleware.maybeCookie(),
+  cookieMiddleware.cookieNotFound("/login"),
   tokenMiddleware.validateToken(),
   stageRouter(),
-  pageMiddleware.home,
+  pageMiddleware.notification,
   metaMiddleware.allTips,
   (req, res) => {
     res.render("alert", { ...req.pageData })
