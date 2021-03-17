@@ -50,6 +50,9 @@ const requestConversion = async (data) => {
   if(requestConversionResult.error)
     return { status: 403, code: requestConversionResult.code }
 
+  // Send the new stat to all the converters
+  conversionService.sendStats()
+
   return { status: 200, code: "CONVERSION_REQUEST" }
   
 }
