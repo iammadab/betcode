@@ -587,6 +587,7 @@ Currently focused on the converter end of the conversion process i.e conversion 
   - Total number of late conversions
 [On conversion request, send stats to stakeholders interested](done)
 [Add an assigned value to the conversion model](done)
+[Create a telegram app to track messages sent to the bot](done)
 [When next is sent to the twitter bot, send a link to the last unassigned conversion request]
 [Send the conversion request data to the frontend]
 [Implement api structure to resolve a conversion request]
@@ -603,3 +604,4 @@ Future task
 [Fix terms and condition links]
 [Verify form submit by hiting enter doesn't work]
 [Track conversion resolution time]
+[Track which converter resolved a conversion]
