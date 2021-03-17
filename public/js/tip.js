@@ -156,6 +156,11 @@ function showRequested(codeDetails){
     showAlertPro("info", generateMessage("partial-code"))
   }
 
+  else if(codeDetails.data.status == "failed"){
+    hideAll()
+    showAlertPro("danger", `Failed, No option is available on ${store.bookmaker}`)
+  }
+
 }
 
 
