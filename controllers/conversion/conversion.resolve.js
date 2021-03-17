@@ -24,6 +24,10 @@ const resolveConversion = async (data) => {
   if(conversionObj.status != "pending")
     return { status: 403, code: "CONVERSION_REQUEST_NOT_PENDING" }
 
+  const allowedStatuses = ["pending", "failed", "partial", "success" ]
+  if(allowedStatuses.indexOf(data.status) == -1)
+    return { status: 400, code: "INVALID_STATUS", data: allowedStatuses }
+
 }
 
 module.exports = resolveConversion
