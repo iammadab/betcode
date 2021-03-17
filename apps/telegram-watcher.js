@@ -1,5 +1,9 @@
 require("dotenv").config({ path: "../.env" })
+const conversionService = require("../services/conversion.service")
 const axios = require("axios")
+
+const { connectToDb } = require("../runners/database_runner")
+connectToDb().then(run)
 
 const TOKEN = process.env.TELEGRAM_TOKEN
 
@@ -31,7 +35,7 @@ function checkForUpdates(lastId){
 
 let nextUpdateId = ""
 
-;(async () => {
+async function run(){
   
   while(true){
     
@@ -45,7 +49,7 @@ let nextUpdateId = ""
 
   }
 
-})()
+}
 
 
 async function handleMessages({ result }){
@@ -55,5 +59,39 @@ async function handleMessages({ result }){
 }
 
 async function sendConversionRequest(message){
-  console.log("Sending conversion request")
+
+  const messageText = message.message.text.toLowerCase()
+  const chatId = message.message.chat.id
+
+  let reply = ""
+
+  if(messageText != "next")
+    return replyChat(chatId, "I only understand next")
+
+  else {
+
+    const conversionLink = await conversionService.assignConversionRequest()
+
+    if(!conversionLink)
+      return replyChat(chatId, "No conversion requests at this time")
+
+    if(conversionLink.error)
+      return replyChat(chatId, "An error occured, contact support")
+
+    return replyChat(chatId, conversionLink)
+
+  }
+
+}
+
+async function replyChat(chatId, message){
+  const replyUrl = `${baseUrl}/sendMessage?chat_id=${chatId}&text=${message}`
+  axios(replyUrl)
+    .then(() => {
+      console.log(`200 - ${chatId}`)
+    })
+    .catch((error) => {
+      console.log(error)
+      console.log("Failed to reply user")
+    })
 }

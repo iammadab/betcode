@@ -101,3 +101,29 @@ exports.sendStats = async () => {
   }
 
 }
+
+exports.assignConversionRequest = async () => {
+  
+  try {
+
+    const conversionRequest = await Conversion.findOne({ status: "pending", assigned: false })
+    if(!conversionRequest)
+      return null
+
+    const conversionLink = `https://bookmakr.ng/admin/convert/${conversionRequest._id}`
+
+    conversionRequest.assigned = true
+    await conversionRequest.save()
+
+    await exports.sendStats()
+
+    return conversionLink
+
+  } catch(error){
+
+    console.log(error)
+    return { error: true, code: "FAILED_TO_ASSIGN_CONVERSION" }
+    
+  }
+
+} 
