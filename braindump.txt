@@ -588,7 +588,9 @@ Currently focused on the converter end of the conversion process i.e conversion 
 [On conversion request, send stats to stakeholders interested](done)
 [Add an assigned value to the conversion model](done)
 [Create a telegram app to track messages sent to the bot](done)
+[Create a service function to assigns a conversion request and generates the link]
 [When next is sent to the twitter bot, send a link to the last unassigned conversion request]
+[Add number of assigned conversion to the conversion stats]
 [Send the conversion request data to the frontend]
 [Implement api structure to resolve a conversion request]
 [Implement a function to notify users by their id and the conversion obj]

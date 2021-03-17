@@ -74,16 +74,22 @@ exports.sendStats = async () => {
     
   try{
 
-    const noOfPendingConversions = await Conversion.where({ status: "pending" }).count()
+    const noOfPendingConversions = await Conversion.where({ status: "pending" }).countDocuments()
     const pendingStat = `Pending Conversions: ${noOfPendingConversions}`
+    
+    const noOfAssignedConversions = await Conversion.where({ 
+      status: "pending",
+      assigned: true
+    }).countDocuments()
+    const assignedStat = `Assigned from pending: ${noOfAssignedConversions}`
 
     const noOfLateConversions = await Conversion.where({ 
       status: "pending",
       endTime: { $lte: Date.now() }
-    }).count()
+    }).countDocuments()
     const lateStat = `Late Conversions: ${noOfLateConversions}`
 
-    const stat = `${pendingStat}\n${lateStat}`
+    const stat = `${pendingStat}\n${assignedStat}\n${lateStat}`
 
     telegram.send("developers", stat)
 
