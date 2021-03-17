@@ -15,7 +15,8 @@ const conversionSchema = new mongoose.Schema({
     enum: [ "pending", "success", "partial", "failed" ]
   },
   startTime: { type: Date, default: Date.now },
-  endTime: { type: Date, default: () => { return Date.now() + MINUTES * 60000 } }
+  endTime: { type: Date, default: () => { return Date.now() + MINUTES * 60000 } },
+  assigned: { type: Boolean, default: false }
 })
 
 const conversionModel = mongoose.model("Conversion", conversionSchema)
