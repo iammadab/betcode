@@ -150,6 +150,8 @@ exports.resolveConversion = async ( conversionObj, status, code ) => {
   try {
 
     conversionObj.status = status
+    conversionObj.resolvedAt = Date.now()
+
     if(status != "failed")
       conversionObj.destinationCode = code
 
