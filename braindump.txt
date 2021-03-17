@@ -622,8 +622,8 @@ Currently focused on the converter end of the conversion process i.e conversion 
 [Use the notification creation service when you resolve a tip](done)
 [Once a conversion status has been resolved, send the stats again of all stakeholders](done)
 [Track the resolution time of a conversion request](done)
-[Send better data for requested codes on the tip page]
-[Update the tip page api, to show all the different states of a resolved conversion]
+[Send better data for requested codes on the tip page](done)
+[Update the tip page api, to show all the different states of a resolved conversion](done)
 [Create page middleware for the notification section]
 [Render all the notifications for the user]
 [Handle for users requesting after a conversion has been resolved]

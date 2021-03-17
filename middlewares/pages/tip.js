@@ -56,8 +56,7 @@ const tip = async (req, res, next) => {
     bookmakerVerbose[bookmaker].display = `${bookmakers[bookmaker]}`
     bookmakerVerbose[bookmaker].type = "requested" 
     bookmakerVerbose[bookmaker].data = {
-      //status: conversion.status,
-      status: "failed",
+      status: conversion.status,
       code: conversion.destinationCode,
       startTime: conversion.startTime,
       endTime: conversion.endTime
