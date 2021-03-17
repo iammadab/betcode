@@ -203,6 +203,15 @@ app.get(
   (req, res) => res.render("tweet", { ...req.pageData })
 )
 
+app.get(
+  "/admin/convert/:conversionId",
+  (req, res, next) => { req.pageData = {}; next() },
+  pageMiddleware.convert,
+  metaMiddleware.defaultMeta,
+  (req, res) => res.render("post", { ...req.pageData })
+)
+
+
 app.use("/api", apiRouter)
 
 const PORT = process.env.PORT || 3000 

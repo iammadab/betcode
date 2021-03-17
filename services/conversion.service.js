@@ -1,6 +1,22 @@
 const Conversion = require("../models/conversion")
 const telegram = require("../lib/telegram")
 
+exports.fetchConversionById = async (conversionId) => {
+  
+  try {
+
+    const conversionObj = await Conversion.findOne({ _id: conversionId })
+    return conversionObj
+
+  } catch(error){
+
+    console.log(error)
+    return { error: true, code: "FAILED_TO_FETCH_CONVERSION" }
+
+  }
+
+}
+
 exports.requestConversion = async ({ source, code, destination, subscriberId, tipId }) => {
 
   try{

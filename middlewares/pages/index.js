@@ -4,6 +4,7 @@ const tip = require("./tip")
 const tipsters = require("./tipsters")
 const editProfile = require("./editProfile")
 const verifyNumber = require("./verifyNumber")
+const convert = require("./convert")
 
 module.exports = {
   home,
@@ -11,5 +12,6 @@ module.exports = {
   tip,
   tipsters,
   editProfile,
-  verifyNumber
+  verifyNumber,
+  convert
 }

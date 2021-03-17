@@ -591,7 +591,9 @@ Currently focused on the converter end of the conversion process i.e conversion 
 [Create a service function to assigns a conversion request and generates the link](done)
 [When next is sent to the twitter bot, send a link to the last unassigned conversion request](done)
 [Add number of assigned conversion to the conversion stats](done)
-[Send the conversion request data to the frontend]
+[Set up convert page](done)
+[Send the conversion request data to the frontend](done)
+[Render the conversion data on the page]
 [Implement api structure to resolve a conversion request]
 [Implement a function to notify users by their id and the conversion obj]
   - Notification includes whatsapp and in app notifications
