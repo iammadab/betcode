@@ -6,6 +6,7 @@ const conversionSchema = new mongoose.Schema({
   source: { type: String, required: true },
   code: { type: String, required: true },
   destination: { type: String, required: true },
+  destinationCode: { type: String, default: "" },
   subscribers: { type: Array, default: [] },
   manualSubscribers: { type: Array, default: [] },
   tipId: { type: "ObjectId", ref: "Post" },
