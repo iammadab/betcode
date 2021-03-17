@@ -4,7 +4,7 @@ const notificationSchema = new mongoose.Schema({
   type: { type: String, default: "conversion" },
   user: { type: "ObjectId", ref: "User", required: true },
   message: { type: String, required: true },
-  createdAt: { type: String, default: Date.now },
+  createdAt: { type: Date, default: Date.now },
   data: { type: Object, default: {} } // Notification type specific data
 })
 

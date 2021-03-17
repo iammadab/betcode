@@ -624,8 +624,9 @@ Currently focused on the converter end of the conversion process i.e conversion 
 [Track the resolution time of a conversion request](done)
 [Send better data for requested codes on the tip page](done)
 [Update the tip page api, to show all the different states of a resolved conversion](done)
-[Create page middleware for the notification section]
-[Render all the notifications for the user]
+[Create page middleware for the notification section](done)
+[Render all the notifications for the user](done)
+[Store notification links to direct the user to the tip page from the alert page]
 [Handle for users requesting after a conversion has been resolved]
 [Refund wallet if the conversion failed]
 [Create a transaction model to track payment history]

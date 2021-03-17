@@ -44,8 +44,6 @@ exports.normalizeNotifications = notifications => {
 
 exports.normalizeNotification = notification => {
   const notificationObj = Object.assign({}, notification._doc)
-  console.log(new Date(notificationObj.createdAt))
-  console.log(notificationObj.createdAt)
-  notificationObj.date = moment(new Date(notificationObj.createdAt)).fromNow()
+  notificationObj.date = moment(notificationObj.createdAt).fromNow()
   return notificationObj
 }
