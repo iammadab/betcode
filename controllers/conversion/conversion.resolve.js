@@ -54,6 +54,8 @@ const resolveConversion = async (data) => {
 
   }
 
+  conversionService.sendStats()
+
   return { status: 200, code: "RESOLVED_CONVERSION" }
 
 }

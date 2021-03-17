@@ -619,7 +619,7 @@ Currently focused on the converter end of the conversion process i.e conversion 
 [Don't show the enter code button in the conversion page if the status is failed]
 [Create the notification model](done)
 [Create a service to create notification for a user](done)
-[Use the notification creation service when you resolve a tip]
+[Use the notification creation service when you resolve a tip](done)
 [Once a conversion status has been resolved, send the stats again of all stakeholders]
 [Update the tip page api, to show all the different states of a resolved conversion]
 [Handle for users requesting after a conversion has been resolved]
