@@ -93,5 +93,12 @@ function resolveConversion(event){
     delete data.code
 
   api("/conversion/resolve", data)
-    .then(console.log)
+    .then(handleResponse)
+
+  function handleResponse(response){
+    if(response.status == 200)
+      reload()
+    else
+      showAlert(".alert-error", response.code)
+  }
 }
