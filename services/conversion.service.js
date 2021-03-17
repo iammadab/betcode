@@ -143,3 +143,23 @@ exports.assignConversionRequest = async () => {
   }
 
 } 
+
+exports.resolveConversion = async ( conversionObj, status, code ) => {
+
+  try {
+
+    conversionObj.status = status
+    if(status != "failed")
+      conversionObj.destinationCode = code
+
+    // Should save here
+    return conversionObj
+
+  } catch(error){
+
+    console.log(error)
+    return { error: true, code: "FAILED_TO_RESOLVE_CONVERSION" }
+
+  }
+
+}

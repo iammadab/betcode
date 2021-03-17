@@ -603,12 +603,14 @@ Currently focused on the converter end of the conversion process i.e conversion 
   - The different statuses will require different notifications for the users
   - Depending on the statuses, we might do different things with their wallets
     - Like potentially refund a user for a failed conversion
+[Add destination code to the conversion model](done)
 [Implement resolve conversion request api endpoint]
 [Implement a function to notify users by their id and the conversion obj]
   - Notification includes whatsapp and in app notifications
 [Once a conversion status has been resolved, notify all the users]
 [Once a conversion status has been resolved, send the stats again of all stakeholders]
 [Update the tip page api, to show all the different states of a resolved conversion]
+[Allow for users requesting after a conversion has been resolved]
 
 
 Future task

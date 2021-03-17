@@ -24,9 +24,23 @@ const resolveConversion = async (data) => {
   if(conversionObj.status != "pending")
     return { status: 403, code: "CONVERSION_REQUEST_NOT_PENDING" }
 
-  const allowedStatuses = ["pending", "failed", "partial", "success" ]
+  const allowedStatuses = [ "failed", "partial", "success" ]
   if(allowedStatuses.indexOf(data.status) == -1)
     return { status: 400, code: "INVALID_STATUS", data: allowedStatuses }
+
+  // Expecting code for both success and partial
+  if(data.status != "failed" && !data.code)
+    return { status: 400, code: "EXPECTED_CODE_FOR_SUCCESS" }
+
+  const resolvedConversionObj = await conversionService.resolveConversion(
+    conversionObj,
+    data.status,
+    data.code
+  )
+  console.log(resolvedConversionObj)
+
+  // Conversion has been resolved
+  // Resolve for automatic subscribers  
 
 }
 

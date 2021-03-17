@@ -1,16 +1,12 @@
 const store = {
   copyButton: document.querySelector(".copy-button"),
-  convertId: conversionRequestId,
+  covertId: conversionRequestId,
   conversionStatusElement: document.querySelector(".conversion-status"),
   conversionCodeElement: document.querySelector(".conversion-code"),
-  resolveConversionButton: document.querySelector(".resolve-conversion"),
-  inputs: Array.from(document.querySelectorAll("input, select"))
+  resolveConversionButton: document.querySelector(".resolve-conversion")
 }
 
 ;(function attachEvents(){
-  addEvent(store.inputs, "change, input, focus", () => {
-    hideAlert(".alert-error")
-  })
   addEvent([store.copyButton], "click", copy)
   addEvent([store.resolveConversionButton], "click", resolveConversion)
 })()
@@ -72,16 +68,9 @@ function resolveConversion(event){
   event.preventDefault()
   const data = {
     status: store.conversionStatusElement.value,
-    code: store.conversionCodeElement.value,
-    conversionId: store.convertId
+    code: store.conversionCodeElement.value
   }
 
   if(!data.status)
     return showAlert(".alert-error", "Please complete the form")
-
-  if(!data.code)
-    return showAlert(".alert-error", "Please complete the form")
-
-  api("/conversion/resolve", data)
-    .then(console.log)
 }
