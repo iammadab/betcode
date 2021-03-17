@@ -21,6 +21,9 @@ const resolveConversion = async (data) => {
   if(conversionObj.error)
     return { status: 404, code: "CONVERSION_REQUEST_NOT_FOUND" }
 
+  if(conversionObj.status != "pending")
+    return { status: 403, code: "CONVERSION_REQUEST_NOT_PENDING" }
+
 }
 
 module.exports = resolveConversion
