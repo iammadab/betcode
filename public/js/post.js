@@ -13,6 +13,13 @@ const store = {
   })
   addEvent([store.copyButton], "click", copy)
   addEvent([store.resolveConversionButton], "click", resolveConversion)
+  addEvent([store.conversionStatusElement], "change", () => {
+    const value = store.conversionStatusElement.value
+    if(value == "failed")
+      store.conversionCodeElement.classList.add("hide")
+    else
+      store.conversionCodeElement.classList.remove("hide")
+  })
 })()
 
 function capitalizeFirst(word){
@@ -79,8 +86,11 @@ function resolveConversion(event){
   if(!data.status)
     return showAlert(".alert-error", "Please complete the form")
 
-  if(!data.code)
+  if(data.status != "failed" && !data.code)
     return showAlert(".alert-error", "Please complete the form")
+
+  if(data.status == "failed")
+    delete data.code
 
   api("/conversion/resolve", data)
     .then(console.log)

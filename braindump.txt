@@ -612,10 +612,11 @@ Currently focused on the converter end of the conversion process i.e conversion 
   - This resolution includes, sending them a whatsapp notification with the appropriate linke
   - Creating a notification object for them to view on the website, with the link also
   - Potentially refunding them based on the status of the request
-[Implement a resolve subscriber function in the conversion service]
+[Implement a resolve subscriber function in the conversion service](done)
   - The function should pull the user details
   - Generate a link for the user to view their conversion
   - Send a message to their number
+[Don't show the enter code button in the conversion page if the status is failed]
 [Create the notification model]
 [Create a service to create notification for a user]
 [Use the notification creation service when you resolve a tip]
