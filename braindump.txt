@@ -621,16 +621,20 @@ Currently focused on the converter end of the conversion process i.e conversion 
 [Create a service to create notification for a user](done)
 [Use the notification creation service when you resolve a tip](done)
 [Once a conversion status has been resolved, send the stats again of all stakeholders](done)
-[Track the resolution time of a conversion request]
+[Track the resolution time of a conversion request](done)
 [Update the tip page api, to show all the different states of a resolved conversion]
+[Create page middleware for the notification section]
+[Render all the notifications for the user]
 [Handle for users requesting after a conversion has been resolved]
+[Refund wallet if the conversion failed]
+[Create a transaction model to track payment history]
+
 
 
 Future task
 [Increase login token duration]
 [Make sure all the pages can logout]
 [Fix terms and condition links]
-[Verify form submit by hiting enter doesn't work]
-[Track conversion resolution time]
+[Verify form submit by hiting enter doesn't work, verify section]
 [Track which converter resolved a conversion]
 [Admin's should have accounts]

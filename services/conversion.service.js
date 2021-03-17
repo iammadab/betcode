@@ -156,7 +156,7 @@ exports.resolveConversion = async ( conversionObj, status, code ) => {
       conversionObj.destinationCode = code
 
     // Should save here
-    return conversionObj
+    return conversionObj.save()
 
   } catch(error){
 
