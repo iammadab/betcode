@@ -13,4 +13,9 @@ conversionRouter.post(
   bodyResponder(conversionController.requestConversion)
 )
 
+conversionRouter.post(
+  "/resolve",
+  bodyResponder(conversionController.resolveConversion)
+)
+
 module.exports = conversionRouter

@@ -573,6 +573,7 @@ Hard goal for today:
     - Refund
     - Notifications e.t.c
   - Payment history and alerts
+  - Handle all the above for users that come after tip resolution
 For tomorrow, focus on:
   - Paystack, twitter and termi integration
   - Test and fix buygs
@@ -596,7 +597,13 @@ Currently focused on the converter end of the conversion process i.e conversion 
 [Render the conversion data on the page](done)
 [Implement the copy code functionality](done)
 [Hide the post button if the post is no longer pending](done)
-[Implement api structure to resolve a conversion request]
+[Figure out how to resolve a conversion request](done)
+  - To resolve a conversion, we need a status and possible a code
+  - The code will be optional, as a failed conversion will not require any code
+  - The different statuses will require different notifications for the users
+  - Depending on the statuses, we might do different things with their wallets
+    - Like potentially refund a user for a failed conversion
+[Implement resolve conversion request api endpoint]
 [Implement a function to notify users by their id and the conversion obj]
   - Notification includes whatsapp and in app notifications
 [Once a conversion status has been resolved, notify all the users]
@@ -611,3 +618,4 @@ Future task
 [Verify form submit by hiting enter doesn't work]
 [Track conversion resolution time]
 [Track which converter resolved a conversion]
+[Admin's should have accounts]
