@@ -42,6 +42,18 @@ const resolveConversion = async (data) => {
   // Conversion has been resolved
   // Resolve for automatic subscribers  
 
+  if(resolvedConversionObj.error)
+    return { status: 500, code: "UNABLE_TO_RESOLVE_CONVERSION" }
+
+  for(const subscriberId of resolvedConversionObj.subscribers){
+    // Might consider batching these requests to take advantage
+    // of the asychronous power of node
+    // scared of running low on memory
+    
+    await conversionService.resolveSubscriber(subscriberId, resolvedConversionObj)
+
+  }
+
 }
 
 module.exports = resolveConversion
