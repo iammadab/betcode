@@ -54,6 +54,8 @@ const resolveConversion = async (data) => {
 
   }
 
+  return { status: 200, code: "RESOLVED_CONVERSION" }
+
 }
 
 module.exports = resolveConversion
