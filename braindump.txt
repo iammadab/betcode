@@ -594,6 +594,8 @@ Currently focused on the converter end of the conversion process i.e conversion 
 [Set up convert page](done)
 [Send the conversion request data to the frontend](done)
 [Render the conversion data on the page](done)
+[Implement the copy code functionality](done)
+[Hide the post button if the post is no longer pending](done)
 [Implement api structure to resolve a conversion request]
 [Implement a function to notify users by their id and the conversion obj]
   - Notification includes whatsapp and in app notifications

@@ -40,26 +40,32 @@
 						<div id="linker" class="mb-3">	
               <p>From: <%= conversion.source %></p>
               <p>To: <%= conversion.destination %></p>
-              <input type="text" disabled value="<%= conversion.code %>" />
+              <input class="code-input" type="text" disabled value="<%= conversion.code %>" />
 						  <button class="btn btn-secondary mt-2 copy-button">Copy</button>	
 						</div>
 
 						<div class="form-group">
 							<select v-model="tipster" class="custom-select custom-select-lg">
 								<option value="">Choose Status</option>
-								<option>Done</option>
-								<option>Partial</option>
-								<option>Failed</option>
+								<option value="success">Done</option>
+								<option value="partial">Partial</option>
+								<option value="failed">Failed</option>
 							</select>
 						</div>
 
 						<div class="form-group">
-							<input v-model="odds" class="form-control form-control-lg" type="number" step="0.01" placeholder="Booking Code">
+							<input v-model="odds" class="form-control form-control-lg" type="text" step="0.01" placeholder="Booking Code">
 						</div>						
 
+            <% if(conversion.status == "pending"){ %>
 						<div class="form-group">
 							<button id="submit" type="submit" class="btn btn-book">Post</button>
 						</div>                                                           
+            <% } %>
+            
+            <% if(conversion.status != "pending"){ %>
+              <p>This conversion request has been resolved</p>
+            <% } %>
 		
 					</form>
 	
@@ -73,9 +79,13 @@
 
 </div>
 
+<input type="text" id="copyinput" style="transform: translateY(-50000px);" />
+
 </body>
 </html>
 
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="https://unpkg.com/vuex@2.0.0"></script>
+<script type="text/javascript">
+  let conversionRequestId = "<%= conversion._id %>"
+</script>
+<script src="/js/script.js"></script>
 <script src="/js/post.js"></script>
