@@ -557,10 +557,47 @@ Okay, resolved
 [Display the actual name of the bookmaker on the pending timer](done)
 [Write a function to figure out how many seconds is left from now to an end time](done)
 [Combine this value with getCounter to update timer](done)
-[Fix default time showing problem]
+[Fix default time showing problem](done)
+
+
+16/03/2021
+
+
+17/03/2021
+
+Did nothing yesterday, was just not in the mood to code, guess the long hours I did the previous days took a toll on me. We are back now.
+
+Hard goal for today:
+  - Complete the full transaction process, from start to resolution
+    - This includes all the different resolution statuses
+    - Refund
+    - Notifications e.t.c
+  - Payment history and alerts
+For tomorrow, focus on:
+  - Paystack, twitter and termi integration
+  - Test and fix buygs
+Friday:
+  - More testing and fixing of bugs
+
+Let's begin
+Currently focused on the converter end of the conversion process i.e conversion resolution
+
+[Write function to generate conversion request stats](done)
+  - Total number of unresolved conversions
+  - Total number of late conversions
+[On conversion request, send stats to stakeholders interested]
+[When next is sent to the twitter bot, send a link to the last unassigned conversion request]
+[Send the conversion request data to the frontend]
+[Implement api structure to resolve a conversion request]
+[Implement a function to notify users by their id and the conversion obj]
+  - Notification includes whatsapp and in app notifications
+[Once a conversion status has been resolved, notify all the users]
+[Once a conversion status has been resolved, send the stats again of all stakeholders]
+[Update the tip page api, to show all the different states of a resolved conversion]
 
 
 Future task
+[Increase login token duration]
 [Make sure all the pages can logout]
 [Fix terms and condition links]
 [Verify form submit by hiting enter doesn't work]

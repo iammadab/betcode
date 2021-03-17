@@ -1,4 +1,5 @@
 const Conversion = require("../models/conversion")
+const telegram = require("../lib/telegram")
 
 exports.requestConversion = async ({ source, code, destination, subscriberId, tipId }) => {
 
@@ -64,6 +65,32 @@ exports.fetchUserTipConversions = async (userId, tipId) => {
 
     console.log(error)
     return { error: true, code: "FAILED_TO_FETCH_USR_TIP_CONVERSIONS" }
+
+  }
+
+}
+
+exports.sendStats = async () => {
+    
+  try{
+
+    const noOfPendingConversions = await Conversion.where({ status: "pending" }).count()
+    const pendingStat = `Pending Conversions: ${noOfPendingConversions}`
+
+    const noOfLateConversions = await Conversion.where({ 
+      status: "pending",
+      endTime: { $lte: Date.now() }
+    }).count()
+    const lateStat = `Late Conversions: ${noOfLateConversions}`
+
+    const stat = `${pendingStat}\n${lateStat}`
+
+    telegram.send("developers", stat)
+
+  } catch(error){
+
+    console.log(error)
+    return { error: true, code: "FAILED_TO_GET_CONVERSION_STAT" }
 
   }
 
