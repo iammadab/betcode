@@ -22,11 +22,31 @@ exports.requestConversion = async ({ source, code, destination, subscriberId, ti
 
   try{
 
-    const conversion = new Conversion({
+    let conversion
+
+    // Check if someone has already requested for this
+    // exact conversion
+    conversion = await Conversion.findOne({
       source,
       code,
-      destination
+      destination,
+      tipId
     })
+    if(conversion){
+      console.log("Found", conversion)
+    }
+
+    // If no one has requested for it, just create a new 
+    // conversion request
+    if(!conversion){
+
+      conversion = new Conversion({
+        source,
+        code,
+        destination
+      })
+       
+    }
 
     return await addSubscriber(conversion, { subscriberId, tipId })
 
@@ -53,6 +73,12 @@ async function addSubscriber(conversionRequest, { subscriberId, tipId }){
     // not have a tip id attached yet, so we add that here
     if(!conversionRequest.tipId)
       conversionRequest.tipId = tipId
+
+    // If the conversion is no longer pending
+    // Then the result of the conversion request has already been fuffiled
+    // Hence just forward the result to this subscriber
+    if(conversionRequest.status != "pending")
+      await exports.resolveSubscriber(subscriberId, conversionRequest)
 
     return await conversionRequest.save()
 

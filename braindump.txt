@@ -616,7 +616,7 @@ Currently focused on the converter end of the conversion process i.e conversion 
   - The function should pull the user details
   - Generate a link for the user to view their conversion
   - Send a message to their number
-[Don't show the enter code button in the conversion page if the status is failed]
+[Don't show the enter code button in the conversion page if the status is failed](done)
 [Create the notification model](done)
 [Create a service to create notification for a user](done)
 [Use the notification creation service when you resolve a tip](done)
@@ -626,7 +626,17 @@ Currently focused on the converter end of the conversion process i.e conversion 
 [Update the tip page api, to show all the different states of a resolved conversion](done)
 [Create page middleware for the notification section](done)
 [Render all the notifications for the user](done)
+
+18/03/2021
+
+Didn't meet up with my goal of yesterday, sadly.
+Left with users coming after resolution, refund, transactions history
+So will complete all those for the phase one of today.
+
 [Handle for users requesting after a conversion has been resolved]
+  - At the conversion request stage, we check if the conversion has been resolved
+  - If it has been resolved, we just call the resolveSubscriber function 
+  - TADA
 [Refund wallet if the conversion failed]
 [Create a transaction model to track payment history]
 [Store notification links to direct the user to the tip page from the alert page]
