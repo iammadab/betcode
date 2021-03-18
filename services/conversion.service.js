@@ -153,7 +153,7 @@ exports.assignConversionRequest = async () => {
     if(!conversionRequest)
       return null
 
-    const conversionLink = `https://bookmakr.ng/admin/convert/${conversionRequest._id}`
+    const conversionLink = `${process.env.BASE_URL}/admin/convert/${conversionRequest._id}`
 
     conversionRequest.assigned = true
     await conversionRequest.save()
@@ -197,7 +197,7 @@ exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
 
   const { code, source, destination } = conversionObj
   
-  const link = `https://bookmakr.ng/tip/${conversionObj.tipId}`
+  const link = `${process.env.BASE_URL}/tip/${conversionObj.tipId}`
   console.log(link)
 
   const notificationObj = await notificationService.createNotification({
