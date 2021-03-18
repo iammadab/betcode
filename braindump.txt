@@ -638,6 +638,9 @@ So will complete all those for the phase one of today.
   - If it has been resolved, we just call the resolveSubscriber function 
   - TADA
 [Test conversion request after resolution](done)
+[Create the transaction model]
+  - The idea behind the transaction model, is that the wallet service will be the primary user of it
+  - When the wallet has been funded, 
 [Refund wallet if the conversion failed]
 [Create a transaction model to track payment history]
 [Store notification links to direct the user to the tip page from the alert page]
@@ -645,6 +648,8 @@ So will complete all those for the phase one of today.
 
 
 Future task
+[Re order notifications]
+[Notification messages should use the proper bookmaker display names e.g 1xbet instead of onexbet]
 [Verify otp not working properly]
 [Increase login token duration]
 [Make sure all the pages can logout]
