@@ -637,7 +637,7 @@ So will complete all those for the phase one of today.
   - At the conversion request stage, we check if the conversion has been resolved
   - If it has been resolved, we just call the resolveSubscriber function 
   - TADA
-[Test conversion request after resolution]
+[Test conversion request after resolution](done)
 [Refund wallet if the conversion failed]
 [Create a transaction model to track payment history]
 [Store notification links to direct the user to the tip page from the alert page]
@@ -645,6 +645,7 @@ So will complete all those for the phase one of today.
 
 
 Future task
+[Verify otp not working properly]
 [Increase login token duration]
 [Make sure all the pages can logout]
 [Fix terms and condition links]
