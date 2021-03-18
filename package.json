@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "getenv": "npx dotenvenc -d",
+    "hideenv": "npx dotenvenc"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
+    "dotenvenc": "^2.0.1",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "joi": "^17.3.0",
