@@ -1,10 +1,12 @@
 const postService = require("../../services/post.service")
 const userService = require("../../services/user.service")
+const tweetService = require("../../services/tweet.service")
+
 const on = require("../../lib/on")
 const { createValidator } = require("lazy-validator")
 
 const createPostValidator 
-	= createValidator("tipster.string.lowercase, description.string, odds.number, image.string, bookmakers.object")
+	= createValidator("tipster.string.lowercase, description.string, odds.number, bookmakers.object")
 
 const createPost = async (req, res) => {
 
@@ -18,8 +20,14 @@ const createPost = async (req, res) => {
 		})
 
   const safe = validationResult.data
+  
+  let user
 
-  const user = await userService.findUserById({ id: safe.tipster })
+  user = await userService.findUserByUsername({ username: safe.tipster })
+
+  if(!user)
+    user = await userService.findUserById({ id: safe.tipster })
+
   if(!user)
     return res.json({
       status: 403,
@@ -31,6 +39,9 @@ const createPost = async (req, res) => {
       code: "USER_NOT_FOUND"
     })
 
+  if(req.body.image)
+    safe.image = req.body.image
+
   if(req.body.image2)
     safe.image2 = req.body.image2
 
@@ -39,6 +50,21 @@ const createPost = async (req, res) => {
 
   if(req.body.image4)
     safe.image4 = req.body.image4
+
+  if(req.body.tweet)
+    safe.tweet = req.body.tweet
+
+  // Overide username with id
+  safe.tipster = user._id
+
+  // First update the status of the tip to post
+  // If successful then proceed
+  const tipUpdateResult = await tweetService.updateTypeMany([ safe.tweet ], "post")
+  if(tipUpdateResult.n != 1)
+    return res.json({
+      status: 200,
+      code: "TIP_UPDATE_FAILED"
+    })
 
 	const [ createError, post ] = await on(postService.createPost(safe))
 

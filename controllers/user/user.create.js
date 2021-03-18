@@ -1,5 +1,6 @@
 const { hash } = require("../../lib/crypt")
 const userService = require("../../services/user.service")
+const otpService = require("../../services/otp.service")
 const loginUser = require("./user.login")
 
 const joi = require("joi")
@@ -11,9 +12,10 @@ const createUserValidator = joi.object({
   phoneCode: joi.string().trim().required(),
   phone: joi.string().trim().regex(/^[0-9]+$/).required(),
   password: joi.string().trim().required(),
-  bio: joi.string().trim().required(),
+  bio: joi.string().trim(),
   picture: joi.string().trim().empty("").default("/image/logo/user.png"),
   twitter: joi.string().trim(),
+  twitterId: joi.string().trim(),
   telegram: joi.string().trim()
 }).options({ abortEarly: false })
 
@@ -70,8 +72,6 @@ const createUser = async (data) => {
     }
   }
 
-
-  
 
   // Hash password
   const passwordHash = await hash(userDetails.password)

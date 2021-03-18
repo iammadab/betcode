@@ -1,8 +1,9 @@
 const store = {
+  userDetails: {},
   registerButton: document.querySelector(".register-button"),
   registerFormTag: ".register-form",
   imageInput: document.querySelector("input[type=file]"),
-  loginLink: document.querySelector(".login-link")
+  loginLinks: Array.from(document.querySelectorAll(".login-element"))
 }
 
 ;(function attachEvents(){
@@ -22,9 +23,11 @@ function appendLogin(){
 
   if(!redirectUrl) return
 
-  if(!store.loginLink) return
+  if(!store.loginLinks || store.loginLinks.length == 0) return
 
-  store.loginLink.setAttribute("href", "/login?from=" + redirectUrl)
+  store.loginLinks.forEach(link => {
+    link.setAttribute("href", "/login?from=" + redirectUrl)
+  })
 
 }
 
@@ -36,10 +39,10 @@ async function registerUser(event){
   event.preventDefault()
   registerText()
 
-  const userDetails = extractForm(store.registerFormTag)
+  const userDetails = store.userDetails = extractForm(store.registerFormTag)
   const missingKeys = hasKeys(
     userDetails,
-    ["fullname", "username", "email", "phone", "password", "bio"]
+    ["fullname", "username", "email", "phone", "password"]
   )
 
   if(missingKeys.length > 0){
@@ -58,34 +61,21 @@ async function registerUser(event){
     registerText("normal")
     return showAlert(".register-error", `Sorry, spaces are not allowed in usernames`)
   }
-
-  // Upload the image if it exists
-  let profileLink = ""
-
-  const file = store.imageInput.files
-
-  if(file[0]){
-    const formData = new FormData()
-    formData.append("file", file[0])
   
-    const uploadData = 
-      await fetch("/api/upload", { method: "POST", body: formData })
-              .then(res => res.json())
+  register()
 
-    console.log(uploadData)
-    if(uploadData.status == 200)
-      profileLink = uploadData.link
-  }
+}
 
+function register(){
 
-  api("/user", { ...userDetails, phoneCode: "+234", picture: profileLink })
+  api("/user", { ...store.userDetails, phoneCode: "+234" })
     .then(handleRegistration)
 
 
   function handleRegistration(data){
 
     if(data.status == 200){
-      let toRedirect = "/", params = new URLSearchParams(window.location.search)
+      let toRedirect = "/home", params = new URLSearchParams(window.location.search)
       toRedirect = params.get("from") ? params.get("from") : toRedirect
       return redirect(toRedirect)
     }
@@ -101,7 +91,7 @@ async function registerUser(event){
       return showAlert(".register-error", "Something went wrong, try again later or contact support")
 
   }
-      
+
 }
 
 function validEmail(email) {
@@ -115,3 +105,23 @@ function validUsername(username){
     return false
   return true
 }
+
+
+/*async function sendOtp(){
+
+  api("/otp", { phone: store.userDetails.phone })
+
+  showOtpTimer()
+
+  getCounter(5, 
+     (seconds) => {
+        verificationStore.otpTimer.innerText = `in ${seconds} seconds`
+     },
+     () => {
+       verificationStore.otpTimer.innerText = `in 30 seconds`
+       showResendButton()
+     }
+  )
+
+}*/
+

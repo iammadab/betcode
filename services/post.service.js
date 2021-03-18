@@ -20,11 +20,36 @@ exports.createPost = async (data) => {
 }
 
 
-exports.fetchAll = async (lastId, limit = 20) => {
+exports.fetchAll = async ({ lastId, limit = 20, tipster, bookmaker, minOdds = 0, maxOdds }) => {
 	
 	try{
 
-    const query = lastId ? { _id: { $lt: lastId } } : {}
+    // Build up the individual queries
+    const paginationQuery = lastId ? { _id: { $lt: lastId } } : {}
+    const tipsterQuery = tipster ? { tipster } : {}
+
+    // Find posts that have a value for this bookmaker
+    const bookmakerQuery = 
+       bookmaker ?
+        { [`bookmakers.${bookmaker}`] : { $in: [ /\S/ ] } } :
+          {}
+
+    // Systematically build the odds query
+    // Made up of min and max or any one
+    const minOddsQuery = minOdds ? { $gte: minOdds } : {}
+    const maxOddsQuery = maxOdds ? { $lte: maxOdds } : {}
+    const oddsQuery = minOdds || maxOdds ? { odds: { ...minOddsQuery, ...maxOddsQuery } } : {}
+    
+
+    // Combine the individal queries into on big query
+    const query = {
+      ...paginationQuery,
+      ...tipsterQuery,
+      ...bookmakerQuery,
+      ...oddsQuery
+    }
+    console.log(query)
+
 		const posts = await Post.find(query)
             .limit(limit)
             .populate("tipster")
@@ -78,8 +103,15 @@ exports.normalizeTips = tips => {
   return tips.map(exports.normalizeTip)
 }
 
+const bookmakers = require("../lib/bookmakers")
 exports.normalizeTip = tip => {
   const tipObj = Object.assign({}, tip._doc)
   tipObj.tipDate = moment(tipObj.createdAt).fromNow()
+  for(bookmaker of Object.keys(tip.bookmakers)){
+    if(tip.bookmakers[bookmaker]){
+      tipObj.originalBookmaker = bookmakers[bookmaker.toLowerCase()]
+      break
+    }
+  }
   return tipObj
 }

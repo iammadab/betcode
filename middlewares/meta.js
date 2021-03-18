@@ -17,12 +17,14 @@ exports.defaultMeta = (req, res, next) => {
 }
 
 exports.allTips = (req, res, next) => {
+  console.log("meta start")
   const url = baseUrl + req.path
 
   req.pageData.meta = Object.assign({}, baseMeta, {
     url
   })
 
+  console.log("meta eject")
   next()
 }
 

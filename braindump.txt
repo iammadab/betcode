@@ -1,0 +1,659 @@
+When the cookie is found, I am attaching the decoded token to the user object.
+Next up is displaying the post properly.
+Filtering tipsters still works properly.
+
+Still have to deal with pagenation, but that should come later.
+Want to handle profile first.
+
+Something that will happen a lot is that some pages will require data from the database.
+These pages will require specific versions of that data and as such must be able to send in their own input.
+So pages should be able to call specific functions and do things with those functions
+Currently, I am creating each function as a middleware and all the functions are operating on a single source of truth.
+Thinking of turning those functions into functions without side effects, more like services or controllers.
+Then each page will have it's own combiner that makes everything work. Think this is the approach to go with it makes it easier to compose in differnt ways.
+
+
+Just implemented pagination, next up is the implementation of the profile page.
+
+How does the application know that somebody is logged in??
+I need to show different headers based on whether the user is logged in or not, this is across all pages
+This means there has to be a common dedicated middleware across all pages that somehow figures out if the user is logged in.
+If the user is logged in, it attaches an identifier to an object the pages can have access to.
+Meaning all pages can ask, is this user logged in or not?
+
+This middleware not only has to determine if there is a cookie, but it also has to make sure that a user with the id stored in the cookie exists.
+I have middlewares that allow you to pass or not depending on whether you have a token or not.
+I also have a middleware that does token validation.
+I will most likely have to use a combination of the "cookieFound" and the "validateToken" middlewares
+
+There will be three types of pages
+1. Pages that you must not be logged in to access (e.g. login, register)
+2. Pages that you must be logged in to access (e.g. comment, view personal profile)
+3. Pages that you can be logged in or not to access (e.g. aggregated tips, user profiles)
+
+Pages 1 and 2 already have user logged in detector middlewares, all that need to be added is the means of communicating the result to the page. Most likely from the validateToken middleware.
+The solution I am seeing is the cookie detector will be the one to determine if the user is logged in or not and update the data source.
+If the user is not logged in, the validate token middleware just calls next if the cookie detector says the user is logged in then the cookie detector further verifies this status.
+
+Sometimes, a user might have a cookie that has expired, so the cookie detector will say, yes this user is logged in, but the token validator will say no this user is not logged in, what do you do then?
+In a page that requires you to be logged in, you have to clear the cookie.
+In a page that required you not to be logged in, we don't care about this as the cookie detector would have cancelled you.
+In a page where you can either be logged in or not, you should be allowed to pass.
+So the validate token middleware has to have an idea of the state of that page.
+
+Time to code
+
+
+TODO
+----
+Solve mongodb id cast error problems
+
+
+Next problem to tackle is that of converting tipsters to user with a verified tipster marker.
+We first started with just a tipster data structure, now we are transitioning to everyone is a user structure.
+The most important thing here is the fact that there are old posts by the tipsters that we must preserve.
+The tipster model has enough information to atleast create their user accounts.
+When we create the user account, we will get their id.
+Next up is to find all the posts that that user has created before then change the id to be their new user id.
+The function will be called tipsters to converters.
+
+
+
+
+
+
+
+
+
+
+1/03/2021
+The goal of this session is to allow for conversion of twitter tips to post on the website.
+Currently we are storing tweets in the database, as we find them.
+
+Need to first fetch all the tweets that are not classified
+Display them on the tweets page
+  It will be cool to show the number of classified and unclassified tips
+When you click any of the unclassified tips they move over to the tips section
+  They instantly become classified as tips, not sure if this is the best tho.
+  Think a better model might be to batch them, but we will see
+  Thought about it, and it is better to batch to transformation
+    This allows for faster perceived speed from the operators point of view
+A tweet is one of these many stages.
+  Unclassified, nottip, tip, post
+  The tweet interface shows unclassified and tip only
+So at the start, we fetch all the unclassified tips and actual tips in the database.
+Render that, then further processing can occur.
+
+Need an api that allows for batch transformation of tweets to nottips, tips and post
+  Okay, maybe not post, as the tips are posted we convert the status
+
+Tasks
+  Create a new model for tweets (done)
+  Move the twitter stream app to the betcode project (done)
+  Link the schema to the twitter stream function (done)
+  Create an api to fetch tweets based on their status (done)
+
+The next set of tasks will deal with rendering the unclassified tips on the tweets page
+
+Tasks
+  Fetch the unclassified tweets (done)
+  Create a function to convert a tweet to a dom element (done)
+  Render all the unclassified tweets (done)
+
+2/03/2021
+Tasks
+  Display the number of unclassified tips (done)
+
+
+Currently, all the tips are stored in an array, on click we want to move the tip to the other section. How do we achieve this?
+We can have two additional arrays, one for tips and not tips. These array will just contain ids of posts, the building of the dom will happen from this.
+Arrays (all, nottips, tips), build dom from nottips and tips, clicking on a tip should move the id to the other array, while manipulating the dom of course.
+
+Just discovered that dom.appendChild actually move the elem from it's parent to the new parent you are appending to, this is cool for the movement task.
+
+Tasks
+  On click move the tweet to the other section (done)
+
+Tasks
+  Implement api to batch classify as nottips (done)
+  Implement api to batch classify as tips (done)
+
+Couldn't find a way to get the ids of all documents that have been updated in mongoose.
+The ideas was that I'll send an array of ids, it will update all of them, then i'll get back a list of all the id's that where successfully updated. Then I can use that for futher logic on the frontend.
+
+
+3/03/2021
+
+Tasks
+  Make the clear tweets button work (done)
+
+4/03/2021
+
+New format of writing tasks, tasks are enclosed in []
+Any information indented underneath a [] is explainging the tasks above, by explaining I just mean thinking out loud about the task.
+
+[Create a new tab for potential tips](done)
+[Modify the tweet movement to move through those two tabs](done)
+[Only display the tweet and the picture in the potential tweets section](done)
+[Create a means to convert all the potential tweets to tips](done)
+[Move tips to tip section when converted from potential tips](done)
+  - For this, I will need a way to easily access the dom elements by id
+  - Then all I need to do is move them to another section
+[In the tip section, allow for clickable forms](done)
+
+
+5/03/2021
+
+[Design datastrcutre to represent posts instructions](done)
+  - I need the simplest way to represent a post
+  - A post cares about the (tipster, description, odds, bookmaker(with code), images)
+  - All these, I know I can somehow get
+  - Note: Posts should point back to the id of the tweet that created them
+
+  - The main problem with this task for me is dealing with posts that have more than one betcode underneath them. Let me start by making the assumption that the operator is rational, and as such will make the right actions.
+  - So if there are two betcodes in a tweets, the operator should create two forms, and fill them up
+  - Once the operator is sure that all the forms have been filled correctly, they hit convert to post of something
+  - The successful ones get removed and the one with error stay, the errors should probably be displayed, but I don't know about that yet.
+
+[Allow for the addition of multiple forms per tweet](done)
+[On all posts button, convert the dom to post instruction](done)
+[Make api calls for each instruction](done)
+[Add an optional tweet id to the post model](done)
+[Remove the successful post from the ui and update count](done)
+[When a user tries to post, if it is from a tweet, change the status of the tweet on post](done)
+[Write a function that can switch tabs](done)
+  - nav-link control the tab header by having a class active
+  - tab-pane control the tab content
+
+  - nav-link can be identified with href
+  - tab-pane can be identified with id
+[Programmatically move tabs to improve the experience](done)
+
+
+And the above concludes version one of tweet to posts. Hurray!!!!
+
+07/03/2021
+
+The goals of today, handle state recovery, discovery and automatic account creation from twitter
+
+[On refresh, load both non-tips and tips](done)
+[Use localstorage to remember potential tips](done)
+  - A potential tip is an unclassified tweet that is most likely a tip
+  - At the start, i'll get a list of unclassified tweets
+  - I'll also have a list of potential tip ids
+  - All I need to do is move those tips, think I already have a function for that
+  - At any point when I am updating the ptip array, I need to update the local storge version also
+[Implement filtering by tipster](done)
+[Implement filtering by bookmaker](done)
+[Implement filtering by odds](done)
+  - Want to use the format of min odds and max odds
+  - Min should be 0, if not supplied, maximum cannot have a default value
+
+Going to pause making discovery available on the ui for now, as the ui has not been finalized
+
+
+10/03/2021
+
+New update, the version 3 has to be finished in 4 days!
+What's left
+  - Filtering (today)
+  - Adding verified tipsters by their username (today)
+  - Verification system (tomorrow)
+  - Wallet system (tomorrow)
+  - Payment system (tomorrow)
+  - Conversion system (12/03/2021)
+  - Notification System (12/03/2021)
+  - Distribution (13/03/2021)
+
+Let's see if we can hit this target!.
+
+[Create a function to return a list of all the tipsters and their ids](done)
+[Display the tipster list on the frontend](done)
+[Implement show more tipsters]
+  - Show more comes in handy when you have so many tipsters
+  - How do you restrict the tipsters in the first place??
+  - Does it make sense to do pagination for the tipsters??
+[Update tipster filter state on change](done)
+[Allow for filter drop down to show clicked on item](done)
+[Update bookmaker filter state on change](done)
+[Update odds filter state on change](done)
+
+
+11/03/2021
+Already behind schedule.
+
+[Implement function to fetch based on filter](done)
+[Insert the fetched elements into the filter section](done)
+[Implement show more tips to work with the filter](done)
+  - Filtering is done, the experience is not the best but it works quite well
+  - A loader might be needed, to show that filtering is happening
+[Track filtering with mighty](done)
+  - How do we track filtering?? What are the params we care about??
+  - What is the goal?
+  - The idea is to know if people are making use of the feature, and what exactly are they filtering based on
+  - We should track the type of filtering, and the query
+[Fix the tweet to post bug when adding a new post under the same tweet](done)
+  - User element.insertAdjacentHTML("beforeend", html)
+
+First phase done (i.e filtering), next up verfied tipster from username
+
+[Explore getting a users details from their twitter profile](done)
+[Add a twitter property to the user model](done)
+[Create a verifed tipster from their username](done)
+[Create a user service to grab verified tipsters with tipster ids](done)
+[Make everything work as before but with the automatically generated tipsters](done)
+[Add the twitter ids to the production db and make sure usernames are the same](done)
+
+Second phase done (i.e easily add new tipsters and track automatically)
+Next phase is to build a telegram lib to send messages
+
+[Build a library that can send telegram messages, given a chatId and message](done)
+[Implement telgram account grouping, to bulk send to a group of users](done)
+
+Third phase done, next up is proper account verification
+[Redirect to home on login and fix cookie redirection login](done)
+[Make the logout button work](done)
+[Show the correct account details on the home page](done)
+[Add wallet to model and display](done)
+[Fix register to work with new parameters](done)
+[Design verification flow](done)
+  - We have users currently, that are not verified
+  - Then we have new users that are not in the system at all
+  - On registration, we send you an otp, if you put in the correct one, you are verified
+  - For users that are already in the system
+    - We log everyone out, and on login we send an otp to their numbers
+    - While also giving the ability to change their whatsapp phone numbers
+[Build otp model](done)
+[Create endpoint to send an otp to a number](done)
+[Create an endpoint to verify an otp](done)
+[Implement function that deletes all otp for a particular number](done)
+[Add the verify page in register](done)
+[Hide the verify page in register](done)
+[Implement method to toggle between them](done)
+
+12/03/2021
+[Create function to toggle verification screen](done)
+[On register, create an otp](done)
+[Create a dedicated api to check if a username exists](done)
+[Create a dedicated api to check if an email exists](done)
+[Create a dedicated api to check if a phone number exists](done)
+[On register, make all the checks and show appropriate errors if need be](done)
+[If no errors, create otp and switch to verification](done)
+[On complete registration, verify tha the otp is correct](done)
+[Depending on the result, display the appropriate message](done)
+
+13/03/2021
+[Create a send otp again button](done)
+[Hide the send otp button by default](done)
+[Implement countdown, to prevent otp creation spamming](done)
+[Once the counter is done, show the send otp button again](done)
+[Figure out how to modify the registration api to require an otp code](done)
+  - Automatic tipster creation from user name uses the register controller
+  - Adding an otp requirement, will affect that process
+  - Hence, the automatic generator will need to send an otp
+  - They are not real, hence no otp will be sent to them
+  - How do I resolve this, the obvious solution is to hardcode a just pass otp
+  - But this is not secure, as anybody that has access to the codebase will have the ability ...
+  - to create as many accounts as the can.
+  - What's the worse case scenario, they will have multiple accounts, if we are giving out free credits then they will basically be getting free units for as long as they want.
+  - Another thing to do might be to put a verifiedPhone field, and set it to false for any one that uses that pass otp
+  - Then tie features like free credits, to "you must have a verifiedPhone"
+  - Also puting the default otp in an env file will keep it safe
+[Register the user if their otp verification is successful](done)
+[On register, if a user submits their whatsapp number, change their details and resend an otp](done)
+
+The entire application still feels off by a lot, might be better to just allow people register but be unverified as akin suggested, this will make it a lot more simple
+Let's begin
+
+[Add a stage parameter to each user](done)
+[Remove otp from registration](done)
+[On register, set the parameter to equal unverified](done)
+[Create a stage router that forces unverified users to the verify page](done)
+[Send an otp to the user when they hit the verify page](done)
+[Implement an api that verifies a user, via otp mechanism](done)
+[Implement an api that sends otp via token](done)
+[Implement the verification on the frontend](done)
+[Reimplement the resend button](done)
+[Reimplement the countdown timer](done)
+[Create an asterik view of the number](done)
+  - The goal is to turn a number like 09092268168 to 0909****68
+  - Is there an accepted standard for things like this??
+[Figure out how to update a users phone number](done)
+  - Currently, there is an api that does this, but it requires certain field
+  - Want to see if there is a way I can modify this to allow for certain fields
+[Implement an api that allows a user to change their phone number](done)
+[Implement phone number change on the frontend](done)
+[Convert the verification sections to forms](done)
+[Fix change number button changing to login](done)
+
+Everything seems to work now with verification, that's great.
+Might work on forgot password for the rest of the day, but desperatly need to get to the conversion section of the project
+
+14/03/2021
+
+Decided to leave the forgot password feature for later, want to get started with the conversion bit.
+Lot's of unsolved problems there.
+
+[Figure out how to unify the bookmaker list across the application]
+  - The goal is a single source of truth for which bookmakers we are offering
+  - Bookmkaers show up when we are:
+    - Converting from tip to post
+    - On the tip page when a user wants to request for a conversion
+    - They are all dropdowns, so the idea will be to fetch the list then send them in as dropdowns
+[Create a file with the list of all the bookmakers](done)
+[Create an api to return that list of bookmakers](done)
+[Modify the tweet to post section to make use of the bookmaker list](done)
+[Modify the filter section to make use of the bookmaker list](done)
+
+Time to brain storm on some conversion ideas.
+The first part is setting up the scene for conversion
+Every tip has one or more codes for one or more of the bookmakers we offer.
+Going forward, there will be only one code assigned to each post (i.e the default code the tipster released originally)
+Viewing the default code will be free, to view any other code, you have to pay
+
+So every tip has a set of free codes and a set of paid codes
+The total number of codes is equal to the total number of bookmakers
+Every user can see the set of free codes
+Only users that have paid for a paid code can see that code
+
+Users can see every tip
+When a user views a tip, they should see all the codes the have the right to see (this includes free and paid codes)
+So on tip view request, the application needs to check if a user has paid for any code in that tip, and send that forward if found.
+
+Hence the distinction between codes should not be free and paid instead something more in line with can view and can't view
+More than one user might request the same code for the same tip at varying times
+But they are thought of more as subscribers to a conversion request.
+
+A conversion request encapsulates a conversion
+A conversion request has different states
+A conversion request has a list of subscribers
+You become a subscriber by paying for that conversion request
+When a conversion request has been resolved, all the subscribers are alerted with the resolution
+
+I see communication happening between the conversion module and the tip display module in order to determine what to display to each user for a particular tip
+
+There is also manual conversion
+
+The goal of this brainstorm is to come up with a unified framework that takes all these parts and brings them into a cohesive whole
+Need to brainstorm offline for a while
+
+Came up with the idea of a source and destination
+  - source: original bookmaker and original code
+  - destination: requested bookmaker
+
+A conversion request is identified by both the source and the destination
+i.e if another request has both the same source and destination, the two requests can be considered the same, hence you can just add the user as a subscriber to the first conversion request
+
+Can't think of the entire system up front, so will start working on components (from most isolated to most dependent)
+The most isolated is the tip page, let's see how we can modify it to work with the new system
+
+[Figure out how to structure the error and success boxes](done)
+[Hide the unecessary alerts](done)
+[Figure out the data structure to signify accesible code and non accessible codes](done)
+  - First thing to change, the dropdown should list all the bookmakers
+  - Not just the bookmakers that the tip provided
+  - We also need a way of communicating the codes of a tip to the application
+    - Guess this will be done by data elements
+  - We have three different type of codes
+    - Original codes 
+      - codes that are free and where part of the original tip
+    - Requested codes 
+      - these codes have metadata, representing the state of the request
+      - the states include success, failed, partial, pending e.t.c
+      - depending on the state, different things can happen
+    - Unaccesible codes
+      - these codes are not free and you haven't paid for them 
+  - So given the above description and a dropdown of all the bookmakers
+  - When a user selects any bookmaker, we need to know the state of that code and act accordingly
+  - If we check the tip model, we can get the bookmakers that fall into the original codes category
+  - To get the requested codes, we have to interface with the conversion request system
+  - And unaccesible codes are just the rest of the bookmakers that weren't assigned anything in the previous steps
+  - Now it is possible to come up with an object that describes each bookmaker based on the criterias above
+  - And I guess the frontend will need this information to know how to react, this information is too verbose to put it into the html data elements themselves.
+  - Thinking of creating an api that a user can request to get the details as an object
+  - So what happens during the pre-processing front i.e ejs rendering
+    - We can just render the list of all the bookmakers
+    - But in the rendering, we would like to show the free bookmaker first
+    - Hence, it is looking like the pre-rendering stage has to somehow know the state of the bookmakers
+    - Meaning the request has to be made more than once, at the pre-rendering stage and once the page loads
+    - I don't really like the sound of that!
+  - Which takes me back to the question of is it possible to transfer that knowledge from the pre-rendering phase to the frontend phase
+  - The only way both can communicate is by html
+    - I am not sure this assumption is correct, what happens if I create a script tag and populate it with what I want??
+    - Haha! It works!!!
+    - Nice, so I can make the request at the prerendering phase, order the elements as needed
+    - Then pass the remaining data to the frontend
+    - The frontend can then do whatever it likes with that data
+  - I will be start by just distinguishing between original codes and unaccessible codes
+  - Another thing to note is that bookmakers have a database name and a display name
+  - So the database name, the display name and it's property has to be sent to the frontend
+  - Datastructure is looking something like this
+    -   { bet9ja: { display: "Bet9ja", data: // information about the code } }
+
+[Show all the bookmakers in the dropdown](done)
+[Append nothing beside original codes and the request amount beside the unaccesible codes](done)
+  - With post.bookmakers, I can get all the available bookmakers (i.e original)
+  - All other bookmakers can be considered unacessible
+  - I'll append the display to the bookmaker obj
+[Order the dropdown list by showing the original bookmaker first](done)
+[Figure out how to display different code views, based on the state of the code](done)
+  - The frontend has to be watching the changes in the bookmaker selection
+  - The frontend also has to have access to the data to make deductions from
+  - Based on the value for the boomaker and the associated data
+  - It displays the right view and sends the correct parameters 
+  - Think the best way will be to figure out how to hide everything at once
+  - So when changing views, I can just hide everything then show the ones I want
+
+15/03/2021
+[Pass the data to the frontend](done)
+  - Ran into some problem passing the data to the frontend 
+  - Due to unicode errors, but it has been resolved not
+[Add a type to each bookmaker object](done)
+[Watch for changes in the bookmaker dropdown](done)
+[Create a function to show or hide an alert](done)
+[If it is original, show the code and make the copy button visible](done)
+[Add the code to originals from the backend](done)
+[If it is paid, show that 10 naira will be deducted from your account and the continue button](done)
+[Write a function that generates the appropriate message for different states](done)
+  - Currently only populated with data from about-to-pay
+  - Will update it as I need
+[Track the current bookmaker](done)
+[Track the type of code that was copied](done)
+[Run the view algorithm on the first select element, on page load](done)
+
+That concludes phase 1 i.e implementing the frontend structrue
+Next up is creating conversion requests
+At the end of the second stage, I should be able to create conversion request, display the status on the frontend with the timer and all
+
+[Figure out the datastruture for a conversion request](done)
+  - Definitely needs source, code and destination
+  - Then a list of subscribers
+    - Haven't fully decided if the list of subscribers should be in the conversion request doc or not
+  - The conversion request needs a status
+    - One of three
+      - Pending
+      - Success
+      - Partial
+      - Failed
+  - The converion request needs the tip id (to notifiy the automatic users)
+  - Once the status is not pending, all the subscribers need to be notified
+    - The notification system has to be reusable
+    - because there will be subscribers that will be added after resolution
+    - meaning the mass subscriber notification would not be triggered again
+    - hence there has to be a way to trigger it again per subscriber
+      - e.g notify(subscriberList, conversionObj)
+      - the conversinObj will have all the necessary info needed for notification
+  - This is sufficient for now, will expand further as I build
+
+[Watch clicks on the proceed button](done)
+[Pass the original bookmaker on the home page](done)
+[Pass the original bookmaker to the frontend of the tip page](done)
+[When proceed is clicked, gather all the required data to make a conversion request](done)
+[Create the api structure to make a conversion request](done)
+[Protect api route with token verification](done)
+[Test the conversion api route from the frontend](done)
+[Perform wallet amount verification before letting through](done)
+[Show the insufficient funds error on the frontend](done)
+[Figure out wallet system](done)
+  - Thinking there will be a need for a wallet system to handle all wallet co-ordinations
+  - Prevent negative amounts, update wallet amounts e.t.c
+  - Think it should be a service as opposed to a controller
+  - Transactions will be handled later
+
+[Create a wallet service](done)
+[Add the fund wallet function to the wallet service](done)  
+  - Should take the amount and the user id
+  - Just funded myself N120 :)
+[Create wallet service function to deduct from a user wallet](done)
+[Deduct the money from the users wallet before making the conversion request](done)
+
+Something just came up
+What if there is a manual request for a code before there is an automatic request
+  - The conversion request should not care if the request was automatic or not
+  - It should just keep track of subscribers
+  - So it is the subscriber addition function that will worry about that
+  - If it is the first subscriber that they are adding, they should add the necessary meta data
+Okay, resolved
+
+[Create the conversion request model](done)
+[Upgrade the conversion request validator to fit the model](done)
+[Create the conversion request service to actually create the conversion request](done)
+[Create a function that adds an automatic subscriber](done)
+[If the user is the first subscriber add the tip id to the conversion request model](done)
+[Keep track of the expected end time of the conversion](done)
+  - Prefer tracking end time as opposed to start time 
+  - Because I see us improving the expected end time as the technology get better
+[Make the tipId a compulsory parameter when making a conversion request](done)
+[On conversion request, create the conversion](done)
+[After conversion creation, add the subscriber to the conversion request](done)
+[Test on the frontend]
+
+[Figure out conversion display on the frontend](done)
+  - The system has been extended to original, paid and now requested codes
+  - I think the requested codes should take a higher precedence than all the other forms 
+    - As you can't use paid, you saw original earlier but still requested
+    - Hence you must care more about what you requested than the original
+  - As long as I send the end time I will be able to figure out the timer at the front end
+  - So the main thing will be querying the conversions to see if I have requested a conversion for that tip
+    - How will this work?
+    - If you are added as a subscriber, and it's an automatic request the tip id will be appeneded 
+    - What I am not sure of, is if I would like base the query on the tip id
+    - Especially considering that it is optional and not present in manual requests
+    - I could base it solely on source, code and destination but I have to really think about this
+    - Going got an offline think
+    - Decided on tip Id
+      - Was swinging more for s,c,d but the concern that betcodes might be shortlived
+      - As such bookmakers might reuse the same code more than once (actually I can say this with 99% prob)
+      - Hene a clash is possible, but with a tipId the prob of that happening is unlikely
+    - This will mean tipId will also be used to make sure that a request has not happened before
+    - Extra protections have to be put in place for manual transactions
+
+[Write a conversion service function to return conversion for a tip and user](done)
+[On tip load, fetch all the conversions for that tip that the user is a subscriber to](done)
+[Use the tip to generate objects](done)
+[Set the requested tips to have highest priority i.e should come first](done)
+[Display the pending alert for the code on the frontend](done)
+[Send the list of bookmakers to the frontend](done)
+[Display the actual name of the bookmaker on the pending timer](done)
+[Write a function to figure out how many seconds is left from now to an end time](done)
+[Combine this value with getCounter to update timer](done)
+[Fix default time showing problem](done)
+
+
+16/03/2021
+
+
+17/03/2021
+
+Did nothing yesterday, was just not in the mood to code, guess the long hours I did the previous days took a toll on me. We are back now.
+
+Hard goal for today:
+  - Complete the full transaction process, from start to resolution
+    - This includes all the different resolution statuses
+    - Refund
+    - Notifications e.t.c
+  - Payment history and alerts
+  - Handle all the above for users that come after tip resolution
+For tomorrow, focus on:
+  - Paystack, twitter and termi integration
+  - Test and fix buygs
+Friday:
+  - More testing and fixing of bugs
+
+Let's begin
+Currently focused on the converter end of the conversion process i.e conversion resolution
+
+[Write function to generate conversion request stats](done)
+  - Total number of unresolved conversions
+  - Total number of late conversions
+[On conversion request, send stats to stakeholders interested](done)
+[Add an assigned value to the conversion model](done)
+[Create a telegram app to track messages sent to the bot](done)
+[Create a service function to assigns a conversion request and generates the link](done)
+[When next is sent to the twitter bot, send a link to the last unassigned conversion request](done)
+[Add number of assigned conversion to the conversion stats](done)
+[Set up convert page](done)
+[Send the conversion request data to the frontend](done)
+[Render the conversion data on the page](done)
+[Implement the copy code functionality](done)
+[Hide the post button if the post is no longer pending](done)
+[Figure out how to resolve a conversion request](done)
+  - To resolve a conversion, we need a status and possible a code
+  - The code will be optional, as a failed conversion will not require any code
+  - The different statuses will require different notifications for the users
+  - Depending on the statuses, we might do different things with their wallets
+    - Like potentially refund a user for a failed conversion
+[Add destination code to the conversion model](done)
+[Implement resolve conversion request api endpoint](done)
+[Figure out what user resolution would entail](done)
+  - Notification includes whatsapp and in app notifications
+  - This has to be designed to work even when a user requests after the conversion has been resolved
+  - One function that handles all resolution for the user
+  - This resolution includes, sending them a whatsapp notification with the appropriate linke
+  - Creating a notification object for them to view on the website, with the link also
+  - Potentially refunding them based on the status of the request
+[Implement a resolve subscriber function in the conversion service](done)
+  - The function should pull the user details
+  - Generate a link for the user to view their conversion
+  - Send a message to their number
+[Don't show the enter code button in the conversion page if the status is failed](done)
+[Create the notification model](done)
+[Create a service to create notification for a user](done)
+[Use the notification creation service when you resolve a tip](done)
+[Once a conversion status has been resolved, send the stats again of all stakeholders](done)
+[Track the resolution time of a conversion request](done)
+[Send better data for requested codes on the tip page](done)
+[Update the tip page api, to show all the different states of a resolved conversion](done)
+[Create page middleware for the notification section](done)
+[Render all the notifications for the user](done)
+
+18/03/2021
+
+Didn't meet up with my goal of yesterday, sadly.
+Left with users coming after resolution, refund, transactions history
+So will complete all those for the phase one of today.
+
+[Handle for users requesting after a conversion has been resolved](done)
+  - At the conversion request stage, we check if the conversion has been resolved
+  - If it has been resolved, we just call the resolveSubscriber function 
+  - TADA
+[Test conversion request after resolution](done)
+[Create the transaction model]
+  - The idea behind the transaction model, is that the wallet service will be the primary user of it
+  - When the wallet has been funded, 
+[Refund wallet if the conversion failed]
+[Create a transaction model to track payment history]
+[Store notification links to direct the user to the tip page from the alert page]
+
+
+
+Future task
+[Re order notifications]
+[Notification messages should use the proper bookmaker display names e.g 1xbet instead of onexbet]
+[Verify otp not working properly]
+[Increase login token duration]
+[Make sure all the pages can logout]
+[Fix terms and condition links]
+[Verify form submit by hiting enter doesn't work, verify section]
+[Track which converter resolved a conversion]
+[Admin's should have accounts]

@@ -21,6 +21,7 @@
   addComma
   addCommaDecimal
   getFormInputs
+  clearNode
 */
 
 ;(function attachLogout(){
@@ -95,7 +96,9 @@ function addEvent(elements, eventString, cb){
   elements.forEach(element => {
     events.forEach(event => {
       if(!element) console.log("Can't find", element)
-      else element.addEventListener(event, cb)
+      else element.addEventListener(event, event => {
+        cb(event, element)
+      })
     })
   })
 }
@@ -117,29 +120,39 @@ function redirect(url){
 }
 
 function reload(){
-  console.log("Reloading")
-  redirect(window.location.href)
+  if(location)
+    location.reload()
+  else
+    window.location.href = window.location.href
 }
 
-function getCounter(seconds, cb, endcb){
+function getCounter(seconds, cb, endcb, displayCb){
+
   let counter = setInterval(callCb, 1000)
+  displayCb = displayCb ? displayCb : toTimeString
+
   function callCb(){
+
     seconds -= 1
-    cb(toTimeString(seconds))
+    const secondsValue = seconds % 60, minutesValue = (seconds - secondsValue) / 60
+    cb(displayCb(secondsValue, minutesValue))
+
     if(seconds <= 0){
       clearInterval(counter)
       endcb()
     }
+
   }
 
-  function toTimeString(seconds){
+  function toTimeString(seconds, minutes){
     let secondsValue = seconds % 60, minutesValue = (seconds - secondsValue) / 60
-    return `${padZero(minutesValue)} : ${padZero(secondsValue)}`
+    return `${padZero(secondsValue)}`
 
     function padZero(val){
       return (("" + val).length == 1) ? "0" + val : val
     }
   }
+
 }
 
 function setValue(elements, value, condition){
@@ -188,4 +201,11 @@ function getFormInputs(formTag = ""){
   return Array.from(
     document.querySelectorAll(`${formTag} input, ${formTag} textarea`)
   )
+}
+
+function clearNode(elem){
+  if(!elem) return
+  while(elem.firstChild){
+    elem.firstChild.remove()
+  }
 }

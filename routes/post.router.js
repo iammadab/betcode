@@ -7,7 +7,7 @@ const toApi = require("../lib/toApi")
 const postController = require("../controllers/post")
 
 postRouter.post("/", postController.createPost)
-postRouter.get("/post", queryResponder(postController.fetchAll))
+postRouter.get("/", queryResponder(postController.fetchAll))
 postRouter.get("/post/:postId", toApi(postController.fetchOne, "params"))
 postRouter.get("/post/filter/:value", postController.fetchBy("tipster"))
 

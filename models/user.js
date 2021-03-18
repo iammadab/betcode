@@ -7,12 +7,15 @@ const userSchema = new mongoose.Schema({
   phoneCode: { type: String, required: true },
   phone: { type: String, required: true },
   password: { type: String, required: true },
-  bio: { type: String, required: true },
+  stage: { type: String, default: "unverified", enum: [ "unverified", "verified" ] },
+  bio: { type: String },
   picture: { type: String },
   twitter: { type: String },
+  twitterId: { type: String },
   telegram: { type: String },
   verifiedTipster: { type: Boolean, default: false },
-  tips: { type: Number, default: 0 }
+  tips: { type: Number, default: 0 },
+  wallet: { type: Number, default: 50 }
 })
 
 const userModel = mongoose.model("User", userSchema)

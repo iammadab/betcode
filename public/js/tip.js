@@ -26,7 +26,8 @@ function copy(event){
     code: code,
     url: window.location.href, 
     bookmakr: codeElement.dataset.bookmaker,
-    tipster: codeElement.dataset.tipster
+    tipster: codeElement.dataset.tipster,
+    type: store.bookmakerDetails ? store.bookmakerDetails.type : "unknown"
   })
 
   //Change text to copied
@@ -53,26 +54,114 @@ function copy(event){
 let store = {
   codeDisplay: document.querySelector(".code-display"),
   commentButton: document.querySelector(".comment-button"),
-  commentBox: document.querySelector(".comment-box")
+  commentBox: document.querySelector(".comment-box"),
+  alertBox: document.querySelector(".alert"),
+  copySection: document.querySelector(".bookmaker-copier"),
+  copyButton: document.querySelector(".copy-button"),
+  proceedButton: document.querySelector(".proceed-button"),
+  bookmaker: "",
+  bookmakerDetails: undefined,
+  originalBookmaker: originalBookmaker,
+  tipId: tipId
 }
 
 ;(function attachEvents(){
   appendRedirects()
   addEvent([store.commentButton], "click", comment)
+  addEvent([store.copyButton], "click", copy)
+  addEvent([store.proceedButton], "click", makeConversionRequest)
 })()
 
 ;(function(){
-  const bookmakerSelect = document.querySelector("select")
-  const copyBox = document.querySelector(".copier")
-  bookmakerSelect.onchange = function(event){
-    copyBox.style.display = "flex"
-    const option = document.querySelector(`option[value="${event.target.value}"]`)   
-    store.codeDisplay.value = option.dataset.code
+
+  const bookmakerSelect = document.querySelector(".bookmaker-select")
+
+  const functionMap = {
+    "original": showOriginal,
+    "paid": showPaid,
+    "requested": showRequested
   }
 
-  const copyButton = document.querySelector(".copy-button")
-  copyButton.onclick = copy
+  function loadBookmaker(event){
+    const bookmaker = store.bookmaker = bookmakerSelect.value
+    const codeDetails = store.bookmakerDetails = bookmakerData[bookmaker]
+  
+    const fn = functionMap[codeDetails.type]
+    if(!fn)
+      return
+
+    fn(codeDetails)
+  }
+
+  bookmakerSelect.onchange = loadBookmaker
+
+  loadBookmaker()
+
 })()
+
+function showOriginal(codeDetails){
+
+  hideAll()
+  store.codeDisplay.value = codeDetails.code
+  showSection("copy")
+
+}
+
+function showPaid(){
+
+  hideAll()
+  showAlertPro("info", generateMessage("about-to-pay"))
+  showSection("proceed")
+
+}
+
+function showRequested(codeDetails){
+  
+  console.log(codeDetails)
+  hideAll()
+  
+  if(codeDetails.data.status == "pending"){
+    const message = `Converting to ${codeDetails.display} <span class='conversion-timer'></span>`
+    showAlertPro("success", message)
+    
+    const secondsLeft = secondsBetween(Date.now(), codeDetails.data.endTime)
+    console.log("Seconds left", secondsLeft)
+
+    const timer = document.querySelector(".conversion-timer")
+    console.log(timer)
+
+    if(secondsLeft <= 0)
+      return timer.innerText = "in 0 mins : 0 sec"
+
+    getCounter(secondsLeft, 
+      (seconds) => {
+        timer.innerText = seconds 
+      },
+      () => {
+        console.log("The timer is done")
+      },
+      (seconds, minutes) => {
+        return ` in ${minutes} min : ${seconds} sec`
+      }
+    )
+
+  }
+
+  else if(codeDetails.data.status == "success"){
+    showOriginal({ code: codeDetails.data.code })
+  }
+
+  else if(codeDetails.data.status == "partial"){
+    showOriginal({ code: codeDetails.data.code })
+    showAlertPro("info", generateMessage("partial-code"))
+  }
+
+  else if(codeDetails.data.status == "failed"){
+    hideAll()
+    showAlertPro("danger", `Failed, No option is available on ${store.bookmaker}`)
+  }
+
+}
 
 
 function comment(event){
@@ -123,4 +212,80 @@ function appendRedirects(){
  if(signupRedirect)
   signupRedirect.setAttribute("href", `/register?from=${redirectUrl}`)
 
+}
+
+function showAlertPro(type, message){
+  const types = {
+    "success": "alert-success",
+    "danger": "alert-danger",
+    "info": "alert-info"
+  }
+  
+  const classIdentifier = types[type]
+  if(!classIdentifier)
+    return
+
+  store.alertBox.className = `alert ${classIdentifier}`
+  store.alertBox.innerHTML = message
+}
+
+function hideAll(){
+  store.alertBox.classList.add("hide")
+  store.copySection.classList.add("hide")
+  store.proceedButton.classList.add("hide")
+}
+
+function showSection(type){
+  const typeElementMap = {
+    copy: store.copySection,
+    proceed: store.proceedButton
+  }
+
+  const element = typeElementMap[type]
+  if(!element)
+    return
+
+  element.classList.remove("hide")
+}
+
+function generateMessage(type){
+
+  const messageMap = {
+    "about-to-pay": "10 naira will be deducted from your wallet",
+    "insufficient-funds": "Sorry, your balance is insufficient. Top up <a href='/topup'>here</a>",
+    "partial-code": `Partial! Some options are unavailable on ${store.bookmaker}`
+  }
+
+  if(messageMap[type])
+    return messageMap[type]
+
+  return ""
+
+}
+
+function makeConversionRequest(){
+  const source = store.originalBookmaker
+  const code = bookmakerData[source].code
+  const destination = store.bookmaker
+
+  api("/conversion/", { source, code, destination, tipId: store.tipId, token: getToken() })
+    .then(handleResponse)
+
+  function handleResponse(response){
+    if(response.status == 200)
+      return reload()
+   
+    if(response.code == "INSUFFICIENT_FUNDS")
+      return showAlertPro("danger", generateMessage("insufficient-funds"))
+  }
+
+}
+
+function secondsBetween(b, a){
+  const dateA = new Date(a), dateB = new Date(b)
+  console.log("A", dateA)
+  console.log("B", dateB)
+  console.log("Original", b)
+  const diff = dateA.getTime() - dateB.getTime()
+  return Math.floor(diff / 1000)
 }

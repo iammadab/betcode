@@ -20,11 +20,11 @@
 			</div>	
 			<div class="dropdown">
 			    <a class="user-profile" id="user-profile" data-toggle="dropdown">
-			    	<i class="far fa-user-circle mr-1"></i><span class="mr-1">Akinwumi</span>
+			    	<i class="fas fa-user-circle mr-1"></i><span class="mr-1"><%= user.username %></span>
 			    	<i class="dropdown-toggle"></i>
 			    </a>
 			    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="user-profile">
-			      <li class="dropdown-header" style="font-weight:600;">Wallet Balance: &#8358;100</li>
+			      <li class="dropdown-header" style="font-weight:600;">Wallet Balance: &#8358;<%= user.wallet %></li>
 			      <li><a href="/topup" class="dropdown-item">Top Up</a></li>
 			      <li><a href="/edit" class="dropdown-item">Account Settings</a></li>
 			      <li class="dropdown-divider"></li>

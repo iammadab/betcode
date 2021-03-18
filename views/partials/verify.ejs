@@ -1,0 +1,67 @@
+<div class="main verify-section <%= display %>">
+  <div class="container">
+    <div class="content">
+      <div class="title">
+        <h6>Verify Account</h6>
+      </div>
+
+        <form class="login login-form hide change-number-section">
+
+          <div id="success" style="display: none" class="change-number-success alert alert-success" role="alert">
+            Tip posted and you can copy share link below
+          </div>
+
+          <div id="error" style="display: none" class="change-number-error alert alert-danger" role="alert">
+            Tip posted unsuccessfully, please try again later 
+          </div>
+
+          <div class="form-group">
+            <input class="form-control form-control-lg change-number-input" name="whatsapp" type="number" placeholder="Enter WhatsApp Number">
+          </div>
+          <div class="form-group" align="center">
+            <button id="submit" type="submit" class="change-number-button login-button btn btn-book">
+                <span class="change-number-text">Change Number</span>
+            </button>
+          </div>
+          <div class="divider">
+            <span></span>
+            <span>OR</span>
+            <span></span>
+          </div>
+
+          <div class="ortxt">Need support? <a href="#" class="register-link">Click here</a></div>
+        </form>
+
+        <form class="login login-form enter-otp-section">
+
+          <div id="success" style="display: none" class="verify-success alert alert-success" role="alert">
+            Tip posted and you can copy share link below
+          </div>
+
+          <div id="error" style="display: none" class="verify-error alert alert-danger" role="alert">
+            Tip posted unsuccessfully, please try again later 
+          </div>
+
+          <div class="form-group">
+            <input class="form-control form-control-lg otp-input" name="whatsapp" type="number" placeholder="Enter OTP">
+          </div>
+          <div class="form-group" align="center">
+            <button class="complete-registration-button login-button btn btn-book">
+                <span class="verify-text">Complete Registration</span>
+            </button>
+          </div>
+          <div class="terms">Didn't get OTP sent to <%= hiddenNumber %>? Resend
+            <a href="#" class="otp-timer">in 30 seconds</a>
+            <a href="#" class="resend-otp hide">OTP</a>
+          </div>
+          <div class="divider">
+            <span></span>
+            <span>OR</span>
+            <span></span>
+          </div>
+          <div class="ortxt">Change your WhatsApp number <a href="#" class="change-number-link register-link">here</a></div>
+        </form>
+
+    </div>
+  </div>
+</div>

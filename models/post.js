@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 
 const postSchema = new mongoose.Schema({
 	tipster: { type: "ObjectId", ref: "User" },
+  tweet: { type: "ObjectId" },
 	description: { type: String },
 	odds: { type: Number },
 	image: { type: String },

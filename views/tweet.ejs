@@ -9,104 +9,50 @@
 			<div class="content">
 				<div class="tab-header">
 					<ul class="nav nav-pills nav-fill">
-						<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tweet">Other Posts</a></li>
-						<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tip">Tip Posts</a></li>
+						<li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#tweet">
+                Other Posts (<span class="unclassified-count">-</span>)
+              </a>
+            </li>
+						<li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#ptip">
+                Potential Tips (<span class="potential-count">-</span>)
+              </a>
+            </li>
+						<li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#tip">
+                Tip Posts (<span class="tip-count">-</span>)
+              </a>
+            </li>
 					</ul>
 				</div>
 				<div class="tab-content">
+
 				  <div id="tweet" class="tab-pane active">
-				    <ul class="tweets">
-						<li class="hover">
-							<a href="#">
-								<div class="tweet_header">
-									<div class="tweet_details">
-										<h6>Mrbankstips</h6>
-										<span>2 hours ago</span>
-									</div>
-									<a class="tweet_add" href="#"><i class="far fa-edit"></i></a>
-								</div>
-								<div class="tweet_main">
-									<p>12 games, N100 to win N4M</p>
-									<div class="tweet_form">
-										<div class="form-group">
-											<input class="form-control" type="text" placeholder="Booking Code">
-										</div>
-										<div class="form-group">
-											<input class="form-control" type="text" placeholder="Total Odds">
-										</div>
-										<div class="form-group">
-											<select class="custom-select">
-												<option>Bookmaker</option>
-												<option>Bet9ja</option>
-												<option>Betking</option>
-												<option>Sportybet</option>
-												<option>1Xbet</option>
-												<option>22bet</option>
-												<option>Msport</option>	
-											</select>
-										</div>
-									</div>
-									<div class="s_img">
-										<img src="/image/logo/1.jpg">
-										<img src="/image/logo/2.jpg">
-										<img src="/image/logo/5.jpeg">
-										<img src="/image/logo/4.jpg">
-									</div>
-								</div>
-							</a>
-						</li>	
-					</ul>
-					<div class="showmore">Clear Tweets</div>
+				    <ul class="tweets"></ul>
+					<div class="showmore clear-tweets">Clear Tweets</div>
 				  </div>
+
+
+				  <div id="ptip" class="tab-pane">
+				    <ul class="tweets"></ul>
+					  <div class="showmore all-tips">All Tips</div>
+				  </div>
+
 				  <div id="tip" class="tab-pane">
-				    <ul class="tweets">
-						<li>
-							<a href="#">
-								<div class="tweet_header">
-									<div class="tweet_details">
-										<h6>Mrbankstips</h6>
-										<span>2 hours ago</span>
-									</div>
-									<a class="tweet_add" href="#"><i class="far fa-edit"></i></a>
-								</div>
-								<div class="tweet_main">
-									<p>12 games, N100 to win N4M</p>
-									<div class="tweet_form">
-										<div class="form-group">
-											<input class="form-control" type="text" placeholder="Booking Code">
-										</div>
-										<div class="form-group">
-											<input class="form-control" type="text" placeholder="Total Odds">
-										</div>
-										<div class="form-group">
-											<select class="custom-select">
-												<option>Bookmaker</option>
-												<option>Bet9ja</option>
-												<option>Betking</option>
-												<option>Sportybet</option>
-												<option>1Xbet</option>
-												<option>22bet</option>
-												<option>Msport</option>	
-											</select>
-										</div>
-									</div>
-									<div class="s_img">
-										<img src="/image/logo/1.jpg">
-										<img src="/image/logo/2.jpg">
-										<img src="/image/logo/5.jpeg">
-										<img src="/image/logo/4.jpg">
-									</div>
-								</div>
-							</a>
-						</li>	
-					</ul>
-					<div class="showmore">Add Tips</div>
+				    <ul class="tweets"></ul>
+					  <div class="showmore all-posts">All Posts</div>
 				  </div>
+
 				</div>
 			</div>
 		</div>
 	</div>
 </article>	
+
+<script src="/js/script.js"></script>
+<script src="/js/pages/tweet.js"></script>
+
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
