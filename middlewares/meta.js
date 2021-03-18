@@ -1,8 +1,8 @@
 const baseUrl = "https://bookmakr.ng"
 
 const baseMeta = {
-  title: "Bookmakr - Latest Bet Tips & Booking Codes",
-  description: "Get the latest bet tips and booking codes (Bet9ja, Betking, Sportybet, 1Xbet, 22bet) from the top tipsters in Nigeria",
+  title: "Bookmakr",
+  description: "Get games from the top tipsters in Nigeria converted to any bookmaker of your choice.",
   image: ""
 }
 
@@ -72,6 +72,68 @@ exports.profile = (req, res, next) => {
   next()
 }
 
+
+exports.home = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `Home`
+  })
+
+  next()
+}
+
+
+exports.convert = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `Convert`
+  })
+
+  next()
+}
+
+
+exports.alert = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `Alert`
+  })
+
+  next()
+}
+
+
+exports.topup = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `Topup`
+  })
+
+  next()
+}
+
+
+
+exports.edit = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `Settings`
+  })
+
+  next()
+}
+
+
 exports.login = (req, res, next) => {
   const url = baseUrl + req.path
 
@@ -89,6 +151,30 @@ exports.register = (req, res, next) => {
   req.pageData.meta = Object.assign({}, baseMeta, {
     url,
     title: `Register`
+  })
+
+  next()
+}
+
+
+exports.forgot = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `Forgot`
+  })
+
+  next()
+}
+
+
+exports.verify = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `Verify`
   })
 
   next()

@@ -49,7 +49,7 @@ app.get(
   tokenMiddleware.validateToken(),
   stageRouter(),
   pageMiddleware.home,
-  metaMiddleware.allTips,
+  metaMiddleware.home,
   (req, res) => {
     //console.log(req.pageData)
     console.log("Page starting")
@@ -63,21 +63,9 @@ app.get(
   tokenMiddleware.validateToken(),
   stageRouter(),
   pageMiddleware.home,
-  metaMiddleware.allTips,
+  metaMiddleware.convert,
   (req, res) => {
     res.render("convert", { ...req.pageData })
-  }
-)
-
-app.get(
-  "/history", 
-  cookieMiddleware.maybeCookie(),
-  tokenMiddleware.validateToken(),
-  stageRouter(),
-  pageMiddleware.home,
-  metaMiddleware.allTips,
-  (req, res) => {
-    res.render("history", { ...req.pageData })
   }
 )
 
@@ -87,7 +75,7 @@ app.get(
   tokenMiddleware.validateToken(),
   stageRouter(),
   pageMiddleware.notification,
-  metaMiddleware.allTips,
+  metaMiddleware.alert,
   (req, res) => {
     res.render("alert", { ...req.pageData })
   }
@@ -112,7 +100,7 @@ app.get(
   tokenMiddleware.validateToken(),
   stageRouter(),
   pageMiddleware.home,
-  metaMiddleware.allTips,
+  metaMiddleware.topup,
   (req, res) => {
     res.render("topup", { ...req.pageData })
   }
@@ -139,7 +127,7 @@ app.get(
 app.get(
   "/forgot", 
   cookieMiddleware.cookieFound("/home"),
-  metaMiddleware.login,
+  metaMiddleware.forgot,
   (req, res) => res.render("forgot", { ...req.pageData })
 )
 
@@ -149,7 +137,7 @@ app.get(
   tokenMiddleware.validateToken(),
   stageRouter("unverified"),
   pageMiddleware.verifyNumber,
-  metaMiddleware.login,
+  metaMiddleware.verify,
   (req, res) => res.render("verify", { ...req.pageData })
 )
 
@@ -165,7 +153,7 @@ app.get(
   cookieMiddleware.cookieNotFound("/login"),
   tokenMiddleware.validateToken(),
   stageRouter(),
-  metaMiddleware.defaultMeta,
+  metaMiddleware.edit,
   (req, res) => res.render("edit", { ...req.pageData })
 )
 
