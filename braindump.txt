@@ -638,7 +638,7 @@ So will complete all those for the phase one of today.
   - If it has been resolved, we just call the resolveSubscriber function 
   - TADA
 [Test conversion request after resolution](done)
-[Figure out payment will work]
+[Figure out payment will work](done)
   - Paystack sends webhooks for every transaction, with the status of the transactions
   - They might send the webhook multiple times
   - As such, the system has to be resistant to that
@@ -672,7 +672,20 @@ So will complete all those for the phase one of today.
   - So transactions are more like instructions 
     - So funding, refund, request, will all create a transaction obj, then execute on it 
   - I think this work
-[Add paystack inline code to the topup page]
+[Add paystack inline code to the topup page](done)
+[Figure out the wallet funding process](done)
+  - On the top up page, the user will be asked to put in the amount they want to top up
+  - Once they click on topup, what happens
+    - Thinking we should first create a pending transaction for them
+    - Once that is created, we then show the paystack checkout
+    - Once the user pays successfully, what happens
+      - Now we are waiting for a webhook, but the webhook won't communicate with the page again
+      - Hence, what exactly do we show the user on that page
+      - I think we can ping the server for the status of that transactions
+        - If the transaction is successful, we then redirect the user back to their tip
+        - Else, we keep pinging
+      - Unless a transaction has a status of not pending, we keep pinging the server
+[Create a transaction model]
 [Refund wallet if the conversion failed]
 [Create a transaction model to track payment history]
 [Store notification links to direct the user to the tip page from the alert page]

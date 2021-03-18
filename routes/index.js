@@ -14,6 +14,7 @@ const tipsterRouter = require("./tipster.router")
 const tweetRouter = require("./tweet.router")
 const otpRouter = require("./otp.router")
 const conversionRouter = require("./conversion.router")
+const webhookRouter = require("./webhook.router")
 
 // Setup upload functionality
 const createUploader = require("../lib/createUploader")
@@ -27,6 +28,7 @@ router.use("/tipster", tipsterRouter)
 router.use("/tweet", tweetRouter)
 router.use("/otp", otpRouter)
 router.use("/conversion", conversionRouter)
+router.use("/webhook", webhookRouter)
 
 router.post("/upload", upload.single("file"), handleUpload)  
 
