@@ -6,6 +6,9 @@ const convert = async (req, res, next) => {
     _id: req.params.conversionId 
   })
 
+  if(!conversionRequest)
+    res.redirect("/")
+
   if(conversionRequest.error)
       res.redirect("/")
 

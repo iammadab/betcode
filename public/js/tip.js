@@ -265,6 +265,9 @@ function showSection(type){
 
 function generateMessage(type){
 
+  const url = window.location.pathname + window.location.search
+  console.log(url)
+
   const messageMap = {
     "about-to-pay": "10 naira will be deducted from your wallet",
     "insufficient-funds": "Sorry, your balance is insufficient. Top up <a href='/topup'>here</a>",
