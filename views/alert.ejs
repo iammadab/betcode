@@ -12,7 +12,7 @@
 				<ul class="alerts">
           			<% notifications.forEach(notification => { %>
 						<li class="hover">
-							<a href="#">
+							<a href="/tip/<%= notification.data.tipId %>"> 
 								<div class="alert-main">
 									<span><%= notification.message %>&nbsp;&nbsp;<b class="status <%= notification.data.status %>"><%= notification.data.status %></b></span>
 									<i class="fas fa-angle-right"></i>
@@ -36,6 +36,7 @@
 			</div>
 		</div>
 	</div>
+  <script src="/js/script.js"></script>
 	<%- include ("footer.ejs") %>
 </article>
 <%- include ("end.ejs") %>

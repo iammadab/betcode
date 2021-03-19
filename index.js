@@ -33,7 +33,7 @@ const apiRouter = require("./routes")
 
 app.get(
 	"/", 
-  cookieMiddleware.maybeCookie("/home"),
+  cookieMiddleware.cookieFound("/home"),
   tokenMiddleware.validateToken(),
   stageRouter(),
   pageMiddleware.home,
@@ -51,8 +51,6 @@ app.get(
   pageMiddleware.home,
   metaMiddleware.home,
   (req, res) => {
-    //console.log(req.pageData)
-    console.log("Page starting")
     res.render("home", { ...req.pageData })
   }
 )
@@ -61,7 +59,7 @@ app.get(
 
 app.get(
   "/convert", 
-  cookieMiddleware.maybeCookie(),
+  cookieMiddleware.cookieNotFound("/"),
   tokenMiddleware.validateToken(),
   stageRouter(),
   pageMiddleware.home,
@@ -97,8 +95,8 @@ app.get(
 
 
 app.get(
-  "/topup", 
-  cookieMiddleware.maybeCookie(),
+  "/topup",
+  cookieMiddleware.cookieNotFound("/login"),
   tokenMiddleware.validateToken(),
   stageRouter(),
   pageMiddleware.home,
@@ -150,6 +148,7 @@ app.get(
   (req, res) => res.render("register", { ...req.pageData })
 )
 
+/*
 app.get(
   "/edit", 
   cookieMiddleware.cookieNotFound("/login"),
@@ -157,7 +156,7 @@ app.get(
   stageRouter(),
   metaMiddleware.edit,
   (req, res) => res.render("edit", { ...req.pageData })
-)
+)*/
 
 app.get(
   "/welcome", 
@@ -167,6 +166,7 @@ app.get(
   (req, res) => res.render("welcome", { ...req.pageData })
 )
 
+/*
 app.get(
   "/profile/:username", 
   cookieMiddleware.maybeCookie(),
@@ -185,7 +185,7 @@ app.get(
   pageMiddleware.tipsters,
   metaMiddleware.tipsters,
   (req, res) => res.render("tipsters", { ...req.pageData })
-)
+)*/
 
 app.get(
   "/admin/post", 
@@ -216,3 +216,5 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
 	console.log(`Application listening at port ${PORT}`)
 })
+
+require("./lib/whatsapp")

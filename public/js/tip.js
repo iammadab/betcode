@@ -103,8 +103,14 @@ let store = {
 function showOriginal(codeDetails){
 
   hideAll()
-  store.codeDisplay.value = codeDetails.code
-  showSection("copy")
+
+  if(getToken()){
+    store.codeDisplay.value = codeDetails.code
+    showSection("copy")
+  }
+
+  else
+    showAlertPro("info", generateMessage("login"))
 
 }
 
@@ -259,11 +265,13 @@ function showSection(type){
 
 function generateMessage(type){
 
+  const url = window.location.pathname + window.location.search
+
   const messageMap = {
     "about-to-pay": "10 naira will be deducted from your wallet",
     "insufficient-funds": "Sorry, your balance is insufficient. Top up <a href='/topup'>here</a>",
     "partial-code": `Partial! Some options are unavailable on ${store.bookmaker}`,
-    "login":  "To request for code, <a href='/login'>Login</a> or <a href='/register'>Sign up</a>"
+    "login":  `To get booking code, <a href='/login?from=${url}'>Login</a> or <a href='/register'>Sign up</a>`
   }
 
   if(messageMap[type])
