@@ -62,6 +62,7 @@ let store = {
   bookmaker: "",
   bookmakerDetails: undefined,
   originalBookmaker: originalBookmaker,
+  originalBookmakerValue: originalBookmakerValue,
   tipId: tipId
 }
 
@@ -264,7 +265,7 @@ function generateMessage(type){
 }
 
 function makeConversionRequest(){
-  const source = store.originalBookmaker
+  const source = store.originalBookmakerValue
   const code = bookmakerData[source].code
   const destination = store.bookmaker
 
