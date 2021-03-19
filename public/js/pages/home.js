@@ -10,7 +10,8 @@ const store = {
     bookmaker: "",
     minOdds: "",
     maxOdds: ""
-  }
+  },
+  loader: document.querySelector(".loader")
 }
 
 ;(function attachEvents(){
@@ -143,6 +144,9 @@ function generatePostUrl(lastId = ""){
 
 async function updateFilteredPost(){
 
+  clearNode(store.tips)
+  store.tips.innerHTML = buildLoader()
+
   const response = await api(generatePostUrl())
 
   if(response.status != 200)
@@ -158,6 +162,12 @@ async function updateFilteredPost(){
     store.tips.insertAdjacentHTML("beforeend", buildElement(post))
   })
 
+}
+
+function buildLoader(){
+  return `
+    <div class="loader"><div class="spinner-border spinner-border-sm text-muted"></div></div>
+    `
 }
 
 function buildElement(post){
