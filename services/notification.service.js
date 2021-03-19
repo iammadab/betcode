@@ -25,7 +25,7 @@ exports.getUserNotifications = async (userId) => {
 
   try {
   
-    const notifications = await Notification.find({ user: userId })
+    const notifications = await Notification.find({ user: userId }).sort({ createdAt: -1 })
     return notifications
 
 

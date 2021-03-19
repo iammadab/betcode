@@ -715,6 +715,7 @@ Phase one - Tackle bugs
 [Allow a user to view the tip page even when they are not logged in](done)
 [Show a login alert, if the user is not logged in but trying to view a paid code](done)
 [Show loader when filtering tips](done)
+[Change the order of the notification]
 [Add the script tag to each page individually]
 
 
