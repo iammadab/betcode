@@ -705,7 +705,7 @@ Handle paystack
 
 Phase one - Tackle bugs
 -----------------------
-Add akin as a developer
+Add akin as a developer(done)
 Change the header on the verify page to be the new welcome header
 Fix veriy button click error
 
