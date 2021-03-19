@@ -1,5 +1,5 @@
 const otpService = require("../../services/otp.service")
-const telegram = require("../../lib/telegram")
+const whatsapp = require("../../lib/whatsapp")
 
 const joi = require("joi")
 
@@ -20,7 +20,11 @@ const createOtp = async (data) => {
 
   const { user } = validationResult.value
 
-  telegram.send("developers", `OTP: ${code}, ${user.phone}`)
+  whatsapp.sendMessage({
+    phone: user.phone,
+    message: `Bookmakr OTP: ${code}`
+  })
+
   const otpObj = await otpService.createOtp({ phone: user.phone, code })
 
   return { status: 200, code: "OTP_CREATED" }
