@@ -23,7 +23,7 @@ const fundWallet = async (data) => {
   if(walletFundResult.error)
     return { status: 500, code: walletFundResult.code }
 
-  return { status: 200, code: "WALLET_FUND_INITIATED" }
+  return { status: 200, code: "WALLET_FUND_INITIATED", data: walletFundResult }
 
 }
 
