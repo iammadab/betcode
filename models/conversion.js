@@ -17,7 +17,8 @@ const conversionSchema = new mongoose.Schema({
   },
   startTime: { type: Date, default: Date.now },
   endTime: { type: Date, default: () => { return Date.now() + MINUTES * 60000 } },
-  resolvedAt: { tyep: Date }, 
+  resolvedAt: { type: Date }, 
+  assignedTo: { type: String },
   assigned: { type: Boolean, default: false }
 })
 

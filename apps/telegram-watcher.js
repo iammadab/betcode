@@ -70,7 +70,7 @@ async function sendConversionRequest(message){
 
   else {
 
-    const conversionLink = await conversionService.assignConversionRequest()
+    const conversionLink = await conversionService.assignConversionRequest(chatId)
 
     if(!conversionLink)
       return replyChat(chatId, "No conversion requests at this time")

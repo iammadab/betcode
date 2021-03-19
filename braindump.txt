@@ -742,6 +742,9 @@ Phase two - Whatsapp notifications
       - This would also want the user to proceed
   - Hence once there is no user, proceed
 
+Phase two completed
+
+[Track which converter resolved a conversion]
 
 Future task
 [Forgot password]
