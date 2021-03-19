@@ -10,25 +10,29 @@
 					<h6>Your Alerts</h6>
 				</div>
 				<ul class="alerts">
-
-          <% notifications.forEach(notification => { %>
-					<li class="hover">
-						<a href="#">
-							<div class="alert-main">
-								<span><%= notification.message %>&nbsp;&nbsp;<b class="status <%= notification.data.status %>"><%= notification.data.status %></b></span>
-								<i class="fas fa-angle-right"></i>
-							</div>
-							<div class="alert-bottom"> <span class="time"><%= notification.date %></span>
-							</div>
-						</a>
-					</li>
-          <% }) %>
-
-          <% if(notifications.length == 0){ %>
-            <span>No notifications yet</span>
-          <% } %>
-
+          			<% notifications.forEach(notification => { %>
+						<li class="hover">
+							<a href="#">
+								<div class="alert-main">
+									<span><%= notification.message %>&nbsp;&nbsp;<b class="status <%= notification.data.status %>"><%= notification.data.status %></b></span>
+									<i class="fas fa-angle-right"></i>
+								</div>
+								<div class="alert-bottom"> <span class="time"><%= notification.date %></span>
+								</div>
+							</a>
+						</li>
+          			<% }) %>
 				</ul>
+
+				<% if(notifications.length == 0){ %>
+		            <div class="random">
+						<img class="img-fluid" src="/image/logo/alert.png" alt="Alert Image">
+						<p class="info">
+		    	        	No notification yet!
+		    	        </p>
+			        </div>
+		        <% } %>
+
 			</div>
 		</div>
 	</div>

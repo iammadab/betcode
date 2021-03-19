@@ -22,7 +22,7 @@
 						<img src="<%= tip.tipster.picture %>" alt="<%= tip.tipster.fullname %>">
 						<div class="t_details">
 							<h6><%= tip.tipster.fullname %></h6>
-							<span><%= tip.tipDate %><b class="slash">|</b> <%= tip.originalBookmaker %></span>
+							<span><%= tip.tipDate %></span>
 						</div>
 					</div>
 
@@ -30,8 +30,8 @@
 
 				<div class="t_main">
 					<p><%= tip.description %></p>
-					<div class="t_info"><i class="fas fa-globe-africa"></i>Betking</div>
-					<div class="t_info"><i class="fas fa-exchange-alt"></i><%= tip.odds %><span>Odds</span></div>
+					<div class="t_info"><%= tip.originalBookmaker %></div>
+					<div class="t_info"><%= tip.odds %><span>Odds</span></div>
 				</div>	
 
 			</a>	
@@ -43,6 +43,6 @@
 	</ul>
   <% } %>
 
-	<div class="showmore tips">Show More Tips</div>
+	<div class="showmore tips">Show More</div>
 	
 </div>

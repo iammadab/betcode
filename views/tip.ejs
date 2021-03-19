@@ -31,8 +31,8 @@
 							</div>
 						</div>
 						<div>
-							<div class="t_info"><i class="fas fa-globe-africa"></i>Betway</div>
-							<div class="t_info"><i class="fas fa-exchange-alt"></i><%= tip.odds %><span>Odds</span></div>
+							<div class="t_info"><%= tip.originalBookmaker %></div>
+							<div class="t_info"><%= tip.odds %><span>Odds</span></div>
 						</div>
 					</div>
 
@@ -42,18 +42,20 @@
 
 						<p><%= tip.description %></p>
 
-						<div class="s_img">
-							<img src="<%= tip.image %>" />
-					        <% if(tip.image2){ %>
-					          <img src="<%= tip.image2 %>" />
-					        <% } %>
-					        <% if(tip.image3){ %>
-					          <img src="<%= tip.image3 %>" />
-					        <% } %>
-					        <% if(tip.image4){ %>
-					          <img src="<%= tip.image4 %>" />
-					        <% } %>
-					    </div>
+						<% if(tip.image1){ %>
+							<div class="s_img">
+					        	<img src="<%= tip.image1 %>" />
+					        	<% if(tip.image2){ %>
+					          		<img src="<%= tip.image2 %>" />
+						        <% } %>
+						        <% if(tip.image3){ %>
+							        <img src="<%= tip.image3 %>" />
+					        	<% } %>
+					        	<% if(tip.image4){ %>
+					          		<img src="<%= tip.image4 %>" />
+					        	<% } %>
+					    	</div>
+					    <% } %>
 
 				    </div>
 
