@@ -193,18 +193,20 @@ exports.resolveConversion = async ( conversionObj, status, code ) => {
 
 }
 
+const bookmakers = require("../lib/bookmakers")
 exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
 
   const { code, source, destination } = conversionObj
   
   const link = `${process.env.BASE_URL}/tip/${conversionObj.tipId}`
-  console.log(link)
 
   const notificationObj = await notificationService.createNotification({
     user: subscriberId,
-    message: `Convert ${code} from ${source} to ${destination}`,
+    message: `Convert ${code} from ${capitalize(bookmakers[source])} to ${capitalize(bookmakers[destination])}`,
     data: {
-      status: conversionObj.status
+      status: conversionObj.status,
+      type: "automatic",
+      tipId: conversionObj.tipId
     }
   })
   console.log(notificationObj)
@@ -212,4 +214,8 @@ exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
   // What if these fails??
   telegram.send("developers", link)  
 
+}
+
+function capitalize(word){
+  return String(word).charAt(0).toUpperCase() + String(word).slice(1)
 }
