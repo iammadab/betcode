@@ -712,7 +712,8 @@ Phase one - Tackle bugs
 [On otp verification redirect the user to the welcome page](done)
 [Make the js inserted tips fit the ejs tip](done)
 [Capitalize bookmaker name in the pending tip display](done)
-[Allow a user to view the tip page even when they are not logged in]
+[Allow a user to view the tip page even when they are not logged in](done)
+[Show a login alert, if the user is not logged in but trying to view a paid code]
 [Add the script tag to each page individually]
 
 

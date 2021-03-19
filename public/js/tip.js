@@ -111,8 +111,16 @@ function showOriginal(codeDetails){
 function showPaid(){
 
   hideAll()
-  showAlertPro("info", generateMessage("about-to-pay"))
-  showSection("proceed")
+
+  // If the user is logged in
+  if(getToken()){
+    showAlertPro("info", generateMessage("about-to-pay"))
+    showSection("proceed")
+  }
+
+  else
+    showAlertPro("info", generateMessage("login"))
+
 
 }
 
@@ -254,7 +262,8 @@ function generateMessage(type){
   const messageMap = {
     "about-to-pay": "10 naira will be deducted from your wallet",
     "insufficient-funds": "Sorry, your balance is insufficient. Top up <a href='/topup'>here</a>",
-    "partial-code": `Partial! Some options are unavailable on ${store.bookmaker}`
+    "partial-code": `Partial! Some options are unavailable on ${store.bookmaker}`,
+    "login":  "To request for code, <a href='/login'>Login</a> or <a href='/register'>Sign up</a>"
   }
 
   if(messageMap[type])
