@@ -715,8 +715,9 @@ Phase one - Tackle bugs
 [Show a login alert, if the user is not logged in but trying to view a paid code](done)
 [Show loader when filtering tips](done)
 [Change the order of the notification](done)
+[Add the from tag for the login link on the tip page](done)
 [Fix logout on all pages]
-[Add the from tag for the login and signup links on a tip page]
+
 
 
 Future task
