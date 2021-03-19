@@ -1,4 +1,29 @@
 const User = require("../models/user")
+const Transaction = require("../models/transaction")
+
+exports.createFundTransaction = async (userId, amount) => {
+
+  try{
+    
+    // Creating a pending transaction
+    const transaction = new Transaction({
+      user: userId,
+      type: "fund_wallet",
+      status: "pending",
+      amount
+    })
+
+    console.log(transaction)
+
+    return transaction
+
+  } catch(error){
+  
+    return { error: true, code: "PROBLEM_FUNDING_WALLET" }
+
+  }
+
+}
 
 exports.fundWallet = async (userId, amount) => {
   

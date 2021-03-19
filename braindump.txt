@@ -685,7 +685,16 @@ So will complete all those for the phase one of today.
         - If the transaction is successful, we then redirect the user back to their tip
         - Else, we keep pinging
       - Unless a transaction has a status of not pending, we keep pinging the server
-[Create a transaction model]
+[Create a transaction model](done)
+
+19/03/2021
+
+[Create a wallet route to fund wallet]
+[Use the transaction id for fund wallet to create a paystack transaction]
+[Create a wallet route to cancel a pending transaction]
+[On paystack window close, cancel the transaction]
+[If paystack transaction is successful, pool the server for status change]
+[Once status has changed, show wallet fund success]
 [Refund wallet if the conversion failed]
 [Create a transaction model to track payment history]
 [Store notification links to direct the user to the tip page from the alert page]
