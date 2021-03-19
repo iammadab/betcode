@@ -28,7 +28,9 @@ let verificationStore = {
 
 const verifyButton = createButton(".verify-text", "Complete Registration", "Verifying...")
 
-function verifyOtp(){
+function verifyOtp(event){
+
+  event.preventDefault()
 
   verifyButton()
 
