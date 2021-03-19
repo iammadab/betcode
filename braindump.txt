@@ -713,7 +713,8 @@ Phase one - Tackle bugs
 [Make the js inserted tips fit the ejs tip](done)
 [Capitalize bookmaker name in the pending tip display](done)
 [Allow a user to view the tip page even when they are not logged in](done)
-[Show a login alert, if the user is not logged in but trying to view a paid code]
+[Show a login alert, if the user is not logged in but trying to view a paid code](done)
+[Show loader when filtering tips](done)
 [Add the script tag to each page individually]
 
 
