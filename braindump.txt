@@ -744,10 +744,29 @@ Phase two - Whatsapp notifications
 
 Phase two completed
 
-[Track which converter resolved a conversion]
+[Track which converter resolved a conversion](done)
+
+Phase three - Paystack
+----------------------
+For some reason, really having problems with these phase
+Need to really think this through
+
+This only has to deal with funding the wallet
+There is an inline script, when a user pays with this inline script
+We are immediately sent a webhook request
+The issue is that the user needs to be notified that we have received their cash
+
+Why don't I just redirect the user to the home page or the tip they we currently at on success
+
+So we hit create the transaction
+The user pays through the popup
+On success, we wait for a couple of seconds (hoping that the webhook would have kicked in)
+Then redirect the user to the tips page, or the specific tip they came from
+
+[On success, redirect to home after 3 seconds](done)
+[If there is a from link in the topup url page, redirect to that link]
 
 Future task
 [Forgot password]
 [Increase login token duration]
-[Track which converter resolved a conversion]
 [Admin's should have accounts]
