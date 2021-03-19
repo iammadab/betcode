@@ -719,6 +719,14 @@ Phase one - Tackle bugs
 [Fix logout on all pages](done)
 [Restrict pages when not logged in](done)
 
+Phase one completed, fixed most of the bugs I can find
+
+Phase two - Whatsapp notifications
+----------------------------------
+[Implement whatsapp send function]
+[Add api keys, and link it to termi]
+[Change the verification process to use the whatsapp otp]
+[Change the resolution process to use the whatsapp otp]
 
 
 Future task

@@ -216,3 +216,5 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
 	console.log(`Application listening at port ${PORT}`)
 })
+
+require("./lib/whatsapp")
