@@ -726,7 +726,8 @@ Phase two - Whatsapp notifications
 [Implement whatsapp send function](done)
 [Add api keys, and link it to termi](done)
 [Change the verification process to use the whatsapp otp](done)
-[Change the resolution process to use the whatsapp otp]
+[Change the resolution process to use the whatsapp otp](done)
+[Write function that converts a number to the international format]
 
 
 Future task

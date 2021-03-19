@@ -1,5 +1,7 @@
 const Conversion = require("../models/conversion")
 const notificationService = require("../services/notification.service")
+const userService = require("../services/user.service")
+const whatsapp = require("../lib/whatsapp")
 const telegram = require("../lib/telegram")
 
 exports.fetchConversionById = async (conversionId) => {
@@ -197,6 +199,14 @@ const bookmakers = require("../lib/bookmakers")
 exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
 
   const { code, source, destination } = conversionObj
+
+  const userObj = await userService.findUserById({ id: subscriberId })
+
+  if(!userObj)
+    return
+
+  if(userObj.error)
+    return
   
   const link = `${process.env.BASE_URL}/tip/${conversionObj.tipId}`
 
@@ -209,10 +219,11 @@ exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
       tipId: conversionObj.tipId
     }
   })
-  console.log(notificationObj)
 
-  // What if these fails??
-  telegram.send("developers", link)  
+  whatsapp.sendMessage({
+    phone: userObj.phone,
+    message: link
+  })
 
 }
 
