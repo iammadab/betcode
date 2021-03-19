@@ -47,6 +47,12 @@ box-shadow: none;
 
 /*Layout Section*/
 
+
+.loader{
+text-align:center;
+margin:1rem auto;	
+}
+
 .random{
 padding:1rem 0.75rem;
 text-align:center;
