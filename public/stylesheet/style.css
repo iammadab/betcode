@@ -835,50 +835,50 @@ color:#666;
 }*/
 
 
-.betcodes input, .betcodes select{
+.copy input, .copy select{
 border:1px solid #e1e1e1;
 color:#333;
 font-size:1rem;
 }
 
-.betcodes .form-group{
+.copy .form-group{
 margin:0.5rem 0 0;	
 }
 
-.betcodes .input-group{
+.copy .input-group{
 margin:0.5rem 0 0;	
 }
 
-.betcodes input{
+.copy input{
 border-right:0;
 border-top-right-radius:0;
 border-bottom-right-radius:0;	
 }
 
 
-.betcodes input:focus{
+.copy input:focus{
 box-shadow: none;
 border:1px solid #e1e1e1;
 border-right:0;
 border-top-right-radius:0;
 border-bottom-right-radius:0;  
 } 
-.betcodes select:focus{
+.copy select:focus{
 box-shadow: none;
 border:1px solid #e1e1e1;  
 }
 
-.betcodes input:read-only{
+.copy input:read-only{
 background-color:#fff;
 }
 
-.betcodes .btn{
+.copy .btn{
 margin:0.5rem 0 0;
 width:100%;
 text-transform:capitalize;	
 }
 
-.betcodes .copy-button{
+.copy .copy-button{
 padding:0 0.6rem;
 background:#fff;
 border:1px solid #e1e1e1;
@@ -888,11 +888,11 @@ border-bottom-left-radius:0;
 color:#000;	
 font-size:0.85rem;
 }	
-.betcodes .copy-button i{
+.copy .copy-button i{
 margin-right:2px;	
 }
 
-.betcodes .copy-button:hover{
+.copy .copy-button:hover{
 border:1px solid #8a2be2;
 background:#8a2be2;
 color:#fff;
@@ -900,7 +900,7 @@ color:#fff;
 
 
 
-.betcodes .btn:focus, .betcodes .btn:active{
+.copy .btn:focus, .copy .btn:active{
 border:1px solid #8a2be2;
 background:#8a2be2;
 box-shadow:none;
