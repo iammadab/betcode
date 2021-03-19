@@ -13,4 +13,10 @@ walletRouter.post(
   bodyResponder(walletController.fundWallet)
 )
 
+walletRouter.post(
+  "/cancel",
+  tokenMiddleware.validateToken(),
+  bodyResponder(walletController.cancelFundWallet)
+)
+
 module.exports = walletRouter
