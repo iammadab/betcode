@@ -764,7 +764,9 @@ On success, we wait for a couple of seconds (hoping that the webhook would have 
 Then redirect the user to the tips page, or the specific tip they came from
 
 [On success, redirect to home after 3 seconds](done)
-[If there is a from link in the topup url page, redirect to that link]
+[If there is a from link in the topup url page, redirect to that link](done)
+[Once the webhook hits, fetch the transaction]
+[Implement a wallet service to update and execute the transaction]
 
 Future task
 [Forgot password]
