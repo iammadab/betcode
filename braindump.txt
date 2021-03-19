@@ -707,7 +707,6 @@ Phase one - Tackle bugs
 -----------------------
 [Add akin as a developer](done)
 [Change the header on the verify page to be the new welcome header](done)
-[Make all pages logout, add script tag to all pages](done)
 [Fix veriy button click error](done)
 [On otp verification redirect the user to the welcome page](done)
 [Make the js inserted tips fit the ejs tip](done)
@@ -715,8 +714,9 @@ Phase one - Tackle bugs
 [Allow a user to view the tip page even when they are not logged in](done)
 [Show a login alert, if the user is not logged in but trying to view a paid code](done)
 [Show loader when filtering tips](done)
-[Change the order of the notification]
-[Add the script tag to each page individually]
+[Change the order of the notification](done)
+[Fix logout on all pages]
+[Add the from tag for the login and signup links on a tip page]
 
 
 Future task
