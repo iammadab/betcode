@@ -57,6 +57,8 @@ app.get(
   }
 )
 
+
+
 app.get(
   "/convert", 
   cookieMiddleware.maybeCookie(),
@@ -155,6 +157,14 @@ app.get(
   stageRouter(),
   metaMiddleware.edit,
   (req, res) => res.render("edit", { ...req.pageData })
+)
+
+app.get(
+  "/welcome", 
+  cookieMiddleware.cookieNotFound("/login"),
+  tokenMiddleware.validateToken(),
+  metaMiddleware.welcome,
+  (req, res) => res.render("welcome", { ...req.pageData })
 )
 
 app.get(

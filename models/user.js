@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
   telegram: { type: String },
   verifiedTipster: { type: Boolean, default: false },
   tips: { type: Number, default: 0 },
-  wallet: { type: Number, default: 50 }
+  wallet: { type: Number, default: 500 }
 })
 
 const userModel = mongoose.model("User", userSchema)

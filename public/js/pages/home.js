@@ -28,7 +28,7 @@ const store = {
    
 })()
 
-const loadingButton = createButton(".showmore.tips", "SHOW MORE TIPS", "Loading...")
+const loadingButton = createButton(".showmore.tips", "Show More", "Loading...")
 
 function loadPosts(){
 

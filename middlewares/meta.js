@@ -85,6 +85,7 @@ exports.home = (req, res, next) => {
 }
 
 
+
 exports.convert = (req, res, next) => {
   const url = baseUrl + req.path
 
@@ -128,6 +129,17 @@ exports.edit = (req, res, next) => {
   req.pageData.meta = Object.assign({}, baseMeta, {
     url,
     title: `Settings`
+  })
+
+  next()
+}
+
+exports.welcome = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `Welcome`
   })
 
   next()
@@ -179,6 +191,7 @@ exports.verify = (req, res, next) => {
 
   next()
 }
+
 
 exports.tipsters = (req, res, next) => {
   const url = baseUrl + req.path

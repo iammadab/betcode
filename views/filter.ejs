@@ -1,31 +1,29 @@
 <div class="navbar filterbox">
-	<span class="filterby">Filter By:</span>
+	<!-- <span class="filterby">Filter By:</span> -->
 	<div class="dropdown">
-	    <a class="drop" data-toggle="dropdown">
-         <span class="odds-display">Odds</span> <i class="fa fa-caret-down"></i></a>
+	    <a class="drop" data-toggle="dropdown"><span class="bookmaker-display">Bookmaker</span> <i class="fa fa-caret-down"></i></a>
 	    <ul class="dropdown-menu dropdown-menu-right">
-	      <li class="dropdown-header odds">Odds</li>
-	      <li><span class="dropdown-item odds" data-minOdds="" data-maxOdds="">All</span></li>
-	      <li><span class="dropdown-item odds" data-minOdds="" data-maxOdds="10">Below 10</span></li>
-	      <li><span class="dropdown-item odds" data-minOdds="10" data-maxOdds="20">10 - 20</span></li>
-	      <li><span class="dropdown-item odds" data-minOdds="20" data-maxOdds="50">20 - 50</span></li>
-	      <li><span class="dropdown-item odds" data-minOdds="50" data-maxOdds="100">50 - 100</span></li>
-	      <li><span class="dropdown-item odds" data-minOdds="100" data-maxOdds="1000">100 - 1000</span></li>
-	      <li><span class="dropdown-item odds" data-minOdds="1000" data-maxOdds="">1000 or Above</span></li>
-	    </ul>
-		</div>
-		<span class="dividr">|</span>
-		<div class="dropdown">
-	    <a class="drop" data-toggle="dropdown">
-         <span class="bookmaker-display">Bookmaker</span> <i class="fa fa-caret-down"></i></a>
-	    <ul class="dropdown-menu dropdown-menu-right">
-	      <li class="dropdown-header bookmaker">Bookmaker</li>
+	      <li class="dropdown-header bookmaker">Filter tips by bookmaker</li>
 	      <li><span class="dropdown-item bookmaker" data-bookmaker="">All</span></li>
         <% Object.keys(bookmakers).forEach(bookmaker => { %>
           <li><span class="dropdown-item bookmaker" data-bookmaker="<%=bookmaker%>">
                <%= bookmakers[bookmaker] %>
           </span></li>
         <% }) %>
+	    </ul>
+	</div>
+	<span class="dividr">|</span>
+	<div class="dropdown">
+	    <a class="drop" data-toggle="dropdown"><span class="odds-display">Odds</span> <i class="fa fa-caret-down"></i></a>
+	    <ul class="dropdown-menu dropdown-menu-right">
+	      <li class="dropdown-header odds">Filter tips by odds</li>
+	      <li><span class="dropdown-item odds" data-minOdds="" data-maxOdds="">All</span></li>
+	      <li><span class="dropdown-item odds" data-minOdds="" data-maxOdds="10">Below 10</span></li>
+	      <li><span class="dropdown-item odds" data-minOdds="10" data-maxOdds="20">10 - 20</span></li>
+	      <li><span class="dropdown-item odds" data-minOdds="20" data-maxOdds="50">20 - 50</span></li>
+	      <li><span class="dropdown-item odds" data-minOdds="50" data-maxOdds="100">50 - 100</span></li>
+	      <li><span class="dropdown-item odds" data-minOdds="100" data-maxOdds="1000">100 - 1000</span></li>
+	      <li><span class="dropdown-item odds" data-minOdds="1000" data-maxOdds="">Above 1000</span></li>
 	    </ul>
 	</div>
 </div>

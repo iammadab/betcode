@@ -47,6 +47,37 @@ box-shadow: none;
 
 /*Layout Section*/
 
+.random{
+padding:1rem 0.75rem;
+text-align:center;
+font-size:1rem;
+}
+
+.random img{
+width:60%;	
+}
+
+@media (max-width: 768px) {
+.random img{
+width:100%;	
+}
+}
+
+.random .info{
+margin:1rem 0;
+text-align:center;
+font-weight:600;
+font-size:0.95rem;	
+}
+
+.random .info a{
+color:#8a2be2;	
+}
+
+.random .btn{
+padding:0.6rem 2rem;	
+}
+
 .title{
 background:#eee;
 border-bottom:1px solid #e1e1e1;
@@ -88,7 +119,8 @@ padding:1rem 1.5rem;
 font-size:0.9rem;
 font-weight:600;
 padding:1rem 1.5rem;
-color:#333;	
+color:#333;
+text-transform:capitalize;	
 }
 
 .filterbox .filterby{
@@ -99,7 +131,7 @@ font-weight:600;
 }
 
 .filterbox .dividr{
-margin:0 0.4rem;
+margin:0 0.8rem;
 color:#aeaeae;	
 }
 
@@ -107,10 +139,11 @@ color:#aeaeae;
 font-size:0.85rem;
 cursor:pointer;
 color:#666;
+font-weight:600;
 }
 
 .drop i{
-margin:0 0 0 0.15rem;
+margin:0 0 0 0.3rem;
 line-height:0;
 font-size:0.85rem;
 color:#333;
@@ -193,8 +226,7 @@ width:98%;
 
 .navbar{
 background:#8a2be2;
-padding:0.3rem 0;
-/*padding:0.7rem 0;*/
+padding:0.2rem 0;
 }
 
 .head{
@@ -209,24 +241,33 @@ align-items:center;
 justify-content:center;
 }
 
-.logo .icon{
-width:40px;
-}
 
 .logo .text{
-margin:0 0 0 0.3rem;
-padding:0;	
+width:150px;
+vertical-align:text-bottom;
+padding:0.2rem 0;
 }
 
+.logo .icon{
+padding:0;
+margin:0;	
+}
 
 
 
 @media (max-width: 992px) {
 .logo .icon{
-width:25px;
+width:30px;
 }
+
+.logo .text{
+margin:0;	
+width:120px;
+padding:0;	
+}
+
 .navbar{
-padding:0.6rem 0;	
+padding:0.4rem 0;	
 }
 
 }
@@ -518,7 +559,7 @@ border-bottom:1px solid #e1e1e1;
 display:inline-block;
 width:100%;	
 cursor:pointer;
-padding:1rem 0.75rem 1.1rem;
+padding:0.7rem 0.75rem;
 }
 
 .tips li a:hover{
@@ -536,7 +577,7 @@ border-bottom:0;
 background:#f8f8f8;
 }
 
-.odds {
+/*.odds {
 border:1px solid #ccc;
 padding:0.25rem 0.9rem;
 font-size:0.9rem;
@@ -555,7 +596,7 @@ display:none;
 text-transform:uppercase;
 font-size:0.75rem;
 font-weight:600;	
-}
+}*/
 
 .t_header{
 display: flex;	
@@ -617,7 +658,7 @@ line-height:1.5rem;
 }
 
 .t_info{
-border:1px solid #e1e1e1;
+border:1px solid #ccc;
 padding:0.2rem 0.75rem;
 font-size:0.85rem;
 color:#000;
@@ -628,14 +669,6 @@ width:auto;
 margin:0 0.05rem 0.2rem 0;
 text-transform:capitalize;
 }
-
-.t_info i{
-margin:0 0.4rem 0 0;
-font-size:0.9rem;
-color:#8a2be2;
-display:none;
-}
-
 
 .t_info span{
 color:#333;
@@ -1313,12 +1346,18 @@ border-radius:4px;
 }
 
 
-.banner h1 {
+.banner h1,h2{
 text-transform:capitalize;
 color: #8a2be2;
 line-height:2.8rem;
 font-size:2.1rem;
 }
+
+.banner h2 {
+line-height:3rem;
+font-size:1.85rem;
+}
+
 
 .banner h6{
 font-weight:400;
@@ -1370,12 +1409,13 @@ margin:0 0 2rem;
 /*Accordion*/
 
 .card{
-border:1px solid #e1e1e1;
+border:1px solid #ccc;
 }
 
 .card-header{
 background:#fff;
 padding:0.5rem 0;
+border-bottom:1px solid #ccc;
 }
 
 .card-header .btn{
@@ -1411,7 +1451,7 @@ justify-content:space-between;
 }
 
 .tag{
-border:1px solid #e1e1e1;
+border:1px solid #ccc;
 padding:0.25rem 0.75rem;
 font-size:0.9rem;
 color:#333;
@@ -1422,6 +1462,7 @@ margin:0 0.1rem 0.2rem;
 background:#fff;
 cursor:pointer;
 flex:1 1 auto;
+text-transform:capitalize;
 }
 
 /*.popular-banner .tag{
