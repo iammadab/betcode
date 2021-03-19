@@ -22,6 +22,7 @@
   addCommaDecimal
   getFormInputs
   clearNode
+  capitalize
 */
 
 ;(function attachLogout(){
@@ -208,4 +209,8 @@ function clearNode(elem){
   while(elem.firstChild){
     elem.firstChild.remove()
   }
+}
+
+function capitalize(word){
+  return String(word).charAt(0).toUpperCase() + String(word).slice(1)
 }

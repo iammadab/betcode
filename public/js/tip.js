@@ -122,7 +122,7 @@ function showRequested(codeDetails){
   hideAll()
   
   if(codeDetails.data.status == "pending"){
-    const message = `Converting to ${codeDetails.display} <span class='conversion-timer'></span>`
+    const message = `Converting to ${capitalize(codeDetails.display)} <span class='conversion-timer'></span>`
     showAlertPro("success", message)
     
     const secondsLeft = secondsBetween(Date.now(), codeDetails.data.endTime)
@@ -284,9 +284,6 @@ function makeConversionRequest(){
 
 function secondsBetween(b, a){
   const dateA = new Date(a), dateB = new Date(b)
-  console.log("A", dateA)
-  console.log("B", dateB)
-  console.log("Original", b)
   const diff = dateA.getTime() - dateB.getTime()
   return Math.floor(diff / 1000)
 }

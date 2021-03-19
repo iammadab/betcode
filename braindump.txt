@@ -711,6 +711,7 @@ Phase one - Tackle bugs
 [Fix veriy button click error](done)
 [On otp verification redirect the user to the welcome page](done)
 [Make the js inserted tips fit the ejs tip](done)
+[Capitalize bookmaker name in the pending tip display]
 [Add the script tag to each page individually]
 
 
