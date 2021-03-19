@@ -691,14 +691,23 @@ So will complete all those for the phase one of today.
 
 [Create a wallet route to fund wallet]
 [Use the transaction id for fund wallet to create a paystack transaction]
-[Create a wallet route to cancel a pending transaction]
-[On paystack window close, cancel the transaction]
-[If paystack transaction is successful, pool the server for status change]
-[Once status has changed, show wallet fund success]
-[Refund wallet if the conversion failed]
-[Create a transaction model to track payment history]
-[Store notification links to direct the user to the tip page from the alert page]
+[Create a wallet route to cancel a pending transaction](done)
+[On paystack window close, cancel the transaction](done)
 
+Going to take a break with regards to paystack, wasting alot of time with it
+and launch is tomorrow.
+
+New plan
+--------
+Tackle bugs
+Set up whatsapp notification
+Handle paystack
+
+Phase one - Tackle bugs
+-----------------------
+Add akin as a developer
+Change the header on the verify page to be the new welcome header
+Fix veriy button click error
 
 
 Future task

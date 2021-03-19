@@ -15,7 +15,7 @@ exports.createFundTransaction = async (userId, amount) => {
 
     console.log(transaction)
 
-    return transaction
+    return transaction.save()
 
   } catch(error){
   

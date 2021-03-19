@@ -8,6 +8,7 @@ const store = {
   addEvent([store.topUpButton], "click", pay)  
   addEvent([store.amountInput], "focus, change", () => {
     hideAlert(".alert-danger")
+    hideAlert(".alert-success")
   })
 
 })()
@@ -44,11 +45,44 @@ function pay(event){
       onClose: function(event){
         // Cancel the transaction
         console.log("It closed", event)
+        api("/wallet/cancel", { transactionId: response.data._id, token: getToken() })
+          .then(r => {
+            if(r.status == 200){
+              button("normal")
+              return showAlert(".alert-success", "Transaction cancelled")
+            }
+          })
       },
       callback: function(response){
-        console.log("It worked")
-        console.log(response)
+
+        console.log("I was called")
+        // If it is successful, continue to hit the api until the transaction is successful
+        function isSuccessful(){
+          console.log("I am starting my execution")
+
+          console.log(api)
+          const req = api("/wallet/transaction", { transactionId: response.data._id, token: getToken() })
+          console.log(req)
+          req.then(handleResponse)
+
+          function handleResponse(response){
+            console.log("I am the guy")
+            if(response.status == 200 && response.data.status == "success"){
+              button("normal")
+              return showAlert(".alert-success", "Wallet funded successfully")
+            }
+            else {
+              isSuccessful()
+            }
+          }
+
+        }
+
+        console.log("About to execute")
+        isSuccessful()
+
       }
+
     })
 
     handler.openIframe()
