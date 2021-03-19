@@ -43,10 +43,13 @@ function verifyOtp(event){
 
     verifyButton("normal")
 
-    if(response.status == 200)
-      return redirect("/home")
-    else
+    if(response.status == 200){
+      return redirect("/welcome")
+    }
+    else{
+      console.log(response)
       showAlert(".verify-error", "Invalid Otp")
+    }
 
   }
 

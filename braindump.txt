@@ -708,7 +708,8 @@ Phase one - Tackle bugs
 Add akin as a developer(done)
 Change the header on the verify page to be the new welcome header(done)
 Make all pages logout, add script tag to all pages (done)
-Fix veriy button click error
+Fix veriy button click error(done)
+On otp verification, change the user stage to welcome
 
 
 Future task
