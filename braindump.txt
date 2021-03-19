@@ -716,11 +716,13 @@ Phase one - Tackle bugs
 [Show loader when filtering tips](done)
 [Change the order of the notification](done)
 [Add the from tag for the login link on the tip page](done)
-[Fix logout on all pages]
+[Fix logout on all pages](done)
+[Restrict pages when not logged in](done)
 
 
 
 Future task
+[Forgot password]
 [Re order notifications]
 [Notification messages should use the proper bookmaker display names e.g 1xbet instead of onexbet]
 [Verify otp not working properly]
