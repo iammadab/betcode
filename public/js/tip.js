@@ -62,6 +62,7 @@ let store = {
   bookmaker: "",
   bookmakerDetails: undefined,
   originalBookmaker: originalBookmaker,
+  originalBookmakerValue: originalBookmakerValue,
   tipId: tipId
 }
 
@@ -110,8 +111,16 @@ function showOriginal(codeDetails){
 function showPaid(){
 
   hideAll()
-  showAlertPro("info", generateMessage("about-to-pay"))
-  showSection("proceed")
+
+  // If the user is logged in
+  if(getToken()){
+    showAlertPro("info", generateMessage("about-to-pay"))
+    showSection("proceed")
+  }
+
+  else
+    showAlertPro("info", generateMessage("login"))
+
 
 }
 
@@ -121,7 +130,7 @@ function showRequested(codeDetails){
   hideAll()
   
   if(codeDetails.data.status == "pending"){
-    const message = `Converting to ${codeDetails.display} <span class='conversion-timer'></span>`
+    const message = `Converting to ${capitalize(codeDetails.display)} <span class='conversion-timer'></span>`
     showAlertPro("success", message)
     
     const secondsLeft = secondsBetween(Date.now(), codeDetails.data.endTime)
@@ -253,7 +262,8 @@ function generateMessage(type){
   const messageMap = {
     "about-to-pay": "10 naira will be deducted from your wallet",
     "insufficient-funds": "Sorry, your balance is insufficient. Top up <a href='/topup'>here</a>",
-    "partial-code": `Partial! Some options are unavailable on ${store.bookmaker}`
+    "partial-code": `Partial! Some options are unavailable on ${store.bookmaker}`,
+    "login":  "To request for code, <a href='/login'>Login</a> or <a href='/register'>Sign up</a>"
   }
 
   if(messageMap[type])
@@ -264,7 +274,7 @@ function generateMessage(type){
 }
 
 function makeConversionRequest(){
-  const source = store.originalBookmaker
+  const source = store.originalBookmakerValue
   const code = bookmakerData[source].code
   const destination = store.bookmaker
 
@@ -283,9 +293,6 @@ function makeConversionRequest(){
 
 function secondsBetween(b, a){
   const dateA = new Date(a), dateB = new Date(b)
-  console.log("A", dateA)
-  console.log("B", dateB)
-  console.log("Original", b)
   const diff = dateA.getTime() - dateB.getTime()
   return Math.floor(diff / 1000)
 }

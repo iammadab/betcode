@@ -18,21 +18,22 @@
 
 				<form class="login" autocomplete="off">
 
-					<div id="error" class="alert alert-danger" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-					    </button>
-		            	Sorry, your payment is unsuccessful. Try again! 
-		          	</div>
+					<div id="error" class="alert alert-danger" style="display: none;" role="alert">
+            Sorry, your payment is unsuccessful. Try again! 
+          </div>
+
+					<div id="error" class="alert alert-success" style="display: none;" role="alert">
+            Sorry, your payment is unsuccessful. Try again! 
+          </div>
 
 					<div class="form-group">
-						<input class="form-control form-control-lg" name="identifier" type="text" placeholder="Enter Amount e.g 1000">
+						<input class="form-control form-control-lg amount" name="identifier" type="number" placeholder="Enter Amount e.g 1000">
 					</div>
 
 					<div class="form-group">
-						<button id="submit" type="submit" class="login-button btn btn-book">
-              				<span class="login-text">Top Up</span>
-			            </button>
+						<button class="topup-button login-button btn btn-book">
+              	<span class="login-text">Top Up</span>
+			      </button>
 					</div>
 
 					<div class="divider">
@@ -57,4 +58,7 @@
 
 </article>
 
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="/js/script.js"></script>
+<script src="/js/pages/topup.js"></script>
 <%- include ("end.ejs") %>

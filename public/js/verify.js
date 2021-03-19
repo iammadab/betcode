@@ -28,7 +28,9 @@ let verificationStore = {
 
 const verifyButton = createButton(".verify-text", "Complete Registration", "Verifying...")
 
-function verifyOtp(){
+function verifyOtp(event){
+
+  event.preventDefault()
 
   verifyButton()
 
@@ -41,10 +43,13 @@ function verifyOtp(){
 
     verifyButton("normal")
 
-    if(response.status == 200)
-      return redirect("/home")
-    else
+    if(response.status == 200){
+      return redirect("/welcome")
+    }
+    else{
+      console.log(response)
       showAlert(".verify-error", "Invalid Otp")
+    }
 
   }
 

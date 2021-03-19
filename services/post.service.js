@@ -110,6 +110,7 @@ exports.normalizeTip = tip => {
   for(bookmaker of Object.keys(tip.bookmakers)){
     if(tip.bookmakers[bookmaker]){
       tipObj.originalBookmaker = bookmakers[bookmaker.toLowerCase()]
+      tipObj.originalBookmakerValue = bookmaker.toLowerCase()
       break
     }
   }

@@ -638,13 +638,84 @@ So will complete all those for the phase one of today.
   - If it has been resolved, we just call the resolveSubscriber function 
   - TADA
 [Test conversion request after resolution](done)
-[Create the transaction model]
-  - The idea behind the transaction model, is that the wallet service will be the primary user of it
-  - When the wallet has been funded, 
-[Refund wallet if the conversion failed]
-[Create a transaction model to track payment history]
-[Store notification links to direct the user to the tip page from the alert page]
+[Figure out payment will work](done)
+  - Paystack sends webhooks for every transaction, with the status of the transactions
+  - They might send the webhook multiple times
+  - As such, the system has to be resistant to that
+  - This means we have to keep track of whether we have fufilled a webhook
+  - We can't do this by just using the balance, balance is too reductive
+  - Hence, transaction objects
+  - What  is the link between a transaction model and the balance
+  - There are three major events that affect your wallet
+    - Loading your wallet
+      - First pay through paystack inline form, all the meta data will be added
+      - From this, we update the transactions, and in updating the transaction we have to update the wallet
+    - Requesting for a conversion
+      - Your wallet is charged
+      - There is also a payment history
+      - Hence when conversion is requested, a transaction has to be created
+      - Who is more powerful, a transaction or a wallet
+        - What to completely embed one into the other
+      - Currently, I am deducting from the user's wallet immediately they request for a conversion
+      - But what if there is something wrong and the conversion request was not successful
+      - They will need to get a refund
+      - Why not wait until things are successful, before deducting??
+        - My concern was that of security, people might find a way to get free conversions
+        - So deducting first makes the err from our side, but what does that do to the user experience
+    - Getting a refund
 
+  - What is really tripping me up is that sometimes, wallet will be called
+  - And sometimes transaction will be called, which doesn't work for me
+  - I would rather just one is called everytime
+  - Think I prefer wallet to be called, wallet should be in charge of creating transactions
+  - Wallet should have a function that can take a transaction, and execute it
+  - So transactions are more like instructions 
+    - So funding, refund, request, will all create a transaction obj, then execute on it 
+  - I think this work
+[Add paystack inline code to the topup page](done)
+[Figure out the wallet funding process](done)
+  - On the top up page, the user will be asked to put in the amount they want to top up
+  - Once they click on topup, what happens
+    - Thinking we should first create a pending transaction for them
+    - Once that is created, we then show the paystack checkout
+    - Once the user pays successfully, what happens
+      - Now we are waiting for a webhook, but the webhook won't communicate with the page again
+      - Hence, what exactly do we show the user on that page
+      - I think we can ping the server for the status of that transactions
+        - If the transaction is successful, we then redirect the user back to their tip
+        - Else, we keep pinging
+      - Unless a transaction has a status of not pending, we keep pinging the server
+[Create a transaction model](done)
+
+19/03/2021
+
+[Create a wallet route to fund wallet]
+[Use the transaction id for fund wallet to create a paystack transaction]
+[Create a wallet route to cancel a pending transaction](done)
+[On paystack window close, cancel the transaction](done)
+
+Going to take a break with regards to paystack, wasting alot of time with it
+and launch is tomorrow.
+
+New plan
+--------
+Tackle bugs
+Set up whatsapp notification
+Handle paystack
+
+Phase one - Tackle bugs
+-----------------------
+[Add akin as a developer](done)
+[Change the header on the verify page to be the new welcome header](done)
+[Make all pages logout, add script tag to all pages](done)
+[Fix veriy button click error](done)
+[On otp verification redirect the user to the welcome page](done)
+[Make the js inserted tips fit the ejs tip](done)
+[Capitalize bookmaker name in the pending tip display](done)
+[Allow a user to view the tip page even when they are not logged in](done)
+[Show a login alert, if the user is not logged in but trying to view a paid code](done)
+[Show loader when filtering tips](done)
+[Add the script tag to each page individually]
 
 
 Future task

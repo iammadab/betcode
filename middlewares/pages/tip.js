@@ -43,25 +43,28 @@ const tip = async (req, res, next) => {
 
   })
 
+  // If the user is logged in
   // Grab all the conversions for this post that the user is a subscriber to
-  const conversions = await conversionService.fetchUserTipConversions(
-    req.body.user._id,
-    post._id
-  )
+  if(req.pageData.loggedIn){
+    const conversions = await conversionService.fetchUserTipConversions(
+      req.body.user._id,
+      post._id
+    )
 
-  conversions.forEach(conversion => {
-    const bookmaker = conversion.destination
-    requested.push(bookmaker)
+    conversions.forEach(conversion => {
+      const bookmaker = conversion.destination
+      requested.push(bookmaker)
 
-    bookmakerVerbose[bookmaker].display = `${bookmakers[bookmaker]}`
-    bookmakerVerbose[bookmaker].type = "requested" 
-    bookmakerVerbose[bookmaker].data = {
-      status: conversion.status,
-      code: conversion.destinationCode,
-      startTime: conversion.startTime,
-      endTime: conversion.endTime
-    }
-  })
+      bookmakerVerbose[bookmaker].display = `${bookmakers[bookmaker]}`
+      bookmakerVerbose[bookmaker].type = "requested" 
+      bookmakerVerbose[bookmaker].data = {
+        status: conversion.status,
+        code: conversion.destinationCode,
+        startTime: conversion.startTime,
+        endTime: conversion.endTime
+      }
+    })
+  }
 
 
   const bookmakerOrder = Array.from(new Set(requested.concat(original.concat(paid))))

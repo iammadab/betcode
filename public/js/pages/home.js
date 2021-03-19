@@ -10,7 +10,8 @@ const store = {
     bookmaker: "",
     minOdds: "",
     maxOdds: ""
-  }
+  },
+  loader: document.querySelector(".loader")
 }
 
 ;(function attachEvents(){
@@ -143,6 +144,9 @@ function generatePostUrl(lastId = ""){
 
 async function updateFilteredPost(){
 
+  clearNode(store.tips)
+  store.tips.innerHTML = buildLoader()
+
   const response = await api(generatePostUrl())
 
   if(response.status != 200)
@@ -160,27 +164,31 @@ async function updateFilteredPost(){
 
 }
 
+function buildLoader(){
+  return `
+    <div class="loader"><div class="spinner-border spinner-border-sm text-muted"></div></div>
+    `
+}
+
 function buildElement(post){
   return `
    <li data-id="${post._id}" class="hover">
       <a href="/tip/${post._id}">
 
-        <div class="t_header">
-          <img src="${post.tipster.picture}" alt="${post.tipster.username}" />
-          <div class="t_details">
-            <h6>${post.tipster.username}</h6>
-            <span>${post.tipDate}</span>
+        <div class="s_super">
+          <div class="t_header">
+            <img src="${post.tipster.picture}" alt="${post.tipster.fullname}" />
+            <div class="t_details">
+              <h6>${post.tipster.fullname}</h6>
+              <span>${post.tipDate}</span>
+            </div>
           </div>
         </div>
 
         <div class="t_main">
           <p>${post.description}</p>
-          <div class="t_info">
-            <i class="far fa-bookmark"></i> <span>Odds</span> (${post.odds}) 
-          </div>
-          <div class="t_info">
-            <i class="far fa-comment-alt"></i><span>Discussions</span>(${post.comments})
-          </div>
+          <div class="t_info">${post.originalBookmaker}</div>
+          <div class="t_info">${post.odds}<span>Odds</span></div>
         </div>
 
       </a>
