@@ -95,3 +95,31 @@ exports.deductAmount = async (userId, amount) => {
   }
 
 }
+
+exports.executeTransaction = async (transaction) => {
+  
+  if(transaction.status != "pre-execute")
+    return { error: true, code: "TRANSACTION_NOT_PRE_EXECUTE" }
+
+  if(!transaction.user)
+    return { error: true, code: "NO_USER_ID" }
+
+  const user = await User.findOne({ _id: transaction.user })
+
+  if(!user)
+    return { error: true, code: "USER_NOT_FOUND" }
+
+  if(transaction.type == "fund_wallet" || transaction.type == "refund"){
+    user.wallet += transaction.amount
+    await user.save()
+    
+    transaction.status = "success"
+    await transaction.save()
+
+    return transaction
+  }
+
+  else
+    return { error: true, code: "INVALID_TRANSACTION_TYPE" }
+
+}
