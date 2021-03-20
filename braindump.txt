@@ -765,8 +765,18 @@ Then redirect the user to the tips page, or the specific tip they came from
 
 [On success, redirect to home after 3 seconds](done)
 [If there is a from link in the topup url page, redirect to that link](done)
+
+20/03/2021
+
+Today, is launch day, the big task remeaing for me are payment and twitter integration
+I plan to do twitter integration after the lauch, as testing can only happen live
+Also need to create a page to add tipsters. Think I should do this first.
+
+[Create an api to add a tipster from users](done)
+[Link the api to the add tipster page]
 [Once the webhook hits, fetch the transaction]
 [Implement a wallet service to update and execute the transaction]
+
 
 Future task
 [Forgot password]
