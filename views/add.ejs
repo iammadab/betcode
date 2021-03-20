@@ -34,13 +34,6 @@
 						</div>
 
 						<div class="form-group">
-							<div class="custom-file">
-								<input type="file" id="image" class="custom-file-input" accept='image/*'>
-	      						<label class="custom-file-label">Tipster Display Picture</label>
-							</div>
-						</div>
-
-						<div class="form-group">
 							<button type="submit" class="btn btn-success">Add</button>
 						</div>
 
@@ -60,50 +53,43 @@
 </html>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/script.js"></script>
 
-		<script type="text/javascript">
-			const submit = document.querySelector("button")
+<script type="text/javascript">
 
-			submit.addEventListener("click", (event) => {
-				event.preventDefault()
+  const submit = document.querySelector("button")
+  const name = document.querySelector("#name")
 
-				const name = document.querySelector("#name")
-				const image = document.querySelector("#image")
-				
-				const files = image.files
-				const formData = new FormData()
-				formData.append("file", files[0])
+  addEvent([name], "click, focus, change", () => {
+    hideAlert(".alert-danger")
+    hideAlert(".alert-success")
+  })
+  
+  const button = createButton("button", "Add", "Adding...")
 
-				fetch("/api/upload", {
-					method: "POST",
-					body: formData
-				})
-				.then(res => res.json())
-				.then(data => {
-					const url = data.link
-					return fetch("/api/tipster", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json"
-						},
-						body: JSON.stringify({
-							name: name.value,
-							image: url
-						})
-					})
-				})
-				.then(res => res.json())
-				.then(() => {
-					name.value = ""
-					image.value = ""
-				}) 
+  submit.addEventListener("click", (event) => {
+
+    event.preventDefault()
+
+    button()
 
 
-			})
+    api("/tipster/twitter", { username: name.value })
+      .then(handleResponse)
 
-			// Add the following code if you want the name of the file appear on select
-		$(".custom-file-input").on("change", function() {
-			var fileName = $(this).val().split("\\").pop();
-  			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-		});
-		</script>
+    function handleResponse(response){
+
+      button("normal")
+
+      if(response.status == 200){
+        name.value = ""
+        return showAlert(".alert-success", "Tipster added")
+      }
+      else
+        return showAlert(".alert-danger", "Problem adding tipster, contact support")
+
+    }        
+
+  })
+
+</script>

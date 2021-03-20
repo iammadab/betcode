@@ -269,7 +269,7 @@ function generateMessage(type){
 
   const messageMap = {
     "about-to-pay": "10 naira will be deducted from your wallet",
-    "insufficient-funds": "Sorry, your balance is insufficient. Top up <a href='/topup'>here</a>",
+    "insufficient-funds": `Sorry, your balance is insufficient. Top up <a href='/topup?from=${url}'>here</a>`,
     "partial-code": `Partial! Some options are unavailable on ${store.bookmaker}`,
     "login":  `To get booking code, <a href='/login?from=${url}'>Login</a> or <a href='/register'>Sign up</a>`
   }

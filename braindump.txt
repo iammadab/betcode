@@ -728,16 +728,57 @@ Phase two - Whatsapp notifications
 [Change the verification process to use the whatsapp otp](done)
 [Change the resolution process to use the whatsapp otp](done)
 [Write function that converts a number to the international format](done)
+[Fix stage router bug](done)
+  - Landing page is only available for non logged in users  
+  - The stage router has to be able to handle this
+  - If there is no user, that means the user is not logged in
+  - Now it comes down to the page:
+    - Page that only wants logged in users
+      - This would use a cookieNotFound filter
+      - So the user would never even get to the stage router
+    - Page that only wants not logged in users
+      - This would want to user to proceed 
+    - Page that can allow for both
+      - This would also want the user to proceed
+  - Hence once there is no user, proceed
+
+Phase two completed
+
+[Track which converter resolved a conversion](done)
+
+Phase three - Paystack
+----------------------
+For some reason, really having problems with these phase
+Need to really think this through
+
+This only has to deal with funding the wallet
+There is an inline script, when a user pays with this inline script
+We are immediately sent a webhook request
+The issue is that the user needs to be notified that we have received their cash
+
+Why don't I just redirect the user to the home page or the tip they we currently at on success
+
+So we hit create the transaction
+The user pays through the popup
+On success, we wait for a couple of seconds (hoping that the webhook would have kicked in)
+Then redirect the user to the tips page, or the specific tip they came from
+
+[On success, redirect to home after 3 seconds](done)
+[If there is a from link in the topup url page, redirect to that link](done)
+
+20/03/2021
+
+Today, is launch day, the big task remeaing for me are payment and twitter integration
+I plan to do twitter integration after the lauch, as testing can only happen live
+Also need to create a page to add tipsters. Think I should do this first.
+
+[Create an api to add a tipster from users](done)
+[Link the api to the add tipster page](done)
+[Once the webhook hits, fetch the transaction]
+[Implement a wallet service to update and execute the transaction]
 
 
 Future task
 [Forgot password]
-[Re order notifications]
-[Notification messages should use the proper bookmaker display names e.g 1xbet instead of onexbet]
-[Verify otp not working properly]
 [Increase login token duration]
-[Make sure all the pages can logout]
-[Fix terms and condition links]
-[Verify form submit by hiting enter doesn't work, verify section]
-[Track which converter resolved a conversion]
 [Admin's should have accounts]

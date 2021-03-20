@@ -53,33 +53,17 @@ function pay(event){
             }
           })
       },
+
       callback: function(response){
 
-        console.log("I was called")
-        // If it is successful, continue to hit the api until the transaction is successful
-        function isSuccessful(){
-          console.log("I am starting my execution")
+        console.log(response)
 
-          console.log(api)
-          const req = api("/wallet/transaction", { transactionId: response.data._id, token: getToken() })
-          console.log(req)
-          req.then(handleResponse)
-
-          function handleResponse(response){
-            console.log("I am the guy")
-            if(response.status == 200 && response.data.status == "success"){
-              button("normal")
-              return showAlert(".alert-success", "Wallet funded successfully")
-            }
-            else {
-              isSuccessful()
-            }
-          }
-
-        }
-
-        console.log("About to execute")
-        isSuccessful()
+        // Wait for 3 seconds then redirect to the home page
+        setTimeout(() => {
+          let toRedirect = "/home", params = new URLSearchParams(window.location.search)
+          toRedirect = params.get("from") ? params.get("from") : toRedirect
+          redirect(toRedirect)
+        }, 3000)
 
       }
 

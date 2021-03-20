@@ -147,7 +147,7 @@ exports.sendStats = async () => {
 
 }
 
-exports.assignConversionRequest = async () => {
+exports.assignConversionRequest = async (chatId) => {
   
   try {
 
@@ -158,6 +158,7 @@ exports.assignConversionRequest = async () => {
     const conversionLink = `${process.env.BASE_URL}/admin/convert/${conversionRequest._id}`
 
     conversionRequest.assigned = true
+    conversionRequest.assignedTo = chatId
     await conversionRequest.save()
 
     await exports.sendStats()

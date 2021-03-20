@@ -1,8 +1,8 @@
 require("dotenv").config({ path: "../.env" })
 const userController = require("../controllers/user")
 
-const { connectToDb } = require("../runners/database_runner")
-connectToDb().then(run)
+//const { connectToDb } = require("../runners/database_runner")
+//connectToDb().then(run)
 
 const twit = require("twit")
 const T = new twit({
@@ -13,11 +13,13 @@ const T = new twit({
   timeout_ms: 60 * 1000
 })
 
-function run(){
+function run(username, cb, err){
 
-  T.get("/users/lookup", { screen_name: "pbtips_" }, async (error, data, response) => {
+  T.get("/users/lookup", { screen_name: username }, async (error, data, response) => {
     if(error){
       console.log(error)
+      if(err)
+        err(error)
       return
     }
 
@@ -32,13 +34,14 @@ function run(){
       password: "password",
       bio: data.description,
       picture: data.profile_image_url_https,
-      twitterId: data.id_str,
-      otp: process.env.DEFAULT_OTP
+      twitterId: data.id_str
     }
 
     const userCreateResponse = await userController.createUser(userData)
-    if(userCreateResponse.status != 200)
+    if(userCreateResponse.status != 200){
+      err(userCreateResponse)
       return console.log("Failed to create user")
+    }
 
     let user = userCreateResponse.user
     console.log(user)
@@ -47,8 +50,12 @@ function run(){
     console.log(user)
 
     console.log(`${data.screen_name} account created`)
+    if(cb)
+      cb()
 
    })
 
 
 }
+
+module.exports = run

@@ -34,7 +34,6 @@ const apiRouter = require("./routes")
 app.get(
 	"/", 
   cookieMiddleware.cookieFound("/home"),
-  tokenMiddleware.validateToken(),
   stageRouter(),
   pageMiddleware.home,
   metaMiddleware.allTips,
@@ -209,6 +208,13 @@ app.get(
   (req, res) => res.render("post", { ...req.pageData })
 )
 
+app.get(
+  "/admin/add/tipster",
+  (req, res, next) => { req.pageData = {}; next() },
+  metaMiddleware.defaultMeta,
+  (req, res) => res.render("add", { ...req.pageData })
+)
+
 
 app.use("/api", apiRouter)
 
@@ -216,5 +222,3 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
 	console.log(`Application listening at port ${PORT}`)
 })
-
-require("./lib/whatsapp")
