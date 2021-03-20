@@ -4,7 +4,7 @@ const conversionService = require("../../services/conversion.service")
 const bookmakers = require("../../lib/bookmakers")
 
 const tip = async (req, res, next) => {
-  
+
   let post = await postService.fetchById(req.params.postId)
   if(!post)
     return res.redirect("/")
