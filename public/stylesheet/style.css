@@ -251,7 +251,7 @@ justify-content:center;
 .logo .text{
 width:150px;
 vertical-align:text-bottom;
-padding:0.2rem 0;
+padding:0.5rem 0;
 }
 
 .logo .icon{
@@ -269,7 +269,7 @@ width:30px;
 .logo .text{
 margin:0;	
 width:120px;
-padding:0;	
+padding:0.2rem 0;	
 }
 
 .navbar{
@@ -1182,6 +1182,7 @@ margin:0.2rem 0 0;
 color:#333;
 text-align:center;
 margin:0.5rem 0;
+font-size:1rem;
 }
 
 .login .terms a{

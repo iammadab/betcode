@@ -26,7 +26,7 @@ let verificationStore = {
 
 })()
 
-const verifyButton = createButton(".verify-text", "Complete Registration", "Verifying...")
+const verifyButton = createButton(".verify-text", "Verify", "Verifying...")
 
 function verifyOtp(event){
 
@@ -81,7 +81,7 @@ function changeNumber(){
       return redirect("/verify")
 
     else if(response.code == "USER_EXISTS")
-      return showAlert(".change-number-error", "An account with that phone number already exists")
+      return showAlert(".change-number-error", "An account with this phone number already exists")
 
   }
 }
