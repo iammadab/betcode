@@ -22,11 +22,13 @@ tipsterRouter.post("/twitter", (req, res) => {
     username, 
     () => {
       res.status(200).json({
+        status: 200,
         code: "TIPSTER_CREATED"
       })
     },
     () => {
       res.status(500).json({
+        status: 500,
         code: "FAILED_TO_CREATE_TIPSTER"
       })
     }

@@ -773,7 +773,7 @@ I plan to do twitter integration after the lauch, as testing can only happen liv
 Also need to create a page to add tipsters. Think I should do this first.
 
 [Create an api to add a tipster from users](done)
-[Link the api to the add tipster page]
+[Link the api to the add tipster page](done)
 [Once the webhook hits, fetch the transaction]
 [Implement a wallet service to update and execute the transaction]
 
