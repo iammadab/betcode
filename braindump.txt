@@ -774,8 +774,10 @@ Also need to create a page to add tipsters. Think I should do this first.
 
 [Create an api to add a tipster from users](done)
 [Link the api to the add tipster page](done)
-[Once the webhook hits, fetch the transaction]
-[Implement a wallet service to update and execute the transaction]
+[Once the webhook hits, fetch the transaction](done)
+[Implement a wallet service to update and execute the transaction](done)
+[Implement wallet function to charge for conversion request]
+[Implement refund ability]
 
 
 Future task

@@ -32,11 +32,11 @@ const requestConversion = async (data) => {
   if(data.user.wallet < WALLET_AMOUNT)
     return { status: 403, code: "INSUFFICIENT_FUNDS" }
 
-  const walletDeductionResult = await walletService.deductAmount(data.user._id, WALLET_AMOUNT)
-  if(walletDeductionResult.error)
+  const walletChargeResult = await walletService.chargeForConversion(data.user._id, WALLET_AMOUNT)
+  if(walletChargeResult.error)
     return {
-      status: walletDeductionResult.status ? walletDeductionResult.status : 403,
-      code: walletDeductionResult.code
+      status: walletChargeResult.status ? walletChargeResult.status : 403,
+      code: walletChargeResult.code
     }
 
   const requestConversionResult = await conversionService.requestConversion({
