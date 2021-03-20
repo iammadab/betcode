@@ -1,6 +1,7 @@
 const Conversion = require("../models/conversion")
 const notificationService = require("../services/notification.service")
 const userService = require("../services/user.service")
+const walletService = require("../services/wallet.service")
 const whatsapp = require("../lib/whatsapp")
 const telegram = require("../lib/telegram")
 
@@ -20,7 +21,7 @@ exports.fetchConversionById = async (conversionId) => {
 
 }
 
-exports.requestConversion = async ({ source, code, destination, subscriberId, tipId }) => {
+exports.requestConversion = async ({ source, code, destination, subscriberId, tipId, chargeAmount }) => {
 
   try{
 
@@ -45,7 +46,9 @@ exports.requestConversion = async ({ source, code, destination, subscriberId, ti
       conversion = new Conversion({
         source,
         code,
-        destination
+        destination,
+        tipId,
+        chargeAmount
       })
        
     }
@@ -225,6 +228,12 @@ exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
     phone: userObj.phone,
     message: link
   })
+
+  // If the conversion failed,
+  // refund; the user
+  // Think we should also track the conversion amount in the conversion obj
+  if(conversionObj.status == "failed")
+    await walletService.refundTransaction(subscriberId, conversionObj.chargeAmount)
 
 }
 
