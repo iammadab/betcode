@@ -44,7 +44,8 @@ const requestConversion = async (data) => {
     code: data.code,
     destination: data.destination,
     subscriberId: data.user._id,
-    tipId: data.tipId
+    tipId: data.tipId,
+    chargeAmount: WALLET_AMOUNT
   })
   console.log(requestConversionResult)
   if(requestConversionResult.error)

@@ -59,6 +59,32 @@ exports.chargeForConversion = async (userId, amount) => {
 
 }
 
+exports.refundTransaction = async (userId, amount) => {
+  
+  try {
+
+    const transaction = new Transaction({
+      user: userId,
+      type: "refund", 
+      status: "pre-execute",
+      amount: amount
+    })
+
+    const executionResult = await exports.executeTransaction(transaction)
+
+    if(executionResult.error)
+      return { error: true, code: "FAILED_TO_REFUND" }
+
+    return executionResult
+
+  } catch(error){
+
+    return { error: true, code: "PROBLEM_REFUNDING" }
+
+  }
+
+}
+
 exports.fundWallet = async (userId, amount) => {
   
   try {

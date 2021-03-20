@@ -20,7 +20,7 @@ exports.fetchConversionById = async (conversionId) => {
 
 }
 
-exports.requestConversion = async ({ source, code, destination, subscriberId, tipId }) => {
+exports.requestConversion = async ({ source, code, destination, subscriberId, tipId, chargeAmount }) => {
 
   try{
 
@@ -32,7 +32,8 @@ exports.requestConversion = async ({ source, code, destination, subscriberId, ti
       source,
       code,
       destination,
-      tipId
+      tipId,
+      chargeAmount
     })
     if(conversion){
       console.log("Found", conversion)
@@ -225,6 +226,12 @@ exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
     phone: userObj.phone,
     message: link
   })
+
+  // If the conversion failed,
+  // refund; the user
+  // Think we should also track the conversion amount in the conversion obj
+  if(conversionObj.status == "failed")
+    await walletService.refundTransaction(subscriberId, conversionObj.chargeAmount)
 
 }
 
