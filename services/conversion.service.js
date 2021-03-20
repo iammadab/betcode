@@ -1,6 +1,7 @@
 const Conversion = require("../models/conversion")
 const notificationService = require("../services/notification.service")
 const userService = require("../services/user.service")
+const walletService = require("../services/wallet.service")
 const whatsapp = require("../lib/whatsapp")
 const telegram = require("../lib/telegram")
 
@@ -32,8 +33,7 @@ exports.requestConversion = async ({ source, code, destination, subscriberId, ti
       source,
       code,
       destination,
-      tipId,
-      chargeAmount
+      tipId
     })
     if(conversion){
       console.log("Found", conversion)
@@ -46,7 +46,9 @@ exports.requestConversion = async ({ source, code, destination, subscriberId, ti
       conversion = new Conversion({
         source,
         code,
-        destination
+        destination,
+        tipId,
+        chargeAmount
       })
        
     }
