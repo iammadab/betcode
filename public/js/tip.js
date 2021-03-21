@@ -281,7 +281,9 @@ function generateMessage(type){
 
 }
 
+const b = createButton(".proceed-button", "Continue", "Requesting...")
 function makeConversionRequest(){
+  b()
   const source = store.originalBookmakerValue
   const code = bookmakerData[source].code
   const destination = store.bookmaker
@@ -290,6 +292,7 @@ function makeConversionRequest(){
     .then(handleResponse)
 
   function handleResponse(response){
+    b("normal")
     if(response.status == 200)
       return reload()
    

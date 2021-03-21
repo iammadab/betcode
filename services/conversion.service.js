@@ -139,7 +139,7 @@ exports.sendStats = async () => {
 
     const stat = `Conversion Stats\n\n${pendingStat}\n${assignedStat}\n${lateStat}`
 
-    telegram.send("developers", stat)
+    telegram.send("devcon", stat)
 
   } catch(error){
 

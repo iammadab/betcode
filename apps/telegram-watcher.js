@@ -62,6 +62,7 @@ async function sendConversionRequest(message){
 
   const messageText = message.message.text.toLowerCase()
   const chatId = message.message.chat.id
+  console.log(message.message)
 
   let reply = ""
 
