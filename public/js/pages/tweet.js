@@ -190,24 +190,22 @@ function idToTipElement(tweetId){
 function tweetToDOM(tweet, state="tweet-unclassified"){
   return `
     <li data-state="${state}" data-id="${tweet._id}" class="hover">
-      <a href="#">
-        <div class="tweet_header">
-          <div class="tweet_details">
-            <h6>${tweet.user}</h6>
-            <span>2 hours ago</span>
-          </div>
-            <span data-id="${tweet._id}" class="tweet_add"><i class="fas fa-plus-circle"></i></span>
+      <div class="tweet_header">
+        <div class="tweet_details">
+          <h6>${tweet.user}</h6>
+          <span>2 hours ago</span>
         </div>
-        <div class="tweet_main">
-          <p>${tweet.text}</p>
-          <div data-id="${tweet._id}" class="form-container">
-            ${makePostForm(tweet._id)}
-          </div>
-          <div class="s_img">
-            ${tweet.images.map(link => "<img src='" + link + "'/>")}
-          </div>
+          <span data-id="${tweet._id}" class="tweet_add"><i class="fas fa-plus-circle"></i></span>
+      </div>
+      <div class="tweet_main">
+        <p>${tweet.text}</p>
+        <div data-id="${tweet._id}" class="form-container">
+          ${makePostForm(tweet._id)}
         </div>
-      </a>
+        <div class="s_img">
+          ${tweet.images.map(link => "<img src='" + link + "'/>")}
+        </div>
+      </div>
     </li>	
   `
 }
