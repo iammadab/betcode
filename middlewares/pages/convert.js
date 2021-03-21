@@ -1,4 +1,5 @@
 const conversionService = require("../../services/conversion.service")
+const bookmakers = require("../../lib/bookmakers")
 
 const convert = async (req, res, next) => {
     
@@ -13,7 +14,8 @@ const convert = async (req, res, next) => {
       res.redirect("/")
 
   req.pageData = Object.assign({}, req.pageData, {
-    conversion: conversionRequest
+    conversion: conversionRequest,
+    bookmakers
   })
 
   next()

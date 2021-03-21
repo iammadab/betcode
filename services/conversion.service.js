@@ -123,21 +123,21 @@ exports.sendStats = async () => {
   try{
 
     const noOfPendingConversions = await Conversion.where({ status: "pending" }).countDocuments()
-    const pendingStat = `Pending Conversions: ${noOfPendingConversions}`
+    const pendingStat = `Pending: ${noOfPendingConversions}`
     
     const noOfAssignedConversions = await Conversion.where({ 
       status: "pending",
       assigned: true
     }).countDocuments()
-    const assignedStat = `Assigned from pending: ${noOfAssignedConversions}`
+    const assignedStat = `Assigned: ${noOfAssignedConversions}`
 
     const noOfLateConversions = await Conversion.where({ 
       status: "pending",
       endTime: { $lte: Date.now() }
     }).countDocuments()
-    const lateStat = `Late Conversions: ${noOfLateConversions}`
+    const lateStat = `Late: ${noOfLateConversions}`
 
-    const stat = `${pendingStat}\n${assignedStat}\n${lateStat}`
+    const stat = `Conversion Stats\n\n${pendingStat}\n${assignedStat}\n${lateStat}`
 
     telegram.send("developers", stat)
 
@@ -212,11 +212,21 @@ exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
   if(userObj.error)
     return
   
+  let message = `Convert ${code} from ${capitalize(bookmakers[source])} to ${capitalize(bookmakers[destination])}`
   const link = `${process.env.BASE_URL}/tip/${conversionObj.tipId}`
+
+  const statusMessage = {
+    "success": " successfully done.",
+    "partial": " partially done.",
+    "failed": " failed."
+  }
+
+  if(statusMessage[conversionObj.status])
+    message += statusMessage[conversionObj.status]
 
   const notificationObj = await notificationService.createNotification({
     user: subscriberId,
-    message: `Convert ${code} from ${capitalize(bookmakers[source])} to ${capitalize(bookmakers[destination])}`,
+    message,
     data: {
       status: conversionObj.status,
       type: "automatic",
@@ -224,9 +234,18 @@ exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
     }
   })
 
+  const linkMessage = {
+    "success": " Copy booking code here " + link,
+    "partial": " Copy booking code here " + link,
+    "failed": " See reasons here " + link
+  }
+
+  if(linkMessage[conversionObj.status])
+    message += linkMessage[conversionObj.status]
+
   whatsapp.sendMessage({
     phone: userObj.phone,
-    message: link
+    message
   })
 
   // If the conversion failed,
