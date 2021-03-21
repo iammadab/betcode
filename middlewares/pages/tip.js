@@ -2,6 +2,7 @@ const postService = require("../../services/post.service")
 const commentService = require("../../services/comment.service")
 const conversionService = require("../../services/conversion.service")
 const bookmakers = require("../../lib/bookmakers")
+const { charge } = require("../../lib/data")
 
 const tip = async (req, res, next) => {
 
@@ -23,7 +24,7 @@ const tip = async (req, res, next) => {
   const bookmakerVerbose = {}
   Object.keys(bookmakers).forEach(bookmaker => {
     bookmakerVerbose[bookmaker] = {
-      display: `${bookmakers[bookmaker]} (10 Naira)`,
+      display: `${bookmakers[bookmaker]} (${charge} Naira)`,
       type: "paid"
     }
   })
@@ -78,7 +79,8 @@ const tip = async (req, res, next) => {
     comments,
     bookmakers: bookmakerVerbose,
     bookmakerOrder,
-    bookmakerMap: bookmakers
+    bookmakerMap: bookmakers,
+    charge
   })
 
   next()

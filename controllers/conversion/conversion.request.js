@@ -1,4 +1,5 @@
 const walletService = require("../../services/wallet.service")
+const { charge } = require("../../lib/data")
 const conversionService = require("../../services/conversion.service")
 
 const joi = require("joi")
@@ -27,7 +28,7 @@ const requestConversion = async (data) => {
   // Make sure the user has enough money in their wallet
   // to perform this request
   // Ideally, the cost of request should come from a single source
-  const WALLET_AMOUNT = 10
+  const WALLET_AMOUNT = 20
 
   if(data.user.wallet < WALLET_AMOUNT)
     return { status: 403, code: "INSUFFICIENT_FUNDS" }
