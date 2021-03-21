@@ -42,9 +42,11 @@
 
 						<p><%= tip.description %></p>
 
-						<% if(tip.image1){ %>
+						
 							<div class="s_img">
+								<% if(tip.image1){ %>
 					        	<img src="<%= tip.image1 %>" />
+					        	<% } %>
 					        	<% if(tip.image2){ %>
 					          		<img src="<%= tip.image2 %>" />
 						        <% } %>
@@ -55,7 +57,7 @@
 					          		<img src="<%= tip.image4 %>" />
 					        	<% } %>
 					    	</div>
-					    <% } %>
+					   
 
 				    </div>
 

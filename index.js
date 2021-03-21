@@ -186,12 +186,12 @@ app.get(
   (req, res) => res.render("tipsters", { ...req.pageData })
 )*/
 
-app.get(
+/*app.get(
   "/admin/post", 
   (req, res, next) => { req.pageData = {}; next() },
   metaMiddleware.defaultMeta,
   (req, res) => res.render("post", { ...req.pageData })
-)
+)*/
 
 app.get(
   "/admin/tweet", 
