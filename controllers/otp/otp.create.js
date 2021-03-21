@@ -22,7 +22,7 @@ const createOtp = async (data) => {
 
   whatsapp.sendMessage({
     phone: user.phone,
-    message: `Bookmakr OTP: ${code}`
+    message: `Your Bookmakr OTP is: ${code}`
   })
 
   const otpObj = await otpService.createOtp({ phone: user.phone, code })

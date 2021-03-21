@@ -212,7 +212,7 @@ exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
   if(userObj.error)
     return
   
-  let message = `Convert ${code} from ${capitalize(bookmakers[source])} to ${capitalize(bookmakers[destination])}`
+  let message = `Convert ${code.toUpperCase()} from ${capitalize(bookmakers[source])} to ${capitalize(bookmakers[destination])}`
   const link = `${process.env.BASE_URL}/tip/${conversionObj.tipId}`
 
   const statusMessage = {

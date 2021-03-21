@@ -38,8 +38,8 @@ function pay(event){
       return showAlert("Something went wrong, please try again later or contact support")
 
     const handler = PaystackPop.setup({
-      key: "pk_test_a902c60eb9b840d5b92be19e20ab9bcf97151682",
-      email: "iammadab@gmail.com",
+      key: "pk_live_19f13e237e356780c0bfd1018aeb903161dea99a",
+      email: account_email,
       amount: amount * 100,
       ref: response.data._id,
       onClose: function(event){
@@ -49,7 +49,7 @@ function pay(event){
           .then(r => {
             if(r.status == 200){
               button("normal")
-              return showAlert(".alert-success", "Transaction cancelled")
+              return showAlert(".alert-danger", "Your topup has been cancelled. Try again below")
             }
           })
       },

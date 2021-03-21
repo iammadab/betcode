@@ -173,7 +173,7 @@ function showRequested(codeDetails){
 
   else if(codeDetails.data.status == "failed"){
     hideAll()
-    showAlertPro("danger", `Failed, No option is available on ${store.bookmaker}`)
+    showAlertPro("danger", `Failed! No option is available on ${capitalize(store.bookmaker)} and your wallet has been refunded as a result.`)
   }
 
 }

@@ -43,6 +43,9 @@ webhookRouter.post("/paystack", async (req, res) => {
 
     }
 
+    if(!transaction)
+      return
+
     // Check if the transaction is pending
     // If it is pending, change the status to success
     if(transaction.status == "pending"){
