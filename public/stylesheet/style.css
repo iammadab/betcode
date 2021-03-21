@@ -251,7 +251,7 @@ justify-content:center;
 .logo .text{
 width:150px;
 vertical-align:text-bottom;
-padding:0.2rem 0;
+padding:0.5rem 0;
 }
 
 .logo .icon{
@@ -268,8 +268,8 @@ width:30px;
 
 .logo .text{
 margin:0;	
-width:120px;
-padding:0;	
+width:110px;
+padding:0.2rem 0;	
 }
 
 .navbar{
@@ -378,25 +378,12 @@ color:#000;
 background-color:#f8f8f8;
 }
 
-/*.dropdown-menu:before {
-display: inline-block;
-position: absolute;
-width: 0;
-height: 0;
-vertical-align: middle;
-content: "";
-top: -3px;
-left: 15px;
-right: auto;
-color: #FFFFFF;
-border-bottom: .4em solid;
-border-right: .4em solid transparent;
-border-left: .4em solid transparent;
-}*/
 
 .dropdown-menu .dropdown-divider {
 background-color:rgba(222, 222, 222, 0.5);
 }
+
+
 
 
 .header-link{	
@@ -404,16 +391,14 @@ background-color:rgba(222, 222, 222, 0.5);
 
 .header-link a{
 color:#fff;
-padding:1rem 1.5rem;
+padding:0.7rem 1.5rem;
+border-radius:0.3rem;
 font-size:0.9rem;
 font-weight:600;
 text-decoration:none;
 }
 
 
-/*.header-link a:hover{
-text-decoration:none;
-}*/
 
 .header-link a i{
 font-size:1rem;
@@ -490,25 +475,13 @@ opacity: 1;
 }
 }
 
-/*.login-link a{
-font-size:0.95rem;
-color:#fff;
-font-weight:600;
-}
-
-.login-link a:hover{
-text-decoration:none;
-}
-
-.login-link a i{
-margin-right:0.2rem;	
-}*/
 
 
 @media (max-width: 768px) {
 
+
 .header-link a{
-padding:1rem 0.85rem;
+padding:0.65rem 0.85rem;
 font-size:0.85rem;
 }
 
@@ -520,7 +493,7 @@ font-size: 0.8rem;
 
 @media (max-width: 330px) {
 .header-link a{
-padding:1rem 1.5rem;	
+padding:1.2rem 1.5rem;	
 }	
 .header-link a i{
 margin:0;	
@@ -1064,7 +1037,7 @@ color:#989898;
 margin:0 0 0 1rem;
 }
 
-@media (max-width:350px) {
+@media (max-width:992px) {
 .footer {
 width:100%;
 }
@@ -1182,10 +1155,19 @@ margin:0.2rem 0 0;
 color:#333;
 text-align:center;
 margin:0.5rem 0;
+font-size:1rem;
 }
 
 .login .terms a{
 color:#8a2be2;	
+}
+
+.form-control{
+border:1px solid #000;	
+}
+
+.form-control::placeholder {
+color:#333;
 }
 
 .login .form-control-lg,.login .custom-select-lg{
@@ -1346,22 +1328,17 @@ color:#000;
 .banner{
 padding: 2rem 1.5rem;
 background:#fff;
-box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.3);
+box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.2);
 margin:0 0 1rem;
 border-radius:4px;
 }
 
 
-.banner h1,h2{
-text-transform:capitalize;
+.banner h1{
+/*text-transform:capitalize;*/
 color: #8a2be2;
 line-height:2.8rem;
 font-size:2.1rem;
-}
-
-.banner h2 {
-line-height:3rem;
-font-size:1.85rem;
 }
 
 
@@ -1425,7 +1402,7 @@ border-bottom:1px solid #ccc;
 }
 
 .card-header .btn{
-font-size:0.95rem;
+font-size:1rem;
 font-weight:600;
 color:#333;
 }
@@ -1526,7 +1503,7 @@ border-bottom:1px solid #e1e1e1;
 display:inline-block;
 width:100%;	
 cursor:pointer;
-padding:1rem 0.75rem;
+padding:0.7rem 0.75rem;
 }
 
 .tweets li a:hover{
@@ -1543,12 +1520,12 @@ display: -ms-flexbox;
 justify-content:space-between;
 }
 .tweet_add{
-color:#666;
+color:#aeaeae;
 font-size:0.9rem;	
 }
 
 .tweet_add:hover{
-color:#000;	
+color:#666;	
 }
 
 .tweet_details{
@@ -1578,14 +1555,14 @@ width:100%;
 }
 
 .tweet_main p{
-margin:0.3rem 0 0;
+margin:0.3rem 0 0.5rem;
 color:#333;
 font-size:1rem;
 line-height:1.5rem;	
 }
 
 .tweet_form{
-padding:1rem 0 0.5rem;	
+padding:0.1rem 0;	
 display:flex;
 flex-direction:row;
 justify-content:space-between;

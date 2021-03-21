@@ -196,7 +196,7 @@ function tweetToDOM(tweet, state="tweet-unclassified"){
             <h6>${tweet.user}</h6>
             <span>2 hours ago</span>
           </div>
-            <span data-id="${tweet._id}" class="tweet_add"><i class="far fa-edit"></i></span>
+            <span data-id="${tweet._id}" class="tweet_add"><i class="fas fa-plus-circle"></i></span>
         </div>
         <div class="tweet_main">
           <p>${tweet.text}</p>
@@ -224,10 +224,10 @@ function makePostForm(id){
       <input class="form-control booking-code" type="text" placeholder="Booking Code">
     </div>
     <div class="form-group">
-      <input class="form-control odds" type="text" placeholder="Total Odds">
+      <input class="form-control odds" type="text" placeholder="Odds">
     </div>
     <div class="form-group">
-      <select class="custom-select bookmaker">
+      <select class="custom-select bookmaker text-capitalize">
         <option value="">Bookmaker</option>
         ${bookmakerHTML}
       </select>

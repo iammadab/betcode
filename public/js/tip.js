@@ -271,7 +271,7 @@ function generateMessage(type){
     "about-to-pay": "10 naira will be deducted from your wallet",
     "insufficient-funds": `Sorry, your balance is insufficient. Top up <a href='/topup?from=${url}'>here</a>`,
     "partial-code": `Partial! Some options are unavailable on ${store.bookmaker}`,
-    "login":  `To get booking code, <a href='/login?from=${url}'>Login</a> or <a href='/register'>Sign up</a>`
+    "login":  `To get this booking code&nbsp; <a href='/login?from=${url}'>Login</a> or <a href='/register'>Sign Up</a>`
   }
 
   if(messageMap[type])
