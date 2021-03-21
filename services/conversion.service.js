@@ -212,8 +212,17 @@ exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
   if(userObj.error)
     return
   
-  const message = `Convert ${code} from ${capitalize(bookmakers[source])} to ${capitalize(bookmakers[destination])}`
+  let message = `Convert ${code} from ${capitalize(bookmakers[source])} to ${capitalize(bookmakers[destination])}`
   const link = `${process.env.BASE_URL}/tip/${conversionObj.tipId}`
+
+  const statusMessage = {
+    "success": " successfully done.",
+    "partial": " partially done.",
+    "failed": " failed."
+  }
+
+  if(statusMessage[conversionObj.status])
+    message += statusMessage[conversionObj.status]
 
   const notificationObj = await notificationService.createNotification({
     user: subscriberId,
@@ -225,9 +234,18 @@ exports.resolveSubscriber = async ( subscriberId, conversionObj ) => {
     }
   })
 
+  const linkMessage = {
+    "success": " Copy booking code here " + link,
+    "partial": " Copy booking code here " + link,
+    "failed": " See reasons here " + link
+  }
+
+  if(linkMessage[conversionObj.status])
+    message += linkMessage[conversionObj.status]
+
   whatsapp.sendMessage({
     phone: userObj.phone,
-    message: message + " successfully done. Copy booking code here " + link
+    message
   })
 
   // If the conversion failed,
