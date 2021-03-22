@@ -2,7 +2,7 @@ const baseUrl = "https://bookmakr.ng"
 
 const baseMeta = {
   title: "Bookmakr - Latest Booking Codes",
-  description: "Get hundreds of booking codes daily from the top tipsters in Nigeria and convert to any bookmaker",
+  description: "Get hundreds of booking codes daily from the top tipsters in Nigeria and convert to any bookmaker of your choice.",
   image: ""
 }
 
