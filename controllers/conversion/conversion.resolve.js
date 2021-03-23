@@ -1,4 +1,5 @@
 const conversionService = require("../../services/conversion.service")
+const telegram = require("../../lib/telegram")
 
 const joi = require("joi")
 
@@ -55,6 +56,7 @@ const resolveConversion = async (data) => {
   }
 
   conversionService.sendStats()
+  telegram.sendMessage(telegram.users.wisdom, `Status: ${resolvedConversionObj.status}`)
 
   return { status: 200, code: "RESOLVED_CONVERSION" }
 
