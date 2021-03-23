@@ -777,7 +777,7 @@ Also need to create a page to add tipsters. Think I should do this first.
 [Once the webhook hits, fetch the transaction](done)
 [Implement a wallet service to update and execute the transaction](done)
 [Implement wallet function to charge for conversion request](done)
-[Implement refund ability]
+[Implement refund ability](done)
   - When resolving the subscriber, if the conversion status is failed
   - Refund the transaction
 
