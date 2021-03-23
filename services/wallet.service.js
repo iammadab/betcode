@@ -1,5 +1,6 @@
 const User = require("../models/user")
 const whatsapp = require("../lib/whatsapp")
+const telegram = require("../lib/telegram")
 const Transaction = require("../models/transaction")
 
 exports.createFundTransaction = async (userId, amount) => {
@@ -182,6 +183,8 @@ exports.executeTransaction = async (transaction) => {
         phone: user.phone,
         message: `Your topup is successful and wallet balance is ${user.wallet} naira`
       })
+
+      telegram.send("developers", `Someone just funded their account with ${transaction.amount}`)
     }
 
     return transaction

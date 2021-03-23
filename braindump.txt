@@ -800,6 +800,7 @@ Not getting the appropriate twitter images, some posts have images and other don
 [Style the textbox description](done)
 [On post, use the text box version of the description](done)
 [Handle description with mutliple booking codes](done)
+
 [Discuss potential ability to exclude certain images]
 [Get notified when someone funds an account]
 [Get notified regarding the status of a conversion resolution]
