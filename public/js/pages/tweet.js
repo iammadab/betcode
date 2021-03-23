@@ -200,7 +200,7 @@ function tweetToDOM(tweet, state="tweet-unclassified"){
       <div class="tweet_main">
         <p>${tweet.text}</p>
         <div data-id="${tweet._id}" class="form-container">
-          ${makePostForm(tweet._id)}
+          ${makePostForm(tweet._id, tweet.text)}
         </div>
         <div class="s_img">
           ${tweet.images.map(link => "<img src='" + link + "'/>")}
@@ -210,7 +210,7 @@ function tweetToDOM(tweet, state="tweet-unclassified"){
   `
 }
 
-function makePostForm(id){
+function makePostForm(id, description){
 
   const bookmakerHTML = Object.keys(store.bookmakers).map(bookmaker => {
     return `<option value="${bookmaker}">${store.bookmakers[bookmaker]}</option>`
@@ -218,6 +218,9 @@ function makePostForm(id){
 
   return `
   <div data-id="${id}" class="tweet_form">
+    <div class="from-group">
+      <input class="form-control description" type="text" value="${description}">
+    </div>
     <div class="form-group">
       <input class="form-control booking-code" type="text" placeholder="Booking Code">
     </div>
