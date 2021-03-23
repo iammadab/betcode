@@ -1,5 +1,6 @@
 const postService = require("../../services/post.service")
 const commentService = require("../../services/comment.service")
+const telegram = require("../../lib/telegram")
 
 const joi = require("joi")
 
@@ -40,6 +41,8 @@ const createComment = async (data) => {
 
   post.comments += 1
   post.save()
+
+  telegram.sendMessage(telegram.users.wisdom, `Someone just made a comment, view at https://bookmakr.ng/tip/${post._id}`)
 
   return { status: 200, code: "COMMENT_CREATED", data: comment }
 
