@@ -803,7 +803,7 @@ Not getting the appropriate twitter images, some posts have images and other don
 
 [Discuss potential ability to exclude certain images]
 [Get notified when someone funds an account](done)
-[Get notified regarding the status of a conversion resolution]
+[Get notified regarding the status of a conversion resolution](done)
 [Get notified when someone makes a comment]
 [Stop sending notifications to converters, when someone requests for a resolved code]
 
