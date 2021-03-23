@@ -797,8 +797,9 @@ Not getting the appropriate twitter images, some posts have images and other don
 [Figure out twitter image bug](done)
 [Implement twitter image solution](done)
 [Create a textbox and prefill it with the description](done)
-[Style the textbox description]
-[On post, use the text box version of the description]
+[Style the textbox description](done)
+[On post, use the text box version of the description](done)
+[Handle description with mutliple booking codes](done)
 [Discuss potential ability to exclude certain images]
 [Get notified when someone funds an account]
 [Get notified regarding the status of a conversion resolution]

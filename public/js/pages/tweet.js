@@ -112,8 +112,9 @@ function attachEvents(){
   addFormButtons.forEach(elem => {
     elem.addEventListener("click", event => { 
       const id = elem.dataset.id
+      const tweet = store.tweets[id]
       const container = document.querySelector(`.form-container[data-id='${id}']`)
-      container.insertAdjacentHTML("beforeend", makePostForm(id))
+      container.insertAdjacentHTML("beforeend", makePostForm(id, tweet.text))
     })
   })
 }
@@ -336,6 +337,7 @@ async function makeAllPosts(event){
 
 function makePostData(postElement){
   const id = postElement.dataset.id
+  const description = postElement.querySelector(".description").value
   const code = postElement.querySelector(".booking-code").value
   const odds = postElement.querySelector(".odds").value
   const bookmaker = postElement.querySelector(".bookmaker").value
@@ -355,7 +357,7 @@ function makePostData(postElement){
   return {
     tipster: tweet.user,
     tweet: id,
-    description: tweet.text,
+    description: description || tweet.text,
     odds,
     bookmakers: {
       [bookmaker]: code
