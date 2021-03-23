@@ -218,9 +218,7 @@ function makePostForm(id, description){
 
   return `
   <div data-id="${id}" class="tweet_form">
-    <div class="from-group">
-      <input class="form-control description" type="text" value="${description}">
-    </div>
+    <input class="form-control description desc" type="text" value="${description}">
     <div class="form-group">
       <input class="form-control booking-code" type="text" placeholder="Booking Code">
     </div>

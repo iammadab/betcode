@@ -796,9 +796,9 @@ Not getting the appropriate twitter images, some posts have images and other don
 
 [Figure out twitter image bug](done)
 [Implement twitter image solution](done)
-[When converting from tweet to post, make the description editable]
-  - The description will be prefilled with the original one, by defaul tho
-  - Then if you want to change it, that is fine
+[Create a textbox and prefill it with the description](done)
+[Style the textbox description]
+[On post, use the text box version of the description]
 [Discuss potential ability to exclude certain images]
 [Get notified when someone funds an account]
 [Get notified regarding the status of a conversion resolution]
