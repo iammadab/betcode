@@ -44,7 +44,7 @@ app.get(
 
 app.get(
   "/home", 
-  cookieMiddleware.cookieNotFound("/login"),
+  cookieMiddleware.maybeCookie(),
   tokenMiddleware.validateToken(),
   stageRouter(),
   pageMiddleware.home,

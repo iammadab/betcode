@@ -103,14 +103,8 @@ let store = {
 function showOriginal(codeDetails){
 
   hideAll()
-
-  if(getToken()){
-    store.codeDisplay.value = codeDetails.code
-    showSection("copy")
-  }
-
-  else
-    showAlertPro("info", generateMessage("login"))
+  store.codeDisplay.value = codeDetails.code
+  showSection("copy")
 
 }
 
@@ -118,7 +112,6 @@ function showPaid(){
 
   hideAll()
 
-  // If the user is logged in
   if(getToken()){
     showAlertPro("info", generateMessage("about-to-pay"))
     showSection("proceed")
@@ -126,7 +119,6 @@ function showPaid(){
 
   else
     showAlertPro("info", generateMessage("login"))
-
 
 }
 

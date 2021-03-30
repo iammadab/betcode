@@ -804,9 +804,18 @@ Not getting the appropriate twitter images, some posts have images and other don
 [Discuss potential ability to exclude certain images]
 [Get notified when someone funds an account](done)
 [Get notified regarding the status of a conversion resolution](done)
-[Get notified when someone makes a comment]
-[Stop sending notifications to converters, when someone requests for a resolved code]
+[Get notified when someone makes a comment](done)
+[Stop sending notifications to converters, when someone requests for a resolved code](done)
 
+
+
+30/03/2021
+A week later, we have been live for over a week now.
+We have gotten some request and we have made up to 600 naira in revenue :)
+
+Time to work on some updates.
+
+[Allow people to see the tips without signing up
 Future task
 [Forgot password]
 [Increase login token duration]
