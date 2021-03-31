@@ -1452,6 +1452,13 @@ flex:1 1 auto;
 text-transform:capitalize;
 }
 
+@media (max-width: 768px){
+.tag{
+padding:0.15rem 0.5rem;
+font-size:0.8rem;	
+}	
+}
+
 /*.popular-banner .tag{
 color:#000;	
 }*/
