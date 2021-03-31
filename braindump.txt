@@ -818,8 +818,19 @@ Time to work on some updates.
 [Allow people to see the tips without signing up](done)
 [Break the forgot page into three sections](done)
 [Add buttons to each section](done)
-[Implement toggling of each section]
-[Figure out otp flow]
+[Figure out otp flow](done)
+  - First the user has to pass their username or email
+  - Then we are to an otp to that user based on their details
+    - The current otp creations method only works for a logged in user
+    - So we will need one to create just by getting the username or email
+    - Otp verification also requires a user, might have to reconsider what I said above
+    - Because I don't want to repeat code
+      - Hence, I am thinking of creating a middleware that a username or email and returns a user object
+      - So I just pass that user obj to my already existing otp mechanism
+  - The user gets the otp, they verify it with us
+  - If it is verified, we send them to the change password sections
+  - They send their password, username and otp to the server to make the changes
+[Implement middleware to get userobj by username or email]
 
 Future task
 [Forgot password]
