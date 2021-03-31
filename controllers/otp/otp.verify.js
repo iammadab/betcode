@@ -11,7 +11,7 @@ const verifyOtpValidator = joi.object({
   }).required().unknown(true)
 }).options({ abortEarly:  false }).unknown(true)
 
-const verifyOtp = async (data) => {
+const verifyOtp = (type = "verify") => async (data) => {
   
   const validationResult = verifyOtpValidator.validate(data)
 
@@ -29,14 +29,18 @@ const verifyOtp = async (data) => {
   // Delete all otps for that user
   // Update the user to verified
   
-  otpService.deleteOtpsFor({ phone: user.phone })
+  if(type == "verify"){
 
-  telegram.sendMessage(telegram.users.wisdom, "User just verified")
+    otpService.deleteOtpsFor({ phone: user.phone })
 
-  const updatedUser = await userService.updateUser(
-    { _id: user._id },
-    { stage: "verified" }
-  )
+    telegram.sendMessage(telegram.users.wisdom, "User just verified")
+
+    const updatedUser = await userService.updateUser(
+      { _id: user._id },
+      { stage: "verified" }
+    )
+
+  }
 
   return { status: 200, code: "OTP_VERIFIED" }
 

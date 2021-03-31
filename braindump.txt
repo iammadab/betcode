@@ -830,7 +830,9 @@ Time to work on some updates.
   - The user gets the otp, they verify it with us
   - If it is verified, we send them to the change password sections
   - They send their password, username and otp to the server to make the changes
-[Implement middleware to get userobj by username or email]
+[Implement middleware to get userobj by username or email](done)
+[Create the bookmakr otp creation route](done)
+[Create the forgot otp verification route](done)
 
 Future task
 [Forgot password]
