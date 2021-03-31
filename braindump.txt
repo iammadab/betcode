@@ -815,7 +815,12 @@ We have gotten some request and we have made up to 600 naira in revenue :)
 
 Time to work on some updates.
 
-[Allow people to see the tips without signing up
+[Allow people to see the tips without signing up](done)
+[Break the forgot page into three sections](done)
+[Add buttons to each section](done)
+[Implement toggling of each section]
+[Figure out otp flow]
+
 Future task
 [Forgot password]
 [Increase login token duration]
