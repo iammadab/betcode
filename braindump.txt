@@ -833,6 +833,9 @@ Time to work on some updates.
 [Implement middleware to get userobj by username or email](done)
 [Create the bookmakr otp creation route](done)
 [Create the forgot otp verification route](done)
+[Create otp from the front end when a user puts in their username of password]
+[Display the appropriate errors]
+
 
 Future task
 [Forgot password]

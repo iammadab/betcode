@@ -11,32 +11,40 @@
 				</div>
 				<form class="login login-form" autocomplete="off">
 
-          <div class="forgot-username">
+          <div id="success" style="display: none" class="login-success alert alert-success" role="alert">
+            Tip posted and you can copy share link below
+          </div>
+
+          <div id="error" style="display: none" class="login-error alert alert-danger" role="alert">
+            Tip posted unsuccessfully, please try again later 
+          </div>
+
+          <div class="section forgot-username">
             <div class="form-group">
-              <input class="form-control form-control-lg" name="identifier" type="text" placeholder="Username or Email Address">
+              <input class="form-control form-control-lg input-identity" name="identifier" type="text" placeholder="Username or Email Address">
             </div>
             <div class="form-group" align="center">
-              <button id="submit" type="submit" class="login-button btn btn-book">
+              <button id="submit" type="submit" class="action-button login-button btn btn-book">
                   <span class="login-text">Next</span>
               </button>
             </div>
           </div>
 
-          <div class="forgot-otp hide">
+          <div class="section forgot-otp hide">
             <div class="form-group">
               <input class="form-control form-control-lg" name="whatsapp" type="text" placeholder="Enter OTP">
             </div>
-            <div class="terms">Didn't get OTP sent to 0908****13? Resend in 
+            <div class="terms">Didn't get OTP sent to <span class="number-display"></span>? Resend in 
               <a href="/forgot">30 seconds</a></a>
             </div>
             <div class="form-group" align="center">
-              <button id="submit" type="submit" class="login-button btn btn-book">
+              <button id="submit" type="submit" class="action-button login-button btn btn-book">
                   <span class="login-text">Next</span>
               </button>
             </div>
           </div>
 
-          <div class="forgot-password hide">
+          <div class="section forgot-password hide">
             <div class="form-group">
               <input class="form-control form-control-lg" name="password" type="password" placeholder="New Password">
             </div>
@@ -44,7 +52,7 @@
               <input class="form-control form-control-lg" name="password" type="password" placeholder="Confirm Password">
             </div>
             <div class="form-group" align="center">
-              <button id="submit" type="submit" class="login-button btn btn-book">
+              <button id="submit" type="submit" class="action-button login-button btn btn-book">
                   <span class="login-text">Change</span>
               </button>
             </div>

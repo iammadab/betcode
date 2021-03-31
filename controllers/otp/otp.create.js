@@ -27,7 +27,7 @@ const createOtp = async (data) => {
 
   const otpObj = await otpService.createOtp({ phone: user.phone, code })
 
-  return { status: 200, code: "OTP_CREATED" }
+  return { status: 200, code: "OTP_CREATED", data: { phone: numberToAsterik(user.phone) } }
 
 }
 
@@ -35,4 +35,9 @@ module.exports = createOtp
 
 function generateCode(){
   return (Math.floor((Math.random() * 90000)) + 10000)
+}
+
+function numberToAsterik(number){
+  const numberString = String(number)
+  return numberString.slice(0, 4) + numberString.slice(2).replace(/.(?=...)/g, "*")
 }

@@ -47,3 +47,4 @@ const verifyOtp = (type = "verify") => async (data) => {
 }
 
 module.exports = verifyOtp
+
