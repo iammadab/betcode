@@ -73,9 +73,33 @@ const tipsters = {
 
    console.log("Post")
 
+   console.log(tweet)
+
+   let scope
+
+    if(tweet.extended_tweet){
+      scope = tweet.extended_tweet
+      if(scope.extended_entities)
+        scope = scope.extended_entities
+      else
+        scope = scope.entities
+    }
+
+    else if(tweet.extended_entities){
+      scope = tweet.extended_entities
+    }
+
+    else{
+      scope = tweet.entities
+    }
+
+    scope = scope || {}
+
+    console.log("Scope", scope)
+
    let images = []
-   if(Array.isArray(tweet.entities.media)){
-     images = tweet.entities.media.map(media => {
+   if(Array.isArray(scope.media)){
+     images = scope.media.map(media => {
       if(media.type != "photo") return null
       return media.media_url_https
      }).filter(a => a)

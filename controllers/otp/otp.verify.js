@@ -1,4 +1,5 @@
 const otpService = require("../../services/otp.service")
+const telegram = require("../../lib/telegram")
 const userService = require("../../services/user.service")
 
 const joi = require("joi")
@@ -29,6 +30,8 @@ const verifyOtp = async (data) => {
   // Update the user to verified
   
   otpService.deleteOtpsFor({ phone: user.phone })
+
+  telegram.sendMessage(telegram.users.wisdom, "User just verified")
 
   const updatedUser = await userService.updateUser(
     { _id: user._id },

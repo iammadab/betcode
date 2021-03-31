@@ -112,8 +112,9 @@ function attachEvents(){
   addFormButtons.forEach(elem => {
     elem.addEventListener("click", event => { 
       const id = elem.dataset.id
+      const tweet = store.tweets[id]
       const container = document.querySelector(`.form-container[data-id='${id}']`)
-      container.insertAdjacentHTML("beforeend", makePostForm(id))
+      container.insertAdjacentHTML("beforeend", makePostForm(id, tweet.text))
     })
   })
 }
@@ -192,15 +193,15 @@ function tweetToDOM(tweet, state="tweet-unclassified"){
     <li data-state="${state}" data-id="${tweet._id}" class="hover">
       <div class="tweet_header">
         <div class="tweet_details">
-          <h6>${tweet.user}</h6>
-          <span>2 hours ago</span>
+          <a href="${tweet.link}" target="_blank_"><h6>${tweet.user}</h6></a>
+          <span>${tweet.date}</span>
         </div>
           <span data-id="${tweet._id}" class="tweet_add"><i class="fas fa-plus-circle"></i></span>
       </div>
       <div class="tweet_main">
         <p>${tweet.text}</p>
         <div data-id="${tweet._id}" class="form-container">
-          ${makePostForm(tweet._id)}
+          ${makePostForm(tweet._id, tweet.text)}
         </div>
         <div class="s_img">
           ${tweet.images.map(link => "<img src='" + link + "'/>")}
@@ -210,7 +211,7 @@ function tweetToDOM(tweet, state="tweet-unclassified"){
   `
 }
 
-function makePostForm(id){
+function makePostForm(id, description){
 
   const bookmakerHTML = Object.keys(store.bookmakers).map(bookmaker => {
     return `<option value="${bookmaker}">${store.bookmakers[bookmaker]}</option>`
@@ -218,6 +219,7 @@ function makePostForm(id){
 
   return `
   <div data-id="${id}" class="tweet_form">
+    <input class="form-control description desc" type="text" value="${description}">
     <div class="form-group">
       <input class="form-control booking-code" type="text" placeholder="Booking Code">
     </div>
@@ -335,6 +337,7 @@ async function makeAllPosts(event){
 
 function makePostData(postElement){
   const id = postElement.dataset.id
+  const description = postElement.querySelector(".description").value
   const code = postElement.querySelector(".booking-code").value
   const odds = postElement.querySelector(".odds").value
   const bookmaker = postElement.querySelector(".bookmaker").value
@@ -354,7 +357,7 @@ function makePostData(postElement){
   return {
     tipster: tweet.user,
     tweet: id,
-    description: tweet.text,
+    description: description || tweet.text,
     odds,
     bookmakers: {
       [bookmaker]: code

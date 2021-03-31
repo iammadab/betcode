@@ -777,10 +777,35 @@ Also need to create a page to add tipsters. Think I should do this first.
 [Once the webhook hits, fetch the transaction](done)
 [Implement a wallet service to update and execute the transaction](done)
 [Implement wallet function to charge for conversion request](done)
-[Implement refund ability]
+[Implement refund ability](done)
   - When resolving the subscriber, if the conversion status is failed
   - Refund the transaction
 
+
+
+23/03/2021
+
+We successfully launched v3 on the 22nd of March 2021.
+Users are slowly verifying their accounts, and are making conversion requests.
+We give every user 100 naira after registration which allows for 5 conversions.
+No one has exhausted that yet, so we still don't know if users will be willing to pay.
+
+Noticed some experience bugs with the application, want to start resolving them bit by bit.
+
+Not getting the appropriate twitter images, some posts have images and other don't need to understand why
+
+[Figure out twitter image bug](done)
+[Implement twitter image solution](done)
+[Create a textbox and prefill it with the description](done)
+[Style the textbox description](done)
+[On post, use the text box version of the description](done)
+[Handle description with mutliple booking codes](done)
+
+[Discuss potential ability to exclude certain images]
+[Get notified when someone funds an account](done)
+[Get notified regarding the status of a conversion resolution](done)
+[Get notified when someone makes a comment]
+[Stop sending notifications to converters, when someone requests for a resolved code]
 
 Future task
 [Forgot password]
