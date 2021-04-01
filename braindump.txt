@@ -817,6 +817,8 @@ Time to work on some updates.
 
 [Allow people to see the tips without signing up](done)
 [Break the forgot page into three sections](done)
+
+31/03/2021
 [Add buttons to each section](done)
 [Figure out otp flow](done)
   - First the user has to pass their username or email
@@ -833,8 +835,9 @@ Time to work on some updates.
 [Implement middleware to get userobj by username or email](done)
 [Create the bookmakr otp creation route](done)
 [Create the forgot otp verification route](done)
-[Create otp from the front end when a user puts in their username of password]
-[Display the appropriate errors]
+[Create otp from the front end when a user puts in their username of password](done)
+[Display the appropriate errors](done)
+[Allow user to verify otp](done)
 
 
 Future task

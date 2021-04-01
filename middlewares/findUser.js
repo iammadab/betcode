@@ -23,8 +23,6 @@ exports.findUser = async (req, res, next) => {
     await userService.findUserByEmail({ email: identifier }) ||
     await userService.findUserByUsername({ username: identifier })
 
-  console.log(user)
-
   if(!user)
     return res.status(403).json({
       status: 403,

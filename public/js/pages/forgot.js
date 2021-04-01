@@ -1,10 +1,14 @@
 const store = {
+  phone: "",
+
   sections: document.querySelectorAll(".section"),
   actionButtons: document.querySelectorAll(".action-button"),
   inputs: document.querySelectorAll("input"),
   stage: "identity", // Can be "identity", "otp" or "password"
 
   identityInput: document.querySelector(".input-identity"),
+  otpInput: document.querySelector(".otp-input"),
+
   numberDisplay: document.querySelector(".number-display"),
   otpTimer: document.querySelector(".otp-timer"),
   resendButton: document.querySelector(".resend-otp")
@@ -12,7 +16,7 @@ const store = {
 
 ;(function attachEvents(){
   addEvent(store.actionButtons, "click", selectAction)
-  addEvent(store.inputs, "focus, change", () => {
+  addEvent(store.inputs, "focus, change, input", () => {
     hideAlert(".alert-danger")
   })
   addEvent([store.resendButton], "click", resendOtp)
@@ -23,7 +27,9 @@ function selectAction(event){
   event.preventDefault()
   
   const actionMap = {
-    "identity": generateOtp
+    "identity": generateOtp,
+    "otp": verifyOtp,
+    "password": changePassword
   }
 
   const action = actionMap[store.stage]
@@ -35,7 +41,7 @@ function selectAction(event){
 
 function generateOtp(){
 
-  const identifier = store.identityInput.value
+  const identifier = store.phone = store.identityInput.value
 
   if(!identifier)
     return showAlert(".alert-danger", "Please complete the form below")
@@ -48,6 +54,7 @@ function generateOtp(){
     if(response.status == 200){
       store.numberDisplay.innerText = response.data.phone 
       show(document.querySelector(".forgot-otp"))
+      store.stage = "otp"
       startTimer()
     }
 
@@ -60,10 +67,46 @@ function generateOtp(){
 
 function resendOtp(){
 
-  const identifier = store.identityInput.value
-
-  api("/otp/forgot", { identifier })
+  api("/otp/forgot", { identifier: store.phone })
     .then(startTimer)
+
+}
+
+
+function verifyOtp(){
+
+  const otp = store.otpInput.value 
+
+  if(!otp)
+    return showAlert(".alert-danger", "Please complete the form below")
+
+  api("/otp/forgot/verify", { code: otp, identifier: store.phone })
+    .then(handleVerifyOtp)
+
+  function handleVerifyOtp(response){
+    if(response.status == 200){
+      show(document.querySelector(".forgot-password"))
+      store.stage = "password"
+    }
+
+    else
+      return showAlert(".alert-danger", "Invalid OTP")
+  }
+
+}
+
+function changePassword(){
+    
+  const password = document.querySelector(".password1").value
+  const confirmPassword = document.querySelector(".password2").value
+
+  if(!password || !confirmPassword)
+    return showAlert(".alert-danger", "Please complete the form below")
+
+  if(password != confirmPassword)
+    return showAlert(".alert-danger", "Passwords do not match")
+
+  // Change password
 
 }
 
