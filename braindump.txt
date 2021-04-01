@@ -837,7 +837,10 @@ Time to work on some updates.
 [Create the forgot otp verification route](done)
 [Create otp from the front end when a user puts in their username of password](done)
 [Display the appropriate errors](done)
+
+1/04/2021
 [Allow user to verify otp](done)
+[Implement api route to change a user's password]
 
 
 Future task

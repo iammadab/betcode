@@ -1,5 +1,6 @@
 const store = {
   phone: "",
+  code: "",
 
   sections: document.querySelectorAll(".section"),
   actionButtons: document.querySelectorAll(".action-button"),
@@ -75,7 +76,7 @@ function resendOtp(){
 
 function verifyOtp(){
 
-  const otp = store.otpInput.value 
+  const otp = store.code = store.otpInput.value 
 
   if(!otp)
     return showAlert(".alert-danger", "Please complete the form below")
@@ -106,8 +107,16 @@ function changePassword(){
   if(password != confirmPassword)
     return showAlert(".alert-danger", "Passwords do not match")
 
-  // Change password
+  api("/user/password", { password, code: store.code, identifier: store.phone })
+    .then(handleChangePassword)
 
+  function handleChangePassword(response){
+    if(response.status == 200){
+      showAlert(".alert-success", "Password changed successfully")
+      redirect("/home")
+    }
+  }
+      
 }
 
 function hideAll(){

@@ -19,4 +19,9 @@ userRouter.get("/exists/phone/:value", paramResponder(userController.uniqueUser(
 userRouter.get("/exists/username/:value", paramResponder(userController.uniqueUser("username")))
 userRouter.get("/exists/email/:value", paramResponder(userController.uniqueUser("email")))
 
+userRouter.post(
+  "/password", 
+  bodyResponder(userController.changePassword)
+)
+
 module.exports = userRouter
