@@ -98,8 +98,11 @@ function verifyOtp(){
 
 function changePassword(){
     
-  const password = document.querySelector(".password1").value
-  const confirmPassword = document.querySelector(".password2").value
+  const passwordInput = document.querySelector(".password1")
+  const confirmPasswordInput = document.querySelector(".password2")
+
+  const password = passwordInput.value
+  const confirmPassword = confirmPasswordInput.value
 
   if(!password || !confirmPassword)
     return showAlert(".alert-danger", "Please complete the form below")
@@ -113,6 +116,8 @@ function changePassword(){
   function handleChangePassword(response){
     if(response.status == 200){
       showAlert(".alert-success", "Password changed successfully")
+      passwordInput.value = ""
+      confirmPasswordInput.value = ""
       redirect("/home")
     }
   }
