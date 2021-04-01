@@ -194,7 +194,7 @@ function tweetToDOM(tweet, state="tweet-unclassified"){
       <div class="tweet_header">
         <div class="tweet_details">
           <a href="${tweet.link}" target="_blank_"><h6>${tweet.user}</h6></a>
-          <span>2 hours ago</span>
+          <span>${tweet.date}</span>
         </div>
           <span data-id="${tweet._id}" class="tweet_add"><i class="fas fa-plus-circle"></i></span>
       </div>
