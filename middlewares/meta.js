@@ -2,7 +2,7 @@ const baseUrl = "https://bookmakr.ng"
 
 const baseMeta = {
   title: "Bookmakr - Latest Booking Codes",
-  description: "Get hundreds of booking codes daily from the top tipsters in Nigeria and convert to any bookmaker of your choice.",
+  description: "Get booking codes daily from the top tipsters in Nigeria and convert to any bookmaker of your choice.",
   image: ""
 }
 
@@ -79,6 +79,18 @@ exports.home = (req, res, next) => {
   req.pageData.meta = Object.assign({}, baseMeta, {
     url,
     title: `Home`
+  })
+
+  next()
+}
+
+
+exports.about = (req, res, next) => {
+  const url = baseUrl + req.path
+
+  req.pageData.meta = Object.assign({}, baseMeta, {
+    url,
+    title: `About`
   })
 
   next()
