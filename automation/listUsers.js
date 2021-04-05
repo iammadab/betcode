@@ -5,17 +5,17 @@ const fs = require("fs")
     
   const list = ["fullname,phone,bio"]
 
-  const users = await userModel.find()
+  const users = await userModel.find().sort({ wallet: 1 })
 
   users.forEach(user => {
     if(user.verifiedTipster) return
-    const userString = `${user.fullname},${user.phone},${user.bio}`
+    const userString = `${trim(user.fullname)},${trim(user.phone)},${trim(user.wallet)}`
     list.push(userString)
   })
 
   const doc = list.join("\n")
 
-  fs.writeFile("./users.csv", doc, (err, data) => {
+  fs.writeFile("./users2.csv", doc, (err, data) => {
     if(err)
       return console.log(err)
 
@@ -24,3 +24,7 @@ const fs = require("fs")
   })
 
 })
+
+function trim(string){
+  return String(string).replace(/,/g, "").replace(/\n/g, "")
+}
