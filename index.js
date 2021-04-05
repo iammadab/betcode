@@ -54,6 +54,18 @@ app.get(
   }
 )
 
+app.get(
+  "/about", 
+  cookieMiddleware.maybeCookie(),
+  tokenMiddleware.validateToken(),
+  stageRouter(),
+  pageMiddleware.home,
+  metaMiddleware.about,
+  (req, res) => {
+    res.render("index", { ...req.pageData })
+  }
+)
+
 
 
 app.get(
